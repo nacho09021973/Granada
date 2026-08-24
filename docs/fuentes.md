@@ -90,14 +90,19 @@ de Al-Andalus*, inventario [AA-415_23](https://www.academiacolecciones.com/arqui
   planimetría vectorial, **PDF de 4.7 MB**, observaciones «Sección y planta
   del techo de la sala de las Dos Hermanas con ortoimagenes», procedencia
   «Fondo gráfico donado por el Académico D. Antonio Almagro Gorbea».
-- **NO verificado**: la fecha «enero 2021» del cajetín. Procede del informe
-  preliminar, no de la ficha; la ficha no da fecha.
-- **NO verificado**: la ficha **no menciona** geometría poligonal de la cúpula
-  ni número de lados. El informe preliminar atribuía a este plano cosas que la
-  ficha no dice.
+- **Verificado leyendo el PDF directamente** (4.7 MB, coincide con la ficha).
+  Cajetín transcrito del propio plano: «ALHAMBRA. GRANADA. SALA DE LAS DOS
+  HERMANAS. SECCION NORTE-SUR — A. Almagro / arq. RABASF **enero 2021**».
+  Queda así confirmada la fecha, que la ficha de inventario no da.
+- La lámina contiene dos vistas: la **ortoimagen cenital del techo** (4083 ×
+  4054 px a 300 ppi) y la sección norte-sur, con escala gráfica de 0 a 10 m.
+- La ficha **no menciona** geometría poligonal ni número de lados. El informe
+  preliminar le atribuía cosas que no dice. La geometría se ha medido sobre la
+  ortoimagen: ver la sección 7.
 
-**Aviso de licencia**: es material de la RABASF. Derivar geometría de él para
-un repositorio MIT exige revisar sus condiciones de uso **antes**, no después.
+**Aviso de licencia**: es material de la RABASF. Se ha leído para verificar,
+que es uso legítimo; **derivar geometría de él para un repositorio MIT es otra
+cosa** y exige revisar sus condiciones de uso antes, no después.
 
 ---
 
@@ -151,18 +156,79 @@ geometría exacta es la del modelo, no la del monumento.
 
 ---
 
+## 7. Orden de simetría de la cúpula, medido sobre la ortoimagen
+
+Pregunta abierta hasta ahora: si la cúpula de las Dos Hermanas es de orden 8 o
+de orden 16. Resuelta el 2026-08-24 midiendo sobre la ortoimagen cenital de
+AA-415_23 (entrada 3).
+
+**Descartado primero**: la página oficial del Patronato
+([sala-de-dos-hermanas](https://www.alhambra-patronato.es/edificios-lugares/sala-de-dos-hermanas))
+**no dice nada** del orden. Su única frase sobre la cúpula es que los mocárabes
+«a partir de una estrella central, se desarrollan mediante el conocido teorema
+de Pitágoras». El «hexadecágono» del informe preliminar no está respaldado ahí.
+(De paso: esa alusión a Pitágoras encaja con el rectángulo 5 : 5√2 de la
+entrada 1 — la diagonal del cuadrado es la relación que el oficio aproximaba
+por 7/5.)
+
+**Medido**, sobre la ortoimagen de 4083 × 4054 px:
+
+- La planta es **cuadrada con las cuatro esquinas achaflanadas** por las
+  trompas, lo que produce un **octógono**. Visible sin ambigüedad.
+- El anillo exterior tiene **16 cupulines**, con separación angular **media de
+  22.5°**, alternando ≈25° y ≈20°.
+- Espectro angular de Fourier de la luminancia, por zonas radiales, con el
+  centro afinado minimizando el armónico k=1:
+
+  | zona | k=4 | k=8 | **k=16** | k=32 |
+  |---|---|---|---|---|
+  | estrella central | 1.6 % | 6.3 % | 6.0 % | 1.0 % |
+  | cuerpo | 1.7 % | 12.1 % | 11.6 % | 3.2 % |
+  | anillo exterior | 1.9 % | 4.0 % | **34.2 %** | 5.4 % |
+  | toda la bóveda | 1.6 % | 7.8 % | **17.2 %** | 3.2 % |
+
+**Conclusión, en dos partes que no deben mezclarse:**
+
+1. **El andamiaje angular es de orden 16.** k=16 es el armónico dominante en
+   el conjunto (17.2 %) y aplastante en el anillo de cupulines (34.2 %). La
+   retícula de direcciones es la de múltiplos de 22.5° = 2π/16.
+2. **La simetría rotacional exacta del ornamento es de orden 8.** Si fuese
+   exactamente 16, los armónicos k=8 y k=24 tendrían que anularse, y no lo
+   hacen (7.8 % y 5.4 %). Las 16 posiciones alternan entre dos tipos, cosa
+   coherente con una base octogonal que lleva dos cupulines por lado.
+
+Para Granada lo que importa es (1): **el anillo correcto es Z[ζ₁₆]**, porque es
+la retícula angular la que fija el anillo en el que viven los vértices. Que el
+grupo de simetría del ornamento sea C₈ ⊂ C₁₆ es una cuestión de qué decoración
+se coloca sobre esa retícula, no de qué anillo hace falta para describirla.
+
+Esto coincide de forma independiente con la entrada 1: el conjunto de ángulos
+{45°, 67.5°, 90°, 135°} de López de Arenas genera exactamente la misma retícula
+de 22.5°. Dos vías distintas — un tratado del siglo XVII y una medición
+fotogramétrica del XXI — dan el mismo orden.
+
+**Límites de esta medición, explícitos:**
+
+- Es fotometría sobre una imagen ráster: mide luminancia, no geometría
+  construida. La iluminación, los deterioros y los restos de policromía
+  inyectan ruido. Los porcentajes no son precisos, solo comparables entre sí.
+- Queda un k=1 residual de ~5–6 %: el centrado no es perfecto, y eso derrama
+  energía hacia k=15 y k=17.
+- No se ha analizado la simetría especular.
+- **El PDF lleva además una capa vectorial que no se ha extraído.** Medir sobre
+  ella daría geometría en vez de fotometría y sería mejor evidencia. Pendiente.
+- El método es reproducible (desenrollado polar + FFT angular), pero el script
+  usa Pillow y por eso **no entra en el paquete**: `granada/` mantiene cero
+  dependencias.
+
+---
+
 ## Pendiente de verificar
 
-- Orden de simetría de la cúpula de las Dos Hermanas en concreto. El informe
-  preliminar afirma cuadrado → octógono → **hexadecágono**. Otras fuentes
-  divulgativas describen base octogonal, dos estrellas de ocho puntas y 16
-  cupulines. **No resuelto**: la página del Patronato agotó el tiempo de
-  espera. La entrada 1 fija el orden 16 para el *sistema* andalusí, que es lo
-  que necesita el generador; el dato de esta cúpula concreta sigue abierto.
 - Recuento de piezas de la cúpula de las Dos Hermanas: circulan 5.416 piezas y
   «104 adarajas en forma de estrella» (IAPH / Paseos Matemáticos). Sin
   comprobar, y de tipo (B).
-- Fecha del cajetín de AA-415_23.
+- La capa vectorial de AA-415_23, como comprobación de la sección 7.
 - Las otras nueve filas de la tabla de planos del APAG.
 - Owen Jones y Jules Goury, *Plans, Elevations, Sections and Details of the
   Alhambra* (1842–1845). Citada de segunda mano en las entradas 1 y 5, que la

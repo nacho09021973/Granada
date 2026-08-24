@@ -123,11 +123,30 @@ exactamente lo que el núcleo elimina: aquí √2 no es un decimal, es el elemen
 Nada de esto cambia el código: el núcleo ya es genérico en m. Cambia qué
 órdenes priorizar en la fase geométrica, y por qué.
 
-**TODO pendiente**: si la cúpula de las Dos Hermanas *en concreto* es de orden
-16. El informe preliminar lo afirma (cuadrado → octógono → hexadecágono) pero
-no está verificado, y otras descripciones hablan de base octogonal con 16
-cupulines. Esto solo afecta a la afirmación (B); la decisión de anillo se
-sostiene sin ello.
+### Confirmación independiente sobre la cúpula de las Dos Hermanas
+
+El TODO que quedaba aquí — si esa cúpula *en concreto* es de orden 16 — se
+cerró el 2026-08-24 midiendo sobre la ortoimagen cenital del plano AA-415_23.
+Detalle y límites en la sección 7 de `docs/fuentes.md`. En resumen:
+
+- La retícula angular es de **orden 16**: 16 cupulines a 22.5° de media, y k=16
+  es el armónico angular dominante (17.2 % en el conjunto, 34.2 % en el anillo
+  exterior).
+- La simetría rotacional **exacta** del ornamento es **C₈**, no C₁₆: los
+  armónicos k=8 y k=24 no se anulan.
+
+La distinción importa y conviene no perderla: **es la retícula angular la que
+fija el anillo**, no el grupo de simetría del ornamento. Los vértices de una
+figura con direcciones múltiplos de 22.5° viven en Z[ζ₁₆] aunque su decoración
+solo sea invariante bajo C₈ ⊂ C₁₆. Granada genera la retícula; qué subgrupo
+respeta la decoración es una elección posterior, de la fase geométrica.
+
+Dos vías independientes dan el mismo orden: un tratado de carpintería del siglo
+XVII y una medición fotogramétrica del XXI. Eso es lo que sostiene la Decisión 4.
+
+Nota: la página oficial del Patronato no dice nada del orden de la cúpula, y el
+«hexadecágono» del informe preliminar no está respaldado por ella. El dato
+procede de la medición, no de la afirmación del informe.
 
 ## Decisión pendiente: sistema oriental u occidental
 
