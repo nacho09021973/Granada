@@ -39,3 +39,6 @@ htmlcov/
 # Sistema operativo
 .DS_Store
 Thumbs.db
+
+# WSL: metadatos de descarga que Windows adjunta a los ficheros
+*:Zone.Identifier
