@@ -79,11 +79,11 @@ Explícitamente **no** se implementa, porque no está decidido todavía:
 - Bibliografía. `docs/fuentes.md` queda vacío hasta tener fuentes comprobadas
   de primera mano.
 
-## Nota abierta
+## Corrección al enunciado original del test de m=16
 
-El enunciado original del test de m=16 pedía comprobar que existe un elemento
-con módulo al cuadrado igual a 2 − √2 y que ese elemento **no existe en m=8**.
-La segunda mitad es falsa: en Z[ζ₈] el elemento ζ − 1 tiene
+El enunciado original pedía comprobar que existe un elemento con módulo al
+cuadrado igual a 2 − √2 y que ese elemento **no existe en m=8**. La segunda
+mitad es falsa: en Z[ζ₈] el elemento ζ − 1 tiene
 |ζ − 1|² = 2 − 2·cos(45°) = 2 − √2, y el subanillo real de Z[ζ₈] es Z[√2], que
 contiene esa cantidad. Además 2·sin(π/8) = 0.7653… es la cuerda de 45°, no la
 de 22.5°.
@@ -92,9 +92,51 @@ La cantidad que sí separa m=16 de m=8 es la cuerda de 22.5° = 2π/16:
 |ζ₁₆ − 1|² = 2 − √(2 + √2) ≈ 0.1522, con raíz 2·sin(π/16) = 0.3902…, que no
 pertenece a Z[√2].
 
-Se han escrito los dos tests: el de 2 − √2 en m=16 tal como se pidió (sin
-afirmar no-existencia en m=8), un test que documenta que 2 − √2 también se
-realiza en m=8, y el test de separación correcto. **TODO: confirmar cuál de
-las dos cantidades es la relevante para el diseño geométrico que se tenía en
-mente**, porque cambia qué órdenes de simetría son genuinamente distintos
-entre sí.
+Se han escrito los tres tests: el de 2 − √2 en m=16 tal como se pidió (sin
+afirmar no-existencia en m=8), uno que documenta que 2 − √2 también se realiza
+en m=8, y el test de separación correcto.
+
+## Decisión 4: m=16 es el orden natural del sistema andalusí
+
+Resuelto el 2026-08-24. Sostenido por la entrada 1 de `docs/fuentes.md`
+(Ferrer-Pérez-Blanco, Gámiz-Gordo y Reinoso-Gordo, *Sustainability* 11(2) 316,
+2019, CC BY 4.0), que describe el sistema occidental de mocárabes a partir de
+los manuscritos del siglo XVII de Fray Andrés de San Miguel y Diego López de
+Arenas, y afirma que los ángulos interiores se reducen a cuatro: **45°, 67.5°,
+90° y 135°**.
+
+Los cuatro son múltiplos de 22.5° = 2π/16. Un conjunto de direcciones cerrado
+bajo giros de 22.5° es el de las raíces 16-ésimas de la unidad, luego **Z[ζ₁₆]
+es el anillo natural del sistema andalusí** y la cuerda de 22.5° es su longitud
+primitiva. El 67.5° = 3·22.5° es el que lo fija: sin él bastaría con orden 8.
+
+Esto confirma que el test de separación relevante es el corregido — el de
+2 − √(2 + √2) — y no el del enunciado original, que corresponde al octógono
+intermedio.
+
+La misma fuente da la motivación histórica del proyecto de forma más directa
+de lo esperado: el oficio usaba **7/5 = 1.4 como aproximación de √2**
+(«a rectangle with ratio 5 to 7, rounded to 5 root of 2»). Ese redondeo es
+exactamente lo que el núcleo elimina: aquí √2 no es un decimal, es el elemento
+ζ + ζ⁻¹, y su cuadrado es el entero 2.
+
+Nada de esto cambia el código: el núcleo ya es genérico en m. Cambia qué
+órdenes priorizar en la fase geométrica, y por qué.
+
+**TODO pendiente**: si la cúpula de las Dos Hermanas *en concreto* es de orden
+16. El informe preliminar lo afirma (cuadrado → octógono → hexadecágono) pero
+no está verificado, y otras descripciones hablan de base octogonal con 16
+cupulines. Esto solo afecta a la afirmación (B); la decisión de anillo se
+sostiene sin ello.
+
+## Decisión pendiente: sistema oriental u occidental
+
+La tesis de Ferrer Pérez-Blanco (entrada 2 de `fuentes.md`) distingue la
+tradición **oriental** (al-Kāshī, siglo XV) de la **occidental o andalusí**
+(López de Arenas, Fray Andrés de San Miguel). Son sistemas formalmente
+distintos y Granada no se compromete hoy con ninguno.
+
+La Decisión 4 se apoya en el sistema occidental. Si más adelante se quisiera
+generar mocárabes orientales, habría que revisar el conjunto de ángulos y, con
+él, el orden del anillo. Merece su propio ADR cuando se aborden los perfiles
+de celda.
