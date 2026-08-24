@@ -39,6 +39,8 @@ __all__ = [
     "RealCyclotomicInteger",
     "solve_rational_linear",
     "solve_integer_linear",
+    "numeric_embedding_xy",
+    "numeric_embedding_value",
 ]
 
 
@@ -690,3 +692,44 @@ class RealCyclotomicInteger:
             else:
                 terms.append(f"{a}*L^{k}")
         return " + ".join(terms) if terms else "0"
+
+
+# ==========================================================================
+# FRONTERA NUMERICA
+#
+# A partir de aqui, y SOLO a partir de aqui, aparece la coma flotante.
+# Todo lo anterior es aritmetica entera exacta. Estas funciones son el
+# embedding Z[zeta_m] -> R^2 y solo deben usarse en el ultimo paso, para
+# dibujar o exportar. Nunca en el nucleo: ninguna decision geometrica ni
+# ninguna comparacion de igualdad debe depender de su resultado.
+#
+# Los nombres empiezan todos por `numeric_embedding_` precisamente para
+# que su uso sea visible de un vistazo en cualquier fichero.
+# ==========================================================================
+
+
+def numeric_embedding_xy(element: CyclotomicInteger) -> tuple[float, float]:
+    """Embedding numerico INEXACTO de un elemento de Z[zeta_m] en R^2.
+
+    Devuelve las coordenadas (x, y) en coma flotante del numero complejo
+    sum a_k * e^(2 pi i k / m). Introduce error de redondeo: no lo uses
+    para comparar, decidir ni construir. Solo para pintar.
+    """
+    m = element.ring.m
+    x = 0.0
+    y = 0.0
+    for k, a in enumerate(element.coeffs):
+        if a == 0:
+            continue
+        angle = 2.0 * math.pi * k / m
+        x += a * math.cos(angle)
+        y += a * math.sin(angle)
+    return (x, y)
+
+
+def numeric_embedding_value(element: RealCyclotomicInteger) -> float:
+    """Embedding numerico INEXACTO de un elemento real en R.
+
+    Mismas advertencias que :func:`numeric_embedding_xy`.
+    """
+    return numeric_embedding_xy(element.to_cyclotomic())[0]
