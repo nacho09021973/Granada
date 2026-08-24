@@ -66,14 +66,18 @@ Comares). **No** la Sala de las Dos Hermanas. Ver la nota de la sección 6.
 **Mocárabes de La Alhambra. Forma, dibujo y configuración arquitectónica.**
 Universidad de Sevilla, 2023. Director: Antonio Gámiz Gordo. 491 páginas.
 
-- **Verificado** vía Dialnet (código de tesis 312651): título, autor, director,
-  universidad, año, extensión y resumen.
+- **LEÍDA DIRECTAMENTE** el 2026-08-24. Descargada de idUS por su API DSpace
+  (el acceso web devuelve 403 a las herramientas automáticas): item
+  `e4283c2c-f94e-4f08-b551-870fa2a5091f`, bitstream de 24.4 MB, 491 páginas.
+  Defendida el 31-01-2023, sobresaliente cum laude.
+- Sus consecuencias para el modelo están en `docs/teselado.md`. Corrige varias
+  cosas que este proyecto había dado por buenas.
 - El resumen confirma la distinción entre la tradición **oriental**
   (al-Kāshī, matemático del siglo XV) y la **occidental** (López de Arenas,
   Fray Andrés de San Miguel), y documenta composiciones asimétricas.
-- **NO verificado**: el handle de idUS `11441/143321` que da el informe
-  preliminar. El repositorio devolvió HTTP 403 a la consulta automática.
-  Pendiente de comprobar a mano.
+- Handle `11441/143321` **confirmado**.
+- Derechos: acceso abierto, pero las figuras son obra del autor. Se citan y se
+  usan como referencia; no se redistribuye ninguna en este repositorio.
 
 Sostiene (B), y es la referencia a leer antes de abordar los perfiles de celda.
 
