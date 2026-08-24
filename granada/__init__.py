@@ -3,6 +3,16 @@
 Estado actual: solo el nucleo aritmetico. Ver README.md.
 """
 
+from granada.adaraja import (
+    PESO_CIRCULO,
+    PESO_PARABOLA,
+    TIRO_CUENCO,
+    TIRO_RECTO,
+    PerfilArco,
+    PuntoMalla,
+    malla_adaraja,
+    numeric_embedding_punto,
+)
 from granada.celda import (
     Celda,
     anillo,
@@ -40,6 +50,12 @@ __version__ = "0.1.0"
 
 __all__ = [
     "Celda",
+    "PerfilArco",
+    "PuntoMalla",
+    "PESO_CIRCULO",
+    "PESO_PARABOLA",
+    "TIRO_CUENCO",
+    "TIRO_RECTO",
     "Estratificacion",
     "HILADAS_MEDIDAS",
     "RAZON_MEDIDA",
@@ -51,8 +67,10 @@ __all__ = [
     "cyclotomic_polynomial",
     "divisors",
     "euler_phi",
+    "malla_adaraja",
     "numeric_embedding_celda",
     "numeric_embedding_hilada",
+    "numeric_embedding_punto",
     "numeric_embedding_value",
     "numeric_embedding_xy",
     "pasos_maximos",
