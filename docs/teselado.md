@@ -211,3 +211,70 @@ Resultado en `renders/planta_sobre_orto.png`.
 **Lo que la red no es**: es la *medina*, la red principal, no el contorno de
 cada celda. En la corona interior el techo real tiene subdivisiones más finas
 que las que dibuja la red. Eso es esperable y no es un fallo del ajuste.
+
+---
+
+## Extracción de la red: nudos, aristas y módulo (2026-08-24)
+
+Sobre la figura 128 ya registrada: binarizado de las medinas, adelgazamiento
+Zhang-Suen (15 iteraciones, 150 188 px de tinta → 13 951 px de esqueleto),
+detección de cruces por número de transiciones y trazado de los caminos entre
+nudos.
+
+**71 nudos, 48 aristas trazadas.** En `datos/red_medinas.json`, en metros y
+con origen en el centro de la cúpula. Es medición propia derivada del dibujo de
+la tesis, que se cita como fuente del original.
+
+### Advertencia sobre «ajustar a la retícula»
+
+**Z[ζ₁₆] es denso en el plano.** No es una retícula discreta: cualquier punto
+se aproxima tan bien como se quiera. «Redondear al punto de rejilla más
+próximo» no significa nada aquí.
+
+Lo comprobé empíricamente antes de seguir. Permitiendo coeficientes de hasta
+40, los nudos ajustan con residuo de 0.6 mm… **y unos puntos aleatorios ajustan
+igual de bien (1.16×)**. El test no discrimina nada. Por eso hay que acotar los
+coeficientes, y por eso todo test aquí lleva su control.
+
+### Lo que sí se sostiene: las cuatro direcciones
+
+Primer intento, tomando como aristas *todos* los pares de nudos próximos:
+resultado negativo, histograma casi plano. El fallo era mío: la mayoría de esos
+pares no están unidos por ninguna medina.
+
+Trazando las aristas **reales** siguiendo el esqueleto:
+
+| | aristas reales | pares próximos | azar |
+|---|---|---|---|
+| desviación **mediana** al múltiplo de 45° | **1.23°** | 7.94° | 11.09° |
+| dentro de 7° | **70.8 %** | 47.8 % | 30.3 % |
+
+La mitad de las aristas cae a menos de 1.23° de un múltiplo exacto de 45°. Las
+cuatro direcciones de medina que enuncia la tesis quedan **confirmadas sobre la
+medición**, no solo citadas.
+
+### El módulo: no hay uno solo
+
+Las longitudes se agrupan con claridad (≈0.21, ≈0.33, ≈0.44, ≈0.76, ≈1.1 m),
+pero **ningún módulo único las explica**: el mejor deja un residuo del 18–23 %
+del propio módulo. Eso no es un fallo de la medición, es lo que la tesis ya
+advierte para esta cúpula en concreto — el frente que pasa de 7P a 10P, y
+«composiciones en las que hay mocárabes de distinto módulo».
+
+### La razón entre direcciones
+
+| | valor |
+|---|---|
+| mediana de aristas ortogonales (15) | 0.561 m |
+| mediana de aristas diagonales (22) | 0.430 m |
+| **razón diagonal / ortogonal** | **0.7679** |
+| 2·sin(π/8) = √(2 − √2) | 0.7654 |
+
+Coincide al 0.3 %. Es **el mismo elemento** que aparece en el primer test del
+núcleo aritmético: la cuerda de 45°, cuyo cuadrado es exactamente 2 − √2, que
+vive en Z[ζ₁₆] y no en Z[ζ₈], y que resultó ser la base de la cuña canónica
+`cuna(R16, 2)`.
+
+Precaución: es una razón entre medianas de 15 y 22 aristas trazadas de una
+figura impresa. El acuerdo al 0.3 % es más preciso de lo que el método merece.
+Lo defendible es que la razón vale ~0.77 y **no** 1 ni √2.
