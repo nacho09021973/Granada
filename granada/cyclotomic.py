@@ -36,6 +36,9 @@ __all__ = [
     "cyclotomic_polynomial",
     "CyclotomicRing",
     "CyclotomicInteger",
+    "RealCyclotomicInteger",
+    "solve_rational_linear",
+    "solve_integer_linear",
 ]
 
 
@@ -273,6 +276,65 @@ class CyclotomicRing:
                 work[base + j] -= a * phi_coeffs[j]
         return tuple(work[:n])
 
+    # -- subanillo real Z[lambda], lambda = zeta + zeta^(-1) ----------------
+
+    @property
+    def real_rank(self) -> int:
+        """Rango sobre Z del subanillo real: phi(m)/2 para m > 2, si no 1."""
+        return self.degree // 2 if self.degree >= 2 else 1
+
+    def real_lambda(self) -> "CyclotomicInteger":
+        """lambda = zeta + zeta^(-1) = 2*cos(2*pi/m), como elemento de Z[zeta_m]."""
+        return self.zeta_power(1) + self.zeta_power(-1)
+
+    def real_basis(self) -> tuple["CyclotomicInteger", ...]:
+        """Base 1, lambda, ..., lambda^(d-1) del subanillo real, en Z[zeta_m]."""
+        if self._real_basis is None:
+            lam = self.real_lambda()
+            basis = [self.one]
+            for _ in range(1, self.real_rank):
+                basis.append(basis[-1] * lam)
+            self._real_basis = tuple(basis)
+        return self._real_basis
+
+    def real_element(self, coeffs: Sequence[int]) -> "RealCyclotomicInteger":
+        """Elemento del subanillo real a partir de coeficientes en base lambda."""
+        values = list(coeffs)
+        if len(values) > self.real_rank:
+            raise ValueError(
+                f"se esperaban como mucho {self.real_rank} coeficientes, "
+                f"se recibieron {len(values)}"
+            )
+        for c in values:
+            if not isinstance(c, int) or isinstance(c, bool):
+                raise TypeError(
+                    f"los coeficientes deben ser enteros de Python, se recibio {c!r}"
+                )
+        values.extend([0] * (self.real_rank - len(values)))
+        return RealCyclotomicInteger(self, tuple(values))
+
+    def to_real(self, element: "CyclotomicInteger") -> "RealCyclotomicInteger":
+        """Expresa un elemento real de Z[zeta_m] en la base de lambda.
+
+        Lanza ``ValueError`` si el elemento no es invariante por conjugacion
+        (es decir, si no es real) o si, siendolo, no admite coeficientes
+        enteros en la base de lambda; esto ultimo no deberia ocurrir, porque
+        Z[zeta_m] ∩ R = Z[lambda].
+        """
+        if element.ring.m != self.m:
+            raise ValueError("el elemento pertenece a otro anillo")
+        if element.conjugate() != element:
+            raise ValueError(
+                "el elemento no es real: no coincide con su conjugado complejo"
+            )
+        columns = [b.coeffs for b in self.real_basis()]
+        solution = solve_integer_linear(columns, element.coeffs)
+        if solution is None:
+            raise ValueError(
+                "el elemento real no admite coeficientes enteros en la base de lambda"
+            )
+        return RealCyclotomicInteger(self, solution)
+
     # -- protocolo ----------------------------------------------------------
 
     def __eq__(self, other: object) -> bool:
@@ -386,6 +448,14 @@ class CyclotomicInteger:
             result = result + a * self.ring.zeta_power((-k) % m)
         return result
 
+    def norm_squared(self) -> "RealCyclotomicInteger":
+        """|z|^2 = z * conj(z), en el subanillo real Z[2*cos(2*pi/m)].
+
+        El resultado es exacto: coeficientes enteros en la base de potencias
+        de lambda = zeta + zeta^(-1).
+        """
+        return self.ring.to_real(self * self.conjugate())
+
     # -- protocolo ----------------------------------------------------------
 
     def is_zero(self) -> bool:
@@ -416,4 +486,207 @@ class CyclotomicInteger:
                 terms.append(f"{a}*z")
             else:
                 terms.append(f"{a}*z^{k}")
+        return " + ".join(terms) if terms else "0"
+
+
+# --------------------------------------------------------------------------
+# Algebra lineal exacta sobre Q (auxiliar, sin coma flotante)
+# --------------------------------------------------------------------------
+
+
+def solve_rational_linear(
+    columns: Sequence[Sequence[int]], target: Sequence[int]
+) -> tuple[Fraction, ...] | None:
+    """Resuelve ``sum_j c_j * columns[j] == target`` sobre Q.
+
+    Devuelve los coeficientes como ``Fraction`` (aritmetica racional exacta,
+    no coma flotante), o ``None`` si el sistema es incompatible. Se asume
+    que las columnas son linealmente independientes; si no lo son, a las
+    variables libres se les asigna cero.
+    """
+    rows = len(target)
+    ncols = len(columns)
+    for col in columns:
+        if len(col) != rows:
+            raise ValueError("columnas y objetivo de dimensiones distintas")
+
+    matrix = [
+        [Fraction(columns[j][i]) for j in range(ncols)] + [Fraction(target[i])]
+        for i in range(rows)
+    ]
+
+    pivot_cols: list[int] = []
+    pivot_row = 0
+    for col in range(ncols):
+        found = None
+        for i in range(pivot_row, rows):
+            if matrix[i][col] != 0:
+                found = i
+                break
+        if found is None:
+            continue
+        matrix[pivot_row], matrix[found] = matrix[found], matrix[pivot_row]
+        pivot = matrix[pivot_row][col]
+        matrix[pivot_row] = [v / pivot for v in matrix[pivot_row]]
+        for i in range(rows):
+            if i != pivot_row and matrix[i][col] != 0:
+                factor = matrix[i][col]
+                matrix[i] = [
+                    a - factor * b for a, b in zip(matrix[i], matrix[pivot_row])
+                ]
+        pivot_cols.append(col)
+        pivot_row += 1
+        if pivot_row == rows:
+            break
+
+    for i in range(pivot_row, rows):
+        if matrix[i][ncols] != 0:
+            return None  # incompatible
+
+    solution = [Fraction(0)] * ncols
+    for i, col in enumerate(pivot_cols):
+        solution[col] = matrix[i][ncols]
+    return tuple(solution)
+
+
+def solve_integer_linear(
+    columns: Sequence[Sequence[int]], target: Sequence[int]
+) -> tuple[int, ...] | None:
+    """Como :func:`solve_rational_linear` pero exige solucion entera.
+
+    Devuelve ``None`` si el sistema es incompatible sobre Q o si la solucion
+    racional tiene denominadores distintos de 1.
+    """
+    rational = solve_rational_linear(columns, target)
+    if rational is None:
+        return None
+    if any(c.denominator != 1 for c in rational):
+        return None
+    return tuple(int(c) for c in rational)
+
+
+# --------------------------------------------------------------------------
+# El subanillo real Z[2*cos(2*pi/m)]
+# --------------------------------------------------------------------------
+
+
+class RealCyclotomicInteger:
+    """Un elemento del subanillo real Z[lambda], con lambda = zeta + zeta^(-1).
+
+    lambda = 2*cos(2*pi/m). Los coeficientes son enteros en la base de
+    potencias 1, lambda, lambda^2, ..., lambda^(d-1), donde d es el rango del
+    subanillo real (phi(m)/2 para m > 2).
+
+    Es aqui donde aterrizan las normas al cuadrado |z|^2.
+    """
+
+    __slots__ = ("ring", "coeffs")
+
+    def __init__(self, ring: CyclotomicRing, coeffs: tuple[int, ...]) -> None:
+        self.ring = ring
+        self.coeffs = coeffs
+
+    # -- conversion ---------------------------------------------------------
+
+    def to_cyclotomic(self) -> CyclotomicInteger:
+        """Reinterpreta el elemento dentro de Z[zeta_m]."""
+        result = self.ring.zero
+        for power, coeff in zip(self.ring.real_basis(), self.coeffs):
+            if coeff != 0:
+                result = result + coeff * power
+        return result
+
+    # -- aritmetica ---------------------------------------------------------
+    #
+    # Se delega en Z[zeta_m] y se vuelve a expresar en la base de lambda. El
+    # subanillo real es cerrado bajo suma y producto, asi que la vuelta
+    # siempre existe y es entera.
+
+    def _coerce(self, other: object) -> "RealCyclotomicInteger | None":
+        if isinstance(other, RealCyclotomicInteger):
+            if other.ring.m != self.ring.m:
+                raise ValueError(
+                    f"elementos de anillos distintos: m={self.ring.m} y m={other.ring.m}"
+                )
+            return other
+        if isinstance(other, int) and not isinstance(other, bool):
+            coeffs = [0] * len(self.coeffs)
+            coeffs[0] = other
+            return RealCyclotomicInteger(self.ring, tuple(coeffs))
+        return None
+
+    def __add__(self, other: object) -> "RealCyclotomicInteger":
+        rhs = self._coerce(other)
+        if rhs is None:
+            return NotImplemented
+        return RealCyclotomicInteger(
+            self.ring, tuple(a + b for a, b in zip(self.coeffs, rhs.coeffs))
+        )
+
+    __radd__ = __add__
+
+    def __sub__(self, other: object) -> "RealCyclotomicInteger":
+        rhs = self._coerce(other)
+        if rhs is None:
+            return NotImplemented
+        return RealCyclotomicInteger(
+            self.ring, tuple(a - b for a, b in zip(self.coeffs, rhs.coeffs))
+        )
+
+    def __rsub__(self, other: object) -> "RealCyclotomicInteger":
+        lhs = self._coerce(other)
+        if lhs is None:
+            return NotImplemented
+        return lhs - self
+
+    def __neg__(self) -> "RealCyclotomicInteger":
+        return RealCyclotomicInteger(self.ring, tuple(-a for a in self.coeffs))
+
+    def __mul__(self, other: object) -> "RealCyclotomicInteger":
+        rhs = self._coerce(other)
+        if rhs is None:
+            return NotImplemented
+        product = self.to_cyclotomic() * rhs.to_cyclotomic()
+        return self.ring.to_real(product)
+
+    __rmul__ = __mul__
+
+    def __pow__(self, exponent: int) -> "RealCyclotomicInteger":
+        if not isinstance(exponent, int) or isinstance(exponent, bool):
+            raise TypeError(f"exponente no entero: {exponent!r}")
+        if exponent < 0:
+            raise ValueError("exponente negativo: Z[lambda] no es cerrado bajo inversion")
+        return self.ring.to_real(self.to_cyclotomic() ** exponent)
+
+    # -- protocolo ----------------------------------------------------------
+
+    def __eq__(self, other: object) -> bool:
+        rhs = (
+            other
+            if isinstance(other, RealCyclotomicInteger)
+            else self._coerce(other)
+        )
+        if rhs is None:
+            return NotImplemented
+        if rhs.ring.m != self.ring.m:
+            return False
+        return self.coeffs == rhs.coeffs
+
+    def __hash__(self) -> int:
+        return hash((self.ring.m, "real", self.coeffs))
+
+    def __repr__(self) -> str:
+        return f"RealCyclotomicInteger(m={self.ring.m}, {list(self.coeffs)})"
+
+    def __str__(self) -> str:
+        terms = []
+        for k, a in enumerate(self.coeffs):
+            if a == 0:
+                continue
+            if k == 0:
+                terms.append(str(a))
+            elif k == 1:
+                terms.append(f"{a}*L")
+            else:
+                terms.append(f"{a}*L^{k}")
         return " + ".join(terms) if terms else "0"
