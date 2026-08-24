@@ -34,6 +34,8 @@ __all__ = [
     "poly_mul",
     "poly_divide_exact",
     "cyclotomic_polynomial",
+    "CyclotomicRing",
+    "CyclotomicInteger",
 ]
 
 
@@ -174,3 +176,244 @@ def cyclotomic_polynomial(m: int) -> tuple[int, ...]:
         if d < m:
             result = poly_divide_exact(result, cyclotomic_polynomial(d))
     return result
+
+
+# --------------------------------------------------------------------------
+# El anillo Z[zeta_m] = Z[x] / Phi_m(x)
+# --------------------------------------------------------------------------
+
+
+class CyclotomicRing:
+    """El anillo de enteros ciclotomicos Z[zeta_m], con zeta_m = e^(2 pi i / m).
+
+    Los elementos son instancias de :class:`CyclotomicInteger`, expresados en
+    la base 1, zeta, ..., zeta^(phi(m)-1) sobre Z.
+    """
+
+    __slots__ = ("m", "degree", "polynomial", "_zeta_powers", "_real_basis")
+
+    def __init__(self, m: int) -> None:
+        if m < 1:
+            raise ValueError(f"el orden de simetria debe ser >= 1, se recibio {m}")
+        self.m = m
+        self.polynomial = cyclotomic_polynomial(m)
+        self.degree = len(self.polynomial) - 1  # == euler_phi(m)
+        self._zeta_powers: tuple[CyclotomicInteger, ...] | None = None
+        self._real_basis: tuple[CyclotomicInteger, ...] | None = None
+
+    # -- construccion de elementos -----------------------------------------
+
+    def element(self, coeffs: Sequence[int]) -> "CyclotomicInteger":
+        """Elemento a partir de coeficientes enteros en la base de potencias.
+
+        Se admiten secuencias mas largas que phi(m): se reducen modulo Phi_m.
+        """
+        for c in coeffs:
+            if not isinstance(c, int) or isinstance(c, bool):
+                raise TypeError(
+                    f"los coeficientes deben ser enteros de Python, se recibio {c!r}"
+                )
+        return CyclotomicInteger(self, self.reduce(coeffs))
+
+    @property
+    def zero(self) -> "CyclotomicInteger":
+        return CyclotomicInteger(self, (0,) * self.degree)
+
+    @property
+    def one(self) -> "CyclotomicInteger":
+        return self.from_integer(1)
+
+    @property
+    def zeta(self) -> "CyclotomicInteger":
+        """La raiz primitiva zeta_m: rotacion de 2*pi/m."""
+        return self.zeta_power(1)
+
+    def from_integer(self, n: int) -> "CyclotomicInteger":
+        if not isinstance(n, int) or isinstance(n, bool):
+            raise TypeError(f"se esperaba un entero, se recibio {n!r}")
+        coeffs = [0] * self.degree
+        coeffs[0] = n
+        return CyclotomicInteger(self, tuple(coeffs))
+
+    def zeta_power(self, k: int) -> "CyclotomicInteger":
+        """zeta^k para cualquier entero k (se toma k modulo m)."""
+        return self._zeta_power_table()[k % self.m]
+
+    def _zeta_power_table(self) -> tuple["CyclotomicInteger", ...]:
+        if self._zeta_powers is None:
+            # zeta^0 .. zeta^(m-1), construidas por multiplicaciones sucesivas
+            # por x seguidas de reduccion modulo Phi_m.
+            powers = [self.from_integer(1)]
+            for _ in range(1, self.m):
+                shifted = (0,) + powers[-1].coeffs
+                powers.append(CyclotomicInteger(self, self.reduce(shifted)))
+            self._zeta_powers = tuple(powers)
+        return self._zeta_powers
+
+    # -- reduccion modulo Phi_m --------------------------------------------
+
+    def reduce(self, coeffs: Sequence[int]) -> tuple[int, ...]:
+        """Reduce un vector de coeficientes modulo Phi_m(x).
+
+        Phi_m es monico, asi que x^n = -(c_0 + c_1 x + ... + c_(n-1) x^(n-1))
+        con n = phi(m), y la reduccion es puramente entera.
+        """
+        n = self.degree
+        work = list(coeffs)
+        if len(work) < n:
+            work.extend([0] * (n - len(work)))
+        phi_coeffs = self.polynomial
+        for i in range(len(work) - 1, n - 1, -1):
+            a = work[i]
+            if a == 0:
+                continue
+            work[i] = 0
+            base = i - n
+            for j in range(n):
+                work[base + j] -= a * phi_coeffs[j]
+        return tuple(work[:n])
+
+    # -- protocolo ----------------------------------------------------------
+
+    def __eq__(self, other: object) -> bool:
+        return isinstance(other, CyclotomicRing) and other.m == self.m
+
+    def __hash__(self) -> int:
+        return hash(("CyclotomicRing", self.m))
+
+    def __repr__(self) -> str:
+        return f"CyclotomicRing(m={self.m}, rango={self.degree})"
+
+
+class CyclotomicInteger:
+    """Un elemento de Z[zeta_m]. Inmutable, con aritmetica entera exacta."""
+
+    __slots__ = ("ring", "coeffs")
+
+    def __init__(self, ring: CyclotomicRing, coeffs: tuple[int, ...]) -> None:
+        self.ring = ring
+        self.coeffs = coeffs
+
+    # -- utilidades internas ------------------------------------------------
+
+    def _check_same_ring(self, other: "CyclotomicInteger") -> None:
+        if self.ring.m != other.ring.m:
+            raise ValueError(
+                f"elementos de anillos distintos: m={self.ring.m} y m={other.ring.m}"
+            )
+
+    def _coerce(self, other: object) -> "CyclotomicInteger | None":
+        if isinstance(other, CyclotomicInteger):
+            self._check_same_ring(other)
+            return other
+        if isinstance(other, int) and not isinstance(other, bool):
+            return self.ring.from_integer(other)
+        return None
+
+    # -- aritmetica ---------------------------------------------------------
+
+    def __add__(self, other: object) -> "CyclotomicInteger":
+        rhs = self._coerce(other)
+        if rhs is None:
+            return NotImplemented
+        return CyclotomicInteger(
+            self.ring, tuple(a + b for a, b in zip(self.coeffs, rhs.coeffs))
+        )
+
+    __radd__ = __add__
+
+    def __sub__(self, other: object) -> "CyclotomicInteger":
+        rhs = self._coerce(other)
+        if rhs is None:
+            return NotImplemented
+        return CyclotomicInteger(
+            self.ring, tuple(a - b for a, b in zip(self.coeffs, rhs.coeffs))
+        )
+
+    def __rsub__(self, other: object) -> "CyclotomicInteger":
+        lhs = self._coerce(other)
+        if lhs is None:
+            return NotImplemented
+        return lhs - self
+
+    def __neg__(self) -> "CyclotomicInteger":
+        return CyclotomicInteger(self.ring, tuple(-a for a in self.coeffs))
+
+    def __mul__(self, other: object) -> "CyclotomicInteger":
+        rhs = self._coerce(other)
+        if rhs is None:
+            return NotImplemented
+        product = poly_mul(self.coeffs, rhs.coeffs)
+        return CyclotomicInteger(self.ring, self.ring.reduce(product))
+
+    __rmul__ = __mul__
+
+    def __pow__(self, exponent: int) -> "CyclotomicInteger":
+        if not isinstance(exponent, int) or isinstance(exponent, bool):
+            raise TypeError(f"exponente no entero: {exponent!r}")
+        if exponent < 0:
+            raise ValueError(
+                "exponente negativo: Z[zeta_m] no es cerrado bajo inversion"
+            )
+        result = self.ring.one
+        base = self
+        e = exponent
+        while e:
+            if e & 1:
+                result = result * base
+            e >>= 1
+            if e:
+                base = base * base
+        return result
+
+    # -- simetrias ----------------------------------------------------------
+
+    def rotate(self, k: int = 1) -> "CyclotomicInteger":
+        """Rotacion de k * 2*pi/m: multiplicacion por zeta^k. Exacta."""
+        return self * self.ring.zeta_power(k)
+
+    def conjugate(self) -> "CyclotomicInteger":
+        """Conjugacion compleja: zeta -> zeta^(-1) = zeta^(m-1).
+
+        Es la reflexion respecto del eje real. Como automorfismo del anillo,
+        envia sum a_k zeta^k a sum a_k zeta^(-k).
+        """
+        m = self.ring.m
+        result = self.ring.zero
+        for k, a in enumerate(self.coeffs):
+            if a == 0:
+                continue
+            result = result + a * self.ring.zeta_power((-k) % m)
+        return result
+
+    # -- protocolo ----------------------------------------------------------
+
+    def is_zero(self) -> bool:
+        return all(a == 0 for a in self.coeffs)
+
+    def __eq__(self, other: object) -> bool:
+        rhs = self._coerce(other) if not isinstance(other, CyclotomicInteger) else other
+        if rhs is None:
+            return NotImplemented
+        if isinstance(rhs, CyclotomicInteger) and rhs.ring.m != self.ring.m:
+            return False
+        return self.coeffs == rhs.coeffs
+
+    def __hash__(self) -> int:
+        return hash((self.ring.m, self.coeffs))
+
+    def __repr__(self) -> str:
+        return f"CyclotomicInteger(m={self.ring.m}, {list(self.coeffs)})"
+
+    def __str__(self) -> str:
+        terms = []
+        for k, a in enumerate(self.coeffs):
+            if a == 0:
+                continue
+            if k == 0:
+                terms.append(str(a))
+            elif k == 1:
+                terms.append(f"{a}*z")
+            else:
+                terms.append(f"{a}*z^{k}")
+        return " + ".join(terms) if terms else "0"
