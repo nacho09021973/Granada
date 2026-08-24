@@ -175,3 +175,39 @@ Y una advertencia general del propio autor sobre sus principios de agrupación:
 4. Asignar nivel a cada tesela, contemplando que A3 y D3 abarcan dos.
 5. Contrastar la planta reconstruida **superpuesta sobre la ortoimagen** antes
    de levantar nada en 3D.
+
+---
+
+## Digitalización y registro sobre la ortoimagen (2026-08-24)
+
+La planta de la figura 128 (mitad superior, la propuesta propia de la tesis) se
+extrajo del PDF a 600 ppi y se registró sobre la ortoimagen de AA-415_23.
+
+**Parámetros del registro**: centro de la ortoimagen (2048, 2035), escala
+1.969 px de orto por px de figura, eje de espejo de la figura en y = 1350.
+La mitad inferior se genera reflejando la superior, que es lícito porque la
+cúpula tiene simetría especular D8 (medida en `docs/policromia.md`).
+
+**Cómo se ajustó, y por qué no es a ojo.** Se maximiza el **contraste local**
+bajo las líneas de la red: los caballetes de yeso que separan celdas son
+máximos locales de brillo, así que un registro correcto debe colocar las líneas
+encima de ellos. Puntuar por brillo a secas no vale — se engaña acercando la
+red al centro, que es más claro.
+
+| configuración | contraste medio |
+|---|---|
+| **óptimo** | **+5.43** |
+| desplazado 60 px | +0.16 |
+| escala un 8 % mayor | −0.40 |
+
+El ajuste solo puntúa en la posición correcta, y se desploma a cero en cuanto
+se mueve. No es casualidad ni es apreciación visual.
+
+**La confirmación más clara**: los **16 cupulines** de la cúpula caen cada uno
+**dentro de una celda octogonal** de la red. No se impuso; sale del registro.
+
+Resultado en `renders/planta_sobre_orto.png`.
+
+**Lo que la red no es**: es la *medina*, la red principal, no el contorno de
+cada celda. En la corona interior el techo real tiene subdivisiones más finas
+que las que dibuja la red. Eso es esperable y no es un fallo del ajuste.
