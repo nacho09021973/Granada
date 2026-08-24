@@ -10,6 +10,13 @@ from granada.celda import (
     numeric_embedding_celda,
     pasos_maximos,
     rombo,
+    trapecio,
+)
+from granada.estratificacion import (
+    HILADAS_MEDIDAS,
+    RAZON_MEDIDA,
+    Estratificacion,
+    numeric_embedding_hilada,
 )
 from granada.cyclotomic import (
     CyclotomicInteger,
@@ -33,6 +40,9 @@ __version__ = "0.1.0"
 
 __all__ = [
     "Celda",
+    "Estratificacion",
+    "HILADAS_MEDIDAS",
+    "RAZON_MEDIDA",
     "CyclotomicInteger",
     "CyclotomicRing",
     "RealCyclotomicInteger",
@@ -42,6 +52,7 @@ __all__ = [
     "divisors",
     "euler_phi",
     "numeric_embedding_celda",
+    "numeric_embedding_hilada",
     "numeric_embedding_value",
     "numeric_embedding_xy",
     "pasos_maximos",
@@ -53,5 +64,6 @@ __all__ = [
     "rombo",
     "solve_integer_linear",
     "solve_rational_linear",
+    "trapecio",
     "__version__",
 ]
