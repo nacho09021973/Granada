@@ -284,15 +284,17 @@ es 7 + 1 = 8 unidades». Saseta dice literalmente que la altura mínima es
 entre un nivel y otro**. El 8 es el salto de nivel, no la altura de la pieza.
 La conclusión que importa no cambia, pero el número decía otra cosa.
 
-**La referencia que falla**: *Revista PH* 106 (junio 2022), pp. 10–13, DOI
-[10.33349/2022.106.5145](https://doi.org/10.33349/2022.106.5145), es una pieza
-de la sección «actualidad» que presenta el proyecto Paseos Matemáticos. Leído
-directamente: sus páginas 12–13 contienen una simulación solar de la celosía
-del Patio del Yeso, una foto de la exposición y la bibliografía. **No menciona
-Dos Hermanas, ni las 104 adarajas, ni ortofotografía nadir, ni tipos, ni
-cotas.** Que el equipo de Martínez Sevilla localizara las 104 adarajas de
-estrella está corroborado en notas de prensa, pero **no está publicado en la
-referencia que se le atribuye**, así que sigue sin ser citable.
+**La referencia que fallaba, y dónde estaba realmente el dato**: en el impreso
+de *Revista PH* 106 (junio 2022), pp. 10–13, DOI
+[10.33349/2022.106.5145](https://doi.org/10.33349/2022.106.5145), las páginas
+12–13 llevan una simulación solar de la celosía del Patio del Yeso, una foto de
+la exposición y la bibliografía. Ahí no está.
+
+Está en la **versión web del mismo artículo**, publicada en el sitio del
+proyecto el 28-06-2022 y firmada por Álvaro A. Martínez Sevilla (DaSCI), como
+**pie de una figura**: ver la entrada 10. Mismo autor, mismo título, mismo año,
+otra edición. La cita del informe estaba casi bien: fallaba el soporte, no la
+atribución.
 
 ### Tensión con lo medido, que no hay que disimular
 
@@ -357,6 +359,67 @@ actual del modelo **por ahora no es más que una aproximación**».
 
 ---
 
+## 10. Martínez Sevilla — las 104 adarajas de estrella de Dos Hermanas
+
+**Cuando el estudio matemático amplía la mirada interpretativa del patrimonio
+cultural.** Álvaro A. Martínez Sevilla, Instituto de Investigación DaSCI.
+
+Dos ediciones, y **solo una trae el dato**:
+
+- **Impresa**: *Revista PH* 106, junio 2022, pp. 10–13, DOI
+  [10.33349/2022.106.5145](https://doi.org/10.33349/2022.106.5145). Leída
+  entera el 2026-08-25: **no menciona Dos Hermanas**.
+- **Web**, [paseosmatematicos.fundaciondescubre.es](https://paseosmatematicos.fundaciondescubre.es/noticias/cuando-el-estudio-matematico-amplia-la-mirada-interpretativa-del-patrimonio-cultural/),
+  28-06-2022. Contiene una figura cuyo pie dice:
+
+> «Localización de las 104 adarajas de estrella en la cúpula de Dos Hermanas
+> (Alhambra). Las estrellas son de 5 tipos distintos | fuente elaboración
+> propia sobre ortofotografía en plano nadir. Proyecto PMAA»
+
+Eso es lo que hay: **una figura con pie**, no una tabla ni un listado. Las 104
+piezas están localizadas sobre ortofotografía cenital y clasificadas en 5
+tipos, pero el dato está en forma de imagen y sin método publicado.
+
+### El dato de los siete niveles, y por qué no se puede usar todavía
+
+La cobertura de la exposición *Paseo Matemático al-Ándalus* (enero de 2022)
+atribuye a Martínez un hallazgo adicional:
+
+> «la cúpula de la sala de Dos Hermanas tiene **siete niveles** que evocan los
+> siete niveles del Salón del Trono, lo que refuerza, mediante la matemática,
+> la hipótesis de que Dos Hermanas iba a ser el trono de Mohammed V»
+
+Es la primera cifra de niveles que aparece en toda la búsqueda, y por eso hay
+que tratarla con cuidado:
+
+- procede de **nota de prensa de una exposición**, no de una publicación con
+  método; no se cita artículo, capítulo ni catálogo, y la búsqueda no ha
+  encontrado ninguno;
+- **no dice de qué cuenta se trata**: siete niveles de adarajas de estrella no
+  es lo mismo que siete niveles del mocárabe completo. La sección medida en
+  `docs/estratificacion.md` da **23 hiladas** con paso de ~20 cm, y las dos
+  cifras solo son compatibles si cuentan cosas distintas;
+- va **enlazada a una hipótesis simbólica** —los siete cielos, el trono de
+  Mohammed V—. Un número que «evoca» otro número es justo el que más vigilancia
+  merece antes de darlo por medido.
+
+No entra como cota de nada. Entra como **afirmación de terceros, localizada y
+fechada**, para que quien retome esto sepa que existe y de qué pie cojea.
+
+### Licencia: leer sí, derivar no
+
+*Revista PH* publica bajo **Creative Commons Reconocimiento-NoComercial-
+SinObraDerivada 3.0**, comprobado en la ficha del artículo. La cláusula **ND**
+es explícita: se puede citar y leer, **no se puede derivar geometría** de su
+ortofotografía ni de la figura de las 104 adarajas para este repositorio. Es la
+misma cautela que el plano AA-415_23, pero aquí la licencia lo dice con todas
+las letras y no hay que ir a preguntar.
+
+Si esa figura llegara a hacer falta como dato, el camino es pedir permiso al
+autor, no recortarla.
+
+---
+
 ## Pendiente de verificar
 
 - Recuento de piezas de la cúpula de las Dos Hermanas: circulan 5.416 piezas y
@@ -364,12 +427,9 @@ actual del modelo **por ahora no es más que una aproximación**».
   comprobar, y de tipo (B). La entrada 8 le pone localización precisa —
   Martínez Sevilla, *Revista PH* 106 (junio 2022), pp. 12–13, con las 104
   adarajas de estrella localizadas espacialmente y divididas en 5 tipos—.
-  **Comprobado el 2026-08-25: esa referencia no contiene el dato.** El hallazgo
-  de las 104 adarajas por el equipo de Martínez Sevilla aparece en notas de
-  prensa del proyecto PMAA, pero falta localizar la publicación donde estén
-  realmente localizadas y tipificadas. Sigue siendo la pista con la forma
-  adecuada —piezas identificadas, localizadas y tipificadas— y sigue sin
-  fuente citable.
+  **Localizado el 2026-08-25**: no está en el impreso sino en la versión web del
+  mismo artículo, como pie de figura. Ver la entrada 10, que incluye además el
+  dato de los siete niveles y la restricción de licencia ND.
 - La capa vectorial de AA-415_23, como comprobación de la sección 7.
 - Las otras nueve filas de la tabla de planos del APAG.
 - Owen Jones y Jules Goury, *Plans, Elevations, Sections and Details of the

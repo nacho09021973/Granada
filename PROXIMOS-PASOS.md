@@ -171,11 +171,13 @@ independientes, el mismo número. Pero el tamaño de un salto no es su signo.
    palabras de texto en todo el A0. Da un perfil medible contra la escala 1/25,
    no niveles por tesela; y una sección no puede firmar 211 vecindades en
    planta.
-4. **Las 104 adarajas de estrella del proyecto PMAA.** El equipo de Martínez
-   Sevilla las localizó, pero la referencia que se les atribuía —*Revista PH*
-   106, pp. 12–13— **no contiene el dato**: comprobado el 2026-08-25 leyendo el
-   artículo. Falta localizar dónde está publicado. Sigue siendo la pista con la
-   forma adecuada: piezas identificadas, localizadas y tipificadas.
+4. **Las 104 adarajas de estrella del PMAA — localizadas** (entrada 10 de
+   `fuentes.md`). No están en el impreso de *Revista PH* 106 sino en la versión
+   web del mismo artículo, como **pie de una figura**: 104 piezas sobre
+   ortofotografía cenital, en 5 tipos. Es imagen, no tabla, y sin método
+   publicado. Y *Revista PH* va con licencia **CC BY-NC-ND**: se puede citar,
+   **no derivar geometría**. Si hiciera falta como dato, se pide permiso al
+   autor.
 
 ---
 
@@ -205,6 +207,12 @@ independientes, el mismo número. Pero el tamaño de un salto no es su signo.
 
 ## TODO abiertos, sin inventar
 
+- **Los «siete niveles» de Martínez Sevilla.** La prensa de la exposición del
+  PMAA le atribuye el hallazgo de que la cúpula tiene siete niveles, que
+  evocarían los del Salón del Trono. No hay publicación con método detrás, no
+  se dice si cuenta niveles de adarajas de estrella o del mocárabe completo, y
+  la sección medida da 23 hiladas. Queda anotado en la entrada 10 como
+  afirmación de terceros, fechada y localizada; **no se usa como cota**.
 - **El oro.** Documentado en yeserías nazaríes —letras doradas sobre fondo azul
   lapislázuli en el Mexuar, 1362— pero **nada específico de esta cúpula**. Su
   tono (40–60°) es indistinguible de la suciedad en la ortoimagen. Haría falta
