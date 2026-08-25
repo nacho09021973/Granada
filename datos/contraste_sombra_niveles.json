@@ -1,0 +1,160 @@
+{
+  "fuente": {
+    "ruta": "docs/AA-415_23.pdf",
+    "sha256": "228cc4aa2ea4875723bd3dc49ea16536c39428d5f26eee7440521464c38c298e",
+    "imagen_extraida_px": [
+      4083,
+      4054
+    ]
+  },
+  "metodo": {
+    "centro_px": [
+      2048,
+      2035
+    ],
+    "radio_orbita_principal_px": 1300,
+    "radio_parche_principal_px": 90,
+    "copias": 16,
+    "paso_angular_grados": 22.5,
+    "desfase_control_grados": 11.25,
+    "estadistico": "mediana de luminancia Rec. 709 por disco"
+  },
+  "resultado_principal": {
+    "cupulines": [
+      154.7622,
+      149.02859999999998,
+      129.2372,
+      156.2372,
+      166.40800000000002,
+      152.2006,
+      149.98399999999998,
+      151.2768,
+      138.18859999999998,
+      146.9106,
+      139.9222,
+      147.4092,
+      159.9628,
+      153.2006,
+      157.5548,
+      161.5548
+    ],
+    "controles_intermedios": [
+      171.6086,
+      152.02859999999998,
+      169.408,
+      183.2006,
+      163.7622,
+      160.278,
+      167.9054,
+      168.408,
+      167.5548,
+      171.0366,
+      169.20059999999998,
+      172.5548,
+      174.2006,
+      167.55880000000002,
+      173.2006,
+      174.2006
+    ],
+    "diferencias_control_menos_cupulin": [
+      16.84639999999999,
+      3.0,
+      40.170799999999986,
+      26.963400000000007,
+      -2.6458000000000084,
+      8.077399999999983,
+      17.921400000000006,
+      17.13119999999998,
+      29.36620000000002,
+      24.126000000000005,
+      29.278399999999976,
+      25.1456,
+      14.237800000000021,
+      14.35820000000001,
+      15.645800000000008,
+      12.645800000000008
+    ],
+    "mediana_cupulines": 151.7387,
+    "mediana_controles": 169.30429999999998,
+    "mediana_diferencia": 16.988799999999983,
+    "iqr_diferencia": 11.760249999999985,
+    "pares_con_cupulin_mas_oscuro": 15,
+    "wilcoxon_unilateral_p": 3.0517578125e-05
+  },
+  "sensibilidad": [
+    {
+      "radio_orbita_px": 1250,
+      "radio_parche_px": 70,
+      "mediana_diferencia": 26.528900000000007,
+      "pares_con_cupulin_mas_oscuro": 16,
+      "wilcoxon_unilateral_p": 1.52587890625e-05
+    },
+    {
+      "radio_orbita_px": 1250,
+      "radio_parche_px": 90,
+      "mediana_diferencia": 23.213399999999993,
+      "pares_con_cupulin_mas_oscuro": 16,
+      "wilcoxon_unilateral_p": 1.52587890625e-05
+    },
+    {
+      "radio_orbita_px": 1250,
+      "radio_parche_px": 110,
+      "mediana_diferencia": 22.145799999999994,
+      "pares_con_cupulin_mas_oscuro": 16,
+      "wilcoxon_unilateral_p": 1.52587890625e-05
+    },
+    {
+      "radio_orbita_px": 1300,
+      "radio_parche_px": 70,
+      "mediana_diferencia": 20.283400000000015,
+      "pares_con_cupulin_mas_oscuro": 15,
+      "wilcoxon_unilateral_p": 3.0517578125e-05
+    },
+    {
+      "radio_orbita_px": 1300,
+      "radio_parche_px": 90,
+      "mediana_diferencia": 16.988799999999983,
+      "pares_con_cupulin_mas_oscuro": 15,
+      "wilcoxon_unilateral_p": 3.0517578125e-05
+    },
+    {
+      "radio_orbita_px": 1300,
+      "radio_parche_px": 110,
+      "mediana_diferencia": 14.299200000000013,
+      "pares_con_cupulin_mas_oscuro": 15,
+      "wilcoxon_unilateral_p": 4.57763671875e-05
+    },
+    {
+      "radio_orbita_px": 1350,
+      "radio_parche_px": 70,
+      "mediana_diferencia": 8.612199999999987,
+      "pares_con_cupulin_mas_oscuro": 13,
+      "wilcoxon_unilateral_p": 0.0065460205078125
+    },
+    {
+      "radio_orbita_px": 1350,
+      "radio_parche_px": 90,
+      "mediana_diferencia": 7.356999999999999,
+      "pares_con_cupulin_mas_oscuro": 12,
+      "wilcoxon_unilateral_p": 0.0326995849609375
+    },
+    {
+      "radio_orbita_px": 1350,
+      "radio_parche_px": 110,
+      "mediana_diferencia": 4.942900000000009,
+      "pares_con_cupulin_mas_oscuro": 10,
+      "wilcoxon_unilateral_p": 0.1156005859375
+    }
+  ],
+  "control_fase": {
+    "muestras": 181,
+    "contraste_en_fase_documentada": 16.988799999999983,
+    "contraste_maximo": 18.522300000000016,
+    "fase_del_maximo_grados": 1.2430939226519337,
+    "percentil_fase_documentada": 90.60773480662984
+  },
+  "alcance": {
+    "sostiene": "la luminancia separa cavidades hondas conocidas de controles al mismo radio",
+    "no_sostiene": "una conversion calibrada de luminancia a nivel entero por tesela"
+  }
+}
