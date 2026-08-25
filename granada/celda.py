@@ -222,7 +222,13 @@ def numeric_embedding_celda(celda: Celda) -> tuple[tuple[float, float], ...]:
 def trapecio(
     ring: CyclotomicRing, radio_exterior: int, radio_interior: int, pasos: int = 2
 ) -> Celda:
-    """Trapecio anular: el sector entre dos radios enteros, de `pasos` de ancho.
+    """OBSOLETO: celda del modelo descartado de coronas polares.
+
+    Se conserva temporalmente como referencia hasta que el teselado con
+    niveles sustituya por completo a la estratificacion antigua. No representa
+    ninguna figura del sistema occidental documentado por la tesis.
+
+    Trapecio anular: el sector entre dos radios enteros, de `pasos` de ancho.
 
     Vertices: r_ext, r_ext*zeta^pasos, r_int*zeta^pasos, r_int. Los radios se
     miden en unidades de planta y son enteros, asi que los cuatro vertices son

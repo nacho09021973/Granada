@@ -95,6 +95,30 @@ de la topología 1.
 **Dato que rompe mi modelo por completo: A3 y D3 abarcan DOS niveles.** No todas
 las celdas viven en una sola hilada.
 
+### Cómo debe representarse el nivel
+
+Leídas directamente las secciones 3.2.5 (pp. 254–256 impresas) y 3.3.2
+(pp. 269–272) de la tesis:
+
+- las líneas de nivel son una representación **analítica**, posterior al
+  diseño artesanal; los descansos introducen ramificaciones y bucles;
+- una misma planta puede admitir variantes con niveles diferentes;
+- la propuesta del autor usa, a escala media, **una o varias flechas dentro de
+  cada figura** para codificar sentido, tipología y niveles de ascenso;
+- una arista compartida no debe recibir necesariamente un único sentido
+  global: la indicación pertenece a cada lado/pieza;
+- el esquema identifica tipos, pero no pretende definir toda la geometría de
+  cada mocárabe ni agotar las singularidades de la Alhambra.
+
+Consecuencia de datos: la figura 128 específica de Dos Hermanas da la red de
+medinas pero **no incluye las flechas ni las cotas** de la propuesta del
+capítulo 3. No se pueden leer de ella los niveles absolutos.
+
+Consecuencia de código: `granada/niveles.py` separa el tipo/topología de la
+pieza de su nivel absoluto, propaga diferencias enteras y deja los componentes
+sin ancla explícitamente sin resolver. A3 y D3 salvan dos niveles; las otras
+cinco piezas, uno. Decisión completa en `docs/decisiones/0003-niveles-topologicos.md`.
+
 ### Los perfiles: son dos, y van en paralelo
 
 No hay un perfil único. Hay **plantilla de doble perfil**, y cada pieza usa uno
@@ -168,12 +192,14 @@ Y una advertencia general del propio autor sobre sus principios de agrupación:
 
 ## Qué queda por hacer
 
-1. Digitalizar la planta de la figura 128 y ajustarla a la retícula de Z[ζ₁₆].
-   La geometría resultante será propia; la fuente se cita.
+1. Conseguir una planta con flechas o cotas de nivel de *esta* cúpula, o una
+   fuente que permita firmar el salto de cada vecindad.
 2. Retirar `trapecio` y la estratificación por coronas.
 3. Rehacer el perfil como plantilla de doble perfil (7P / 7,5P, nivel a 8P).
-4. Asignar nivel a cada tesela, contemplando que A3 y D3 abarcan dos.
-5. Contrastar la planta reconstruida **superpuesta sobre la ortoimagen** antes
+4. Asignar nivel a cada tesela, contemplando que A3 y D3 abarcan dos. Las
+   caras y sus 227 vecindades ya están (2026-08-25); falta el signo de cada
+   paso.
+5. Contrastar la planta levantada **superpuesta sobre la ortoimagen** antes
    de levantar nada en 3D.
 
 ---
@@ -216,14 +242,23 @@ que las que dibuja la red. Eso es esperable y no es un fallo del ajuste.
 
 ## Extracción de la red: nudos, aristas y módulo (2026-08-24)
 
-Sobre la figura 128 ya registrada: binarizado de las medinas, adelgazamiento
-Zhang-Suen (15 iteraciones, 150 188 px de tinta → 13 951 px de esqueleto),
-detección de cruces por número de transiciones y trazado de los caminos entre
-nudos.
+La primera extracción, por transiciones locales del esqueleto, produjo **71
+nudos y 48 aristas** repartidos en 24 componentes, con 11 nudos aislados. Sirvió
+para auditar direcciones y módulos sobre un subconjunto, pero no para propagar
+niveles.
 
-**71 nudos, 48 aristas trazadas.** En `datos/red_medinas.json`, en metros y
-con origen en el centro de la cúpula. Es medición propia derivada del dibujo de
-la tesis, que se cita como fuente del original.
+La extracción completa sigue cada camino entre regiones de cruce y conserva
+los giros reales con simplificación Ramer-Douglas-Peucker. Usa solo la mitad
+superior de la figura 128 —la propuesta del autor— y genera la inferior por
+reflexión D8; no mezcla el dibujo de Jones y Goury. El octógono punteado
+editorial queda fuera.
+
+Resultado actual en `datos/red_medinas.json`, en metros y con origen próximo al
+centro de la cúpula: **323 nudos, 427 aristas, una componente conexa, 105 ciclos
+independientes y 24 terminales de borde**. No aparecen fragmentos menores de 5
+px y la topología es idéntica para umbrales de gris 170, 200 y 230. Se reproduce
+con `scripts/completar_red_medinas.py`; decisión y techo de afirmación en
+`docs/decisiones/0004-red-medinas-completa.md`.
 
 ### Advertencia sobre «ajustar a la retícula»
 
@@ -242,18 +277,23 @@ Primer intento, tomando como aristas *todos* los pares de nudos próximos:
 resultado negativo, histograma casi plano. El fallo era mío: la mayoría de esos
 pares no están unidos por ninguna medina.
 
-Trazando las aristas **reales** siguiendo el esqueleto:
+La auditoría inicial, sobre las 48 aristas recuperadas entonces, comparó los
+tramos **reales** con dos controles:
 
 | | aristas reales | pares próximos | azar |
 |---|---|---|---|
 | desviación **mediana** al múltiplo de 45° | **1.23°** | 7.94° | 11.09° |
 | dentro de 7° | **70.8 %** | 47.8 % | 30.3 % |
 
-La mitad de las aristas cae a menos de 1.23° de un múltiplo exacto de 45°. Las
-cuatro direcciones de medina que enuncia la tesis quedan **confirmadas sobre la
-medición**, no solo citadas.
+En la red completa, que además conserva los giros pequeños de las figuras
+interiores, la desviación mediana es **2,20°** y el **77,3 %** de los 427
+tramos queda a 5° o menos. Las cuatro direcciones de medina que enuncia la tesis
+quedan **confirmadas sobre la medición**, no solo citadas.
 
 ### El módulo: no hay uno solo
+
+Las cifras de este apartado proceden del subconjunto inicial de 48 aristas y
+son provisionales hasta repetir el control de módulo sobre la red completa.
 
 Las longitudes se agrupan con claridad (≈0.21, ≈0.33, ≈0.44, ≈0.76, ≈1.1 m),
 pero **ningún módulo único las explica**: el mejor deja un residuo del 18–23 %
@@ -278,3 +318,102 @@ vive en Z[ζ₁₆] y no en Z[ζ₈], y que resultó ser la base de la cuña can
 Precaución: es una razón entre medianas de 15 y 22 aristas trazadas de una
 figura impresa. El acuerdo al 0.3 % es más preciso de lo que el método merece.
 Lo defendible es que la razón vale ~0.77 y **no** 1 ni √2.
+
+---
+
+## Contraste de la sombra como indicio de nivel (2026-08-24)
+
+Se probó primero el caso barato indicado en `PROXIMOS-PASOS.md`, pero contra un
+extremo geométrico conocido en vez de asignar niveles por inspección: los 16
+cupulines exteriores frente a 16 parches intermedios al mismo radio.
+
+| medida | resultado |
+|---|---:|
+| cupulines más oscuros que su control | **15/16** |
+| mediana control − cupulín (0–255) | **+16,99** |
+| Wilcoxon pareado unilateral | **p = 3,05·10⁻⁵** |
+| máximo del control de fase | a **1,24°** del eje documentado |
+| percentil de la fase documentada | **90,6** |
+
+La señal existe y confirma que la sombra puede servir como evidencia auxiliar.
+No basta para asignar un nivel entero: al mover el radio de muestreo a 1350 px
+el efecto baja a +7,36 y 12/16 pares (parches de 90 px), y siguen mezclándose
+orientación, pigmento, suciedad e iluminación. Resultado exacto y sensibilidad
+en `datos/contraste_sombra_niveles.json`; reproducción con
+`scripts/analizar_sombra_niveles.py`.
+
+**Terminal actual**: `BLOCKED_MISSING_SIGNED_LEVEL_CONSTRAINTS`. La fotometría
+ordena extremos, pero no calibra los 23 niveles. La red ya es conexa y expone
+24 anclas candidatas en el borde; la figura 128 carece de flechas/cotas y el
+grafo, por sí solo, no dice si cada paso asciende, descansa o desciende.
+
+
+---
+
+## Las caras de la red: teselas candidatas (2026-08-25)
+
+La red de medinas es un grafo plano dibujado; sus **caras** son las regiones
+que las medinas delimitan. Extraídas por rotación de semiaristas
+(`granada/caras.py`, sin dependencias): **105 caras interiores**, Euler
+`V − E + F = 2`, **cero cruces** de aristas en los 90 951 pares, y el área de
+las caras iguala la del contorno, 30,690 m². El recuento coincide con los 105
+ciclos independientes que ya daba la decisión 0004, como tenía que ser.
+
+### Qué se puede leer de la planta y qué no
+
+De una planta se lee la **figura** (medio cuadrado, media jaira, jaira,
+cuadrado, octógono). La **topología** de la pieza —A1, A2, A3, B4, C1, C2,
+D3— no se lee de la planta: es lo que las flechas de la planta propuesta
+codifican, y la figura 128 no las trae. El módulo clasifica figuras y **nunca**
+asigna un `TipoMocarabe`.
+
+### Clasificación, con tolerancia heredada y no elegida
+
+La tolerancia angular de cada cara es `2 · resolución / lado más corto`, con
+la resolución de 2 px de la simplificación con la que se extrajo la red. No es
+un mando que se pueda subir hasta que salga el resultado deseado.
+
+| figura | caras | ajuste angular | margen frente a la mejor plantilla ajena |
+|---|---:|---:|---:|
+| medio cuadrado (A) | **8** | ≤ 2,35° | 3,9× |
+| octógono regular (centro) | **1** | 0,76° | 6,5× |
+| cuadrado | 16 | ≤ 8,89° | **1,16×** |
+| sin clasificar | 80 | — | — |
+
+Los 8 medios cuadrados rodean el octógono central y forman con él la estrella
+de ocho puntas del centro. Sus azimuts son una **órbita C8 exacta** —0,4°,
+45,7°, 90,5°… 315,0°— y la extracción solo impuso simetría de espejo, así que
+esa periodicidad de 45° sale del dibujo, no del método.
+
+Los 16 cuadrados quedan marcados `al_limite_de_resolucion`: su lado mide
+8,1–9,5 px de la figura, del orden del grosor de cruce del propio esqueleto, y
+su ventana de tolerancia llega a 28°. Están etiquetados, no confirmados.
+
+### Las 80 caras sin figura
+
+No son ruido: se agrupan por área en familias de 16, 24, 8, 8, 8 y 16 copias.
+Dentro de una familia el número de lados varía —7, 8 o 9 en la de 0,85 m²—
+porque cada copia se digitaliza con un vértice de más o de menos; el área no.
+**51 de las 80 ni siquiera son convexas**, y las figuras del sistema
+occidental lo son. Son regiones que la figura 128 no subdivide, exactamente lo
+que ya se advertía arriba sobre la corona interior. Un teselado completo exige
+una planta más fina, no una tolerancia más generosa.
+
+En el dibujo se aprecian además, en los cruces de la banda intermedia, figuras
+pequeñas y alargadas del tipo que la tesis llama **almendras** al describir los
+nudos. Se deja anotado como observación; no se clasifica.
+
+### Las vecindades, y por qué van sin firmar
+
+Las caras comparten **227 vecindades**, 16 de ellas contra el contorno
+exterior; las 24 aristas colgantes son los terminales de borde y no separan
+dos caras. Cada vecindad se guarda con `"salto": null`.
+
+Ese `null` es el dato, no un hueco por rellenar: que dos teselas compartan una
+medina no dice si entre ellas hay ascenso, descanso o descenso.
+`RelacionVecindad` exige citar evidencia para firmar un salto y
+`restricciones_firmadas` falla mientras quede una sin firmar — no hay
+propagación parcial que aparente una planta resuelta.
+
+Dato: `datos/caras_red.json`. Mapa: `renders/caras_red.svg`. Decisión y techo
+de afirmación: `docs/decisiones/0005-caras-y-vecindades.md`.

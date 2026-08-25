@@ -1,4 +1,9 @@
-"""Estratificacion de la cupula: las hiladas, su radio y su altura.
+"""OBSOLETO: estratificacion por coronas polares, conservada como referencia.
+
+La planta correcta es un teselado con niveles topologicos, no una sucesion de
+anillos concentricos. Este modulo no debe alimentar un nuevo render historico.
+
+Estratificacion de la cupula: las hiladas, su radio y su altura.
 
 La planta vive en Z[zeta_m] y es exacta. La vertical es una dimension aparte
 y aqui se lleva en `fractions.Fraction`: aritmetica racional exacta, no coma

@@ -3,9 +3,20 @@
 Generador de cúpulas de mocárabes (muqarnas) con geometría algebraicamente
 exacta, parametrizado por el orden de simetría.
 
-**Estado: primer paso.** Solo está construido el núcleo aritmético
-(`granada/cyclotomic.py`). No hay geometría 3D, ni perfiles de celda, ni
-funciones de nivel, ni exportación de mallas.
+**Estado actual.** El núcleo aritmético exacto está sólido, la red de medinas
+propuesta para Dos Hermanas ya es un grafo conexo completo (323 nudos, 427
+aristas), sus **105 caras** están extraídas, medidas y clasificadas donde hay
+evidencia (`granada/caras.py`: 9 figuras confirmadas, 16 al límite de
+resolución, 80 sin figura) y existe una representación topológica de niveles
+(`granada/niveles.py`). Las 227 vecindades entre caras llevan el salto
+explícitamente **sin firmar**: aún faltan las restricciones firmadas que
+permitirían propagar niveles desde el borde. Los perfiles de celda `cuna` y
+`rombo` siguen vigentes. La antigua estratificación por coronas, `trapecio` y
+el perfil de cónica única se conservan marcados como obsoletos hasta que exista
+sustituto.
+No hay todavía una planta histórica con niveles validada, geometría 3D
+aceptada ni exportación de mallas. El estado operativo está en
+[`PROXIMOS-PASOS.md`](PROXIMOS-PASOS.md).
 
 ---
 

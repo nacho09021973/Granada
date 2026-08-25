@@ -1,7 +1,27 @@
 # Próximos pasos
 
-Estado a 2026-08-24. Documento de trabajo: se actualiza, no se conserva como
+Estado a 2026-08-25. Documento de trabajo: se actualiza, no se conserva como
 histórico. El registro de decisiones va en `docs/decisiones/`.
+
+---
+
+## Cierre de jornada — 2026-08-25
+
+Hecha la tarea que quedaba señalada: **las caras de la red están
+identificadas, medidas y clasificadas**, y cada vecindad lleva su salto
+explícitamente sin firmar.
+
+105 caras interiores (Euler `V − E + F = 2`, cero cruces, área de caras = área
+de contorno = 30,690 m²). Clasifican **25**: 8 medios cuadrados y 1 octógono
+regular confirmados, 16 cuadrados marcados al límite de resolución. Las otras
+**80 quedan sin figura**, 51 de ellas ni siquiera convexas. Las **227
+vecindades** llevan todas `"salto": null`. Suite en **588 tests superados** y
+`git diff --check` limpio.
+
+**Sigue sin propagarse nada.** El bloqueo ya no es la topología —está
+completa— sino documental: falta la evidencia del signo de cada paso.
+
+Estado de reanudación: `BLOCKED_MISSING_SIGNED_LEVEL_CONSTRAINTS`.
 
 ---
 
@@ -16,13 +36,17 @@ estado perdido, y por tanto sujeta a evidencia.
 
 | pieza | estado |
 |---|---|
-| Núcleo aritmético en Z[ζ_m] | **sólido**, 509 tests, cero dependencias |
+| Núcleo aritmético en Z[ζ_m] | **sólido**, cero dependencias |
 | Perfiles de celda `cuna` y `rombo` | **correctos** — la tesis los confirma como figuras A, C y D |
 | Estratificación medida de la sección | **válida** — 23 hiladas, paso ~20 cm, cono de 38° ± 0.6° |
 | Orden de simetría | **medido** — retícula angular 16, simetría exacta C8, espejo → D8 |
 | Paleta y policromía | **medida**, con verde sostenido y rojo descartado |
 | Planta de la tesis registrada | **validada** — contraste +5.43 frente a +0.16 desplazada |
-| Red de medinas extraída | **71 nudos, 48 aristas**, direcciones confirmadas a 1.23° |
+| Red de medinas completa | **323 nudos, 427 aristas, 1 componente**, 24 terminales de borde |
+| Representación de niveles | **implementada** — siete tipos, A3/D3 a dos niveles, propagación fail-closed |
+| Sombra como indicio | **validada solo en el extremo** — 15/16 cupulines más oscuros; no calibra niveles enteros |
+| Caras del teselado | **105 caras**, Euler 2, cero cruces; 9 figuras confirmadas, 16 al límite, 80 sin figura |
+| Vecindades entre teselas | **227**, todas con salto sin firmar y sin conversión parcial posible |
 
 ### Lo que hay que tirar
 
@@ -40,7 +64,7 @@ referencia. Pero que quede marcado como muerto.
 
 ---
 
-## Siguiente tarea: el nivel de cada tesela
+## Tarea del nivel de cada tesela: estado
 
 Es lo que convierte una planta en cúpula, y es lo que falta.
 
@@ -55,22 +79,79 @@ Vías posibles, por orden de coste:
    16 copias simétricas agrupadas hay señal suficiente para intentarlo. Barato
    y usa datos que ya tengo.
 2. **Deducirlo de la topología de la red.** Si las medinas separan niveles
-   consecutivos, el nivel se propaga por el grafo desde el borde. Requiere que
-   la red extraída esté completa, y hoy tiene 48 aristas de las que debería
-   tener.
+   consecutivos, el nivel se propaga por el grafo desde el borde. La red está
+   completa y las caras y vecindades ya están identificadas; lo que falta —y
+   la topología por sí sola no da— es el signo/salto de cada paso.
 3. **Leerlo de la tesis.** El capítulo 3 propone una representación de plantas
    con líneas de nivel y con puntos, precisamente para esto. Mirar
    `3.2.5 Plantas con líneas de nivel` y `3.3.2 Planta propuesta`.
 
-**Empezar por (3)**, que es leer, y luego (1) para contrastar.
+### Hecho
+
+- Identificadas las **caras** por rotación de semiaristas (`granada/caras.py`,
+  sin dependencias): 105 caras, Euler `V − E + F = 2`, cero cruces en los
+  90 951 pares de aristas y área de caras igual a la del contorno. Clasificadas
+  solo contra las plantillas documentadas y con la tolerancia que impone la
+  resolución del dibujo: 8 medios cuadrados y 1 octógono confirmados (órbita
+  C8 exacta, margen 3,9× y 6,5× frente a las plantillas de control), 16
+  cuadrados al límite de resolución y 80 caras sin figura. Decisión y controles
+  en `docs/decisiones/0005-caras-y-vecindades.md`.
+- Representadas las **227 vecindades** con `salto = None`. Firmar exige citar
+  evidencia y `restricciones_firmadas` falla mientras quede una sin firmar: no
+  hay propagación parcial que aparente una planta resuelta.
+- Leídas directamente `3.2.5 Plantas con líneas de nivel` y `3.3.2 Planta
+  propuesta`, incluidas las figuras 28–29. La planta propuesta codifica
+  sentido, tipología y niveles de ascenso con **una o varias flechas dentro de
+  cada figura**; una arista compartida no tiene por qué tener un sentido único.
+- Implementado `granada/niveles.py`: separa tipo/topología, nivel absoluto y
+  restricciones entre nodos. Detecta ciclos contradictorios y deja componentes
+  sin ancla sin resolver. A3 y D3 salvan dos niveles.
+- Contrastada la sombra sobre los 16 cupulines conocidos: 15/16 son más oscuros
+  que controles al mismo radio, diferencia mediana +16,99, p=3,05·10⁻⁵. La
+  señal existe, pero la sensibilidad radial y los confundidores impiden una
+  función brillo → nivel.
+- Completada la red desde la mitad superior de la figura 128 —la propuesta de
+  la tesis— y reflexión D8, sin mezclar la mitad inferior de Jones y Goury:
+  323 nudos, 427 aristas, una componente, 105 ciclos y 24 terminales de borde.
+  El resultado es idéntico para umbrales 170–230. Procedimiento y techo de
+  afirmación en `docs/decisiones/0004-red-medinas-completa.md`.
+
+### Bloqueo documental de las restricciones
+
+La figura 128 específica de Dos Hermanas **no contiene las flechas ni cotas**
+de la representación propuesta. La red ya es conexa, pero conectividad no
+equivale a una diferencia de nivel: falta identificar las caras y codificar en
+cada paso si hay ascenso, descanso o descenso.
+
+`BLOCKED_MISSING_SIGNED_LEVEL_CONSTRAINTS`
+
+No asignar niveles por brillo, radio ni distancia de grafo. Las teselas ya
+están identificadas y sus 227 vecindades listadas: lo único que falta es el
+signo de cada paso. Solo cuando esté firmado se comprobará si una propagación
+anclada en los 24 terminales de borde es consistente.
+
+**Dónde puede salir el signo**, por orden de coste:
+
+1. Una planta de Dos Hermanas —de la tesis o de otro autor— que traiga flechas
+   o cotas. Es lo que la sección 3.3.2 propone y la figura 128 no aplica.
+2. La sección medida: `docs/estratificacion.md` da 23 hiladas y paso ~20 cm.
+   Una cara cuyo radio y cota se puedan casar con una hilada firmaría su ancla,
+   no sus vecindades. Cuidado: es la propagación por coronas por otro camino.
+3. La capa vectorial de AA-415_23, aún sin extraer, si distingue cotas.
 
 ---
 
 ## Después
 
-- **Completar la red.** 48 aristas para 71 nudos es poco: el trazado se pierde
-  en los cruces densos de la corona interior. Mejorar el seguimiento del
-  esqueleto o bajar el umbral de binarizado.
+- **Completar la red — hecho.** El seguimiento de esqueleto conserva los giros
+  y elimina el contorno punteado: 323 nudos y 427 aristas en una componente.
+- **Identificar caras y restricciones — hecho.** 105 caras, 25 clasificadas
+  (9 confirmadas), 227 vecindades con el salto explícitamente sin firmar.
+  Ninguna cara recibe `TipoMocarabe`: de la planta se lee la figura, no la
+  topología.
+- **Firmar los saltos — siguiente tarea.** Es documental, no de código: hace
+  falta una fuente que diga, para cada paso, si asciende, descansa o
+  desciende.
 - **Módulos mixtos.** Confirmado que esta cúpula no tiene módulo único
   (residuo del 18–23 % con el mejor módulo). El modelo tiene que admitir
   piezas de distinto módulo, no forzar uno.
@@ -94,6 +175,9 @@ Vías posibles, por orden de coste:
   debajo de la línea base del propio yeso. Que el bermellón formaba parte de la
   paleta nazarí está documentado; que estuviera *aquí*, y dónde, no.
 - **El negro carbón.** Indistinguible de la sombra de las cavidades.
+- **Las 80 caras sin figura.** Se agrupan por área en familias de 16, 24, 8, 8,
+  8 y 16 copias, así que son regiones reales del dibujo, no ruido. La figura
+  128 no las subdivide; una planta más fina de esta cúpula las resolvería.
 - **Las nueve filas restantes** de la tabla de planos del APAG en
   `docs/investigacion-preliminar.md`, sin verificar.
 - **La capa vectorial** de AA-415_23, sin extraer. Daría geometría en vez de

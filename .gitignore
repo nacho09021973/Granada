@@ -42,3 +42,8 @@ Thumbs.db
 
 # WSL: metadatos de descarga que Windows adjunta a los ficheros
 *:Zone.Identifier
+
+# Fuentes de consulta local: obra de terceros. Se citan y se usan como
+# referencia para construir geometria propia, pero no se redistribuyen aqui.
+docs/Ferrer Pérez-Blanco, Ignacio Tesis.pdf
+docs/Teselado Ammann-Beenker En Alhambra.pdf

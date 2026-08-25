@@ -1,4 +1,10 @@
-"""Alzado de la adaraja: el perfil concavo que cuelga de cada hilada.
+"""OBSOLETO: perfil de conica unica, conservado solo como referencia.
+
+La tesis documenta una plantilla de doble perfil y paralelismo entre piezas
+vecinas. Este modulo no representa ese sistema y no debe alimentar un nuevo
+render historico.
+
+Alzado de la adaraja: el perfil concavo que cuelga de cada hilada.
 
 La estratificacion da el esqueleto escalonado de la cupula. Lo que convierte
 ese cono de escalones en mocarabes es el perfil vertical de cada celda: la
