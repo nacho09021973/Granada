@@ -30,6 +30,7 @@ __all__ = [
     "RestriccionSinFirmar",
     "ResultadoNiveles",
     "TipoMocarabe",
+    "admite_salto_unitario",
     "resolver_desde_vecindades",
     "resolver_niveles",
     "restricciones_firmadas",
@@ -304,6 +305,75 @@ def restricciones_firmadas(
             f"empezando por {sin_firmar[:3]}"
         )
     return tuple(r.como_restriccion() for r in lista)
+
+
+def admite_salto_unitario(
+    relaciones: Iterable[RelacionVecindad],
+) -> tuple[bool, tuple[str, ...]]:
+    """Existe alguna nivelacion en la que toda vecindad salve un nivel exacto?
+
+    Alrededor de cualquier ciclo los saltos suman cero. Si todos valieran mas
+    o menos uno, la suma tendria la paridad del numero de pasos: un ciclo de
+    longitud impar no puede cerrar. La respuesta es afirmativa si y solo si el
+    grafo de vecindades es bipartito.
+
+    Un ciclo impar es, por tanto, la prueba de que ahi hace falta un descanso
+    o una pieza que salve dos niveles. La pregunta es estructural: mira quien
+    toca con quien e **ignora** el salto que cada relacion lleve firmado.
+
+    Devuelve ``(True, ())`` o ``(False, ciclo testigo)``.
+    """
+
+    lista = tuple(relaciones)
+    if any(not isinstance(r, RelacionVecindad) for r in lista):
+        raise TypeError("todas las relaciones deben ser RelacionVecindad")
+
+    adyacencia: dict[str, list[str]] = defaultdict(list)
+    for relacion in lista:
+        adyacencia[relacion.origen].append(relacion.destino)
+        adyacencia[relacion.destino].append(relacion.origen)
+
+    color: dict[str, int] = {}
+    padre: dict[str, str | None] = {}
+    for raiz in sorted(adyacencia):
+        if raiz in color:
+            continue
+        color[raiz] = 0
+        padre[raiz] = None
+        cola = deque([raiz])
+        while cola:
+            actual = cola.popleft()
+            for vecino in adyacencia[actual]:
+                if vecino not in color:
+                    color[vecino] = 1 - color[actual]
+                    padre[vecino] = actual
+                    cola.append(vecino)
+                elif color[vecino] == color[actual]:
+                    return (False, _ciclo_entre(padre, actual, vecino))
+    return (True, ())
+
+
+def _ciclo_entre(
+    padre: Mapping[str, str | None], uno: str, otro: str
+) -> tuple[str, ...]:
+    """Ciclo que cierran dos nodos del mismo color mas la arista que los une."""
+
+    def hasta_la_raiz(nodo: str) -> list[str]:
+        camino = []
+        actual: str | None = nodo
+        while actual is not None:
+            camino.append(actual)
+            actual = padre[actual]
+        return camino
+
+    rama_uno = hasta_la_raiz(uno)
+    rama_otro = hasta_la_raiz(otro)
+    en_rama_uno = set(rama_uno)
+    for posicion, nodo in enumerate(rama_otro):
+        if nodo in en_rama_uno:
+            corte = rama_uno.index(nodo)
+            return tuple(rama_uno[: corte + 1] + list(reversed(rama_otro[:posicion])))
+    return tuple(rama_uno + rama_otro)
 
 
 def resolver_desde_vecindades(

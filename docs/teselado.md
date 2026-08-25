@@ -417,3 +417,52 @@ propagación parcial que aparente una planta resuelta.
 
 Dato: `datos/caras_red.json`. Mapa: `renders/caras_red.svg`. Decisión y techo
 de afirmación: `docs/decisiones/0005-caras-y-vecindades.md`.
+
+
+---
+
+## Qué reglas de nivel son siquiera posibles (2026-08-25)
+
+Con las caras ya identificadas se puede hacer algo barato antes de buscar
+fuentes: coger las reglas que uno propondría de memoria e intentar
+**refutarlas**. Alrededor de cualquier ciclo del grafo de vecindades los saltos
+firmados tienen que sumar cero.
+
+El dual honesto son **105 caras, 211 vecindades y 107 ciclos independientes**;
+el contorno exterior queda fuera por ser un nodo artificial que uniría las 16
+caras del borde.
+
+| regla | veredicto |
+|---|---|
+| toda medina separa dos niveles consecutivos | **imposible** |
+| se sube un nivel al cruzar hacia el centro | **imposible**, 67 ciclos rotos |
+| las de lado suben, las diagonales descansan | **imposible**, 67 ciclos rotos |
+| control: ninguna medina cambia de nivel | consistente |
+| control: coronas cuantizadas al paso de 20 cm | consistente |
+
+Los controles positivos pasan, de modo que el test no rechaza por costumbre. Y
+el segundo recuerda que **consistente no es correcto**: el modelo de coronas
+cierra todos los ciclos y sigue rechazado por contradecir el teselado.
+
+### El teorema del triángulo
+
+La primera regla no cae por casualidad, sino porque el grafo de vecindades no
+es bipartito:
+
+> En tres teselas mutuamente vecinas los tres saltos suman cero. Si los tres
+> valieran ±1 la suma sería impar y nunca cerraría. Al menos una de las tres
+> medinas es un **descanso** o **salva dos niveles**.
+
+La planta tiene **54 triángulos** así, y 16 sobreviven al control más duro
+—descartar toda medina compartida de menos de 30 px, por encima de la mediana
+del dato—; son el mismo motivo repetido 16 veces alrededor de la cúpula.
+
+Lo que la tesis documenta por su cuenta son exactamente esas dos cosas: los
+descansos de la sección 3.2.5 y las piezas **A3 y D3**, que salvan dos niveles.
+La topología de la planta digitalizada lo exige sin usar fotometría, ni radio,
+ni ninguna suposición sobre la altura.
+
+No firma ni un solo salto: `BLOCKED_MISSING_SIGNED_LEVEL_CONSTRAINTS` sigue.
+Lo ganado es que tres atajos quedan cerrados con testigo y no por prudencia.
+
+Dato: `datos/reglas_de_nivel.json`. Decisión: `docs/decisiones/0006-reglas-de-nivel-refutadas.md`.

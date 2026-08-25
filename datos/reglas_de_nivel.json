@@ -1,0 +1,433 @@
+{
+ "version": 1,
+ "fuente": {
+  "derivado_de": "datos/caras_red.json",
+  "sha256_caras": "c01ebdbea5e7ef3b9a1ca29f3b60beacbaaae0f17ecbafe5f8c9f69a2dbe3e78"
+ },
+ "metodo": {
+  "dual": "105 caras y 211 vecindades interiores; el contorno exterior queda fuera por ser un nodo artificial",
+  "ciclos_independientes": 107,
+  "criterio": "alrededor de cada ciclo los saltos firmados suman cero",
+  "paso_hilada_m": 0.2
+ },
+ "reglas": {
+  "R1_toda_medina_salva_un_nivel": {
+   "enunciado": "toda medina separa dos niveles consecutivos, en el sentido que sea",
+   "tipo": "candidata",
+   "consistente": false,
+   "criterio": "el grafo de vecindades tiene que ser bipartito",
+   "testigo": [
+    "c003",
+    "c000",
+    "c009"
+   ]
+  },
+  "R2_ascenso_hacia_el_centro": {
+   "consistente": false,
+   "ciclos_fundamentales_violados": 67,
+   "testigo": [
+    "c003",
+    "c000",
+    "c009"
+   ],
+   "enunciado": "se sube un nivel al cruzar cada medina hacia el centro",
+   "tipo": "candidata",
+   "saltos": {
+    "1": 211
+   }
+  },
+  "R3_ortogonales_suben_diagonales_descansan": {
+   "consistente": false,
+   "ciclos_fundamentales_violados": 67,
+   "testigo": [
+    "c012",
+    "c003",
+    "c000",
+    "c001",
+    "c004"
+   ],
+   "enunciado": "las medinas de lado suben un nivel hacia el centro y las diagonales son descansos",
+   "tipo": "candidata",
+   "saltos": {
+    "0": 93,
+    "1": 118
+   }
+  },
+  "C1_todo_descanso": {
+   "consistente": true,
+   "ciclos_fundamentales_violados": 0,
+   "testigo": [],
+   "enunciado": "control positivo trivial: ninguna medina cambia de nivel",
+   "tipo": "control",
+   "saltos": {
+    "0": 211
+   }
+  },
+  "C2_coronas_cuantizadas": {
+   "consistente": true,
+   "ciclos_fundamentales_violados": 0,
+   "testigo": [],
+   "enunciado": "control positivo no trivial: nivel = radio cuantizado al paso de hilada medido, 20 cm (modelo de coronas, rechazado en 0003 por contradecir el teselado)",
+   "tipo": "control",
+   "saltos": {
+    "-5": 4,
+    "-3": 19,
+    "-2": 28,
+    "-1": 20,
+    "0": 61,
+    "1": 15,
+    "2": 31,
+    "3": 29,
+    "5": 4
+   }
+  }
+ },
+ "teorema_del_triangulo": {
+  "enunciado": "tres teselas mutuamente vecinas no pueden salvar un nivel cada par: la suma de tres saltos de valor absoluto uno es impar y nunca cierra en cero. Al menos una de las tres medinas es un descanso o salva dos niveles.",
+  "triangulos": 54,
+  "triangulos_robustos_30px": 16,
+  "lista": [
+   [
+    "c000",
+    "c003",
+    "c009"
+   ],
+   [
+    "c000",
+    "c005",
+    "c009"
+   ],
+   [
+    "c003",
+    "c004",
+    "c012"
+   ],
+   [
+    "c003",
+    "c004",
+    "c017"
+   ],
+   [
+    "c004",
+    "c010",
+    "c014"
+   ],
+   [
+    "c004",
+    "c010",
+    "c023"
+   ],
+   [
+    "c005",
+    "c006",
+    "c013"
+   ],
+   [
+    "c005",
+    "c006",
+    "c018"
+   ],
+   [
+    "c006",
+    "c011",
+    "c015"
+   ],
+   [
+    "c006",
+    "c011",
+    "c024"
+   ],
+   [
+    "c007",
+    "c010",
+    "c019"
+   ],
+   [
+    "c007",
+    "c019",
+    "c029"
+   ],
+   [
+    "c008",
+    "c011",
+    "c020"
+   ],
+   [
+    "c008",
+    "c020",
+    "c030"
+   ],
+   [
+    "c019",
+    "c025",
+    "c029"
+   ],
+   [
+    "c020",
+    "c027",
+    "c030"
+   ],
+   [
+    "c025",
+    "c029",
+    "c035"
+   ],
+   [
+    "c027",
+    "c030",
+    "c036"
+   ],
+   [
+    "c029",
+    "c031",
+    "c033"
+   ],
+   [
+    "c029",
+    "c031",
+    "c035"
+   ],
+   [
+    "c030",
+    "c032",
+    "c034"
+   ],
+   [
+    "c030",
+    "c032",
+    "c036"
+   ],
+   [
+    "c031",
+    "c043",
+    "c048"
+   ],
+   [
+    "c031",
+    "c048",
+    "c051"
+   ],
+   [
+    "c032",
+    "c045",
+    "c049"
+   ],
+   [
+    "c032",
+    "c049",
+    "c052"
+   ],
+   [
+    "c047",
+    "c048",
+    "c053"
+   ],
+   [
+    "c047",
+    "c053",
+    "c059"
+   ],
+   [
+    "c049",
+    "c050",
+    "c054"
+   ],
+   [
+    "c050",
+    "c054",
+    "c061"
+   ],
+   [
+    "c059",
+    "c060",
+    "c065"
+   ],
+   [
+    "c059",
+    "c065",
+    "c073"
+   ],
+   [
+    "c061",
+    "c062",
+    "c066"
+   ],
+   [
+    "c061",
+    "c066",
+    "c074"
+   ],
+   [
+    "c065",
+    "c078",
+    "c081"
+   ],
+   [
+    "c066",
+    "c070",
+    "c079"
+   ],
+   [
+    "c066",
+    "c079",
+    "c082"
+   ],
+   [
+    "c067",
+    "c078",
+    "c083"
+   ],
+   [
+    "c069",
+    "c070",
+    "c079"
+   ],
+   [
+    "c069",
+    "c079",
+    "c084"
+   ],
+   [
+    "c078",
+    "c083",
+    "c089"
+   ],
+   [
+    "c079",
+    "c084",
+    "c088"
+   ],
+   [
+    "c083",
+    "c089",
+    "c093"
+   ],
+   [
+    "c084",
+    "c088",
+    "c094"
+   ],
+   [
+    "c085",
+    "c086",
+    "c093"
+   ],
+   [
+    "c086",
+    "c087",
+    "c096"
+   ],
+   [
+    "c086",
+    "c093",
+    "c098"
+   ],
+   [
+    "c086",
+    "c096",
+    "c101"
+   ],
+   [
+    "c090",
+    "c091",
+    "c094"
+   ],
+   [
+    "c091",
+    "c092",
+    "c097"
+   ],
+   [
+    "c091",
+    "c094",
+    "c099"
+   ],
+   [
+    "c091",
+    "c097",
+    "c100"
+   ],
+   [
+    "c095",
+    "c096",
+    "c104"
+   ],
+   [
+    "c095",
+    "c097",
+    "c104"
+   ]
+  ]
+ },
+ "robustez": {
+  "barrido_de_longitud_compartida": [
+   {
+    "umbral_px": 0,
+    "vecindades": 211,
+    "caras": 105,
+    "triangulos": 54,
+    "admite_salto_unitario": false,
+    "ciclos_violados_por_R2": 67
+   },
+   {
+    "umbral_px": 10,
+    "vecindades": 209,
+    "caras": 105,
+    "triangulos": 50,
+    "admite_salto_unitario": false,
+    "ciclos_violados_por_R2": 67
+   },
+   {
+    "umbral_px": 15,
+    "vecindades": 204,
+    "caras": 105,
+    "triangulos": 44,
+    "admite_salto_unitario": false,
+    "ciclos_violados_por_R2": 62
+   },
+   {
+    "umbral_px": 20,
+    "vecindades": 159,
+    "caras": 89,
+    "triangulos": 16,
+    "admite_salto_unitario": false,
+    "ciclos_violados_por_R2": 32
+   },
+   {
+    "umbral_px": 25,
+    "vecindades": 126,
+    "caras": 89,
+    "triangulos": 16,
+    "admite_salto_unitario": false,
+    "ciclos_violados_por_R2": 19
+   },
+   {
+    "umbral_px": 30,
+    "vecindades": 112,
+    "caras": 89,
+    "triangulos": 16,
+    "admite_salto_unitario": false,
+    "ciclos_violados_por_R2": 18
+   },
+   {
+    "umbral_px": 40,
+    "vecindades": 42,
+    "caras": 50,
+    "triangulos": 0,
+    "admite_salto_unitario": true,
+    "ciclos_violados_por_R2": 0
+   }
+  ],
+  "longitud_compartida_px": {
+   "minima": 9.766735995018996,
+   "mediana": 31.35081753114066,
+   "maxima": 65.13471279031582
+  },
+  "longitud_compartida_en_triangulos_px": {
+   "minima": 9.766735995018996,
+   "mediana": 20.67525038951255,
+   "maxima": 54.31154734556965
+  }
+ },
+ "estado": "BLOCKED_MISSING_SIGNED_LEVEL_CONSTRAINTS"
+}

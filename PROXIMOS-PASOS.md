@@ -47,6 +47,8 @@ estado perdido, y por tanto sujeta a evidencia.
 | Sombra como indicio | **validada solo en el extremo** — 15/16 cupulines más oscuros; no calibra niveles enteros |
 | Caras del teselado | **105 caras**, Euler 2, cero cruces; 9 figuras confirmadas, 16 al límite, 80 sin figura |
 | Vecindades entre teselas | **227**, todas con salto sin firmar y sin conversión parcial posible |
+| Reglas de nivel candidatas | **tres refutadas** con testigo; los dos controles positivos pasan |
+| Teorema del triángulo | **54 triángulos** (16 robustos): la planta exige descansos o piezas de dos niveles |
 
 ### Lo que hay que tirar
 
@@ -96,6 +98,18 @@ Vías posibles, por orden de coste:
   C8 exacta, margen 3,9× y 6,5× frente a las plantillas de control), 16
   cuadrados al límite de resolución y 80 caras sin figura. Decisión y controles
   en `docs/decisiones/0005-caras-y-vecindades.md`.
+- Refutadas tres reglas de nivel candidatas sobre el dual de 105 caras, 211
+  vecindades y 107 ciclos: «toda medina salva un nivel» es imposible porque el
+  grafo no es bipartito; «se sube uno hacia el centro» rompe 67 ciclos;
+  «ortogonales suben, diagonales descansan», otros 67. Los dos controles
+  positivos pasan, así que el test no rechaza por costumbre. Aguanta descartar
+  toda medina compartida de menos de 30 px. Decisión 0006.
+- **Teorema del triángulo**: en tres teselas mutuamente vecinas los tres saltos
+  no pueden valer ±1, porque una suma impar no cierra en cero. Hay 54
+  triángulos, 16 de ellos robustos. La planta exige por sí sola descansos o
+  piezas de dos niveles — justo lo que la tesis documenta como A3, D3 y
+  descansos. Es topología pura: ni fotometría, ni radio, ni suposición de
+  altura.
 - Representadas las **227 vecindades** con `salto = None`. Firmar exige citar
   evidencia y `restricciones_firmadas` falla mientras quede una sin firmar: no
   hay propagación parcial que aparente una planta resuelta.
@@ -129,6 +143,10 @@ No asignar niveles por brillo, radio ni distancia de grafo. Las teselas ya
 están identificadas y sus 227 vecindades listadas: lo único que falta es el
 signo de cada paso. Solo cuando esté firmado se comprobará si una propagación
 anclada en los 24 terminales de borde es consistente.
+
+**Atajos ya cerrados por escrito** (decisión 0006): un nivel por medina, el
+ascenso hacia el centro y el reparto ortogonal/diagonal son imposibles sobre
+esta planta, con ciclo testigo cada uno. No volver a proponerlos.
 
 **Dónde puede salir el signo**, por orden de coste:
 

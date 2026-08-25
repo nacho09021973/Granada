@@ -17,6 +17,7 @@ from granada.niveles import (
     RestriccionSinFirmar,
     ResultadoNiveles,
     TipoMocarabe,
+    admite_salto_unitario,
     resolver_desde_vecindades,
     resolver_niveles,
     restricciones_firmadas,
@@ -254,3 +255,67 @@ def test_una_vecindad_firmada_incoherente_sigue_fallando() -> None:
     ]
     with pytest.raises(InconsistenciaNiveles):
         resolver_desde_vecindades(relaciones, {"c001": 0})
+
+
+# --- que ciclos permite un salto unitario ----------------------------------
+
+
+def aristas_de(relaciones) -> set[frozenset[str]]:
+    return {frozenset((r.origen, r.destino)) for r in relaciones}
+
+
+def anillo(nombres: list[str]) -> list[RelacionVecindad]:
+    return [
+        RelacionVecindad(uno, otro)
+        for uno, otro in zip(nombres, nombres[1:] + nombres[:1])
+    ]
+
+
+def test_un_ciclo_par_admite_que_toda_vecindad_salve_un_nivel() -> None:
+    posible, testigo = admite_salto_unitario(anillo(["a", "b", "c", "d"]))
+    assert posible
+    assert testigo == ()
+
+
+def test_un_triangulo_no_admite_salto_unitario_en_las_tres_medinas() -> None:
+    relaciones = anillo(["a", "b", "c"])
+    posible, testigo = admite_salto_unitario(relaciones)
+    assert not posible
+    assert set(testigo) == {"a", "b", "c"}
+
+
+def test_el_testigo_es_un_ciclo_impar_de_verdad() -> None:
+    relaciones = anillo(["a", "b", "c", "d", "e"]) + [RelacionVecindad("a", "c")]
+    posible, testigo = admite_salto_unitario(relaciones)
+    assert not posible
+    assert len(testigo) % 2 == 1
+    aristas = aristas_de(relaciones)
+    pasos = list(zip(testigo, testigo[1:] + testigo[:1]))
+    assert all(frozenset(paso) in aristas for paso in pasos)
+    assert len(set(testigo)) == len(testigo)
+
+
+def test_la_pregunta_es_estructural_e_ignora_lo_ya_firmado() -> None:
+    firmadas = [
+        RelacionVecindad("a", "b", 1, "flecha"),
+        RelacionVecindad("b", "c", 2, "jaira de dos niveles"),
+        RelacionVecindad("c", "a", -1, "descenso"),
+    ]
+    posible, testigo = admite_salto_unitario(firmadas)
+    assert not posible
+    assert set(testigo) == {"a", "b", "c"}
+
+
+def test_basta_un_componente_impar_para_que_no_lo_admita() -> None:
+    relaciones = anillo(["a", "b", "c", "d"]) + anillo(["x", "y", "z"])
+    posible, testigo = admite_salto_unitario(relaciones)
+    assert not posible
+    assert set(testigo) == {"x", "y", "z"}
+    sueltas, _ = admite_salto_unitario(anillo(["a", "b", "c", "d"]))
+    assert sueltas
+
+
+def test_sin_vecindades_no_hay_nada_que_impida_el_salto_unitario() -> None:
+    assert admite_salto_unitario([]) == (True, ())
+    with pytest.raises(TypeError):
+        admite_salto_unitario([RestriccionNivel("a", "b", 1)])  # type: ignore[list-item]
