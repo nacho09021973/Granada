@@ -1,6 +1,8 @@
-"""Granada: generador de cupulas de mocarabes con geometria algebraicamente exacta.
+"""Granada: geometria exacta y topologia de cupulas de mocarabes.
 
-Estado actual: solo el nucleo aritmetico. Ver README.md.
+El nucleo aritmetico, las caras del teselado y la representacion topologica de
+niveles estan activos. Los modulos de coronas y perfil unico se conservan como
+referencia obsoleta. Ver PROXIMOS-PASOS.md.
 """
 
 from granada.adaraja import (
@@ -12,6 +14,21 @@ from granada.adaraja import (
     PuntoMalla,
     malla_adaraja,
     numeric_embedding_punto,
+)
+from granada.caras import (
+    CONTORNO,
+    Cara,
+    FiguraPlana,
+    GrafoNoAdmisible,
+    PLANTILLAS,
+    Plantilla,
+    ResultadoCaras,
+    Vecindad,
+    ajuste_a_plantilla,
+    clasificar,
+    cruces_de_aristas,
+    extraer_caras,
+    tolerancia_por_resolucion,
 )
 from granada.celda import (
     Celda,
@@ -27,6 +44,18 @@ from granada.estratificacion import (
     RAZON_MEDIDA,
     Estratificacion,
     numeric_embedding_hilada,
+)
+from granada.niveles import (
+    AsignacionNivel,
+    InconsistenciaNiveles,
+    RelacionVecindad,
+    RestriccionNivel,
+    RestriccionSinFirmar,
+    ResultadoNiveles,
+    TipoMocarabe,
+    resolver_desde_vecindades,
+    resolver_niveles,
+    restricciones_firmadas,
 )
 from granada.cyclotomic import (
     CyclotomicInteger,
@@ -49,21 +78,40 @@ from granada.cyclotomic import (
 __version__ = "0.1.0"
 
 __all__ = [
+    "Cara",
     "Celda",
+    "FiguraPlana",
+    "GrafoNoAdmisible",
     "PerfilArco",
+    "PLANTILLAS",
+    "Plantilla",
     "PuntoMalla",
     "PESO_CIRCULO",
     "PESO_PARABOLA",
     "TIRO_CUENCO",
     "TIRO_RECTO",
     "Estratificacion",
+    "ResultadoCaras",
+    "Vecindad",
+    "AsignacionNivel",
+    "CONTORNO",
+    "RelacionVecindad",
+    "RestriccionSinFirmar",
+    "InconsistenciaNiveles",
+    "RestriccionNivel",
+    "ResultadoNiveles",
+    "TipoMocarabe",
     "HILADAS_MEDIDAS",
     "RAZON_MEDIDA",
     "CyclotomicInteger",
     "CyclotomicRing",
     "RealCyclotomicInteger",
+    "ajuste_a_plantilla",
     "anillo",
+    "clasificar",
+    "cruces_de_aristas",
     "cuna",
+    "extraer_caras",
     "cyclotomic_polynomial",
     "divisors",
     "euler_phi",
@@ -80,6 +128,10 @@ __all__ = [
     "poly_sub",
     "poly_trim",
     "rombo",
+    "resolver_desde_vecindades",
+    "resolver_niveles",
+    "restricciones_firmadas",
+    "tolerancia_por_resolucion",
     "solve_integer_linear",
     "solve_rational_linear",
     "trapecio",
