@@ -5,7 +5,7 @@ comprobado uno a uno. Cada entrada indica **qué se verificó**, **qué no**, y
 qué afirmación del proyecto sostiene: (A) matemática o (B) empírica, según la
 distinción del README.
 
-Verificación realizada el 2026-08-24. El material descartado y el informe del
+Verificación realizada el 2026-08-24; entrada 8 añadida el 2026-08-25. El material descartado y el informe del
 que salió esta pista bibliográfica están en `investigacion-preliminar.md`,
 marcado como no verificado.
 
@@ -227,11 +227,71 @@ fotogramétrica del XXI — dan el mismo orden.
 
 ---
 
+## 8. Informe documental de altimetría (2026-08-25)
+
+**Cotas Mocárabes Alhambra Dos Hermanas. Informe documental: altimetría y
+restitución tridimensional de la cúpula de mocárabes de la Sala de las Dos
+Hermanas.** Documento del proyecto, 12 páginas, redactado por el autor de este
+repositorio. Fichero: `docs/Cotas Mocárabes Alhambra Dos Hermanas.pdf`.
+
+Vaciado de repositorios institucionales —Dialnet, TESEO, Digibug, RiuNet,
+oa.upm.es, APAG, RABASF e IAPH— en busca de cotas por pieza.
+
+**Su conclusión principal es la que importa aquí**, y es una ausencia:
+
+> «no existe en el dominio público ninguna tabla, despiece o listado
+> topográfico que asocie de manera unívoca cada pieza o celda de la cúpula de
+> las Dos Hermanas a una cota numérica, nivel, hilada o corona exacta.»
+
+Es la primera confirmación **externa al propio trabajo** de que
+`BLOCKED_MISSING_SIGNED_LEVEL_CONSTRAINTS` no es un fallo de búsqueda nuestro.
+Sostiene una afirmación de tipo (B), y por ahora la afirmación que sostiene es
+la inexistencia de la fuente, no una cota.
+
+- **Verificado directamente**: las tres remisiones a la tesis de Ferrer
+  Pérez-Blanco son exactas, comprobadas contra el PDF —página impresa 185,
+  «2.3.5. Altura de la pata»; 190, «2.3.6. Relación de proporciones en planta y
+  alzado»; 316, «4.4. Mocárabes reglados. Arcos de mocárabes concéntricos»—.
+  Leída la 190 entera: confirma la relación 7P / 7,5P / 8P ya recogida en
+  `docs/teselado.md`, que es la altura de **una pieza**, no la cota de cada
+  tesela.
+- **Verificado sobre el propio plano**: AA-415_23 tiene capa vectorial
+  (`/OCProperties`, `/OCGs`, AutoCAD 2010, A0) y dos ortoimágenes incrustadas,
+  pero **no lleva cotas numéricas escritas**: 20 palabras de texto en todo el
+  A0. Permite medir geometría contra la escala 1/25; no permite leer niveles.
+  Y una sección es un corte: da un perfil, no puede firmar el paso de cada una
+  de las 211 vecindades en planta.
+- **Sin verificar**, y por tanto no citable todavía: Saseta Velázquez (2016),
+  *El juego de los mocárabes*, Cuadernos de los Amigos de los Museos de Osuna
+  18, pp. 142–143; Roldán-Medina (2018), DOI 10.13140/RG.2.2.16056.80640;
+  Martínez Sevilla, *Revista PH* 106 (2022), pp. 12–13; APAG P-000159 y
+  D-0353; Museo de la Alhambra, inventarios 006601 y 006091; MakerWorld 3150958.
+
+### Tensión con lo medido, que no hay que disimular
+
+El informe recoge de Saseta que «el nivel no se mantiene, sino que asciende (o
+desciende) de manera constante entre coronas». Leído como **un nivel por
+medina**, eso es exactamente la clase de regla que la decisión 0006 refuta
+sobre esta planta: R1 imposible por paridad, R2 con 67 de 107 ciclos rotos y
+ciclo testigo. Las dos cosas solo se reconcilian si «constante» admite el salto
+de **dos** niveles — que es justo lo que la tesis documenta como piezas A3 y
+D3, y lo que el teorema del triángulo exige por su cuenta.
+
+No se resuelve aquí. Se deja anotado para que quien lo lea no dé por buena la
+regla simple sin pasar por 0006.
+
+---
+
 ## Pendiente de verificar
 
 - Recuento de piezas de la cúpula de las Dos Hermanas: circulan 5.416 piezas y
   «104 adarajas en forma de estrella» (IAPH / Paseos Matemáticos). Sin
-  comprobar, y de tipo (B).
+  comprobar, y de tipo (B). La entrada 8 le pone localización precisa —
+  Martínez Sevilla, *Revista PH* 106 (junio 2022), pp. 12–13, con las 104
+  adarajas de estrella localizadas espacialmente y divididas en 5 tipos—. **Es
+  la pista de mayor valor de las abiertas**: una tabla de piezas localizadas y
+  tipificadas tiene la forma que tendría una fuente capaz de firmar los saltos.
+  Sigue sin verificar.
 - La capa vectorial de AA-415_23, como comprobación de la sección 7.
 - Las otras nueve filas de la tabla de planos del APAG.
 - Owen Jones y Jules Goury, *Plans, Elevations, Sections and Details of the

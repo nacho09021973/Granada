@@ -148,6 +148,11 @@ anclada en los 24 terminales de borde es consistente.
 ascenso hacia el centro y el reparto ortogonal/diagonal son imposibles sobre
 esta planta, con ciclo testigo cada uno. No volver a proponerlos.
 
+**Confirmación externa del bloqueo (2026-08-25).** El informe documental de la
+entrada 8 de `docs/fuentes.md` vació Dialnet, TESEO, Digibug, RiuNet, APAG,
+RABASF e IAPH y concluye que **no existe en el dominio público ninguna tabla
+que asocie cada pieza a una cota**. El bloqueo no es un fallo de búsqueda.
+
 **Dónde puede salir el signo**, por orden de coste:
 
 1. Una planta de Dos Hermanas —de la tesis o de otro autor— que traiga flechas
@@ -155,7 +160,14 @@ esta planta, con ciclo testigo cada uno. No volver a proponerlos.
 2. La sección medida: `docs/estratificacion.md` da 23 hiladas y paso ~20 cm.
    Una cara cuyo radio y cota se puedan casar con una hilada firmaría su ancla,
    no sus vecindades. Cuidado: es la propagación por coronas por otro camino.
-3. La capa vectorial de AA-415_23, aún sin extraer, si distingue cotas.
+3. La capa vectorial de AA-415_23. Comprobado que existe —AutoCAD 2010, A0,
+   con `/OCProperties` y `/OCGs`— pero el plano **no lleva cotas escritas**: 20
+   palabras de texto en todo el A0. Da un perfil medible contra la escala 1/25,
+   no niveles por tesela; y una sección no puede firmar 211 vecindades en
+   planta.
+4. **Revista PH 106 (junio 2022), pp. 12–13**, Martínez Sevilla / proyecto
+   PMAA: 104 adarajas de estrella localizadas espacialmente y divididas en 5
+   tipos. Es la pista de mayor valor abierta, y está **sin verificar**.
 
 ---
 
@@ -193,6 +205,11 @@ esta planta, con ciclo testigo cada uno. No volver a proponerlos.
   debajo de la línea base del propio yeso. Que el bermellón formaba parte de la
   paleta nazarí está documentado; que estuviera *aquí*, y dónde, no.
 - **El negro carbón.** Indistinguible de la sombra de las cavidades.
+- **Verificar las referencias del informe de altimetría** (entrada 8 de
+  `fuentes.md`): Saseta Velázquez 2016, el DOI de Roldán-Medina, Revista PH
+  106, las signaturas P-000159 y D-0353 del APAG y los inventarios 006601 y
+  006091 del Museo. Las tres remisiones a la tesis de Ferrer ya están
+  comprobadas y son exactas.
 - **Las 80 caras sin figura.** Se agrupan por área en familias de 16, 24, 8, 8,
   8 y 16 copias, así que son regiones reales del dibujo, no ruido. La figura
   128 no las subdivide; una planta más fina de esta cúpula las resolvería.
