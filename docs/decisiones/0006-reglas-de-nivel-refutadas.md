@@ -88,11 +88,55 @@ La fila de 40 px **no apoya nada**: ahí solo quedan 42 de 211 vecindades, el
 dual se deshace en trozos y el test pierde la potencia para refutar. Se incluye
 para que se vea dónde deja de decir algo.
 
+## Cuántas de las 16 instancias son independientes
+
+La red se digitalizó solo en su mitad superior; la inferior se generó por
+reflexión sobre `y = 273,5 px` (decisión 0004, punto 2). La réplica impuesta
+por construcción es por tanto **de orden 2**, no de orden 16: la simetría de
+orden 16 nunca entró en el dato, así que la repetición del motivo es en su
+mayor parte observada y no construida.
+
+Cuánta, exactamente. Reflejando el centroide de cada triángulo sobre el eje y
+buscando el más próximo, el emparejamiento resulta ser una **involución
+perfecta**: 16 de 16 emparejados, **8 pares**, ninguno auto-simétrico,
+desajuste máximo 3,91 px. El reparto crudo respecto del eje —6 triángulos
+enteramente arriba, 7 enteramente abajo, 3 a caballo— no decide nada; la
+involución sí.
+
+**N independiente = 8**, y de esos ocho, **seis son instancias limpias del
+interior y dos están sobre la costura**, compartiendo caras con su propio
+espejo (`c047`, `c053` en uno; `c050`, `c054` en el otro). Esas dos no son dos
+observaciones sino una región digitalizada una vez junto al eje.
+
+Ocho instancias independientes bastan para descartar el artefacto de
+esqueletizado: el ruido de digitalización no respeta una periodicidad de 45°.
+
+Nota sobre el desajuste: hasta 3,91 px no indica asimetría del dibujo. Los
+centroides del dato son medias de vértices, y tres de cada seis caras
+emparejadas tienen distinto número de vértices —9 contra 8, 4 contra 5— por la
+simplificación RDP. Las áreas de las caras emparejadas concuerdan a 0,6–58 cm²
+sobre 2 100–8 600 cm².
+
 ## Techo de afirmación
 
 Lo refutado son **esas tres reglas sobre esta planta digitalizada**, no
 cualquier regla ni la cúpula real. Que R2 sea imposible no dice que el nivel no
 crezca hacia el centro en promedio: dice que no lo hace de un nivel por medina.
+
+Y el techo está un nivel más arriba de lo estadístico, donde ya lo puso la
+decisión 0004: **los 323 nudos no son la cúpula, son el dibujo de Ferrer.** Si
+el autor trazó su propuesta replicando un sector en CAD —que es lo habitual—,
+las 16 apariciones del motivo son **una sola decisión del dibujante**, y
+ninguna manipulación del ráster puede distinguir ese caso del de 16
+observaciones. Las ocho instancias independientes descartan el artefacto de
+*digitalización*; no descartan la réplica en *origen*.
+
+Eso no invalida la refutación: el argumento de paridad se sostiene sobre la
+topología del dibujo, y el dibujo es la fuente declarada. Pero fija dónde
+acaba. **R2 queda refutada sobre la propuesta publicada de Ferrer
+Pérez-Blanco, no sobre la cúpula de la Sala de las Dos Hermanas.** Es la misma
+frase que ya lleva la decisión 0004, y la refutación hereda esa y no otra más
+fuerte.
 
 El teorema del triángulo es una implicación, no una medición: *si* la planta
 digitalizada refleja las adyacencias reales, *entonces* hay descansos o piezas

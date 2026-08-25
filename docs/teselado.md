@@ -457,6 +457,14 @@ La planta tiene **54 triángulos** así, y 16 sobreviven al control más duro
 —descartar toda medina compartida de menos de 30 px, por encima de la mediana
 del dato—; son el mismo motivo repetido 16 veces alrededor de la cúpula.
 
+Cuidado con ese 16. La mitad inferior de la red es reflexión de la superior,
+así que los 16 triángulos son **8 pares espejo** (involución perfecta, 16 de 16
+emparejados, desajuste máximo 3,91 px): **N independiente = 8**, y de esos, seis
+limpios y dos sobre la costura. Ocho bastan para descartar el artefacto de
+esqueletizado —el ruido no se alinea a 45°— pero no descartan que Ferrer
+replicara un sector en CAD. Por eso lo refutado lo es **sobre la propuesta
+publicada, no sobre la cúpula**.
+
 Lo que la tesis documenta por su cuenta son exactamente esas dos cosas: los
 descansos de la sección 3.2.5 y las piezas **A3 y D3**, que salvan dos niveles.
 La topología de la planta digitalizada lo exige sin usar fotometría, ni radio,

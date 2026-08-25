@@ -40,6 +40,16 @@ continúa sin dependencias.
 - desviación mediana de 2.20 grados respecto de las cuatro direcciones de
   medina; 77.3 % de los tramos queda a 5 grados o menos.
 
+## Consecuencia que no se puede olvidar
+
+El espejo se **impuso**. Por tanto la red **no puede usarse nunca como
+evidencia a favor de la simetría especular de la cúpula**: sería circular. La
+dirección válida es la contraria — la simetría D8 se midió sobre la policromía
+de la ortoimagen, y es esa medición la que autoriza el reflejo.
+
+Lo que sí es observado y no construido es cualquier periodicidad **de orden
+mayor que 2**: la réplica impuesta es de orden 2 y nada más.
+
 ## Techo de afirmacion
 
 El dato representa la **red de medinas de la propuesta publicada**, completada

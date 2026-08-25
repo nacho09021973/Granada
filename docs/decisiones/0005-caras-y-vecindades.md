@@ -61,6 +61,29 @@ cuadrados forman otras dos órbitas C8. **La extracción solo impuso simetría d
 espejo** (mitad superior reflejada), de modo que la periodicidad de 45° no es
 un artefacto del procedimiento: sale del dibujo.
 
+## Cuántas instancias independientes hay detrás de cada órbita
+
+La mitad inferior de la red se generó por reflexión (decisión 0004), de modo
+que la réplica impuesta es de orden 2. La periodicidad de 45° es observada,
+pero el número de digitalizaciones independientes detrás de cada familia es
+menor que el número de caras:
+
+| familia | caras | pares espejo | sobre el eje | **independientes** |
+|---|---:|---:|---:|---:|
+| medio cuadrado | 8 | 3 | 2 | **5** |
+| cuadrado | 16 | 8 | 0 | **8** |
+| octógono | 1 | 0 | 1 | **1** |
+
+La afirmación de órbita C8 se sostiene —cinco instancias independientes no se
+alinean a 45° por azar del esqueletizado— pero es ese número, y no el ocho, el
+que la respalda.
+
+Y una consecuencia que no hay que perder de vista: como el espejo se impuso,
+**la red no puede usarse nunca como evidencia a favor de la simetría especular
+de la cúpula.** Sería circular. La simetría D8 se midió aparte, sobre la
+policromía de la ortoimagen, y es esa medición la que autoriza el reflejo, no
+al revés.
+
 ## Controles
 
 - **Plantillas de control.** Siete figuras ajenas al sistema documentado, dos
@@ -99,6 +122,13 @@ clasificación: la corona interior de esta cúpula tiene subdivisiones más fina
 que las que la figura 128 dibuja, cosa ya advertida en `docs/teselado.md`. Un
 teselado completo de Dos Hermanas exige una planta que las traiga, no una
 tolerancia más generosa.
+
+Sobre los dos recuentos que aparecen en la documentación: **227** vecindades
+cuenta también las 16 adyacencias contra el nodo-contorno; **211** son las
+vecindades entre caras interiores. La diferencia es exactamente 16, el número
+de caras que tocan el borde. Los dos números son correctos y describen objetos
+distintos: el contorno es un nodo artificial y por eso queda fuera de todo
+razonamiento sobre ciclos.
 
 Las 227 vecindades dicen qué toca con qué. **Ninguna dice si sube, descansa o
 baja.** Mientras siga así, `restricciones_firmadas` no deja propagar, y los 24

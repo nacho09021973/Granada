@@ -47,8 +47,8 @@ estado perdido, y por tanto sujeta a evidencia.
 | Sombra como indicio | **validada solo en el extremo** — 15/16 cupulines más oscuros; no calibra niveles enteros |
 | Caras del teselado | **105 caras**, Euler 2, cero cruces; 9 figuras confirmadas, 16 al límite, 80 sin figura |
 | Vecindades entre teselas | **227**, todas con salto sin firmar y sin conversión parcial posible |
-| Reglas de nivel candidatas | **tres refutadas** con testigo; los dos controles positivos pasan |
-| Teorema del triángulo | **54 triángulos** (16 robustos): la planta exige descansos o piezas de dos niveles |
+| Reglas de nivel candidatas | **tres refutadas** con testigo sobre la propuesta de Ferrer, no sobre la cúpula |
+| Teorema del triángulo | **54 triángulos** (16 robustos = 8 pares espejo, N = 8): la planta exige descansos o piezas de dos niveles |
 
 ### Lo que hay que tirar
 
@@ -221,7 +221,17 @@ esta planta, con ciclo testigo cada uno. No volver a proponerlos.
    geometría propia. El plano AA-415_23 es material de la RABASF: leerlo para
    verificar es legítimo, derivar geometría para un repo MIT exige revisar sus
    condiciones **antes**.
-5. **La cúpula real está deformada.** Los escaneos láser lo documentan en otras
+5. **El espejo de la red se impuso, no se midió.** La mitad inferior de
+   `datos/red_medinas.json` es reflexión de la superior. De ahí dos reglas: la
+   red **nunca** sirve como evidencia de la simetría especular —sería
+   circular—, y al contar instancias hay que emparejarlas por el eje antes de
+   dar un N. Los 16 triángulos robustos son 8 pares: N = 8, no 16. Las 8 caras
+   de medio cuadrado son 5 instancias independientes, no 8.
+6. **Lo refutado lo es sobre el dibujo de Ferrer, no sobre la cúpula.** Si el
+   autor replicó un sector en CAD, las 16 apariciones son una decisión del
+   dibujante y ningún tratamiento del ráster lo distingue. La refutación de las
+   tres reglas hereda el techo de la decisión 0004, no uno más fuerte.
+7. **La cúpula real está deformada.** Los escaneos láser lo documentan en otras
    salas, y aquí se nota en el emborronamiento al promediar las 16 copias.
    Cualquier afirmación (B) es «ajusta dentro de una tolerancia», nunca
    «reproduce».
