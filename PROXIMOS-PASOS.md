@@ -48,7 +48,7 @@ estado perdido, y por tanto sujeta a evidencia.
 | Caras del teselado | **105 caras**, Euler 2, cero cruces; 9 figuras confirmadas, 16 al límite, 80 sin figura |
 | Vecindades entre teselas | **227**, todas con salto sin firmar y sin conversión parcial posible |
 | Reglas de nivel candidatas | **tres refutadas** con testigo sobre la propuesta de Ferrer, no sobre la cúpula |
-| Teorema del triángulo | **54 triángulos** (16 robustos = 8 pares espejo, N = 8): la planta exige descansos o piezas de dos niveles |
+| Teorema del triángulo | **54 triángulos** (16 robustos = 8 pares espejo, N estricto 6): la planta exige descansos o piezas de dos niveles |
 
 ### Lo que hay que tirar
 
@@ -224,9 +224,11 @@ esta planta, con ciclo testigo cada uno. No volver a proponerlos.
 5. **El espejo de la red se impuso, no se midió.** La mitad inferior de
    `datos/red_medinas.json` es reflexión de la superior. De ahí dos reglas: la
    red **nunca** sirve como evidencia de la simetría especular —sería
-   circular—, y al contar instancias hay que emparejarlas por el eje antes de
-   dar un N. Los 16 triángulos robustos son 8 pares: N = 8, no 16. Las 8 caras
-   de medio cuadrado son 5 instancias independientes, no 8.
+   circular—, y al contar instancias hay que clasificarlas **por vértices**
+   antes de dar un N: una cara que cruza el eje depende del pegado. Los 16
+   triángulos robustos son 8 pares, y solo **6** tienen las tres caras
+   digitalizadas: N estricto = 6. De las 8 caras de medio cuadrado, 3. De los
+   16 cuadrados, 8. El octógono central, ninguna.
 6. **Lo refutado lo es sobre el dibujo de Ferrer, no sobre la cúpula.** Si el
    autor replicó un sector en CAD, las 16 apariciones son una decisión del
    dibujante y ningún tratamiento del ráster lo distingue. La refutación de las

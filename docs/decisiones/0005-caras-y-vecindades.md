@@ -68,15 +68,27 @@ que la réplica impuesta es de orden 2. La periodicidad de 45° es observada,
 pero el número de digitalizaciones independientes detrás de cada familia es
 menor que el número de caras:
 
-| familia | caras | pares espejo | sobre el eje | **independientes** |
-|---|---:|---:|---:|---:|
-| medio cuadrado | 8 | 3 | 2 | **5** |
-| cuadrado | 16 | 8 | 0 | **8** |
-| octógono | 1 | 0 | 1 | **1** |
+Contando por los **vértices** de cada polígono, no por su centroide —una cara
+que cruza el eje tiene parte del contorno generada por el reflejo, y su
+existencia depende del pegado—:
 
-La afirmación de órbita C8 se sostiene —cinco instancias independientes no se
-alinean a 45° por azar del esqueletizado— pero es ese número, y no el ocho, el
-que la respalda.
+| familia | caras | digitalizadas | reflejadas | cruzan el eje | **N estricto** |
+|---|---:|---:|---:|---:|---:|
+| medio cuadrado | 8 | 3 | 3 | 2 | **3** |
+| cuadrado | 16 | 8 | 8 | 0 | **8** |
+| octógono | 1 | 0 | 0 | 1 | **0** |
+
+La afirmación de órbita C8 no necesita el reflejo para nada: **la periodicidad
+se observa dentro de la mitad digitalizada sola.** Los ocho cuadrados
+digitalizados forman dos órbitas de cuatro, con pasos de 45,0°, 45,1° y 45,2°
+la primera y 45,0°, 45,1° y 45,3° la segunda. Los tres medios cuadrados
+digitalizados están a 224,1°, 269,4° y 315,0°: pasos de 45,3° y 45,6°. Eso es
+la evidencia, y es la que hay que citar.
+
+El octógono central **no es una instancia independiente**: cruza el eje, con 4
+vértices digitalizados y 4 reflejados, de modo que su simetría respecto del eje
+está impuesta. Lo observado es la regularidad de su mitad superior — el espejo
+impone simetría, no regularidad, pero no puede confirmarla.
 
 Y una consecuencia que no hay que perder de vista: como el espejo se impuso,
 **la red no puede usarse nunca como evidencia a favor de la simetría especular

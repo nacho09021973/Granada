@@ -459,11 +459,16 @@ del dato—; son el mismo motivo repetido 16 veces alrededor de la cúpula.
 
 Cuidado con ese 16. La mitad inferior de la red es reflexión de la superior,
 así que los 16 triángulos son **8 pares espejo** (involución perfecta, 16 de 16
-emparejados, desajuste máximo 3,91 px): **N independiente = 8**, y de esos, seis
-limpios y dos sobre la costura. Ocho bastan para descartar el artefacto de
-esqueletizado —el ruido no se alinea a 45°— pero no descartan que Ferrer
-replicara un sector en CAD. Por eso lo refutado lo es **sobre la propuesta
-publicada, no sobre la cúpula**.
+emparejados, desajuste máximo 3,91 px). Y de los ocho pares, dos están sobre la
+costura: contienen caras que cruzan el eje, cuyo contorno es en parte reflejo y
+cuya vecindad de cierre es producto del pegado.
+
+**N estricto = 6** —los triángulos con las tres caras digitalizadas del
+ráster—; ocho solo si se acepta el pegado como dado, y entonces los dos de
+costura corroboran pero no observan. Seis bastan para descartar el artefacto de
+esqueletizado: el ruido no se alinea a 45°. Lo que ningún tratamiento del
+ráster puede descartar es que Ferrer replicara un sector en CAD. Por eso lo
+refutado lo es **sobre la propuesta publicada, no sobre la cúpula**.
 
 Lo que la tesis documenta por su cuenta son exactamente esas dos cosas: los
 descansos de la sección 3.2.5 y las piezas **A3 y D3**, que salvan dos niveles.

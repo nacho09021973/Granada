@@ -93,29 +93,66 @@ para que se vea dónde deja de decir algo.
 La red se digitalizó solo en su mitad superior; la inferior se generó por
 reflexión sobre `y = 273,5 px` (decisión 0004, punto 2). La réplica impuesta
 por construcción es por tanto **de orden 2**, no de orden 16: la simetría de
-orden 16 nunca entró en el dato, así que la repetición del motivo es en su
-mayor parte observada y no construida.
+orden 16 nunca entró en el dato, así que la repetición del motivo no es
+construida. Cuánta de ella es observación independiente es otra cuestión, y
+hay que contarla.
 
-Cuánta, exactamente. Reflejando el centroide de cada triángulo sobre el eje y
-buscando el más próximo, el emparejamiento resulta ser una **involución
-perfecta**: 16 de 16 emparejados, **8 pares**, ninguno auto-simétrico,
-desajuste máximo 3,91 px. El reparto crudo respecto del eje —6 triángulos
-enteramente arriba, 7 enteramente abajo, 3 a caballo— no decide nada; la
-involución sí.
+Reflejando el centroide de cada triángulo sobre el eje y buscando el más
+próximo, el emparejamiento resulta ser una **involución perfecta**: 16 de 16
+emparejados, **8 pares**, ninguno auto-simétrico, desajuste máximo 3,91 px.
 
-**N independiente = 8**, y de esos ocho, **seis son instancias limpias del
-interior y dos están sobre la costura**, compartiendo caras con su propio
-espejo (`c047`, `c053` en uno; `c050`, `c054` en el otro). Esas dos no son dos
-observaciones sino una región digitalizada una vez junto al eje.
+### Por qué 6 arriba y 7 abajo no es una asimetría
 
-Ocho instancias independientes bastan para descartar el artefacto de
-esqueletizado: el ruido de digitalización no respeta una periodicidad de 45°.
+El reparto crudo de los centroides respecto del eje es 6 triángulos
+enteramente arriba, 7 enteramente abajo y 3 a caballo. Un lector que espere
+que el espejo dé tantos arriba como abajo verá ahí una asimetría. No la hay, y
+la cuenta cierra exacta:
 
-Nota sobre el desajuste: hasta 3,91 px no indica asimetría del dibujo. Los
-centroides del dato son medias de vértices, y tres de cada seis caras
-emparejadas tienen distinto número de vértices —9 contra 8, 4 contra 5— por la
-simplificación RDP. Las áreas de las caras emparejadas concuerdan a 0,6–58 cm²
-sobre 2 100–8 600 cm².
+- los **6 pares interiores** aportan 6 arriba y 6 abajo;
+- los **4 triángulos de costura** aportan los 3 «a caballo» más un cuarto cuyo
+  centroide cae al lado de abajo del umbral por poco.
+
+6 + 6 + 4 = 16, y 6 + 1 = 7 abajo. La aparente asimetría es un centroide de
+costura clasificado por un umbral, no una propiedad del dibujo.
+
+### Dos números, y el estricto es seis
+
+Clasificando cada cara por los **vértices** de su polígono, no por su
+centroide, los 16 triángulos se reparten así:
+
+| clase | triángulos |
+|---|---:|
+| interior, con las tres caras digitalizadas del ráster | **6** |
+| interior, con las tres caras reflejadas | 6 |
+| de costura, con caras que cruzan el eje | 4 |
+
+Los cuatro de costura contienen **dos caras que cruzan el eje** cada uno
+—`c047` y `c053` en un par, `c050` y `c054` en el otro—. Una cara que cruza el
+eje tiene parte de su contorno generada por reflexión, y la vecindad que cierra
+el triángulo es producto del pegado. Su existencia depende de que el pegado sea
+correcto, que es justamente la hipótesis que la red no puede avalar sin
+circularidad.
+
+Por tanto:
+
+- **N = 6**, instancias del interior con las tres caras digitalizadas del
+  ráster. Es el número que descarta el artefacto de esqueletizado **sin
+  condicionantes**, y el que se fija.
+- **N = 8** solo si se acepta el pegado como dado. Los dos pares de costura
+  **corroboran, no observan**.
+
+Seis instancias independientes bastan de sobra: el ruido de digitalización no
+se alinea a 45°. La refutación de R1, R2 y R3 no depende del número en ningún
+caso — se sostiene sobre la topología del dibujo entero.
+
+### Nota sobre el desajuste del emparejamiento
+
+Hasta 3,91 px no indica asimetría del dibujo. Los centroides del dato son
+**medias de vértices**, y tres de cada seis caras emparejadas tienen distinto
+número de vértices —9 contra 8, 4 contra 5— por la simplificación RDP. El
+centroide de vértices no es invariante bajo remuestreo del contorno; el de área
+sí. Las áreas de las caras emparejadas concuerdan a 0,6–58 cm² sobre
+2 100–8 600 cm², menos del 3 % de la menor.
 
 ## Techo de afirmación
 
