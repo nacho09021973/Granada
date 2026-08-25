@@ -48,6 +48,7 @@ estado perdido, y por tanto sujeta a evidencia.
 | Caras del teselado | **105 caras**, Euler 2, cero cruces; 9 figuras confirmadas, 16 al límite, 80 sin figura |
 | Vecindades entre teselas | **227**, todas con salto sin firmar y sin conversión parcial posible |
 | Reglas de nivel candidatas | **tres refutadas** con testigo sobre la propuesta de Ferrer, no sobre la cúpula |
+| Tamaño del salto de nivel | **8 unidades**, confirmado por dos fuentes independientes (Ferrer 8P y Saseta 2016) |
 | Teorema del triángulo | **54 triángulos** (16 robustos = 8 pares espejo, N estricto 6): la planta exige descansos o piezas de dos niveles |
 
 ### Lo que hay que tirar
@@ -153,6 +154,11 @@ entrada 8 de `docs/fuentes.md` vació Dialnet, TESEO, Digibug, RiuNet, APAG,
 RABASF e IAPH y concluye que **no existe en el dominio público ninguna tabla
 que asocie cada pieza a una cota**. El bloqueo no es un fallo de búsqueda.
 
+**El tamaño del salto ya está, el signo no.** Saseta Velázquez (2016) da «la
+pauta para la elevación entre un nivel y otro de adarajas es de 8 unidades»,
+que coincide con el 8P de la plantilla de doble perfil de Ferrer. Dos fuentes
+independientes, el mismo número. Pero el tamaño de un salto no es su signo.
+
 **Dónde puede salir el signo**, por orden de coste:
 
 1. Una planta de Dos Hermanas —de la tesis o de otro autor— que traiga flechas
@@ -165,9 +171,11 @@ que asocie cada pieza a una cota**. El bloqueo no es un fallo de búsqueda.
    palabras de texto en todo el A0. Da un perfil medible contra la escala 1/25,
    no niveles por tesela; y una sección no puede firmar 211 vecindades en
    planta.
-4. **Revista PH 106 (junio 2022), pp. 12–13**, Martínez Sevilla / proyecto
-   PMAA: 104 adarajas de estrella localizadas espacialmente y divididas en 5
-   tipos. Es la pista de mayor valor abierta, y está **sin verificar**.
+4. **Las 104 adarajas de estrella del proyecto PMAA.** El equipo de Martínez
+   Sevilla las localizó, pero la referencia que se les atribuía —*Revista PH*
+   106, pp. 12–13— **no contiene el dato**: comprobado el 2026-08-25 leyendo el
+   artículo. Falta localizar dónde está publicado. Sigue siendo la pista con la
+   forma adecuada: piezas identificadas, localizadas y tipificadas.
 
 ---
 
@@ -205,11 +213,12 @@ que asocie cada pieza a una cota**. El bloqueo no es un fallo de búsqueda.
   debajo de la línea base del propio yeso. Que el bermellón formaba parte de la
   paleta nazarí está documentado; que estuviera *aquí*, y dónde, no.
 - **El negro carbón.** Indistinguible de la sombra de las cavidades.
-- **Verificar las referencias del informe de altimetría** (entrada 8 de
-  `fuentes.md`): Saseta Velázquez 2016, el DOI de Roldán-Medina, Revista PH
-  106, las signaturas P-000159 y D-0353 del APAG y los inventarios 006601 y
-  006091 del Museo. Las tres remisiones a la tesis de Ferrer ya están
-  comprobadas y son exactas.
+- **Referencias del informe de altimetría, verificación parcial hecha**
+  (2026-08-25). Comprobadas: la tesis de Ferrer, Saseta Velázquez 2016 —leída
+  entera, ahora entrada 9—, Roldán-Medina 2018 y *Revista PH* 106, que existe
+  pero **no contiene lo que se le atribuía**. Quedan las signaturas P-000159 y
+  D-0353 del APAG, los inventarios 006601 y 006091 del Museo y MakerWorld
+  3150958.
 - **Las 80 caras sin figura.** Se agrupan por área en familias de 16, 24, 8, 8,
   8 y 16 copias, así que son regiones reales del dibujo, no ruido. La figura
   128 no las subdivide; una planta más fina de esta cúpula las resolvería.

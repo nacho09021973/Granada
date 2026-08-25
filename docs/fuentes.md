@@ -261,11 +261,38 @@ la inexistencia de la fuente, no una cota.
   A0. Permite medir geometría contra la escala 1/25; no permite leer niveles.
   Y una sección es un corte: da un perfil, no puede firmar el paso de cada una
   de las 211 vecindades en planta.
-- **Sin verificar**, y por tanto no citable todavía: Saseta Velázquez (2016),
-  *El juego de los mocárabes*, Cuadernos de los Amigos de los Museos de Osuna
-  18, pp. 142–143; Roldán-Medina (2018), DOI 10.13140/RG.2.2.16056.80640;
-  Martínez Sevilla, *Revista PH* 106 (2022), pp. 12–13; APAG P-000159 y
-  D-0353; Museo de la Alhambra, inventarios 006601 y 006091; MakerWorld 3150958.
+- **Verificado en la web el 2026-08-25** (ver entrada 9 y el desglose de abajo):
+  Saseta Velázquez (2016) existe y se ha leído entero; Roldán-Medina (2018)
+  existe; Martínez Sevilla, *Revista PH* 106, existe **pero no contiene lo que
+  se le atribuye**.
+- **Sin verificar todavía**: APAG P-000159 y D-0353; Museo de la Alhambra,
+  inventarios 006601 y 006091; MakerWorld 3150958.
+
+### Desglose de la verificación de sus referencias
+
+| referencia | existe | contenido atribuido |
+|---|---|---|
+| Ferrer, tesis, pp. 185 / 190 / 316 | **sí**, exactas | **correcto** |
+| Saseta Velázquez (2016), Dialnet 6306440 | **sí**, pp. 135–144 | **correcto**, con un desliz aritmético |
+| Roldán-Medina (2018), DOI 10.13140/RG.2.2.16056.80640 | **sí** | sin comprobar el interior |
+| Martínez Sevilla, *Revista PH* 106, pp. 12–13 | **sí**, pp. 10–13 | **NO: el dato no está ahí** |
+| AA-415_23, capa vectorial | **sí** | correcto, pero sin cotas escritas |
+
+**El desliz aritmético**: el informe dice que «la altura mínima de una adaraja
+es 7 + 1 = 8 unidades». Saseta dice literalmente que la altura mínima es
+**7 + 1 + 7 = 15**, y que lo que vale **8 unidades es la pauta de elevación
+entre un nivel y otro**. El 8 es el salto de nivel, no la altura de la pieza.
+La conclusión que importa no cambia, pero el número decía otra cosa.
+
+**La referencia que falla**: *Revista PH* 106 (junio 2022), pp. 10–13, DOI
+[10.33349/2022.106.5145](https://doi.org/10.33349/2022.106.5145), es una pieza
+de la sección «actualidad» que presenta el proyecto Paseos Matemáticos. Leído
+directamente: sus páginas 12–13 contienen una simulación solar de la celosía
+del Patio del Yeso, una foto de la exposición y la bibliografía. **No menciona
+Dos Hermanas, ni las 104 adarajas, ni ortofotografía nadir, ni tipos, ni
+cotas.** Que el equipo de Martínez Sevilla localizara las 104 adarajas de
+estrella está corroborado en notas de prensa, pero **no está publicado en la
+referencia que se le atribuye**, así que sigue sin ser citable.
 
 ### Tensión con lo medido, que no hay que disimular
 
@@ -282,16 +309,67 @@ regla simple sin pasar por 0006.
 
 ---
 
+## 9. Saseta Velázquez (2016) — la pauta de elevación
+
+**El juego de los mocárabes.** *Cuadernos de los Amigos de los Museos de
+Osuna* 18 (2016), pp. 135–144. ISSN 1697-1019. Dialnet, artículo
+[6306440](https://dialnet.unirioja.es/descarga/articulo/6306440.pdf). Acceso
+abierto; leído directamente el 2026-08-25.
+
+Localizado a partir del informe de la entrada 8, y **es la aportación más útil
+de aquella lista**.
+
+### Lo que confirma, y es una confirmación independiente
+
+Siguiendo a Nuere, divide el lado menor de la adaraja en cinco partes y toma
+siete unidades en vertical:
+
+> «el arco mixtilíneo tiene, por tanto, siete unidades de altura y como el
+> lomo, o sea, el solape vertical entre una y otra adaraja es de una unidad, la
+> altura mínima que hay que darle a la adaraja será de 7 + 1 + 7 = 15, y **la
+> pauta para la elevación entre un nivel y otro de adarajas es de 8 unidades**»
+
+Ocho unidades de salto entre niveles. Es **el mismo 8P** que la tesis de Ferrer
+sitúa como «nivel siguiente» en su plantilla de doble perfil (7P mayor, 7,5P
+menor, 8P nivel siguiente), y que `docs/teselado.md` ya recogía. Dos autores
+independientes, dos vías distintas, el mismo número. Sostiene una afirmación de
+tipo (B) sobre el **tamaño** del salto.
+
+Lo que **no** da, y hay que decirlo: el tamaño de un salto no es su signo. Sigue
+sin haber nada que diga, para cada medina, si se sube, se descansa o se baja.
+
+### Lo que corrobora de una decisión ya tomada
+
+Saseta construyó un modelo de la cúpula de las Dos Hermanas partiendo del
+dibujo de Jones y Goury, y se topó con lo mismo que nosotros:
+
+> «lamentablemente el dibujo es esquemático, **no incluye las medinas**, con lo
+> que al reproducirlo vemos que se necesitan demasiadas piezas fuera del
+> sistema. Es necesario realizar una planta que incluya las medinas para que
+> las adarajas no se salgan del canon»
+
+Esto respalda por una vía independiente la decisión 0004, punto 2: usar solo la
+mitad de Ferrer y **no** mezclar la mitad de Jones y Goury. No fue una
+precaución nuestra; es un defecto conocido de esa lámina.
+
+Su propio modelo tampoco resuelve las cotas: el autor dice que «el estado
+actual del modelo **por ahora no es más que una aproximación**».
+
+---
+
 ## Pendiente de verificar
 
 - Recuento de piezas de la cúpula de las Dos Hermanas: circulan 5.416 piezas y
   «104 adarajas en forma de estrella» (IAPH / Paseos Matemáticos). Sin
   comprobar, y de tipo (B). La entrada 8 le pone localización precisa —
   Martínez Sevilla, *Revista PH* 106 (junio 2022), pp. 12–13, con las 104
-  adarajas de estrella localizadas espacialmente y divididas en 5 tipos—. **Es
-  la pista de mayor valor de las abiertas**: una tabla de piezas localizadas y
-  tipificadas tiene la forma que tendría una fuente capaz de firmar los saltos.
-  Sigue sin verificar.
+  adarajas de estrella localizadas espacialmente y divididas en 5 tipos—.
+  **Comprobado el 2026-08-25: esa referencia no contiene el dato.** El hallazgo
+  de las 104 adarajas por el equipo de Martínez Sevilla aparece en notas de
+  prensa del proyecto PMAA, pero falta localizar la publicación donde estén
+  realmente localizadas y tipificadas. Sigue siendo la pista con la forma
+  adecuada —piezas identificadas, localizadas y tipificadas— y sigue sin
+  fuente citable.
 - La capa vectorial de AA-415_23, como comprobación de la sección 7.
 - Las otras nueve filas de la tabla de planos del APAG.
 - Owen Jones y Jules Goury, *Plans, Elevations, Sections and Details of the
