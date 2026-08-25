@@ -45,5 +45,8 @@ Thumbs.db
 
 # Fuentes de consulta local: obra de terceros. Se citan y se usan como
 # referencia para construir geometria propia, pero no se redistribuyen aqui.
+# AA-415_23.pdf es material de la RABASF: estuvo en el historial y se retiro
+# de el reescribiendolo el 2026-08-25. No volver a anadirlo.
+docs/AA-415_23.pdf
 docs/Ferrer Pérez-Blanco, Ignacio Tesis.pdf
 docs/Teselado Ammann-Beenker En Alhambra.pdf
