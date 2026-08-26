@@ -48,5 +48,18 @@ Thumbs.db
 # AA-415_23.pdf es material de la RABASF: estuvo en el historial y se retiro
 # de el reescribiendolo el 2026-08-25. No volver a anadirlo.
 docs/AA-415_23.pdf
+# AA-415_23.dxf es una vectorizacion automatica (Scan2CAD) del mismo plano,
+# recibida el 2026-08-26. Es obra derivada de material de la RABASF: si el PDF
+# no se redistribuye, su calco tampoco. Mismo motivo, mismo trato.
+docs/AA-415_23.dxf
+# Las dos ortoimagenes del mismo plano, extraidas de su PDF el 2026-08-26 a
+# resolucion nativa (300 ppi, 472,5 px/m). Son el contenido integro de la
+# lamina, no una cita: mismo material de la RABASF, mismo trato que el PDF.
+docs/AA-415_23_orto_techo.jpg
+docs/AA-415_23_seccion.jpg
 docs/Ferrer Pérez-Blanco, Ignacio Tesis.pdf
 docs/Teselado Ammann-Beenker En Alhambra.pdf
+# Fotografia de la cupula aportada el 2026-08-25. Excluida hasta que su
+# origen y licencia esten registrados en docs/fuentes.md. Si resulta ser
+# libre y redistribuible, quitar esta linea.
+docs/Cúpula_de_la_sala_de_las_Dos_Hermanas_(Alhambra,_Granada).jpg

@@ -5,7 +5,9 @@ comprobado uno a uno. Cada entrada indica **qué se verificó**, **qué no**, y
 qué afirmación del proyecto sostiene: (A) matemática o (B) empírica, según la
 distinción del README.
 
-Verificación realizada el 2026-08-24; entrada 8 añadida el 2026-08-25. El material descartado y el informe del
+Verificación realizada el 2026-08-24; entrada 8 añadida el 2026-08-25;
+entradas 9 a 12 añadidas el 2026-08-25 y el 2026-08-26, y la entrada 3
+ampliada el 2026-08-26 al leer el PDF entero. El material descartado y el informe del
 que salió esta pista bibliográfica están en `investigacion-preliminar.md`,
 marcado como no verificado.
 
@@ -104,9 +106,110 @@ de Al-Andalus*, inventario [AA-415_23](https://www.academiacolecciones.com/arqui
   preliminar le atribuía cosas que no dice. La geometría se ha medido sobre la
   ortoimagen: ver la sección 7.
 
-**Aviso de licencia**: es material de la RABASF. Se ha leído para verificar,
-que es uso legítimo; **derivar geometría de él para un repositorio MIT es otra
-cosa** y exige revisar sus condiciones de uso antes, no después.
+### Qué hay dentro del PDF, leído entero el 2026-08-26
+
+La ficha de inventario dice «planimetría vectorial» y este repositorio lo
+arrastró como si hubiera un dibujo de líneas que extraer. **No lo hay.** El
+flujo de contenido de la página entera son **1823 bytes**, y sus dos capas
+opcionales (los `/OCG` que la entrada 8 detectó) se llaman:
+
+- **`Orto`** — dos imágenes JPEG incrustadas, y nada más;
+- **`Rotulo`** — la escala gráfica y los textos.
+
+Todo el trazado vectorial de la lámina son los dos rectángulos que enmarcan
+las imágenes y los once ticks de la escala. **Ni un trazo del despiece de
+mocárabes.** La lámina es fotogrametría texturizada colocada en un A0, no
+delineación: la silueta de 23 hiladas de `docs/estratificacion.md` es el perfil
+de una ortofoto, no una línea dibujada por el autor.
+
+Es un dato de método, no una pega al plano. Y tiene una consecuencia: **no
+existe la «capa vectorial de AA-415_23» que figuraba como pendiente**. Queda
+cerrada en negativo.
+
+### La escala, fijada por el autor y no medida
+
+Los once ticks de la capa `Rotulo` son vectores con coordenadas exactas: diez
+intervalos de 945 unidades —uno de 944, redondeo del PDF—, **9449 unidades para
+10 m**, o sea 944,9 u/m. Con la matriz global del flujo (`0.12 0 0 0.12 16 50
+cm`):
+
+> **113,388 pt/m = 40,0008 mm por metro real → escala 1/24,9995, desviación
+> +0,0019 % del 1/25 nominal.**
+
+La sección 7 tenía 0,01 % **midiendo** sobre el ráster a 150 ppi. Esto no es
+una medición mejor: es el número que puso Almagro. Sostiene una afirmación de
+tipo (B) sobre la escala, y es la más firme del repositorio.
+
+### Las dos ortoimágenes, extraídas a resolución nativa
+
+Extraídas del flujo sin recomprimir (`/DCTDecode` directo a fichero) el
+2026-08-26:
+
+| imagen | píxeles | en la lámina | ppi nativos | fichero local |
+|---|---|---|---|---|
+| orto cenital del techo | 4083 × 4054 | 345,7 × 343,2 mm | **300,00** | `docs/AA-415_23_orto_techo.jpg` |
+| sección norte-sur | 6219 × 7809 | 526,5 × 661,1 mm | **300,02** | `docs/AA-415_23_seccion.jpg` |
+
+Cruzadas con la escala anterior: **472,5 px por metro real**, es decir
+**exactamente el doble** de los 236,2 px/m con los que se hicieron las
+mediciones de la sección 7 y de `estratificacion.md`. **1 px = 2,12 mm
+reales.** Cualquier medida que dependa de la resolución se puede rehacer al
+doble de finura sobre estos ficheros, sin volver a rasterizar nada.
+
+Los dos JPEG están **en `.gitignore`**, por lo mismo que el PDF: son el
+contenido íntegro de la lámina, no una cita.
+
+### Lo que sigue sin haber
+
+Cota Z. Una ortofoto no la lleva, igual que no la lleva una sección. Extraer
+mejor las imágenes no toca `BLOCKED_MISSING_SIGNED_LEVEL_CONSTRAINTS`; solo
+mejora la regla con la que se mide.
+
+### Condiciones de uso: leídas, y dicen que sí
+
+El campo **Derechos** de la ficha de inventario, literal:
+
+> «La reproducción de esta imagen en alguna publicación deberá hacer constar
+> con claridad su autoría, así como la referencia de la publicación en que
+> hubiera sido previamente difundida por sus autores. Su uso comercial queda
+> supeditado a la expresa autorización del autor. **Se autoriza su uso con
+> fines de docencia e investigación.**»
+
+**Dónde consta, que importa**: en la ficha de academiacolecciones.com, **no en
+el PDF**. Comprobado el 2026-08-26 — la cadena «Derechos», «docencia» y
+«comercial» no aparece ni en los bytes crudos del fichero, ni en ninguno de sus
+flujos descomprimidos, ni en metadatos (`Custom Metadata: no`, `Metadata
+Stream: no`). La condición es igual de válida; lo que no vale es citarla como
+si viniera del fichero.
+
+Consecuencias, una por cláusula:
+
+1. **«Se autoriza su uso con fines de docencia e investigación.»** Este trabajo
+   es investigación. **Derivar geometría de la lámina está autorizado**, no
+   solo leerla para verificar. Esto levanta la parte principal de la cautela 4,
+   que llevaba desde el principio pidiendo revisar las condiciones «antes, no
+   después». Revisadas: dicen que sí.
+2. **«Su uso comercial queda supeditado a la expresa autorización del autor.»**
+   Aquí está el único choque real, y no es con la derivación sino **con la
+   licencia de salida**. Este repositorio es **MIT**, y MIT concede a cualquier
+   tercero, de forma expresa, el derecho a usar, sublicenciar y vender. Publicar
+   geometría derivada bajo MIT sería conceder en nombre de Almagro un permiso
+   que él se reserva. Dos vías limpias:
+   - **separar licencias** — el código sigue MIT, y los datos derivados de la
+     lámina salen bajo una licencia sin uso comercial (CC BY-NC 4.0), con su
+     aviso; es lo habitual en proyectos con datos de patrimonio;
+   - **pedir la autorización expresa**, que es literalmente la pregunta 4 de la
+     consulta enviada el 2026-08-26. Si contesta que sí, MIT deja de chocar.
+3. **Atribución, y es doble**: «su autoría» **y** «la referencia de la
+   publicación en que hubiera sido previamente difundida por sus autores». No
+   basta con poner el nombre: hay que citar dónde se publicó antes. Para esta
+   lámina, la ficha AA-415_23 de la RABASF, A. Almagro, enero de 2021.
+
+**Lo que sigue sin cambiar**: los dos JPEG extraídos siguen en `.gitignore`. La
+autorización cubre *usarlos* para investigar, que es lo que hacemos; *publicar*
+la imagen en un repositorio de licencia comercial es el mismo punto 2 de arriba,
+y no hace ninguna falta — lo que este proyecto necesita publicar es geometría
+propia, no la ortofoto de Almagro. Mantenerlos fuera cuesta cero.
 
 ---
 
@@ -219,8 +322,26 @@ fotogramétrica del XXI — dan el mismo orden.
 - Queda un k=1 residual de ~5–6 %: el centrado no es perfecto, y eso derrama
   energía hacia k=15 y k=17.
 - No se ha analizado la simetría especular.
-- **El PDF lleva además una capa vectorial que no se ha extraído.** Medir sobre
-  ella daría geometría en vez de fotometría y sería mejor evidencia. Pendiente.
+- ~~**El PDF lleva además una capa vectorial que no se ha extraído.** Medir
+  sobre ella daría geometría en vez de fotometría y sería mejor evidencia.~~
+  **Cerrado en negativo el 2026-08-26**: esa capa no existe. Las del PDF son la
+  ortoimagen y el rótulo (entrada 3). No hay forma de cambiar fotometría por
+  geometría en esta lámina: **es una ortofoto, y no hay más**.
+- **Esta medición ya estaba a resolución nativa.** Los 4083 × 4054 px son los de
+  la imagen incrustada, así que la extracción del 2026-08-26 no le añade nada.
+  La que sí estaba a la mitad era la estratificación, rehecha ese día.
+- **Reproducida de forma independiente el 2026-08-26, en lo cualitativo.** Una
+  reimplementación desde cero sobre la ortoimagen extraída confirma las dos
+  conclusiones: k=16 domina con claridad en la zona de los cupulines —hasta el
+  31 % de la potencia— y **k=8 no se anula** (3,8 %), que es lo que impide leer
+  la simetría del ornamento como orden 16.
+- **Pero los porcentajes de la tabla no son reproducibles**, y es un defecto de
+  esta sección, no de la medida. Faltan dos parámetros por documentar: la
+  **normalización** —los valores solo salen del orden publicado si se normaliza
+  la **potencia** `|F|²`, no el módulo— y los **radios exactos** de las cuatro
+  zonas. Con zonas elegidas a ojo el 34,2 % del anillo exterior aparece en la
+  banda que la reimplementación llama «cuerpo». Quien vuelva aquí debe fijar
+  ambos antes de comparar cifra con cifra.
 - El método es reproducible (desenrollado polar + FFT angular), pero el script
   usa Pillow y por eso **no entra en el paquete**: `granada/` mantiene cero
   dependencias.
@@ -258,7 +379,11 @@ la inexistencia de la fuente, no una cota.
 - **Verificado sobre el propio plano**: AA-415_23 tiene capa vectorial
   (`/OCProperties`, `/OCGs`, AutoCAD 2010, A0) y dos ortoimágenes incrustadas,
   pero **no lleva cotas numéricas escritas**: 20 palabras de texto en todo el
-  A0. Permite medir geometría contra la escala 1/25; no permite leer niveles.
+  A0. **Corregido el 2026-08-26**: hay capas `/OCG`, pero ninguna contiene
+  dibujo vectorial. Son `Orto` (las dos imágenes) y `Rotulo` (escala y textos);
+  el flujo entero son 1823 bytes. Y las 20 palabras están ahora transcritas una
+  a una en la entrada 3. Lo que esta línea concluye no cambia; lo que hay
+  detrás, sí. Permite medir geometría contra la escala 1/25; no permite leer niveles.
   Y una sección es un corte: da un perfil, no puede firmar el paso de cada una
   de las 211 vecindades en planta.
 - **Verificado en la web el 2026-08-25** (ver entrada 9 y el desglose de abajo):
@@ -420,6 +545,161 @@ autor, no recortarla.
 
 ---
 
+## 11. Informe de respuestas a la consulta de Almagro (2026-08-26)
+
+**Resolución Analítica a las Cuestiones Estructurales, Geométricas y
+Documentales sobre la Cúpula de Mocárabes de la Sala de las Dos Hermanas.**
+Fichero: `docs/Respuestas a Preguntas de Almagro.md`, 141 líneas, 42
+referencias. Redacción automática por herramienta de investigación asistida,
+tomando como entrada el borrador `docs/consulta-almagro.md`.
+
+**Lo primero, porque el nombre del fichero engaña**: esto **no** es una
+respuesta de Antonio Almagro. Es un informe de terceros que contesta *a* las
+cuatro preguntas que el borrador le dirige. La consulta real se envió el
+**2026-08-26** —a Almagro y a Ignacio Ferrer— y sigue sin respuesta; cuando
+llegue, entra como fuente aparte y con su fecha. Este informe no la anticipa ni
+la sustituye.
+
+### La circularidad, que es el defecto que lo define
+
+Su **referencia 7 es `Borrador_Consulta_Antonio_Almagro.pdf`**: el documento de
+este mismo repositorio. Es la fuente más citada del informe con diferencia —
+**51 llamadas** de las que aparecen en el texto—, y sostiene precisamente las
+afirmaciones que se le pedía verificar: las 105 teselas, las 211 vecindades, el
+salto de 8 unidades, las 23 hiladas, el paso de 20 cm, la escala 1/25 y las
+«veinte palabras de texto» del A0.
+
+El informe cita la pregunta como si fuera la respuesta. **No aporta ninguna
+corroboración externa de esos números**, y ninguna de sus frases marcadas con
+un 7 puede contarse como confirmación independiente de nada de lo que ya
+sostiene este repositorio. Anotado aquí explícitamente para que quien lo
+retome no lo lea como aval.
+
+### Verificación de sus referencias
+
+| referencia | veredicto |
+|---|---|
+| 7, `Borrador_Consulta_Antonio_Almagro.pdf` | **es este repositorio**: circular, 51 llamadas |
+| 5, `legadonazari.blogspot.com` | blog; sostiene el recuento de 5.416 piezas y la atribución a Jones |
+| 9, «A Grammar of Muqarnas… by Jones and Goury 1834-1845» | **existe**, pero es un estudio moderno *sobre* esos dibujos, no obra de Jones |
+| 9, reutilizada para Saseta (2016) | **numeración rota**: la misma llamada sirve a dos obras distintas |
+| 19, 23, deformaciones (canal.ugr.es, Diario de Sevilla) | notas de prensa; correctas como tales, ver la sección 6 |
+| 29, 30, Martínez Sevilla | coinciden con la entrada 10; nada nuevo |
+| 37, 40, aviso legal y solicitud de imágenes RABASF | correctos, genéricos del sitio |
+| 25, 26, 42 | **ruido**: *Machines of Loving Grace*, una guía docente de la URJC 2026-27 y un buscador de ayudas de la AEI |
+
+**El error de atribución que hay que dejar fijado**: el informe abre diciendo
+que Owen Jones y Jules Goury «publicaron en su *Grammar of Muqarnas* (1842) el
+recuento de las piezas… cifrándolas en aproximadamente 5.416 unidades». Lo que
+Jones y Goury publicaron en 1842–1845 es *Plans, Elevations, Sections and
+Details of the Alhambra*. «A Grammar of Muqarnas» es el título de su propia
+referencia 9, que por su subtítulo —*Drawings of the Alhambra by Jones and
+Goury, 1834-1845*— es un estudio posterior **sobre** aquellos dibujos. El
+informe ha convertido un análisis moderno en un libro decimonónico, y le ha
+colgado una cifra que en realidad toma de un blog.
+
+Eso deja el recuento de 5.416 piezas donde ya estaba: sin verificar, y ahora
+además con una atribución falsa circulando. Ver la lista de pendientes.
+
+### Lo aprovechable
+
+**Orientación de la sala** — es lo único con contenido nuevo, y responde a la
+mitad de la pregunta 3 del borrador. La Sala de las Dos Hermanas se abre en el
+lado **septentrional** del Patio de los Leones; por tanto su portada, la
+**fachada principal, es el paramento Sur**, y la progresión interior va hacia
+el Norte: Sala de los Ajimeces y, al fondo, Mirador de Lindaraja. Es
+topografía palatina bien establecida, pero el informe la apoya en un blog, una
+web de turismo y una página de fotografía (referencias 1, 2, 4). **Correcta de
+fondo, mal citada**: si va a sostener la orientación de la decisión 0007, hay
+que recitarla contra fuente seria antes de usarla.
+
+**Una pista concreta y buena**: su referencia 3 es la lámina **AA-415_20**,
+*Sección Palacio de los Leones*, del propio Almagro y en el mismo fondo de la
+RABASF que AA-415_23. Una sección del palacio entero sí puede fijar la
+orientación de la sala sin depender de la consulta. Añadida a los pendientes.
+
+**Encuadre legal** — distingue con claridad el uso de la lámina como testigo de
+comprobación métrica (cita científica, legítimo) de su vectorización como
+matriz generadora del modelo, que sería transformación y obra derivada y exige
+licencia escrita. Coincide con la cautela 4 y con la entrada 10. No cambia
+nada; lo confirma.
+
+### Lo que presenta como hallazgo y es inferencia
+
+Sostiene que Ferrer omite las flechas de nivel en Dos Hermanas **porque** las
+deformaciones documentadas por UGR/US quiebran el salto ideal. La afirmación se
+apoya en la referencia 7 —este repositorio— más una nota de prensa. Es una
+hipótesis razonable y no hay nada que la respalde como causa: Ferrer no dice
+por qué no la aplica. No entra como motivo; entra como conjetura de terceros.
+
+Lo mismo con la ortogonalidad de la sección: el argumento es que la convención
+de rotulación del CSIC y la RABASF «presupone sistemáticamente» un corte
+perpendicular, citando la propia lámina. Es plausible y no es una fuente. La
+pregunta 3 del borrador sigue mereciendo respuesta del autor.
+
+### Qué sostiene, al final
+
+Una sola cosa, y por vía negativa: coincide con la entrada 8 en que **no existe
+tabla pública de cotas por pieza**. Como esa coincidencia se apoya en buena
+parte en el propio borrador, vale menos que la de la entrada 8, que sí era
+externa. `BLOCKED_MISSING_SIGNED_LEVEL_CONSTRAINTS` sigue en pie, y este
+informe no lo mueve.
+
+---
+
+## 12. AA-415_23.dxf — vectorización automática, descartada (2026-08-26)
+
+Fichero recibido el 2026-08-26, 13,5 MB, DXF R14. **Procedencia sin anotar**:
+quien lo envió no consta en este repositorio, y no se inventa. Si vino de
+Almagro o de Ferrer sería además la primera respuesta a la consulta del
+2026-08-26 y tendría entrada propia; queda pendiente de aclarar.
+
+**No es el fichero de origen del levantamiento.** Su propia cabecera lo dice:
+
+> `SCAN2CAD Date : 08/26/26` · `SCAN2CAD DotsPerInch : 300`
+
+Es una vectorización automática de un ráster, generada el mismo día en que
+llegó. Lo comprobado sobre sus 1.048.533 pares código/valor:
+
+- **141.492 coordenadas Z, todas 0.** Sin una sola excepción. No es que falten
+  en algunas entidades: el dibujo es plano entero.
+- **Una sola capa de dibujo**, `S2C_1` (Scan2CAD Layer 1), con 72.860
+  entidades. Un levantamiento llevaría capas con nombre.
+- **67.976 `LINE`, 2.281 `ARC`, 313 `CIRCLE`**: polilíneas rotas en segmentos
+  sueltos, mediana de 10 px, el 3,3 % por debajo de 2 px. Firma de trazado
+  automático.
+- **`$INSUNITS = 0`**, sin unidades: las coordenadas son píxeles (5305 × 7499),
+  no metros.
+- **Un solo `MTEXT` en todo el fichero, y es `\U+002A`: un asterisco.** No
+  sobrevivió una palabra del plano, ni la escala gráfica, que es justamente lo
+  que permitiría calibrarlo.
+
+**Resolución**: 5305 × 7499 px sobre un A0 son **160,2 ppi efectivos**, no los
+300 que anuncia su cabecera —esa cifra es una etiqueta interna de la
+herramienta—. En las unidades de este repositorio, 252,3 px/m frente a los
+236,2 px/m ya medidos: **un 7 % más**, a cambio del error del trazado
+automático.
+
+### Por qué queda descartado del todo
+
+No por la resolución, sino por lo que la entrada 3 estableció ese mismo día:
+**la lámina no tiene dibujo de líneas**. Es fotogrametría texturizada. Un
+vectorizador aplicado a una ortofoto no traza el despiece de mocárabes —no hay
+tal trazo que seguir—, traza **contornos de mancha de la piedra y el yeso**.
+Esos son los 68.000 segmentos cortos y los 313 círculos de 6 a 20 px: ruido de
+textura con forma de geometría, que es la clase de dato más peligrosa que
+puede entrar en este repositorio.
+
+Lo correcto para cualquier medida es la vía de la entrada 3: las dos
+ortoimágenes a 300 ppi nativos (472,5 px/m) con la escala exacta del autor.
+Estrictamente mejor y sin intermediario algorítmico.
+
+**Licencia**: un calco vectorial íntegro del plano es el ejemplo de manual de
+«transformación» y obra derivada. Más expuesto que medir sobre el PDF, no
+menos. Está en `.gitignore` por el mismo motivo que el PDF.
+
+---
+
 ## Pendiente de verificar
 
 - Recuento de piezas de la cúpula de las Dos Hermanas: circulan 5.416 piezas y
@@ -430,7 +710,20 @@ autor, no recortarla.
   **Localizado el 2026-08-25**: no está en el impreso sino en la versión web del
   mismo artículo, como pie de figura. Ver la entrada 10, que incluye además el
   dato de los siete niveles y la restricción de licencia ND.
-- La capa vectorial de AA-415_23, como comprobación de la sección 7.
+  **Aviso de la entrada 11**: circula además una atribución falsa de esa cifra,
+  que se la cuelga a un supuesto *Grammar of Muqarnas* de Jones y Goury (1842).
+  Ese libro no existe con ese título; ver la entrada 11. Quien verifique el
+  recuento no debe partir de ahí.
+- ~~La capa vectorial de AA-415_23, como comprobación de la sección 7.~~
+  **Cerrado en negativo el 2026-08-26**: no existe. Las capas del PDF son la
+  ortoimagen y el rótulo; no hay dibujo vectorial que comprobar. En su lugar
+  salieron la escala exacta del autor y las dos imágenes a 300 ppi. Entrada 3.
+- **AA-415_20, *Sección Palacio de los Leones*** (Almagro, RABASF, mismo fondo
+  que AA-415_23). Puede fijar la orientación de la sala respecto al patio sin
+  depender de la respuesta a la pregunta 3 del borrador. Pista de la entrada 11.
+- La orientación Sur = fachada principal de Dos Hermanas, contra fuente
+  académica. La entrada 11 la da por buena apoyándose en blogs y en una web de
+  turismo; el dato parece correcto y la cita no sirve.
 - Las otras nueve filas de la tabla de planos del APAG.
 - Owen Jones y Jules Goury, *Plans, Elevations, Sections and Details of the
   Alhambra* (1842–1845). Citada de segunda mano en las entradas 1 y 5, que la
