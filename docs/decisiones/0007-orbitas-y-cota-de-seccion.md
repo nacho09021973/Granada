@@ -447,6 +447,54 @@ Y la reducción de 104 a 11 sigue siendo condicional: **si** la nivelación
 respeta la simetría medida, **entonces** hay 11 incógnitas. La implicación es lo
 que se acepta aquí; el antecedente sigue sin comprobar.
 
+## Añadido el 2026-08-26: el cociente, y una vecindad que falta
+
+Al preparar el verificador que espera al primer salto firmado
+(`granada/falsacion.py`) salió una estructura que esta decisión no había
+calculado, y con ella un defecto de los datos.
+
+**El cociente.** Si la nivelación respeta el grupo, dos caras de la misma órbita
+están a la misma cota, y entonces una vecindad solo depende del **par de
+órbitas** que une. Las **211 vecindades interiores colapsan en 16 clases**, y
+ninguna es interna a una órbita —no hay dos caras vecinas en la misma órbita—.
+Consecuencias, las dos útiles:
+
+- **un solo salto firmado determina su clase entera**, de 4 a 16 vecindades de
+  golpe, y baja las incógnitas de 11 a 10;
+- el cociente tiene 16 aristas para 11 nodos y es conexo, así que le sobran
+  **6 ciclos independientes**: seis ecuaciones de cierre que unos saltos
+  firmados tienen que satisfacer, y seis oportunidades más de refutar la
+  hipótesis.
+
+Diez saltos bien elegidos —un árbol generador— dejan la nivelación entera fijada
+salvo la cota absoluta. Está comprobado en `tests/test_falsacion.py`.
+
+**La vecindad que falta.** Los tamaños de las 16 clases son diez de 16, cuatro
+de 8, una de 4 … y **una de 15**. Quince no divide a dieciséis. Es el mismo
+control que el punto 4 de la decisión de método aplica a los tamaños de órbita,
+y aquí se delata solo:
+
+| clase | vecindades | esperado |
+|---|---:|---:|
+| órbitas 2–7 | **15** | 16 |
+
+Las caras sin pareja son **`c078`** (órbita 2, azimut 236,46°) y **`c068`**
+(órbita 7, azimut 240,90°). Todas las demás caras de esas dos órbitas tienen
+grado exactamente 1. Están a azimuts contiguos: **deberían tocarse, y en
+`datos/caras_red.json` no consta que se toquen.**
+
+Esto **no refuta la simetría**; acusa a los datos. Lo más probable es una arista
+que el seguimiento de esqueleto no cerró en ese sector. Y tiene una consecuencia
+que hay que decir en voz alta: si esa vecindad existe, **las vecindades
+interiores son 212 y no 211**, y la cuenta `211 − 107 = 104 = 105 − 1` de esta
+misma decisión pasaría a `212 − 108 = 104`, con un ciclo independiente más. El
+104 no se mueve, el 107 sí.
+
+**No se corrige aquí.** Añadir a mano una vecindad que no se digitalizó sería
+inventar un dato para que cuadre una cuenta, que es exactamente lo que este
+repositorio no hace. Queda registrada, localizada y con nombre, para quien
+vuelva sobre la extracción de caras.
+
 ## Reproducción
 
 - `scripts/orbitas_de_caras.py` → `datos/orbitas_caras.json`, que incluye las
