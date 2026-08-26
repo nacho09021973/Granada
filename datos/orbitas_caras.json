@@ -1,0 +1,1064 @@
+{
+ "version": 1,
+ "fuente": {
+  "derivado_de": "datos/caras_red.json",
+  "sha256_caras": "c01ebdbea5e7ef3b9a1ca29f3b60beacbaaae0f17ecbafe5f8c9f69a2dbe3e78"
+ },
+ "metodo": {
+  "grupo": "diedrico de orden 16 (C8 medida mas espejo)",
+  "centro": "centroide de area del octogono central",
+  "centro_m": [
+   -0.010276646653088788,
+   0.007161175637858155
+  ],
+  "centroide": "de area, no media de vertices",
+  "clases_de_eje_grados": {
+   "A": 0.0,
+   "B": 22.5
+  },
+  "tolerancia_distancia_m": 0.1,
+  "tolerancia_area": 0.3,
+  "resolucion_m": 0.013825251739973687,
+  "corte_resoluble": "la cara tiene que sobresalir mas de un pixel del dibujo a los dos lados del eje; por debajo de eso el cruce es ruido de la digitalizacion, no un corte",
+  "hipotesis": "que la nivelacion respete la simetria de la cupula. Es una hipotesis falsable contra los mismos 107 ciclos, no un dato."
+ },
+ "controles": {
+  "caras": 105,
+  "vecindades_interiores": 211,
+  "ciclos_independientes": 107,
+  "niveles_independientes_sin_simetria": 104,
+  "orbitas": 11,
+  "tamanos_de_orbita": [
+   16,
+   16,
+   16,
+   8,
+   8,
+   8,
+   8,
+   8,
+   8,
+   8,
+   1
+  ],
+  "suma_de_tamanos": 105,
+  "tamanos_que_no_dividen_al_grupo": [],
+  "cobertura_por_clase_de_eje": {
+   "A": {
+    "orbitas_cortadas": 6,
+    "caras_cortadas": 11,
+    "orbitas_sin_cortar": [
+     1,
+     2,
+     3,
+     5,
+     7
+    ],
+    "orbitas_cortadas_resolubles": 5,
+    "caras_determinadas_resolubles": 33,
+    "orbitas_sin_cortar_resolubles": [
+     1,
+     2,
+     3,
+     5,
+     7,
+     8
+    ]
+   },
+   "B": {
+    "orbitas_cortadas": 7,
+    "caras_cortadas": 13,
+    "orbitas_sin_cortar": [
+     0,
+     2,
+     4,
+     5
+    ],
+    "orbitas_cortadas_resolubles": 4,
+    "caras_determinadas_resolubles": 25,
+    "orbitas_sin_cortar_resolubles": [
+     0,
+     2,
+     4,
+     5,
+     6,
+     7,
+     9
+    ]
+   }
+  },
+  "fronteras_en_el_eje_m": {
+   "A": [
+    0.5965016934859244,
+    0.8438089400346286,
+    1.6812501554253645,
+    2.1507878974703583,
+    3.2951195250740293
+   ],
+   "B": [
+    0.646137493441374,
+    1.471062799905151,
+    2.3481885849064437,
+    3.370004131451967
+   ]
+  },
+  "invariancia_dentro_de_la_clase": {
+   "A": [
+    {
+     "eje_grados": 0.0,
+     "caras_tocadas": 11,
+     "orbitas_resolubles": [
+      0,
+      4,
+      6,
+      9,
+      10
+     ],
+     "fronteras_m": [
+      0.5965016934859244,
+      0.8438089400346286,
+      1.6812501554253645,
+      2.1507878974703583,
+      3.2951195250740293
+     ]
+    },
+    {
+     "eje_grados": 45.0,
+     "caras_tocadas": 11,
+     "orbitas_resolubles": [
+      0,
+      4,
+      6,
+      9,
+      10
+     ],
+     "fronteras_m": [
+      0.5965917993760411,
+      0.8455178864390597,
+      1.6890949691052142,
+      2.156327039374927,
+      3.2880304066335095,
+      3.3359165478867134
+     ]
+    },
+    {
+     "eje_grados": 90.0,
+     "caras_tocadas": 11,
+     "orbitas_resolubles": [
+      0,
+      4,
+      6,
+      9,
+      10
+     ],
+     "fronteras_m": [
+      0.593798561047788,
+      0.8463623026089973,
+      1.6794717132365053,
+      2.1577995308505002,
+      3.292619842307726,
+      3.3256349269005585
+     ]
+    },
+    {
+     "eje_grados": 135.0,
+     "caras_tocadas": 11,
+     "orbitas_resolubles": [
+      0,
+      4,
+      6,
+      9,
+      10
+     ],
+     "fronteras_m": [
+      0.5975065918629499,
+      0.8454875576975188,
+      1.6817363247254544,
+      2.1562694650358423,
+      3.287803592131499
+     ]
+    }
+   ],
+   "B": [
+    {
+     "eje_grados": 22.5,
+     "caras_tocadas": 13,
+     "orbitas_resolubles": [
+      1,
+      3,
+      8,
+      10
+     ],
+     "fronteras_m": [
+      0.646137493441374,
+      1.471062799905151,
+      2.3481885849064437,
+      3.370004131451967
+     ]
+    },
+    {
+     "eje_grados": 67.5,
+     "caras_tocadas": 13,
+     "orbitas_resolubles": [
+      1,
+      3,
+      8,
+      10
+     ],
+     "fronteras_m": [
+      0.6436073169691892,
+      1.4683790203980596,
+      2.343260571727969,
+      3.3683542578099432
+     ]
+    },
+    {
+     "eje_grados": 112.5,
+     "caras_tocadas": 13,
+     "orbitas_resolubles": [
+      1,
+      3,
+      8,
+      10
+     ],
+     "fronteras_m": [
+      0.6451476608161686,
+      1.4685584968283223,
+      2.3476537367775467,
+      3.3711002636327305
+     ]
+    },
+    {
+     "eje_grados": 157.5,
+     "caras_tocadas": 13,
+     "orbitas_resolubles": [
+      1,
+      3,
+      8,
+      10
+     ],
+     "fronteras_m": [
+      0.6458487809653287,
+      1.470097294848113,
+      2.3480934615591105,
+      3.369755295136187
+     ]
+    }
+   ]
+  },
+  "asimetria_izquierda_derecha": {
+   "confundidor": "un centro desplazado imita una asimetria izquierda-derecha completa; diez orbitas con el mismo signo son un grado de libertad, no diez observaciones",
+   "centro_ajustado_m": [
+    -0.0072076913439681105,
+    0.007340174852016222
+   ],
+   "desplazamiento_del_centro_m": 0.0030741710115166332,
+   "dispersion_radial_rms_m": {
+    "centro_del_octogono": 0.005344265426483735,
+    "centro_ajustado": 0.004881863218142607
+   },
+   "orbitas_con_derecha_mayor": {
+    "centro_del_octogono": [
+     10,
+     10
+    ],
+    "centro_ajustado": [
+     4,
+     10
+    ]
+   },
+   "mediana_relativa_derecha_menos_izquierda": {
+    "centro_del_octogono": 0.002612815488405363,
+    "centro_ajustado": -0.00027929766306636225
+   }
+  },
+  "barrido_de_tolerancias": [
+   {
+    "tolerancia_area": 0.15,
+    "tolerancia_distancia_m": 0.06,
+    "orbitas": 12,
+    "todos_dividen_al_grupo": false
+   },
+   {
+    "tolerancia_area": 0.15,
+    "tolerancia_distancia_m": 0.08,
+    "orbitas": 12,
+    "todos_dividen_al_grupo": false
+   },
+   {
+    "tolerancia_area": 0.15,
+    "tolerancia_distancia_m": 0.1,
+    "orbitas": 12,
+    "todos_dividen_al_grupo": false
+   },
+   {
+    "tolerancia_area": 0.15,
+    "tolerancia_distancia_m": 0.12,
+    "orbitas": 12,
+    "todos_dividen_al_grupo": false
+   },
+   {
+    "tolerancia_area": 0.15,
+    "tolerancia_distancia_m": 0.15,
+    "orbitas": 12,
+    "todos_dividen_al_grupo": false
+   },
+   {
+    "tolerancia_area": 0.2,
+    "tolerancia_distancia_m": 0.06,
+    "orbitas": 11,
+    "todos_dividen_al_grupo": true
+   },
+   {
+    "tolerancia_area": 0.2,
+    "tolerancia_distancia_m": 0.08,
+    "orbitas": 11,
+    "todos_dividen_al_grupo": true
+   },
+   {
+    "tolerancia_area": 0.2,
+    "tolerancia_distancia_m": 0.1,
+    "orbitas": 11,
+    "todos_dividen_al_grupo": true
+   },
+   {
+    "tolerancia_area": 0.2,
+    "tolerancia_distancia_m": 0.12,
+    "orbitas": 11,
+    "todos_dividen_al_grupo": true
+   },
+   {
+    "tolerancia_area": 0.2,
+    "tolerancia_distancia_m": 0.15,
+    "orbitas": 11,
+    "todos_dividen_al_grupo": true
+   },
+   {
+    "tolerancia_area": 0.25,
+    "tolerancia_distancia_m": 0.06,
+    "orbitas": 11,
+    "todos_dividen_al_grupo": true
+   },
+   {
+    "tolerancia_area": 0.25,
+    "tolerancia_distancia_m": 0.08,
+    "orbitas": 11,
+    "todos_dividen_al_grupo": true
+   },
+   {
+    "tolerancia_area": 0.25,
+    "tolerancia_distancia_m": 0.1,
+    "orbitas": 11,
+    "todos_dividen_al_grupo": true
+   },
+   {
+    "tolerancia_area": 0.25,
+    "tolerancia_distancia_m": 0.12,
+    "orbitas": 11,
+    "todos_dividen_al_grupo": true
+   },
+   {
+    "tolerancia_area": 0.25,
+    "tolerancia_distancia_m": 0.15,
+    "orbitas": 11,
+    "todos_dividen_al_grupo": true
+   },
+   {
+    "tolerancia_area": 0.3,
+    "tolerancia_distancia_m": 0.06,
+    "orbitas": 11,
+    "todos_dividen_al_grupo": true
+   },
+   {
+    "tolerancia_area": 0.3,
+    "tolerancia_distancia_m": 0.08,
+    "orbitas": 11,
+    "todos_dividen_al_grupo": true
+   },
+   {
+    "tolerancia_area": 0.3,
+    "tolerancia_distancia_m": 0.1,
+    "orbitas": 11,
+    "todos_dividen_al_grupo": true
+   },
+   {
+    "tolerancia_area": 0.3,
+    "tolerancia_distancia_m": 0.12,
+    "orbitas": 11,
+    "todos_dividen_al_grupo": true
+   },
+   {
+    "tolerancia_area": 0.3,
+    "tolerancia_distancia_m": 0.15,
+    "orbitas": 11,
+    "todos_dividen_al_grupo": true
+   },
+   {
+    "tolerancia_area": 0.4,
+    "tolerancia_distancia_m": 0.06,
+    "orbitas": 11,
+    "todos_dividen_al_grupo": true
+   },
+   {
+    "tolerancia_area": 0.4,
+    "tolerancia_distancia_m": 0.08,
+    "orbitas": 11,
+    "todos_dividen_al_grupo": true
+   },
+   {
+    "tolerancia_area": 0.4,
+    "tolerancia_distancia_m": 0.1,
+    "orbitas": 11,
+    "todos_dividen_al_grupo": true
+   },
+   {
+    "tolerancia_area": 0.4,
+    "tolerancia_distancia_m": 0.12,
+    "orbitas": 11,
+    "todos_dividen_al_grupo": true
+   },
+   {
+    "tolerancia_area": 0.4,
+    "tolerancia_distancia_m": 0.15,
+    "orbitas": 11,
+    "todos_dividen_al_grupo": true
+   },
+   {
+    "tolerancia_area": 0.5,
+    "tolerancia_distancia_m": 0.06,
+    "orbitas": 11,
+    "todos_dividen_al_grupo": true
+   },
+   {
+    "tolerancia_area": 0.5,
+    "tolerancia_distancia_m": 0.08,
+    "orbitas": 11,
+    "todos_dividen_al_grupo": true
+   },
+   {
+    "tolerancia_area": 0.5,
+    "tolerancia_distancia_m": 0.1,
+    "orbitas": 11,
+    "todos_dividen_al_grupo": true
+   },
+   {
+    "tolerancia_area": 0.5,
+    "tolerancia_distancia_m": 0.12,
+    "orbitas": 11,
+    "todos_dividen_al_grupo": true
+   },
+   {
+    "tolerancia_area": 0.5,
+    "tolerancia_distancia_m": 0.15,
+    "orbitas": 11,
+    "todos_dividen_al_grupo": true
+   }
+  ]
+ },
+ "estado": "BLOCKED_MISSING_SIGNED_LEVEL_CONSTRAINTS",
+ "orbitas": [
+  {
+   "orbita": 0,
+   "tamano": 8,
+   "caras": [
+    "c000",
+    "c007",
+    "c008",
+    "c047",
+    "c050",
+    "c088",
+    "c089",
+    "c104"
+   ],
+   "area_media_m2": 0.8658076626898851,
+   "radio_medio_m": 2.645577372671462,
+   "azimuts_grados": [
+    45.02192495535091,
+    90.02120572708246,
+    134.88265433704663,
+    179.99199866228665,
+    224.98302709646364,
+    269.9860476256392,
+    315.125802159037,
+    359.9990376633643
+   ],
+   "figuras": [
+    null
+   ],
+   "cortada_por_eje": {
+    "A": true,
+    "B": false
+   },
+   "cortada_de_forma_resoluble": {
+    "A": true,
+    "B": false
+   },
+   "caras_sobre_el_eje": {
+    "A": [
+     "c047",
+     "c050"
+    ],
+    "B": []
+   },
+   "margen_al_eje_m": {
+    "A": {
+     "c047": 0.5637633818581419,
+     "c050": 0.5591576197861419
+    },
+    "B": {}
+   }
+  },
+  {
+   "orbita": 1,
+   "tamano": 8,
+   "caras": [
+    "c001",
+    "c002",
+    "c021",
+    "c022",
+    "c071",
+    "c072",
+    "c102",
+    "c103"
+   ],
+   "area_media_m2": 0.8330890400108101,
+   "radio_medio_m": 2.871214265209239,
+   "azimuts_grados": [
+    22.478182940578506,
+    67.35949897891183,
+    112.47805421646191,
+    157.47091741834356,
+    202.51872523126082,
+    247.54401824895461,
+    292.57150450247633,
+    337.5291176996975
+   ],
+   "figuras": [
+    null
+   ],
+   "cortada_por_eje": {
+    "A": false,
+    "B": true
+   },
+   "cortada_de_forma_resoluble": {
+    "A": false,
+    "B": true
+   },
+   "caras_sobre_el_eje": {
+    "A": [],
+    "B": [
+     "c021",
+     "c072"
+    ]
+   },
+   "margen_al_eje_m": {
+    "A": {},
+    "B": {
+     "c021": 0.531102425249257,
+     "c072": 0.5292243547425575
+    }
+   }
+  },
+  {
+   "orbita": 2,
+   "tamano": 16,
+   "caras": [
+    "c003",
+    "c005",
+    "c010",
+    "c011",
+    "c029",
+    "c030",
+    "c048",
+    "c049",
+    "c059",
+    "c061",
+    "c078",
+    "c079",
+    "c093",
+    "c094",
+    "c096",
+    "c097"
+   ],
+   "area_media_m2": 0.21752416159221313,
+   "radio_medio_m": 2.0267045901454765,
+   "azimuts_grados": [
+    11.431594143902696,
+    33.542944050366636,
+    56.37848041949474,
+    78.50806198646558,
+    101.43358528370302,
+    123.50914993679564,
+    146.16095087436736,
+    168.5066670420394,
+    191.36141390169695,
+    213.7341723150258,
+    236.46283276719697,
+    258.581797700685,
+    281.5096010491409,
+    303.65441305837487,
+    326.5114694150926,
+    348.669054711953
+   ],
+   "figuras": [
+    null
+   ],
+   "cortada_por_eje": {
+    "A": false,
+    "B": false
+   },
+   "cortada_de_forma_resoluble": {
+    "A": false,
+    "B": false
+   },
+   "caras_sobre_el_eje": {
+    "A": [],
+    "B": []
+   },
+   "margen_al_eje_m": {
+    "A": {},
+    "B": {}
+   }
+  },
+  {
+   "orbita": 3,
+   "tamano": 8,
+   "caras": [
+    "c004",
+    "c006",
+    "c031",
+    "c032",
+    "c065",
+    "c066",
+    "c086",
+    "c091"
+   ],
+   "area_media_m2": 0.37242896923201757,
+   "radio_medio_m": 2.086683889766026,
+   "azimuts_grados": [
+    22.334998094299138,
+    67.43205725830683,
+    112.37444465327431,
+    157.4094037728532,
+    202.61476344548856,
+    247.53154340752715,
+    292.68611205837703,
+    337.6366264979281
+   ],
+   "figuras": [
+    null
+   ],
+   "cortada_por_eje": {
+    "A": false,
+    "B": true
+   },
+   "cortada_de_forma_resoluble": {
+    "A": false,
+    "B": true
+   },
+   "caras_sobre_el_eje": {
+    "A": [],
+    "B": [
+     "c031",
+     "c066"
+    ]
+   },
+   "margen_al_eje_m": {
+    "A": {},
+    "B": {
+     "c031": 0.4238948193562563,
+     "c066": 0.41541863763765496
+    }
+   }
+  },
+  {
+   "orbita": 4,
+   "tamano": 8,
+   "caras": [
+    "c009",
+    "c019",
+    "c020",
+    "c053",
+    "c054",
+    "c083",
+    "c084",
+    "c095"
+   ],
+   "area_media_m2": 0.21652248281312467,
+   "radio_medio_m": 1.9120799443609409,
+   "azimuts_grados": [
+    0.1672764455445731,
+    45.13881799119782,
+    90.07703347645027,
+    134.55189602296997,
+    179.77010140643446,
+    225.45265447820148,
+    269.98247041015577,
+    314.7538493580132
+   ],
+   "figuras": [
+    null
+   ],
+   "cortada_por_eje": {
+    "A": true,
+    "B": false
+   },
+   "cortada_de_forma_resoluble": {
+    "A": true,
+    "B": false
+   },
+   "caras_sobre_el_eje": {
+    "A": [
+     "c053",
+     "c054"
+    ],
+    "B": []
+   },
+   "margen_al_eje_m": {
+    "A": {
+     "c053": 0.26719235451014184,
+     "c054": 0.2698795532198582
+    },
+    "B": {}
+   }
+  },
+  {
+   "orbita": 5,
+   "tamano": 16,
+   "caras": [
+    "c012",
+    "c013",
+    "c014",
+    "c015",
+    "c033",
+    "c034",
+    "c051",
+    "c052",
+    "c073",
+    "c074",
+    "c081",
+    "c082",
+    "c098",
+    "c099",
+    "c100",
+    "c101"
+   ],
+   "area_media_m2": 0.016419819125399044,
+   "radio_medio_m": 1.9936241638683891,
+   "azimuts_grados": [
+    16.436928336998303,
+    28.57872516229826,
+    61.27857010691132,
+    73.53387866627162,
+    106.21955377657017,
+    118.56596102726887,
+    151.14451727366705,
+    163.57197082989262,
+    196.3223854703023,
+    208.8777983119098,
+    241.4462081968042,
+    253.80111643824665,
+    286.4571227667196,
+    298.73550945370346,
+    331.3990507376151,
+    343.7930076003271
+   ],
+   "figuras": [
+    "cuadrado"
+   ],
+   "cortada_por_eje": {
+    "A": false,
+    "B": false
+   },
+   "cortada_de_forma_resoluble": {
+    "A": false,
+    "B": false
+   },
+   "caras_sobre_el_eje": {
+    "A": [],
+    "B": []
+   },
+   "margen_al_eje_m": {
+    "A": {},
+    "B": {}
+   }
+  },
+  {
+   "orbita": 6,
+   "tamano": 8,
+   "caras": [
+    "c016",
+    "c025",
+    "c027",
+    "c044",
+    "c046",
+    "c067",
+    "c069",
+    "c080"
+   ],
+   "area_media_m2": 0.49672315504560777,
+   "radio_medio_m": 1.3199069683607745,
+   "azimuts_grados": [
+    0.0192653833953625,
+    44.82219240023882,
+    90.00183806070763,
+    135.31565113441502,
+    180.1355327011656,
+    224.96280652050513,
+    269.962731665916,
+    315.3147046167037
+   ],
+   "figuras": [
+    null
+   ],
+   "cortada_por_eje": {
+    "A": true,
+    "B": true
+   },
+   "cortada_de_forma_resoluble": {
+    "A": true,
+    "B": false
+   },
+   "caras_sobre_el_eje": {
+    "A": [
+     "c044",
+     "c046"
+    ],
+    "B": [
+     "c044",
+     "c069"
+    ]
+   },
+   "margen_al_eje_m": {
+    "A": {
+     "c044": 0.5560871117381418,
+     "c046": 0.5631625961428581
+    },
+    "B": {
+     "c044": 0.005677662687739615,
+     "c069": 0.0017628332737797958
+    }
+   }
+  },
+  {
+   "orbita": 7,
+   "tamano": 16,
+   "caras": [
+    "c017",
+    "c018",
+    "c023",
+    "c024",
+    "c035",
+    "c036",
+    "c043",
+    "c045",
+    "c060",
+    "c062",
+    "c068",
+    "c070",
+    "c085",
+    "c087",
+    "c090",
+    "c092"
+   ],
+   "area_media_m2": 0.054164966200791254,
+   "radio_medio_m": 1.5597649947511707,
+   "azimuts_grados": [
+    15.933569811068585,
+    28.32857766638034,
+    60.7886669343471,
+    74.08979742245982,
+    105.7428316201586,
+    118.92913470237211,
+    151.96977499352406,
+    164.09850313007317,
+    195.97115301995478,
+    208.68022184178008,
+    240.90117015793288,
+    254.1928527097102,
+    285.9557373848909,
+    299.29301737714184,
+    331.65767635802837,
+    344.10635455293647
+   ],
+   "figuras": [
+    null
+   ],
+   "cortada_por_eje": {
+    "A": false,
+    "B": true
+   },
+   "cortada_de_forma_resoluble": {
+    "A": false,
+    "B": false
+   },
+   "caras_sobre_el_eje": {
+    "A": [],
+    "B": [
+     "c043",
+     "c070"
+    ]
+   },
+   "margen_al_eje_m": {
+    "A": {},
+    "B": {
+     "c043": 0.005677662687739615,
+     "c070": 0.0017628332737797958
+    }
+   }
+  },
+  {
+   "orbita": 8,
+   "tamano": 8,
+   "caras": [
+    "c026",
+    "c028",
+    "c039",
+    "c041",
+    "c057",
+    "c058",
+    "c075",
+    "c076"
+   ],
+   "area_media_m2": 0.2667369539371467,
+   "radio_medio_m": 0.9652744314074644,
+   "azimuts_grados": [
+    22.472672203812472,
+    67.58719576238148,
+    112.40160392547158,
+    157.45054640882506,
+    202.7164734544417,
+    247.48806910804495,
+    292.456323991208,
+    337.50494107469103
+   ],
+   "figuras": [
+    null
+   ],
+   "cortada_por_eje": {
+    "A": true,
+    "B": true
+   },
+   "cortada_de_forma_resoluble": {
+    "A": false,
+    "B": true
+   },
+   "caras_sobre_el_eje": {
+    "A": [
+     "c057",
+     "c058"
+    ],
+    "B": [
+     "c039",
+     "c058"
+    ]
+   },
+   "margen_al_eje_m": {
+    "A": {
+     "c057": 0.0004424719928581549,
+     "c058": 0.0004424719928581549
+    },
+    "B": {
+     "c039": 0.3209413466702443,
+     "c058": 0.32489573603502026
+    }
+   }
+  },
+  {
+   "orbita": 9,
+   "tamano": 8,
+   "caras": [
+    "c037",
+    "c038",
+    "c040",
+    "c055",
+    "c056",
+    "c063",
+    "c064",
+    "c077"
+   ],
+   "area_media_m2": 0.06155058514329066,
+   "radio_medio_m": 0.679176240951465,
+   "azimuts_grados": [
+    44.62705248164974,
+    89.67688164009667,
+    134.6225832067665,
+    180.03740499792758,
+    225.13199182750455,
+    270.22902652401984,
+    315.2324626671304,
+    359.75254930607485
+   ],
+   "figuras": [
+    "medio_cuadrado"
+   ],
+   "cortada_por_eje": {
+    "A": true,
+    "B": true
+   },
+   "cortada_de_forma_resoluble": {
+    "A": true,
+    "B": false
+   },
+   "caras_sobre_el_eje": {
+    "A": [
+     "c055",
+     "c056"
+    ],
+    "B": [
+     "c055",
+     "c064"
+    ]
+   },
+   "margen_al_eje_m": {
+    "A": {
+     "c055": 0.24826867990914184,
+     "c056": 0.24308719757814187
+    },
+    "B": {
+     "c055": 0.0018092203816957586,
+     "c064": 0.004285361166168539
+    }
+   }
+  },
+  {
+   "orbita": 10,
+   "tamano": 1,
+   "caras": [
+    "c042"
+   ],
+   "area_media_m2": 1.1773384784833536,
+   "radio_medio_m": 0.0,
+   "azimuts_grados": [
+    0.0
+   ],
+   "figuras": [
+    "octogono"
+   ],
+   "cortada_por_eje": {
+    "A": true,
+    "B": true
+   },
+   "cortada_de_forma_resoluble": {
+    "A": true,
+    "B": true
+   },
+   "caras_sobre_el_eje": {
+    "A": [
+     "c042"
+    ],
+    "B": [
+     "c042"
+    ]
+   },
+   "margen_al_eje_m": {
+    "A": {
+     "c042": 0.5949493921088581
+    },
+    "B": {
+     "c042": 0.644279081073363
+    }
+   }
+  }
+ ]
+}

@@ -34,9 +34,13 @@ __all__ = [
     "ResultadoCaras",
     "Vecindad",
     "ajuste_a_plantilla",
+    "centroide",
     "clasificar",
     "cruces_de_aristas",
+    "corta_al_eje",
     "extraer_caras",
+    "margen_al_eje",
+    "orbitas_por_simetria",
     "tolerancia_por_resolucion",
 ]
 
@@ -373,6 +377,148 @@ def tolerancia_por_resolucion(cara: Cara, resolucion: float) -> float:
     if resolucion <= 0:
         raise ValueError("la resolucion debe ser positiva")
     return math.degrees(2 * resolucion / cara.lado_minimo)
+
+
+def centroide(
+    cara: Cara, puntos: Sequence[Sequence[float]]
+) -> tuple[float, float]:
+    """Centroide **de area** del poligono de la cara.
+
+    No es la media de los vertices. La media de vertices se desplaza cuando la
+    simplificacion deja un vertice de mas en un lado del contorno; el centroide
+    de area no cambia. Para comparar una cara con su copia simetrica, que puede
+    estar digitalizada con distinto numero de vertices, hay que usar este.
+    """
+
+    vertices = cara.vertices
+    n = len(vertices)
+    doble_area = 0.0
+    suma_x = 0.0
+    suma_y = 0.0
+    for i in range(n):
+        x0, y0 = puntos[vertices[i]][0], puntos[vertices[i]][1]
+        x1, y1 = puntos[vertices[(i + 1) % n]][0], puntos[vertices[(i + 1) % n]][1]
+        cruz = x0 * y1 - x1 * y0
+        doble_area += cruz
+        suma_x += (x0 + x1) * cruz
+        suma_y += (y0 + y1) * cruz
+    if doble_area == 0:
+        raise ValueError("la cara tiene area nula")
+    return (suma_x / (3 * doble_area), suma_y / (3 * doble_area))
+
+
+def margen_al_eje(
+    cara: Cara,
+    puntos: Sequence[Sequence[float]],
+    centro: Sequence[float],
+    angulo_grados: float,
+) -> float:
+    """Cuanto sobresale la cara al lado mas corto de la recta, en las unidades
+    de ``puntos``. Negativo si la cara no llega a cruzarla.
+
+    El signo responde si la corta; el valor absoluto dice **por cuanto**, que
+    es lo que permite separar un corte real de un roce por debajo de la
+    resolucion del dibujo.
+    """
+
+    radianes = math.radians(angulo_grados)
+    coseno, seno = math.cos(-radianes), math.sin(-radianes)
+    alturas = [
+        (puntos[v][0] - centro[0]) * seno + (puntos[v][1] - centro[1]) * coseno
+        for v in cara.vertices
+    ]
+    menor, mayor = min(alturas), max(alturas)
+    if menor < 0.0 < mayor:
+        return min(-menor, mayor)
+    return -min(abs(menor), abs(mayor))
+
+
+def corta_al_eje(
+    cara: Cara,
+    puntos: Sequence[Sequence[float]],
+    centro: Sequence[float],
+    angulo_grados: float,
+    margen: float = 0.0,
+) -> bool:
+    """La recta que pasa por ``centro`` con ese angulo, atraviesa la cara?
+
+    Es la pregunta de si una seccion por ese eje corta esta tesela. Con
+    ``margen`` a cero basta que haya vertices a ambos lados de la recta, pero
+    eso cuenta como corte un roce de centesimas de pixel, que es ruido de la
+    digitalizacion y no un corte del dibujo. Pasar el tamano de un pixel como
+    ``margen`` exige que la cara sobresalga por los dos lados algo resoluble.
+    """
+
+    return margen_al_eje(cara, puntos, centro, angulo_grados) > margen
+
+
+def orbitas_por_simetria(
+    caras: Sequence[Cara],
+    puntos: Sequence[Sequence[float]],
+    centro: Sequence[float],
+    orden: int,
+    con_espejo: bool = True,
+    tolerancia: float = 0.10,
+    tolerancia_area: float = 0.15,
+) -> tuple[tuple[int, ...], ...]:
+    """Agrupa las caras en orbitas bajo el grupo diedrico de ese orden.
+
+    Dos caras estan en la misma orbita si alguna simetria del grupo lleva el
+    centroide de area de una sobre el de la otra, dentro de ``tolerancia``, y
+    sus areas concuerdan dentro de ``tolerancia_area``. Las tolerancias son
+    necesarias porque cada copia se digitaliza por separado.
+
+    El numero de orbitas es el numero de niveles distintos que hace falta fijar
+    **si** la nivelacion respeta esa simetria. Es una hipotesis sobre la
+    cupula, no un hecho del dato: este modulo la representa, no la avala.
+
+    Un tamano de orbita que no divida al orden del grupo delata que el
+    emparejamiento se ha roto en alguna copia, y por eso se devuelve tal cual
+    en vez de forzarlo.
+    """
+
+    if orden < 1:
+        raise ValueError("el orden del grupo debe ser positivo")
+    if tolerancia <= 0 or tolerancia_area <= 0:
+        raise ValueError("las tolerancias deben ser positivas")
+
+    centros = [centroide(cara, puntos) for cara in caras]
+    relativos = [(x - centro[0], y - centro[1]) for x, y in centros]
+
+    padre = list(range(len(caras)))
+
+    def raiz(i: int) -> int:
+        while padre[i] != i:
+            padre[i] = padre[padre[i]]
+            i = padre[i]
+        return i
+
+    def unir(i: int, j: int) -> None:
+        a, b = raiz(i), raiz(j)
+        if a != b:
+            padre[max(a, b)] = min(a, b)
+
+    espejos = (1.0, -1.0) if con_espejo else (1.0,)
+    for i, (x, y) in enumerate(relativos):
+        imagenes = []
+        for paso in range(orden):
+            angulo = 2 * math.pi * paso / orden
+            coseno, seno = math.cos(angulo), math.sin(angulo)
+            for signo in espejos:
+                imagenes.append((x * coseno - y * signo * seno,
+                                 x * seno + y * signo * coseno))
+        for j, otro in enumerate(relativos):
+            if i == j or raiz(i) == raiz(j):
+                continue
+            if abs(caras[i].area - caras[j].area) > tolerancia_area * caras[i].area:
+                continue
+            if any(math.dist(imagen, otro) < tolerancia for imagen in imagenes):
+                unir(i, j)
+
+    grupos: dict[int, list[int]] = {}
+    for i in range(len(caras)):
+        grupos.setdefault(raiz(i), []).append(i)
+    return tuple(tuple(sorted(g)) for g in sorted(grupos.values(), key=min))
 
 
 def cruces_de_aristas(

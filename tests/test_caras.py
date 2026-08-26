@@ -13,6 +13,10 @@ import pytest
 from granada.caras import (
     CONTORNO,
     Cara,
+    centroide,
+    corta_al_eje,
+    margen_al_eje,
+    orbitas_por_simetria,
     FiguraPlana,
     GrafoNoAdmisible,
     PLANTILLAS,
@@ -302,3 +306,144 @@ def test_una_cara_no_puede_tener_area_nula_ni_dos_vertices() -> None:
         Cara(vertices=(0, 1), angulos=(90.0, 90.0), lados=(1.0, 1.0), area=1.0)
     with pytest.raises(ValueError):
         Cara(vertices=(0, 1, 2), angulos=(60.0,) * 3, lados=(1.0,) * 3, area=0.0)
+
+
+# --- centroide de area, ejes y orbitas -------------------------------------
+
+
+def test_el_centroide_de_area_no_se_mueve_al_anadir_un_vertice() -> None:
+    """Es la razon de no usar la media de vertices para comparar copias."""
+
+    nodos = [(0.0, 0.0), (2.0, 0.0), (2.0, 2.0), (0.0, 2.0)]
+    cuadrado = unica_cara(nodos, ciclo(4))
+    # El mismo cuadrado con un vertice de mas en mitad del lado derecho.
+    con_extra = [(0.0, 0.0), (2.0, 0.0), (2.0, 1.0), (2.0, 2.0), (0.0, 2.0)]
+    remuestreado = unica_cara(con_extra, ciclo(5))
+
+    for eje in (0, 1):
+        assert math.isclose(
+            centroide(cuadrado, nodos)[eje],
+            centroide(remuestreado, con_extra)[eje],
+            abs_tol=1e-12,
+        )
+    media_original = sum(p[0] for p in nodos) / 4
+    media_remuestreada = sum(p[0] for p in con_extra) / 5
+    assert not math.isclose(media_original, media_remuestreada)
+
+
+def test_el_centroide_de_area_de_un_poligono_regular_es_su_centro() -> None:
+    nodos = poligono_regular(8, 3.0, 0.4)
+    cara = unica_cara(nodos, ciclo(8))
+    x, y = centroide(cara, nodos)
+    assert math.isclose(x, 0.0, abs_tol=1e-12)
+    assert math.isclose(y, 0.0, abs_tol=1e-12)
+
+
+def test_un_eje_corta_la_cara_solo_si_la_atraviesa() -> None:
+    nodos = [(1.0, -1.0), (3.0, -1.0), (3.0, 1.0), (1.0, 1.0)]
+    cara = unica_cara(nodos, ciclo(4))
+    assert corta_al_eje(cara, nodos, (0.0, 0.0), 0.0)      # el eje horizontal
+    assert not corta_al_eje(cara, nodos, (0.0, 0.0), 90.0)  # el vertical, no
+    lejos = [(1.0, 2.0), (3.0, 2.0), (3.0, 4.0), (1.0, 4.0)]
+    assert not corta_al_eje(unica_cara(lejos, ciclo(4)), lejos, (0.0, 0.0), 0.0)
+
+
+def test_el_margen_dice_por_cuanto_corta_o_por_cuanto_falla() -> None:
+    dentro = [(1.0, -0.25), (3.0, -0.25), (3.0, 1.0), (1.0, 1.0)]
+    cara = unica_cara(dentro, ciclo(4))
+    assert math.isclose(margen_al_eje(cara, dentro, (0.0, 0.0), 0.0), 0.25)
+    fuera = [(1.0, 0.5), (3.0, 0.5), (3.0, 2.0), (1.0, 2.0)]
+    cara = unica_cara(fuera, ciclo(4))
+    assert math.isclose(margen_al_eje(cara, fuera, (0.0, 0.0), 0.0), -0.5)
+
+
+def test_un_roce_por_debajo_del_margen_no_cuenta_como_corte() -> None:
+    """Una cara que asoma una milesima al otro lado no la corta la seccion."""
+
+    roce = [(1.0, -0.001), (3.0, -0.001), (3.0, 1.0), (1.0, 1.0)]
+    cara = unica_cara(roce, ciclo(4))
+    assert corta_al_eje(cara, roce, (0.0, 0.0), 0.0)
+    assert not corta_al_eje(cara, roce, (0.0, 0.0), 0.0, margen=0.01)
+
+
+def construir_corona(copias: int, radio: float, giro: float = 0.0):
+    """``copias`` cuadraditos iguales repartidos en circulo, mas sus aristas."""
+
+    nodos = []
+    aristas = []
+    for k in range(copias):
+        angulo = giro + 2 * math.pi * k / copias
+        cx, cy = radio * math.cos(angulo), radio * math.sin(angulo)
+        base = len(nodos)
+        nodos.extend(
+            [
+                (cx - 0.1, cy - 0.1), (cx + 0.1, cy - 0.1),
+                (cx + 0.1, cy + 0.1), (cx - 0.1, cy + 0.1),
+            ]
+        )
+        aristas.extend([(base + i, base + (i + 1) % 4) for i in range(4)])
+    return nodos, aristas
+
+
+def test_las_copias_repartidas_a_45_grados_forman_una_orbita() -> None:
+    nodos, aristas = construir_corona(8, 1.0)
+    caras = [extraer_caras(n, a).caras[0] for n, a in
+             [(nodos[i * 4:(i + 1) * 4], [(0, 1), (1, 2), (2, 3), (3, 0)])
+              for i in range(8)]]
+    puntos_por_cara = [nodos[i * 4:(i + 1) * 4] for i in range(8)]
+    # Reconstruye indices globales para pasar un unico conjunto de puntos.
+    globales = [
+        Cara(
+            vertices=tuple(i * 4 + v for v in cara.vertices),
+            angulos=cara.angulos,
+            lados=cara.lados,
+            area=cara.area,
+        )
+        for i, (cara, _) in enumerate(zip(caras, puntos_por_cara))
+    ]
+    orbitas = orbitas_por_simetria(globales, nodos, (0.0, 0.0), 8)
+    assert len(orbitas) == 1
+    assert len(orbitas[0]) == 8
+
+
+def test_dos_coronas_de_radio_distinto_son_dos_orbitas() -> None:
+    nodos = []
+    caras = []
+    for radio in (1.0, 2.0):
+        base = len(nodos)
+        trozos, _ = construir_corona(8, radio)
+        nodos.extend(trozos)
+        for k in range(8):
+            inicio = base + k * 4
+            caras.append(
+                Cara(
+                    vertices=tuple(range(inicio, inicio + 4)),
+                    angulos=(90.0,) * 4,
+                    lados=(0.2,) * 4,
+                    area=0.04,
+                )
+            )
+    orbitas = orbitas_por_simetria(caras, nodos, (0.0, 0.0), 8)
+    assert len(orbitas) == 2
+    assert sorted(len(o) for o in orbitas) == [8, 8]
+
+
+def test_una_cara_centrada_es_su_propia_orbita() -> None:
+    nodos = poligono_regular(8, 0.5)
+    centrada = Cara(
+        vertices=tuple(range(8)),
+        angulos=(135.0,) * 8,
+        lados=(0.38,) * 8,
+        area=0.7,
+    )
+    orbitas = orbitas_por_simetria([centrada], nodos, (0.0, 0.0), 8)
+    assert orbitas == ((0,),)
+
+
+def test_las_tolerancias_de_orbita_se_validan() -> None:
+    nodos = poligono_regular(4)
+    cara = unica_cara(nodos, ciclo(4))
+    with pytest.raises(ValueError):
+        orbitas_por_simetria([cara], nodos, (0.0, 0.0), 0)
+    with pytest.raises(ValueError):
+        orbitas_por_simetria([cara], nodos, (0.0, 0.0), 8, tolerancia=0.0)
