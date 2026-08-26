@@ -50,6 +50,9 @@ estado perdido, y por tanto sujeta a evidencia.
 | Reglas de nivel candidatas | **tres refutadas** con testigo sobre la propuesta de Ferrer, no sobre la cúpula |
 | Tamaño del salto de nivel | **8 unidades**, confirmado por dos fuentes independientes (Ferrer 8P y Saseta 2016) |
 | Teorema del triángulo | **54 triángulos** (16 robustos = 8 pares espejo, N estricto 6): la planta exige descansos o piezas de dos niveles |
+| Órbitas de caras bajo D8 | **11** órbitas (16·3 + 8·7 + 1), estables en 25 de 30 tolerancias; la sección norte-sur solo alcanza **5** con corte resoluble, y quedan **6** |
+| Proyección de la sección sobre la planta | **casa en orden, residuo 9,5 mm**, con el eje B como control negativo (73 mm); las dos escalas concuerdan solo al 4 % |
+| Simetría del dibujo de Ferrer | **exacta a 0,35 px**: no contiene la asimetría real de la cúpula, y eso refuerza la cautela 6 |
 
 ### Lo que hay que tirar
 
@@ -91,6 +94,63 @@ Vías posibles, por orden de coste:
 
 ### Hecho
 
+- **Contadas las órbitas de caras** bajo el diédrico de orden 16
+  (`granada/caras.py`, `orbitas_por_simetria`): **11 órbitas** de tamaños
+  16·3, 8·7 y 1, suma 105, todos divisores de 16, y el once aguanta 25 de 30
+  combinaciones de tolerancia —las 5 que fallan se delatan solas con un tamaño
+  que no divide al grupo—. Es la cadena 211 saltos → 104 niveles → **11
+  incógnitas si la nivelación respeta la simetría**, hipótesis falsable contra
+  los mismos 107 ciclos, no un dato. La sección norte-sur de Almagro es de
+  **clase A** por la planta de la sala. Con el filtro de resolución —un corte
+  exige un píxel del dibujo a los dos lados, y los que caen miden 0,03–0,41 px
+  frente a 17,6 px del más justo que queda— alcanza **5 órbitas** y 33 caras, y
+  deja **6 sin cota**, 72 de las 105 caras. Las órbitas **2, 5 y 7**, que son
+  las tres de 16 y suman 48 caras, **no las alcanza ningún eje de simetría**. Y
+  las 11 caras que el eje de clase A toca son exactamente las 11 de la costura
+  del espejo. Decisión 0007.
+- **Proyectada la sección sobre el grafo, y casa.** Las 5 fronteras radiales del
+  eje A —0,597, 0,844, 1,681, 2,151 y 3,295 m— se emparejan en orden con los 5
+  complejos de escalón de la silueta, con residuo medio de **9,5 mm** (p =
+  0,014 frente a radios al azar). El **control negativo pasa**: las fronteras
+  del eje B contra los mismos escalones dan 73 mm y p = 0,23. Queda una cota
+  absoluta por órbita alcanzada, pero **una banda no es un nivel**: las órbitas
+  6 y 0 abarcan 6,5 y 8,1 hiladas, porque la red de medinas es más gruesa que
+  las hiladas reales. El barrido de escala tiene el mínimo en ×1,04 y el valle
+  plano de 1,00 a 1,06: las dos calibraciones concuerdan al 4 %, no mejor.
+  Decisión 0007.
+- **Medido cuánto depende la proyección de qué eje de la clase A sea.** Los
+  cuatro —0°, 45°, 90° y 135°— dan las mismas 6 órbitas tocadas, las mismas 5
+  resolubles y el mismo ajuste contra la sección: **9,5 – 10,6 mm**, frente a
+  **72,6 – 73,7 mm** de los cuatro ejes de la clase B. La proyección y su
+  control negativo son indiferentes a la orientación. La horquilla entre los
+  cuatro ejes, de 2,6 a 9,6 mm por frontera, es del mismo orden que el residuo:
+  es el suelo de lo que el dibujo da, y no hay nada que afinar por debajo del
+  centímetro.
+  Lo que sí cambia es cuánto se apoya en la mitad pegada: por el eje de 0°, que
+  **es** la costura del espejo, las 11 caras son las 11 de la costura; por el de
+  90° hay 5 digitalizadas del ráster, 5 reflejadas y sólo el octógono sobre la
+  costura. Y la bóveda no puede decir cuál es: si es D8, nada de ella distingue
+  el 0° del 90°. Decisión 0007.
+- **Comprobada la asimetría izquierda-derecha sobre la planta: no está.** A
+  primera vista 10 de 10 órbitas tienen el radio medio mayor a la derecha
+  (+0,23 % de mediana), pero eso lo produce un solo grado de libertad: el
+  centro. Ajustándolo —queda a **3,1 mm, 0,22 px** del centroide del octógono—
+  la señal se va: 4 de 10 y mediana −0,03 %. El área, invariante por traslación,
+  nunca dio señal. La dispersión radial dentro de cada órbita es de **4,9 mm
+  rms = 0,35 px**, por debajo del suelo de la digitalización. La figura 128 es
+  simétrica hasta el límite de su propio dibujo, así que **no sirve para medir
+  la deformación** — y su ausencia refuerza la cautela 6. La asimetría real sí
+  se ve, pero en la ortoimagen: es el emborronamiento de `docs/policromia.md`.
+  Decisión 0007.
+- **Comprobada la cota de 1,082 m sobre AA-415_23: la intención era correcta y
+  el número no.** La escala gráfica da 236,2 px/m a 150 dpi (2362 px / 10 m),
+  confirmada por tercera vez; 233,8 px/m es un 1,0 % bajo y vale 11 mm sobre la
+  propia cota. En metros, 1,082 m cae en un tramo liso y el escalón más próximo
+  queda a 31–44 mm; el acuerdo de 13 mm solo aparece bajando el umbral a 1 px,
+  donde hay un «escalón» cada 27 mm y acertar por 13 mm es lo esperable por
+  azar. La proyección sí identifica el final de las dos primeras órbitas: el
+  octógono acaba en **0,862 m** y los medios cuadrados en **1,113–1,122 m**, y
+  es esa la cota que el plano sostiene. Decisión 0007.
 - Identificadas las **caras** por rotación de semiaristas (`granada/caras.py`,
   sin dependencias): 105 caras, Euler `V − E + F = 2`, cero cruces en los
   90 951 pares de aristas y área de caras igual a la del contorno. Clasificadas
@@ -159,6 +219,81 @@ pauta para la elevación entre un nivel y otro de adarajas es de 8 unidades»,
 que coincide con el 8P de la plantilla de doble perfil de Ferrer. Dos fuentes
 independientes, el mismo número. Pero el tamaño de un salto no es su signo.
 
+**La regla de medir se ha afinado (2026-08-26).** Del PDF de AA-415_23 han
+salido dos cosas que afectan a todo lo ya medido, ninguna de ellas una cota:
+
+- **Escala exacta, del autor y no medida.** Los once ticks de la escala gráfica
+  son vectores: 9449 unidades para 10 m, que con la matriz global del flujo dan
+  **40,0008 mm por metro real → 1/24,9995, +0,0019 %**. La sección 7 tenía
+  0,01 % midiendo sobre ráster.
+- **Doble de resolución.** Las dos ortoimágenes, extraídas a resolución nativa,
+  están a **300 ppi = 472,5 px/m**, exactamente el doble de los 236,2 px/m con
+  los que se hicieron la sección 7 y `estratificacion.md`. 1 px = 2,12 mm
+  reales. Ficheros en `docs/`, ignorados por git.
+
+Nada de esto mueve el bloqueo: una ortofoto no tiene cota Z, igual que no la
+tiene una sección.
+
+**Mediciones rehechas el 2026-08-26, y el resultado es que no cambia nada.**
+Todos los valores de `docs/estratificacion.md` caen dentro del error de los
+anteriores: paso de hilada 19,8 ± 0,1 cm, pendiente 0,789 ± 0,015, ángulo del
+cono 38,3° ± 0,6°. El único movimiento es el número de hiladas, de «~23» a
+**24 ± 1**, y no por precisión sino porque la última hilada es genuinamente
+ambigua: entre umbral 240 y 245 el final del cono se desplaza una hilada
+entera.
+
+Lo que hay que retener para la próxima vez: **el error no ha bajado**. Sigue en
+± 0,015 con el píxel a 2,1 mm igual que con el píxel a 4,2 mm, porque el
+residuo del ajuste es de 9,3 cm rms —cuarenta veces el píxel—. El límite no era
+la resolución, sino que el perfil es escalonado y la cúpula está deformada.
+Pedir más resolución para estrechar esa barra no funciona.
+
+De paso quedan dos cosas que no había: la medición vive ahora en
+`scripts/medir_estratificacion.py` en vez de haber sido ad hoc, y la
+incertidumbre por umbral se cuantifica corriendo con tres.
+
+La medición del orden de simetría (sección 7 de `fuentes.md`) **no se ha
+rehecho porque ya estaba a resolución nativa**. Sí se ha reproducido desde cero:
+sus dos conclusiones se sostienen, pero sus porcentajes no son reproducibles
+mientras no documente su normalización y los radios de sus zonas. Anotado allí.
+
+Y descarta el DXF que llegó ese día (entrada 12): es una vectorización
+automática, todas sus Z valen 0, y al aplicarse sobre una ortofoto no traza el
+despiece sino contornos de mancha del yeso.
+
+**Consulta enviada el 2026-08-26.** `docs/consulta-almagro.md` salió a
+**Antonio Almagro Gorbea**, y una versión adaptada a **Ignacio Ferrer
+Pérez-Blanco** —cuyo texto todavía no está en el repositorio—. Cuatro
+preguntas: los datos de origen del levantamiento, la existencia de una planta
+con cotas, la orientación de la lámina y las condiciones de uso. La 1 es la
+única que puede desbloquear esto de golpe; la 2 es de Ferrer antes que de
+nadie, porque pregunta por la figura 128 de su propia tesis. Sin respuesta
+todavía. Cuando llegue —incluso si es una negativa— entra en `fuentes.md` como
+entrada nueva y con fecha.
+
+Mientras tanto, **el estado no cambia**: una consulta enviada no es un dato, y
+`BLOCKED_MISSING_SIGNED_LEVEL_CONSTRAINTS` sigue vigente.
+
+**El verificador ya está montado (2026-08-26).** `granada/falsacion.py` y
+`scripts/verificar_saltos_firmados.py` esperan al primer salto firmado. Hoy,
+sin datos, dicen `SIN_SALTOS_FIRMADOS` y 11 órbitas libres; con un dato dan la
+respuesta en el acto. Lo que salió al construirlo:
+
+- Las **211 vecindades colapsan en 16 clases** bajo la hipótesis de simetría, y
+  **un solo salto firmado determina su clase entera** —de 4 a 16 vecindades—.
+- El cociente deja **6 ciclos de cierre**: seis ecuaciones que unos saltos
+  firmados tienen que satisfacer, y seis maneras de refutar la hipótesis.
+- **Diez saltos bien elegidos** fijan la nivelación entera salvo la cota
+  absoluta. Comprobado en `tests/test_falsacion.py`.
+- De regalo, un defecto de los datos: la clase de órbitas **2–7 tiene 15
+  vecindades y debería tener 16**. Faltan `c078`–`c068`, a azimuts contiguos.
+  No refuta nada; acusa a la digitalización. Registrado en la decisión 0007 y
+  **no corregido a mano**.
+
+Así que la petición a quien pueda contestar es mucho más pequeña de lo que
+parecía: **un salto firmado sirve para empezar y diez lo cierran**, en vez de
+5.416 cotas o 211 signos.
+
 **Dónde puede salir el signo**, por orden de coste:
 
 1. Una planta de Dos Hermanas —de la tesis o de otro autor— que traiga flechas
@@ -166,11 +301,19 @@ independientes, el mismo número. Pero el tamaño de un salto no es su signo.
 2. La sección medida: `docs/estratificacion.md` da 23 hiladas y paso ~20 cm.
    Una cara cuyo radio y cota se puedan casar con una hilada firmaría su ancla,
    no sus vecindades. Cuidado: es la propagación por coronas por otro camino.
-3. La capa vectorial de AA-415_23. Comprobado que existe —AutoCAD 2010, A0,
-   con `/OCProperties` y `/OCGs`— pero el plano **no lleva cotas escritas**: 20
+3. ~~La capa vectorial de AA-415_23.~~ **No existe** (leído el PDF entero el
+   2026-08-26, entrada 3 de `fuentes.md`): sus capas son `Orto` —dos JPEG— y
+   `Rotulo` —escala y textos—, y el flujo de la página son 1823 bytes. La
+   lámina es fotogrametría texturizada, no delineación. Lo que se comprobó que
+   existe —AutoCAD 2010, A0, `/OCProperties`, `/OCGs`— es eso, no un dibujo de
+   líneas. El plano tampoco **lleva cotas escritas**: 20
    palabras de texto en todo el A0. Da un perfil medible contra la escala 1/25,
    no niveles por tesela; y una sección no puede firmar 211 vecindades en
-   planta.
+   planta. Acotado además por la decisión 0007: la sección que existe es de
+   clase A, alcanza 5 de las 11 órbitas con corte resoluble, y las 11 caras que
+   toca son las 11 de la costura del espejo. Lo que sí da, y está medido, es una
+   cota absoluta por órbita alcanzada — pero una banda de la sección abarca
+   hasta 8 hiladas, así que no es un nivel.
 4. **Las 104 adarajas de estrella del PMAA — localizadas** (entrada 10 de
    `fuentes.md`). No están en el impreso de *Revista PH* 106 sino en la versión
    web del mismo artículo, como **pie de una figura**: 104 piezas sobre
@@ -234,6 +377,21 @@ independientes, el mismo número. Pero el tamaño de un salto no es su signo.
   `docs/investigacion-preliminar.md`, sin verificar.
 - **La capa vectorial** de AA-415_23, sin extraer. Daría geometría en vez de
   fotometría para la medición del orden de simetría.
+- **La fotografía de la cúpula** aportada el 2026-08-25
+  (`docs/Cúpula_de_la_sala_de_las_Dos_Hermanas_(Alhambra,_Granada).jpg`, 3964 ×
+  2973). **Origen y licencia sin registrar**: está excluida en `.gitignore`
+  hasta que consten en `fuentes.md`. Como geometría no sirve —es perspectiva,
+  desde un punto desconocido, sobre una superficie no plana—. Para policromía
+  podría servir como **segunda imagen independiente** de la misma superficie,
+  que es lo que hoy falta, pero antes hay que neutralizar su dominante cálida:
+  el 98 % de sus píxeles saturados caen en naranja y ocre, que es el yeso bajo
+  esa luz, no pigmento. Lo que sí muestra, y la ortoimagen de AA-415_23 no, son
+  **los vanos del tambor**: es la única vía a la vista para orientar la lámina
+  respecto del edificio sin depender de una indicación externa.
+- **La orientación de la lámina respecto del edificio**, sin fuente. Se ha
+  anotado como información del autor que la parte alta de la imagen es la
+  fachada principal, de donde el norte-sur sería el eje de 90°. Falta una
+  fuente citable: una planta de la sala orientada, o el pie de la propia lámina.
 - **Heritage 6(12) 388** (cúpula de la Sala de los Reyes): existencia
   verificada, contenido sin leer — MDPI devuelve 403.
 
@@ -250,11 +408,20 @@ independientes, el mismo número. Pero el tamaño de un salto no es su signo.
    descubrió tarde porque nunca se comparó la planta contra la ortoimagen.
 3. **La razón diagonal/ortogonal medida (0.7679 contra √(2−√2) = 0.7654)** es
    más precisa de lo que el método merece. Defendible: vale ~0.77, no 1 ni √2.
-4. **Derechos.** Las figuras de la tesis son obra de su autor y **no se
-   redistribuyen** aquí; se citan y se usan como referencia para construir
-   geometría propia. El plano AA-415_23 es material de la RABASF: leerlo para
-   verificar es legítimo, derivar geometría para un repo MIT exige revisar sus
-   condiciones **antes**.
+4. **Derechos — revisado el 2026-08-26, y en buena parte resuelto.** Las
+   figuras de la tesis son obra de su autor y **no se redistribuyen** aquí; se
+   citan y se usan como referencia para construir geometría propia. Para el
+   plano AA-415_23 la condición ya está leída (entrada 3 de `fuentes.md`):
+   **«Se autoriza su uso con fines de docencia e investigación»**. Este trabajo
+   lo es, así que **derivar geometría de la lámina está autorizado** y deja de
+   ser el paso que había que revisar antes de darlo.
+   Lo que la autorización **no** cubre es la licencia del repositorio: el mismo
+   texto reserva el uso comercial a autorización expresa del autor, y **MIT
+   concede uso comercial a cualquiera**. No es la derivación lo que choca, es
+   la licencia de salida. Ver la entrada 3 para las dos vías: separar la
+   licencia de los datos derivados, o la respuesta de Almagro a la pregunta 4
+   de la consulta. Y la atribución es obligatoria y doble: autoría **y**
+   referencia de la publicación previa.
 5. **El espejo de la red se impuso, no se midió.** La mitad inferior de
    `datos/red_medinas.json` es reflexión de la superior. De ahí dos reglas: la
    red **nunca** sirve como evidencia de la simetría especular —sería
@@ -267,7 +434,12 @@ independientes, el mismo número. Pero el tamaño de un salto no es su signo.
    autor replicó un sector en CAD, las 16 apariciones son una decisión del
    dibujante y ningún tratamiento del ráster lo distingue. La refutación de las
    tres reglas hereda el techo de la decisión 0004, no uno más fuerte.
-7. **La cúpula real está deformada.** Los escaneos láser lo documentan en otras
+7. **Todo predicado geométrico lleva margen.** «¿Cruza esta cara el eje?» sin
+   margen contestó que sí para una cara que asoma **0,032 px**, y con eso la
+   sección parecía alcanzar una órbita más de las que alcanza. El margen no se
+   elige: es un píxel del dibujo. La comprobación de que no parte una nube
+   continua es que las dos poblaciones quedan a un factor de cuarenta.
+8. **La cúpula real está deformada.** Los escaneos láser lo documentan en otras
    salas, y aquí se nota en el emborronamiento al promediar las 16 copias.
    Cualquier afirmación (B) es «ajusta dentro de una tolerancia», nunca
    «reproduce».
