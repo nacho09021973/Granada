@@ -1,7 +1,34 @@
 # Próximos pasos
 
-Estado a 2026-08-25. Documento de trabajo: se actualiza, no se conserva como
+Estado a 2026-08-28. Documento de trabajo: se actualiza, no se conserva como
 histórico. El registro de decisiones va en `docs/decisiones/`.
+
+---
+
+## Actualización — respuesta de Ferrer, 2026-08-28
+
+La comunicación personal registrada en `docs/fuentes.md`, entrada 11, **no
+levanta todavía** `BLOCKED_MISSING_SIGNED_LEVEL_CONSTRAINTS`: la captura
+permite contrastar el número global de niveles, pero no firma ninguna de las
+227 vecindades de la planta.
+
+Sí identifica la vía documental correcta. Ferrer indica que el sentido de
+ascenso debe deducirse de fotografías y que las piezas vecinas han de mantener
+un sentido coherente. El siguiente trabajo ya no es buscar una regla radial
+universal, sino reunir fotografías oblicuas de resolución suficiente,
+registrarlas contra la planta y anotar orientaciones observables con su
+procedencia. La coherencia entre vecinas será una validación de esas
+observaciones, no una fuente para inventar las que falten.
+
+Su recuento rápido de **24 niveles** sobre el alzado de Almagro es compatible,
+dentro de la incertidumbre del método, con las **~23 hiladas** medidas en
+`docs/estratificacion.md`. No se fusionan aún ambas cifras: primero hay que
+igualar la definición de nivel y los límites de la cuenta.
+
+Ferrer aclara además que las **ocho unidades entre niveles no constan en los
+manuscritos**. El 8P queda como pauta de reconstrucción moderna documentada por
+Saseta y usada en los modelos de Ferrer, no como regla histórica transmitida
+por Fray Andrés de San Miguel o López de Arenas.
 
 ---
 
@@ -48,7 +75,7 @@ estado perdido, y por tanto sujeta a evidencia.
 | Caras del teselado | **105 caras**, Euler 2, cero cruces; 9 figuras confirmadas, 16 al límite, 80 sin figura |
 | Vecindades entre teselas | **227**, todas con salto sin firmar y sin conversión parcial posible |
 | Reglas de nivel candidatas | **tres refutadas** con testigo sobre la propuesta de Ferrer, no sobre la cúpula |
-| Tamaño del salto de nivel | **8 unidades**, confirmado por dos fuentes independientes (Ferrer 8P y Saseta 2016) |
+| Tamaño del salto de nivel | **8 unidades**, pauta moderna documentada por Saseta y usada por Ferrer; no consta en los manuscritos |
 | Teorema del triángulo | **54 triángulos** (16 robustos = 8 pares espejo, N estricto 6): la planta exige descansos o piezas de dos niveles |
 
 ### Lo que hay que tirar
@@ -154,24 +181,35 @@ entrada 8 de `docs/fuentes.md` vació Dialnet, TESEO, Digibug, RiuNet, APAG,
 RABASF e IAPH y concluye que **no existe en el dominio público ninguna tabla
 que asocie cada pieza a una cota**. El bloqueo no es un fallo de búsqueda.
 
-**El tamaño del salto ya está, el signo no.** Saseta Velázquez (2016) da «la
-pauta para la elevación entre un nivel y otro de adarajas es de 8 unidades»,
-que coincide con el 8P de la plantilla de doble perfil de Ferrer. Dos fuentes
-independientes, el mismo número. Pero el tamaño de un salto no es su signo.
+**El tamaño del salto ya está como hipótesis moderna, el signo no.** Saseta
+Velázquez (2016) da «la pauta para la elevación entre un nivel y otro de
+adarajas es de 8 unidades», que coincide con el 8P usado en la plantilla de
+doble perfil de Ferrer. Ferrer aclara en su respuesta del 2026-08-28 que ese
+número no está escrito en los manuscritos: procede de deducciones posteriores
+o medidas empíricas. Por tanto, 8P es un parámetro documentado de
+reconstrucción, no una constante histórica demostrada. Y el tamaño de un salto
+no es su signo.
 
 **Dónde puede salir el signo**, por orden de coste:
 
-1. Una planta de Dos Hermanas —de la tesis o de otro autor— que traiga flechas
-   o cotas. Es lo que la sección 3.3.2 propone y la figura 128 no aplica.
-2. La sección medida: `docs/estratificacion.md` da 23 hiladas y paso ~20 cm.
+1. **Fotografías oblicuas de alta resolución**, registradas contra la planta.
+   Ferrer confirma que el sentido se deduce eficazmente de fotografías y que
+   las piezas vecinas han de ser coherentes. Cada orientación anotada deberá
+   conservar imagen, región y criterio de lectura; la coherencia solo valida,
+   no rellena observaciones ausentes.
+2. Una planta de Dos Hermanas —de la tesis o de otro autor— que traiga flechas
+   o cotas. Es lo que la sección 3.3.2 propone y la figura 128 no aplica. La
+   cuarta imagen del ejercicio docente de Ferrer de 2023 muestra el método de
+   flechas y líneas de nivel, pero no aporta la solución de Dos Hermanas.
+3. La sección medida: `docs/estratificacion.md` da 23 hiladas y paso ~20 cm.
    Una cara cuyo radio y cota se puedan casar con una hilada firmaría su ancla,
    no sus vecindades. Cuidado: es la propagación por coronas por otro camino.
-3. La capa vectorial de AA-415_23. Comprobado que existe —AutoCAD 2010, A0,
+4. La capa vectorial de AA-415_23. Comprobado que existe —AutoCAD 2010, A0,
    con `/OCProperties` y `/OCGs`— pero el plano **no lleva cotas escritas**: 20
    palabras de texto en todo el A0. Da un perfil medible contra la escala 1/25,
    no niveles por tesela; y una sección no puede firmar 211 vecindades en
    planta.
-4. **Las 104 adarajas de estrella del PMAA — localizadas** (entrada 10 de
+5. **Las 104 adarajas de estrella del PMAA — localizadas** (entrada 10 de
    `fuentes.md`). No están en el impreso de *Revista PH* 106 sino en la versión
    web del mismo artículo, como **pie de una figura**: 104 piezas sobre
    ortofotografía cenital, en 5 tipos. Es imagen, no tabla, y sin método
