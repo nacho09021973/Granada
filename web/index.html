@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Granada · Dos Hermanas 3D</title>
+  <link rel="stylesheet" href="styles.css">
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "./vendor/three.module.min.js"
+      }
+    }
+  </script>
+</head>
+<body>
+  <main id="viewer" aria-label="Modelo tridimensional aproximado de la Sala de las Dos Hermanas">
+    <header class="identity">
+      <h1>Sala de las Dos Hermanas</h1>
+      <p>Modelo topológico aproximado</p>
+    </header>
+
+    <div class="toolbar" role="toolbar" aria-label="Controles del modelo">
+      <div class="segmented" aria-label="Número de niveles">
+        <button type="button" class="active" data-scenario="7" aria-pressed="true">7 niveles</button>
+        <button type="button" data-scenario="8" aria-pressed="false">8 niveles</button>
+      </div>
+      <label class="toggle">
+        <input id="uncertainty" type="checkbox" checked>
+        <span aria-hidden="true"></span>
+        Incertidumbre
+      </label>
+      <label class="toggle">
+        <input id="autorotate" type="checkbox">
+        <span aria-hidden="true"></span>
+        Rotación
+      </label>
+      <button id="reset" class="command" type="button">Restablecer vista</button>
+    </div>
+
+    <aside class="readout" aria-live="polite">
+      <span id="face-id">Modelo completo</span>
+      <strong id="face-level">105 caras · 227 vecindades</strong>
+      <span id="face-status">Niveles inferidos 0–7</span>
+    </aside>
+
+    <div class="legend" aria-label="Escala de nivel">
+      <span>Nivel</span>
+      <div id="legend-swatches"></div>
+    </div>
+
+    <footer>Hipótesis para prototipado · no es una restitución histórica verificada</footer>
+    <div id="loading">Construyendo geometría…</div>
+  </main>
+  <script type="module" src="viewer.js"></script>
+</body>
+</html>
