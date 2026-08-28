@@ -420,6 +420,66 @@ autor, no recortarla.
 
 ---
 
+## 11. Ferrer Pérez-Blanco — respuesta sobre niveles y sentido de ascenso
+
+**Comunicación personal recibida el 2026-08-28**, en respuesta a preguntas
+directas del proyecto sobre la cúpula de la Sala de las Dos Hermanas. Se
+conserva el mensaje original fuera del repositorio. La captura adjunta está en
+[`Foto de Ferrer.png`](Foto%20de%20Ferrer.png); se incorpora como evidencia de
+la comunicación, no como material libre para reutilización.
+
+Lo que Ferrer afirma de forma directa:
+
+- participó hace años en un escaneado, pero ahora no tiene acceso a los
+  ficheros; sabe por conocidos que se ha escaneado de nuevo en años recientes
+  ante una intervención prevista en la zona Dos Hermanas-Lindaraja;
+- las **ocho unidades entre niveles no están escritas en ningún manuscrito**:
+  son una deducción de investigadores posteriores o de medidas empíricas;
+- el sentido de ascenso de cada pieza y nivel debe ser coherente; lo más eficaz
+  es deducirlo de fotografías y, en la lógica compositiva, las piezas vecinas
+  tienen el mismo sentido.
+
+Lo que ofrece expresamente **de memoria** y, por tanto, queda como pista:
+
+- sus modelos teóricos con las proporciones de Fray Andrés de San Miguel y
+  López de Arenas resultaban ambos más altos que el construido, aunque el de
+  Fray Andrés se ajustaba mejor;
+- un recuento rápido del alzado de Almagro le da **24 niveles**;
+- Dos Hermanas tiene piezas especiales alrededor de una estrella irregular de
+  cinco puntas y también, según recuerda, grupos de mocárabes de distinto
+  tamaño.
+
+La captura es un alzado rasterizado con líneas rojas cada diez niveles. No es
+el DWG ni una nube de puntos y no permite identificar por sí sola el signo de
+cada vecindad. El recuento rápido de 24 tampoco invalida las 23 hiladas de
+`docs/estratificacion.md` ni los siete niveles citados en la entrada 10: antes
+hay que establecer si los tres recuentos usan la misma definición de nivel y
+los mismos límites de la cúpula.
+
+Esta respuesta corrige una posible lectura excesiva de la entrada 9. Saseta y
+la tesis de Ferrer documentan **8P como pauta usada en reconstrucciones
+modernas**; el número no debe atribuirse por ello a los manuscritos de Fray
+Andrés o López de Arenas. Para el software, 8P sigue siendo un parámetro de
+hipótesis, no una constante histórica demostrada.
+
+La página docente señalada por Ferrer,
+[ignaciofpb.es/muqarnas](https://ignaciofpb.es/muqarnas), confirma que en el
+ejercicio de 2023 se proporcionaron reglas simplificadas para componer una
+planta coherente. Ferrer precisa en el correo que la cuarta imagen empleaba
+piezas con flechas y líneas de nivel para comprobar esa coherencia. La página
+no publica una regla pieza por pieza aplicable directamente a Dos Hermanas.
+
+**Consecuencias operativas**:
+
+- representar explícitamente el sentido de ascenso y comprobar la coherencia
+  entre piezas vecinas;
+- admitir perfiles, escalas y piezas excepcionales dentro de una composición;
+- no cerrar el número de niveles hasta reproducir los criterios de conteo;
+- localizar al responsable de los escaneados reciente y antiguo y solicitar
+  acceso o, al menos, sus metadatos.
+
+---
+
 ## Pendiente de verificar
 
 - Recuento de piezas de la cúpula de las Dos Hermanas: circulan 5.416 piezas y
@@ -440,3 +500,5 @@ autor, no recortarla.
 - Los manuscritos del siglo XVII: Fray Andrés de San Miguel y Diego López de
   Arenas. Son la fuente primaria del sistema occidental y la raíz de la
   entrada 1.
+- Autoría, fecha y condiciones de reutilización de la captura enviada por
+  Ferrer; identificación y acceso a los escaneados de Dos Hermanas-Lindaraja.
