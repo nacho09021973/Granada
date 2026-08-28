@@ -1,0 +1,4141 @@
+{
+ "version": 1,
+ "estado": "APPROXIMATE_LEVELS_AVAILABLE",
+ "advertencia": "Reconstruccion operativa inferida, no nivelacion historica verificada. No sustituye las restricciones firmadas de datos/caras_red.json.",
+ "fuente": {
+  "derivado_de": "datos/caras_red.json",
+  "sha256": "c01ebdbea5e7ef3b9a1ca29f3b60beacbaaae0f17ecbafe5f8c9f69a2dbe3e78",
+  "seccion_almagro": "23 hiladas, radio 3.64 m, altura 4.67 m",
+  "comunicacion_ferrer_2026_08_28": "recuento rapido de 24 niveles",
+  "martinez_sevilla_divulgacion": "siete niveles, sin metodo publicado"
+ },
+ "metodo": {
+  "modelo": "capas minimas del dual desde el borde, escaladas a N niveles",
+  "radio_base_m": 3.64,
+  "altura_total_m": 4.67,
+  "hiladas_seccion": 23,
+  "hiladas_recuento_ferrer": 24,
+  "capas_del_grafo": 5,
+  "niveles_topologicos_operativos": 7,
+  "niveles_topologicos_sensibilidad": 8,
+  "paso_horizontal_hilada_m": 0.1582608695652174,
+  "paso_vertical_hilada_m": 0.20304347826086958,
+  "cierre_de_ciclos": "garantizado al derivar cada salto de cotas absolutas"
+ },
+ "controles": {
+  "caras": 105,
+  "vecindades": 227,
+  "caras_estables_7_8": 64,
+  "vecindades_estables_7_8": 80,
+  "nivel_minimo": 0,
+  "nivel_maximo": 7,
+  "conteo_por_nivel": {
+   "0": 16,
+   "1": 32,
+   "3": 40,
+   "4": 8,
+   "6": 8,
+   "7": 1
+  },
+  "conteo_por_salto": {
+   "-2": 26,
+   "-1": 23,
+   "0": 80,
+   "1": 33,
+   "2": 65
+  }
+ },
+ "caras": [
+  {
+   "id": "c000",
+   "radio_m": 2.5684673012674835,
+   "capa_desde_borde": 0,
+   "nivel": 0,
+   "nivel_8": 0,
+   "intervalo_nivel": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "altura_conica_m": 1.3702464178165175
+  },
+  {
+   "id": "c001",
+   "radio_m": 2.836475787093438,
+   "capa_desde_borde": 0,
+   "nivel": 0,
+   "nivel_8": 0,
+   "intervalo_nivel": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "altura_conica_m": 1.0275245689342225
+  },
+  {
+   "id": "c002",
+   "radio_m": 2.8312889604741502,
+   "capa_desde_borde": 0,
+   "nivel": 0,
+   "nivel_8": 0,
+   "intervalo_nivel": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "altura_conica_m": 1.0341573395471226
+  },
+  {
+   "id": "c003",
+   "radio_m": 1.938541334768261,
+   "capa_desde_borde": 1,
+   "nivel": 1,
+   "nivel_8": 2,
+   "intervalo_nivel": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "altura_conica_m": 2.1757783442861114
+  },
+  {
+   "id": "c004",
+   "radio_m": 1.9588503004295212,
+   "capa_desde_borde": 1,
+   "nivel": 1,
+   "nivel_8": 2,
+   "intervalo_nivel": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "altura_conica_m": 2.1498077999622494
+  },
+  {
+   "id": "c005",
+   "radio_m": 1.937796195522077,
+   "capa_desde_borde": 1,
+   "nivel": 1,
+   "nivel_8": 2,
+   "intervalo_nivel": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "altura_conica_m": 2.17673120777228
+  },
+  {
+   "id": "c006",
+   "radio_m": 1.9532634878015884,
+   "capa_desde_borde": 1,
+   "nivel": 1,
+   "nivel_8": 2,
+   "intervalo_nivel": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "altura_conica_m": 2.1569520616347977
+  },
+  {
+   "id": "c007",
+   "radio_m": 2.5545579544378216,
+   "capa_desde_borde": 0,
+   "nivel": 0,
+   "nivel_8": 0,
+   "intervalo_nivel": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "altura_conica_m": 1.3880333063454968
+  },
+  {
+   "id": "c008",
+   "radio_m": 2.544950639763372,
+   "capa_desde_borde": 0,
+   "nivel": 0,
+   "nivel_8": 0,
+   "intervalo_nivel": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "altura_conica_m": 1.4003188749829003
+  },
+  {
+   "id": "c009",
+   "radio_m": 1.8193612037698865,
+   "capa_desde_borde": 1,
+   "nivel": 1,
+   "nivel_8": 2,
+   "intervalo_nivel": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "altura_conica_m": 2.3281826038748257
+  },
+  {
+   "id": "c010",
+   "radio_m": 2.0196963078854293,
+   "capa_desde_borde": 1,
+   "nivel": 1,
+   "nivel_8": 2,
+   "intervalo_nivel": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "altura_conica_m": 2.0719996062846175
+  },
+  {
+   "id": "c011",
+   "radio_m": 2.0101420934341423,
+   "capa_desde_borde": 1,
+   "nivel": 1,
+   "nivel_8": 2,
+   "intervalo_nivel": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "altura_conica_m": 2.0842172718233476
+  },
+  {
+   "id": "c012",
+   "radio_m": 1.991614962821326,
+   "capa_desde_borde": 2,
+   "nivel": 3,
+   "nivel_8": 3,
+   "intervalo_nivel": [
+    3,
+    3
+   ],
+   "estable_7_8": true,
+   "altura_conica_m": 2.107909254704187
+  },
+  {
+   "id": "c013",
+   "radio_m": 1.9869874740167934,
+   "capa_desde_borde": 2,
+   "nivel": 3,
+   "nivel_8": 3,
+   "intervalo_nivel": [
+    3,
+    3
+   ],
+   "estable_7_8": true,
+   "altura_conica_m": 2.113826759569318
+  },
+  {
+   "id": "c014",
+   "radio_m": 1.9903384293548823,
+   "capa_desde_borde": 2,
+   "nivel": 3,
+   "nivel_8": 3,
+   "intervalo_nivel": [
+    3,
+    3
+   ],
+   "estable_7_8": true,
+   "altura_conica_m": 2.109541650441327
+  },
+  {
+   "id": "c015",
+   "radio_m": 1.9826664480707654,
+   "capa_desde_borde": 2,
+   "nivel": 3,
+   "nivel_8": 3,
+   "intervalo_nivel": [
+    3,
+    3
+   ],
+   "estable_7_8": true,
+   "altura_conica_m": 2.119352368195952
+  },
+  {
+   "id": "c016",
+   "radio_m": 1.4169543278538823,
+   "capa_desde_borde": 2,
+   "nivel": 3,
+   "nivel_8": 3,
+   "intervalo_nivel": [
+    3,
+    3
+   ],
+   "estable_7_8": true,
+   "altura_conica_m": 2.842769401721378
+  },
+  {
+   "id": "c017",
+   "radio_m": 1.550909611869612,
+   "capa_desde_borde": 2,
+   "nivel": 3,
+   "nivel_8": 3,
+   "intervalo_nivel": [
+    3,
+    3
+   ],
+   "estable_7_8": true,
+   "altura_conica_m": 2.6714710845657135
+  },
+  {
+   "id": "c018",
+   "radio_m": 1.5514191464032,
+   "capa_desde_borde": 2,
+   "nivel": 3,
+   "nivel_8": 3,
+   "intervalo_nivel": [
+    3,
+    3
+   ],
+   "estable_7_8": true,
+   "altura_conica_m": 2.670819505878261
+  },
+  {
+   "id": "c019",
+   "radio_m": 1.866970830813921,
+   "capa_desde_borde": 1,
+   "nivel": 1,
+   "nivel_8": 2,
+   "intervalo_nivel": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "altura_conica_m": 2.267300727859436
+  },
+  {
+   "id": "c020",
+   "radio_m": 1.9040874943600345,
+   "capa_desde_borde": 1,
+   "nivel": 1,
+   "nivel_8": 2,
+   "intervalo_nivel": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "altura_conica_m": 2.219836963733971
+  },
+  {
+   "id": "c021",
+   "radio_m": 2.845207006618316,
+   "capa_desde_borde": 0,
+   "nivel": 0,
+   "nivel_8": 0,
+   "intervalo_nivel": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "altura_conica_m": 1.0163593265750437
+  },
+  {
+   "id": "c022",
+   "radio_m": 2.8753199419152433,
+   "capa_desde_borde": 0,
+   "nivel": 0,
+   "nivel_8": 0,
+   "intervalo_nivel": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "altura_conica_m": 0.9778517366812747
+  },
+  {
+   "id": "c023",
+   "radio_m": 1.5493924857398833,
+   "capa_desde_borde": 2,
+   "nivel": 3,
+   "nivel_8": 3,
+   "intervalo_nivel": [
+    3,
+    3
+   ],
+   "estable_7_8": true,
+   "altura_conica_m": 2.6734111435551364
+  },
+  {
+   "id": "c024",
+   "radio_m": 1.546506264751922,
+   "capa_desde_borde": 2,
+   "nivel": 3,
+   "nivel_8": 3,
+   "intervalo_nivel": [
+    3,
+    3
+   ],
+   "estable_7_8": true,
+   "altura_conica_m": 2.677101963232836
+  },
+  {
+   "id": "c025",
+   "radio_m": 1.4450868429385495,
+   "capa_desde_borde": 2,
+   "nivel": 3,
+   "nivel_8": 3,
+   "intervalo_nivel": [
+    3,
+    3
+   ],
+   "estable_7_8": true,
+   "altura_conica_m": 2.8067943184929036
+  },
+  {
+   "id": "c026",
+   "radio_m": 0.9163195399110399,
+   "capa_desde_borde": 3,
+   "nivel": 4,
+   "nivel_8": 5,
+   "intervalo_nivel": [
+    4,
+    5
+   ],
+   "estable_7_8": false,
+   "altura_conica_m": 3.4829673402672126
+  },
+  {
+   "id": "c027",
+   "radio_m": 1.4103772823645446,
+   "capa_desde_borde": 2,
+   "nivel": 3,
+   "nivel_8": 3,
+   "intervalo_nivel": [
+    3,
+    3
+   ],
+   "estable_7_8": true,
+   "altura_conica_m": 2.8511799458253906
+  },
+  {
+   "id": "c028",
+   "radio_m": 0.9091222216315047,
+   "capa_desde_borde": 3,
+   "nivel": 4,
+   "nivel_8": 5,
+   "intervalo_nivel": [
+    4,
+    5
+   ],
+   "estable_7_8": false,
+   "altura_conica_m": 3.492171072082475
+  },
+  {
+   "id": "c029",
+   "radio_m": 1.9371320769259501,
+   "capa_desde_borde": 1,
+   "nivel": 1,
+   "nivel_8": 2,
+   "intervalo_nivel": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "altura_conica_m": 2.1775804642890666
+  },
+  {
+   "id": "c030",
+   "radio_m": 1.929939995685179,
+   "capa_desde_borde": 1,
+   "nivel": 1,
+   "nivel_8": 2,
+   "intervalo_nivel": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "altura_conica_m": 2.1867774991238123
+  },
+  {
+   "id": "c031",
+   "radio_m": 1.966688114874188,
+   "capa_desde_borde": 1,
+   "nivel": 1,
+   "nivel_8": 2,
+   "intervalo_nivel": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "altura_conica_m": 2.1397850193424706
+  },
+  {
+   "id": "c032",
+   "radio_m": 1.9212054125776403,
+   "capa_desde_borde": 1,
+   "nivel": 1,
+   "nivel_8": 2,
+   "intervalo_nivel": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "altura_conica_m": 2.1979470427395906
+  },
+  {
+   "id": "c033",
+   "radio_m": 1.9950506902963574,
+   "capa_desde_borde": 2,
+   "nivel": 3,
+   "nivel_8": 3,
+   "intervalo_nivel": [
+    3,
+    3
+   ],
+   "estable_7_8": true,
+   "altura_conica_m": 2.103515741309006
+  },
+  {
+   "id": "c034",
+   "radio_m": 1.9916391093405938,
+   "capa_desde_borde": 2,
+   "nivel": 3,
+   "nivel_8": 3,
+   "intervalo_nivel": [
+    3,
+    3
+   ],
+   "estable_7_8": true,
+   "altura_conica_m": 2.1078783768023097
+  },
+  {
+   "id": "c035",
+   "radio_m": 1.5554279540067273,
+   "capa_desde_borde": 2,
+   "nivel": 3,
+   "nivel_8": 3,
+   "intervalo_nivel": [
+    3,
+    3
+   ],
+   "estable_7_8": true,
+   "altura_conica_m": 2.665693153444083
+  },
+  {
+   "id": "c036",
+   "radio_m": 1.543272007948717,
+   "capa_desde_borde": 2,
+   "nivel": 3,
+   "nivel_8": 3,
+   "intervalo_nivel": [
+    3,
+    3
+   ],
+   "estable_7_8": true,
+   "altura_conica_m": 2.6812378414978046
+  },
+  {
+   "id": "c037",
+   "radio_m": 0.6701761906497878,
+   "capa_desde_borde": 4,
+   "nivel": 6,
+   "nivel_8": 6,
+   "intervalo_nivel": [
+    6,
+    6
+   ],
+   "estable_7_8": true,
+   "altura_conica_m": 3.797728656458072
+  },
+  {
+   "id": "c038",
+   "radio_m": 0.6811568726622248,
+   "capa_desde_borde": 4,
+   "nivel": 6,
+   "nivel_8": 6,
+   "intervalo_nivel": [
+    6,
+    6
+   ],
+   "estable_7_8": true,
+   "altura_conica_m": 3.783686863603293
+  },
+  {
+   "id": "c039",
+   "radio_m": 0.9233388173942441,
+   "capa_desde_borde": 3,
+   "nivel": 4,
+   "nivel_8": 5,
+   "intervalo_nivel": [
+    4,
+    5
+   ],
+   "estable_7_8": false,
+   "altura_conica_m": 3.473991282104547
+  },
+  {
+   "id": "c040",
+   "radio_m": 0.6696123721727997,
+   "capa_desde_borde": 4,
+   "nivel": 6,
+   "nivel_8": 6,
+   "intervalo_nivel": [
+    6,
+    6
+   ],
+   "estable_7_8": true,
+   "altura_conica_m": 3.7984496519529416
+  },
+  {
+   "id": "c041",
+   "radio_m": 0.9096228293483348,
+   "capa_desde_borde": 3,
+   "nivel": 4,
+   "nivel_8": 5,
+   "intervalo_nivel": [
+    4,
+    5
+   ],
+   "estable_7_8": false,
+   "altura_conica_m": 3.49153090876172
+  },
+  {
+   "id": "c042",
+   "radio_m": 0.009607737518463394,
+   "capa_desde_borde": 5,
+   "nivel": 7,
+   "nivel_8": 8,
+   "intervalo_nivel": [
+    7,
+    8
+   ],
+   "estable_7_8": false,
+   "altura_conica_m": 4.642445348441862
+  },
+  {
+   "id": "c043",
+   "radio_m": 1.5659459726995772,
+   "capa_desde_borde": 2,
+   "nivel": 3,
+   "nivel_8": 3,
+   "intervalo_nivel": [
+    3,
+    3
+   ],
+   "estable_7_8": true,
+   "altura_conica_m": 2.6522430016629444
+  },
+  {
+   "id": "c044",
+   "radio_m": 1.4333439683133664,
+   "capa_desde_borde": 2,
+   "nivel": 3,
+   "nivel_8": 3,
+   "intervalo_nivel": [
+    3,
+    3
+   ],
+   "estable_7_8": true,
+   "altura_conica_m": 2.821810782207971
+  },
+  {
+   "id": "c045",
+   "radio_m": 1.5522677697290224,
+   "capa_desde_borde": 2,
+   "nivel": 3,
+   "nivel_8": 3,
+   "intervalo_nivel": [
+    3,
+    3
+   ],
+   "estable_7_8": true,
+   "altura_conica_m": 2.6697343098094346
+  },
+  {
+   "id": "c046",
+   "radio_m": 1.4432011239033637,
+   "capa_desde_borde": 2,
+   "nivel": 3,
+   "nivel_8": 3,
+   "intervalo_nivel": [
+    3,
+    3
+   ],
+   "estable_7_8": true,
+   "altura_conica_m": 2.8092057239087422
+  },
+  {
+   "id": "c047",
+   "radio_m": 2.5831423028572296,
+   "capa_desde_borde": 0,
+   "nivel": 0,
+   "nivel_8": 0,
+   "intervalo_nivel": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "altura_conica_m": 1.3514804311288626
+  },
+  {
+   "id": "c048",
+   "radio_m": 1.9505505507315057,
+   "capa_desde_borde": 1,
+   "nivel": 1,
+   "nivel_8": 2,
+   "intervalo_nivel": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "altura_conica_m": 2.160421290624673
+  },
+  {
+   "id": "c049",
+   "radio_m": 1.9350041763255335,
+   "capa_desde_borde": 1,
+   "nivel": 1,
+   "nivel_8": 2,
+   "intervalo_nivel": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "altura_conica_m": 2.180301564801108
+  },
+  {
+   "id": "c050",
+   "radio_m": 2.5672546839388235,
+   "capa_desde_borde": 0,
+   "nivel": 0,
+   "nivel_8": 0,
+   "intervalo_nivel": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "altura_conica_m": 1.3717970793621184
+  },
+  {
+   "id": "c051",
+   "radio_m": 2.003531954342516,
+   "capa_desde_borde": 2,
+   "nivel": 3,
+   "nivel_8": 3,
+   "intervalo_nivel": [
+    3,
+    3
+   ],
+   "estable_7_8": true,
+   "altura_conica_m": 2.0926701351118724
+  },
+  {
+   "id": "c052",
+   "radio_m": 1.9772191873486138,
+   "capa_desde_borde": 2,
+   "nivel": 3,
+   "nivel_8": 3,
+   "intervalo_nivel": [
+    3,
+    3
+   ],
+   "estable_7_8": true,
+   "altura_conica_m": 2.126318174746018
+  },
+  {
+   "id": "c053",
+   "radio_m": 1.83685779009404,
+   "capa_desde_borde": 1,
+   "nivel": 1,
+   "nivel_8": 2,
+   "intervalo_nivel": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "altura_conica_m": 2.3058084525651665
+  },
+  {
+   "id": "c054",
+   "radio_m": 1.8039786120391135,
+   "capa_desde_borde": 1,
+   "nivel": 1,
+   "nivel_8": 2,
+   "intervalo_nivel": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "altura_conica_m": 2.3478534372901363
+  },
+  {
+   "id": "c055",
+   "radio_m": 0.6880738002780876,
+   "capa_desde_borde": 4,
+   "nivel": 6,
+   "nivel_8": 6,
+   "intervalo_nivel": [
+    6,
+    6
+   ],
+   "estable_7_8": true,
+   "altura_conica_m": 3.7748416876239292
+  },
+  {
+   "id": "c056",
+   "radio_m": 0.6698379868293393,
+   "capa_desde_borde": 4,
+   "nivel": 6,
+   "nivel_8": 6,
+   "intervalo_nivel": [
+    6,
+    6
+   ],
+   "estable_7_8": true,
+   "altura_conica_m": 3.79816114216197
+  },
+  {
+   "id": "c057",
+   "radio_m": 0.9282279750018652,
+   "capa_desde_borde": 3,
+   "nivel": 4,
+   "nivel_8": 5,
+   "intervalo_nivel": [
+    4,
+    5
+   ],
+   "estable_7_8": false,
+   "altura_conica_m": 3.467739162401707
+  },
+  {
+   "id": "c058",
+   "radio_m": 0.9152532170974599,
+   "capa_desde_borde": 3,
+   "nivel": 4,
+   "nivel_8": 5,
+   "intervalo_nivel": [
+    4,
+    5
+   ],
+   "estable_7_8": false,
+   "altura_conica_m": 3.484330924427801
+  },
+  {
+   "id": "c059",
+   "radio_m": 1.9563057971264712,
+   "capa_desde_borde": 1,
+   "nivel": 1,
+   "nivel_8": 2,
+   "intervalo_nivel": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "altura_conica_m": 2.1530616405032337
+  },
+  {
+   "id": "c060",
+   "radio_m": 1.5683894537318293,
+   "capa_desde_borde": 2,
+   "nivel": 3,
+   "nivel_8": 3,
+   "intervalo_nivel": [
+    3,
+    3
+   ],
+   "estable_7_8": true,
+   "altura_conica_m": 2.6491183456114715
+  },
+  {
+   "id": "c061",
+   "radio_m": 1.9386450574083547,
+   "capa_desde_borde": 1,
+   "nivel": 1,
+   "nivel_8": 2,
+   "intervalo_nivel": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "altura_conica_m": 2.1756457066389325
+  },
+  {
+   "id": "c062",
+   "radio_m": 1.5554570734767033,
+   "capa_desde_borde": 2,
+   "nivel": 3,
+   "nivel_8": 3,
+   "intervalo_nivel": [
+    3,
+    3
+   ],
+   "estable_7_8": true,
+   "altura_conica_m": 2.6656559162702007
+  },
+  {
+   "id": "c063",
+   "radio_m": 0.690776915576374,
+   "capa_desde_borde": 4,
+   "nivel": 6,
+   "nivel_8": 6,
+   "intervalo_nivel": [
+    6,
+    6
+   ],
+   "estable_7_8": true,
+   "altura_conica_m": 3.7713850184445348
+  },
+  {
+   "id": "c064",
+   "radio_m": 0.6781428303798692,
+   "capa_desde_borde": 4,
+   "nivel": 6,
+   "nivel_8": 6,
+   "intervalo_nivel": [
+    6,
+    6
+   ],
+   "estable_7_8": true,
+   "altura_conica_m": 3.7875411376216506
+  },
+  {
+   "id": "c065",
+   "radio_m": 1.9376435474973357,
+   "capa_desde_borde": 1,
+   "nivel": 1,
+   "nivel_8": 2,
+   "intervalo_nivel": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "altura_conica_m": 2.1769264098499543
+  },
+  {
+   "id": "c066",
+   "radio_m": 1.92699343643592,
+   "capa_desde_borde": 1,
+   "nivel": 1,
+   "nivel_8": 2,
+   "intervalo_nivel": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "altura_conica_m": 2.1905454777034272
+  },
+  {
+   "id": "c067",
+   "radio_m": 1.4551781716192838,
+   "capa_desde_borde": 2,
+   "nivel": 3,
+   "nivel_8": 3,
+   "intervalo_nivel": [
+    3,
+    3
+   ],
+   "estable_7_8": true,
+   "altura_conica_m": 2.793889806113448
+  },
+  {
+   "id": "c068",
+   "radio_m": 1.5415152585937115,
+   "capa_desde_borde": 2,
+   "nivel": 3,
+   "nivel_8": 3,
+   "intervalo_nivel": [
+    3,
+    3
+   ],
+   "estable_7_8": true,
+   "altura_conica_m": 2.683484324048962
+  },
+  {
+   "id": "c069",
+   "radio_m": 1.445324631874441,
+   "capa_desde_borde": 2,
+   "nivel": 3,
+   "nivel_8": 3,
+   "intervalo_nivel": [
+    3,
+    3
+   ],
+   "estable_7_8": true,
+   "altura_conica_m": 2.8064902405697687
+  },
+  {
+   "id": "c070",
+   "radio_m": 1.550669253990511,
+   "capa_desde_borde": 2,
+   "nivel": 3,
+   "nivel_8": 3,
+   "intervalo_nivel": [
+    3,
+    3
+   ],
+   "estable_7_8": true,
+   "altura_conica_m": 2.671778447582467
+  },
+  {
+   "id": "c071",
+   "radio_m": 2.8952973791652377,
+   "capa_desde_borde": 0,
+   "nivel": 0,
+   "nivel_8": 0,
+   "intervalo_nivel": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "altura_conica_m": 0.9523051417324327
+  },
+  {
+   "id": "c072",
+   "radio_m": 2.8807604675021103,
+   "capa_desde_borde": 0,
+   "nivel": 0,
+   "nivel_8": 0,
+   "intervalo_nivel": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "altura_conica_m": 0.9708945428361762
+  },
+  {
+   "id": "c073",
+   "radio_m": 2.0069588754419074,
+   "capa_desde_borde": 2,
+   "nivel": 3,
+   "nivel_8": 3,
+   "intervalo_nivel": [
+    3,
+    3
+   ],
+   "estable_7_8": true,
+   "altura_conica_m": 2.0882878830666147
+  },
+  {
+   "id": "c074",
+   "radio_m": 1.982969242867923,
+   "capa_desde_borde": 2,
+   "nivel": 3,
+   "nivel_8": 3,
+   "intervalo_nivel": [
+    3,
+    3
+   ],
+   "estable_7_8": true,
+   "altura_conica_m": 2.1189651625729886
+  },
+  {
+   "id": "c075",
+   "radio_m": 0.9299477935582077,
+   "capa_desde_borde": 3,
+   "nivel": 4,
+   "nivel_8": 5,
+   "intervalo_nivel": [
+    4,
+    5
+   ],
+   "estable_7_8": false,
+   "altura_conica_m": 3.4655399059357963
+  },
+  {
+   "id": "c076",
+   "radio_m": 0.9221688031576913,
+   "capa_desde_borde": 3,
+   "nivel": 4,
+   "nivel_8": 5,
+   "intervalo_nivel": [
+    4,
+    5
+   ],
+   "estable_7_8": false,
+   "altura_conica_m": 3.4754874639927222
+  },
+  {
+   "id": "c077",
+   "radio_m": 0.6858280077419878,
+   "capa_desde_borde": 4,
+   "nivel": 6,
+   "nivel_8": 6,
+   "intervalo_nivel": [
+    6,
+    6
+   ],
+   "estable_7_8": true,
+   "altura_conica_m": 3.7777135450869723
+  },
+  {
+   "id": "c078",
+   "radio_m": 2.03645606633982,
+   "capa_desde_borde": 1,
+   "nivel": 1,
+   "nivel_8": 2,
+   "intervalo_nivel": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "altura_conica_m": 2.050567690102532
+  },
+  {
+   "id": "c079",
+   "radio_m": 1.9896088459853556,
+   "capa_desde_borde": 1,
+   "nivel": 1,
+   "nivel_8": 2,
+   "intervalo_nivel": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "altura_conica_m": 2.110474621502103
+  },
+  {
+   "id": "c080",
+   "radio_m": 1.458030691698049,
+   "capa_desde_borde": 2,
+   "nivel": 3,
+   "nivel_8": 3,
+   "intervalo_nivel": [
+    3,
+    3
+   ],
+   "estable_7_8": true,
+   "altura_conica_m": 2.790242082227559
+  },
+  {
+   "id": "c081",
+   "radio_m": 2.0015004956170173,
+   "capa_desde_borde": 2,
+   "nivel": 3,
+   "nivel_8": 3,
+   "intervalo_nivel": [
+    3,
+    3
+   ],
+   "estable_7_8": true,
+   "altura_conica_m": 2.0952679084181365
+  },
+  {
+   "id": "c082",
+   "radio_m": 1.9980999271703574,
+   "capa_desde_borde": 2,
+   "nivel": 3,
+   "nivel_8": 3,
+   "intervalo_nivel": [
+    3,
+    3
+   ],
+   "estable_7_8": true,
+   "altura_conica_m": 2.0996164614189805
+  },
+  {
+   "id": "c083",
+   "radio_m": 1.8772280275021476,
+   "capa_desde_borde": 1,
+   "nivel": 1,
+   "nivel_8": 2,
+   "intervalo_nivel": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "altura_conica_m": 2.25418410805352
+  },
+  {
+   "id": "c084",
+   "radio_m": 1.8682434068928553,
+   "capa_desde_borde": 1,
+   "nivel": 1,
+   "nivel_8": 2,
+   "intervalo_nivel": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "altura_conica_m": 2.265673392720134
+  },
+  {
+   "id": "c085",
+   "radio_m": 1.5671471749234658,
+   "capa_desde_borde": 2,
+   "nivel": 3,
+   "nivel_8": 3,
+   "intervalo_nivel": [
+    3,
+    3
+   ],
+   "estable_7_8": true,
+   "altura_conica_m": 2.650706937438023
+  },
+  {
+   "id": "c086",
+   "radio_m": 1.9393303667411976,
+   "capa_desde_borde": 1,
+   "nivel": 1,
+   "nivel_8": 2,
+   "intervalo_nivel": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "altura_conica_m": 2.1747693519933535
+  },
+  {
+   "id": "c087",
+   "radio_m": 1.5656940444166867,
+   "capa_desde_borde": 2,
+   "nivel": 3,
+   "nivel_8": 3,
+   "intervalo_nivel": [
+    3,
+    3
+   ],
+   "estable_7_8": true,
+   "altura_conica_m": 2.6525651605924727
+  },
+  {
+   "id": "c088",
+   "radio_m": 2.555510819454647,
+   "capa_desde_borde": 0,
+   "nivel": 0,
+   "nivel_8": 0,
+   "intervalo_nivel": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "altura_conica_m": 1.3868148088815255
+  },
+  {
+   "id": "c089",
+   "radio_m": 2.566786594750104,
+   "capa_desde_borde": 0,
+   "nivel": 0,
+   "nivel_8": 0,
+   "intervalo_nivel": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "altura_conica_m": 1.3723956588873354
+  },
+  {
+   "id": "c090",
+   "radio_m": 1.5624156559281102,
+   "capa_desde_borde": 2,
+   "nivel": 3,
+   "nivel_8": 3,
+   "intervalo_nivel": [
+    3,
+    3
+   ],
+   "estable_7_8": true,
+   "altura_conica_m": 2.656757473237711
+  },
+  {
+   "id": "c091",
+   "radio_m": 1.9323799029805948,
+   "capa_desde_borde": 1,
+   "nivel": 1,
+   "nivel_8": 2,
+   "intervalo_nivel": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "altura_conica_m": 2.183657413068293
+  },
+  {
+   "id": "c092",
+   "radio_m": 1.5654052760199488,
+   "capa_desde_borde": 2,
+   "nivel": 3,
+   "nivel_8": 3,
+   "intervalo_nivel": [
+    3,
+    3
+   ],
+   "estable_7_8": true,
+   "altura_conica_m": 2.652934429642009
+  },
+  {
+   "id": "c093",
+   "radio_m": 1.975274876862147,
+   "capa_desde_borde": 1,
+   "nivel": 1,
+   "nivel_8": 2,
+   "intervalo_nivel": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "altura_conica_m": 2.128804505291372
+  },
+  {
+   "id": "c094",
+   "radio_m": 1.9652163655274395,
+   "capa_desde_borde": 1,
+   "nivel": 1,
+   "nivel_8": 2,
+   "intervalo_nivel": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "altura_conica_m": 2.1416670517551926
+  },
+  {
+   "id": "c095",
+   "radio_m": 1.8200349747564515,
+   "capa_desde_borde": 1,
+   "nivel": 1,
+   "nivel_8": 2,
+   "intervalo_nivel": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "altura_conica_m": 2.3273210041477603
+  },
+  {
+   "id": "c096",
+   "radio_m": 1.952653777473725,
+   "capa_desde_borde": 1,
+   "nivel": 1,
+   "nivel_8": 2,
+   "intervalo_nivel": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "altura_conica_m": 2.1577317423609657
+  },
+  {
+   "id": "c097",
+   "radio_m": 1.9503441263406773,
+   "capa_desde_borde": 1,
+   "nivel": 1,
+   "nivel_8": 2,
+   "intervalo_nivel": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "altura_conica_m": 2.1606852604339166
+  },
+  {
+   "id": "c098",
+   "radio_m": 2.0021119197639576,
+   "capa_desde_borde": 2,
+   "nivel": 3,
+   "nivel_8": 3,
+   "intervalo_nivel": [
+    3,
+    3
+   ],
+   "estable_7_8": true,
+   "altura_conica_m": 2.094486036107471
+  },
+  {
+   "id": "c099",
+   "radio_m": 1.989794763554623,
+   "capa_desde_borde": 2,
+   "nivel": 3,
+   "nivel_8": 3,
+   "intervalo_nivel": [
+    3,
+    3
+   ],
+   "estable_7_8": true,
+   "altura_conica_m": 2.110236875249843
+  },
+  {
+   "id": "c100",
+   "radio_m": 1.9939549536335235,
+   "capa_desde_borde": 2,
+   "nivel": 3,
+   "nivel_8": 3,
+   "intervalo_nivel": [
+    3,
+    3
+   ],
+   "estable_7_8": true,
+   "altura_conica_m": 2.104916939087566
+  },
+  {
+   "id": "c101",
+   "radio_m": 1.9999728984558538,
+   "capa_desde_borde": 2,
+   "nivel": 3,
+   "nivel_8": 3,
+   "intervalo_nivel": [
+    3,
+    3
+   ],
+   "estable_7_8": true,
+   "altura_conica_m": 2.097221357473333
+  },
+  {
+   "id": "c102",
+   "radio_m": 2.8892917460676313,
+   "capa_desde_borde": 0,
+   "nivel": 0,
+   "nivel_8": 0,
+   "intervalo_nivel": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "altura_conica_m": 0.9599849794531571
+  },
+  {
+   "id": "c103",
+   "radio_m": 2.8967699309074737,
+   "capa_desde_borde": 0,
+   "nivel": 0,
+   "nivel_8": 0,
+   "intervalo_nivel": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "altura_conica_m": 0.9504220832385248
+  },
+  {
+   "id": "c104",
+   "radio_m": 2.5825345443929986,
+   "capa_desde_borde": 0,
+   "nivel": 0,
+   "nivel_8": 0,
+   "intervalo_nivel": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "altura_conica_m": 1.352257615865731
+  }
+ ],
+ "vecindades": [
+  {
+   "a": "c000",
+   "b": "c001",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c000",
+   "b": "c002",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c000",
+   "b": "c003",
+   "salto": 1,
+   "salto_8": 2,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c000",
+   "b": "c005",
+   "salto": 1,
+   "salto_8": 2,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c000",
+   "b": "c009",
+   "salto": 1,
+   "salto_8": 2,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c000",
+   "b": "contorno",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c001",
+   "b": "c004",
+   "salto": 1,
+   "salto_8": 2,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c001",
+   "b": "c007",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c001",
+   "b": "contorno",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c002",
+   "b": "c006",
+   "salto": 1,
+   "salto_8": 2,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c002",
+   "b": "c008",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c002",
+   "b": "contorno",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c003",
+   "b": "c004",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c003",
+   "b": "c009",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c003",
+   "b": "c012",
+   "salto": 2,
+   "salto_8": 1,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c003",
+   "b": "c017",
+   "salto": 2,
+   "salto_8": 1,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c004",
+   "b": "c010",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c004",
+   "b": "c012",
+   "salto": 2,
+   "salto_8": 1,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c004",
+   "b": "c014",
+   "salto": 2,
+   "salto_8": 1,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c004",
+   "b": "c017",
+   "salto": 2,
+   "salto_8": 1,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c004",
+   "b": "c023",
+   "salto": 2,
+   "salto_8": 1,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c005",
+   "b": "c006",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c005",
+   "b": "c009",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c005",
+   "b": "c013",
+   "salto": 2,
+   "salto_8": 1,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c005",
+   "b": "c018",
+   "salto": 2,
+   "salto_8": 1,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c006",
+   "b": "c011",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c006",
+   "b": "c013",
+   "salto": 2,
+   "salto_8": 1,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c006",
+   "b": "c015",
+   "salto": 2,
+   "salto_8": 1,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c006",
+   "b": "c018",
+   "salto": 2,
+   "salto_8": 1,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c006",
+   "b": "c024",
+   "salto": 2,
+   "salto_8": 1,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c007",
+   "b": "c010",
+   "salto": 1,
+   "salto_8": 2,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c007",
+   "b": "c019",
+   "salto": 1,
+   "salto_8": 2,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c007",
+   "b": "c021",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c007",
+   "b": "c029",
+   "salto": 1,
+   "salto_8": 2,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c007",
+   "b": "contorno",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c008",
+   "b": "c011",
+   "salto": 1,
+   "salto_8": 2,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c008",
+   "b": "c020",
+   "salto": 1,
+   "salto_8": 2,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c008",
+   "b": "c022",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c008",
+   "b": "c030",
+   "salto": 1,
+   "salto_8": 2,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c008",
+   "b": "contorno",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c009",
+   "b": "c016",
+   "salto": 2,
+   "salto_8": 1,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c010",
+   "b": "c014",
+   "salto": 2,
+   "salto_8": 1,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c010",
+   "b": "c019",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c010",
+   "b": "c023",
+   "salto": 2,
+   "salto_8": 1,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c011",
+   "b": "c015",
+   "salto": 2,
+   "salto_8": 1,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c011",
+   "b": "c020",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c011",
+   "b": "c024",
+   "salto": 2,
+   "salto_8": 1,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c016",
+   "b": "c017",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c016",
+   "b": "c018",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c016",
+   "b": "c026",
+   "salto": 1,
+   "salto_8": 2,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c016",
+   "b": "c028",
+   "salto": 1,
+   "salto_8": 2,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c019",
+   "b": "c025",
+   "salto": 2,
+   "salto_8": 1,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c019",
+   "b": "c029",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c020",
+   "b": "c027",
+   "salto": 2,
+   "salto_8": 1,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c020",
+   "b": "c030",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c021",
+   "b": "c031",
+   "salto": 1,
+   "salto_8": 2,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c021",
+   "b": "c047",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c021",
+   "b": "contorno",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c022",
+   "b": "c032",
+   "salto": 1,
+   "salto_8": 2,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c022",
+   "b": "c050",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c022",
+   "b": "contorno",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c023",
+   "b": "c025",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c024",
+   "b": "c027",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c025",
+   "b": "c026",
+   "salto": 1,
+   "salto_8": 2,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c025",
+   "b": "c029",
+   "salto": -2,
+   "salto_8": -1,
+   "intervalo_salto": [
+    -2,
+    -1
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c025",
+   "b": "c035",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c025",
+   "b": "c039",
+   "salto": 1,
+   "salto_8": 2,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c026",
+   "b": "c037",
+   "salto": 2,
+   "salto_8": 1,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c026",
+   "b": "c038",
+   "salto": 2,
+   "salto_8": 1,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c027",
+   "b": "c028",
+   "salto": 1,
+   "salto_8": 2,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c027",
+   "b": "c030",
+   "salto": -2,
+   "salto_8": -1,
+   "intervalo_salto": [
+    -2,
+    -1
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c027",
+   "b": "c036",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c027",
+   "b": "c041",
+   "salto": 1,
+   "salto_8": 2,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c028",
+   "b": "c037",
+   "salto": 2,
+   "salto_8": 1,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c028",
+   "b": "c040",
+   "salto": 2,
+   "salto_8": 1,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c029",
+   "b": "c031",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c029",
+   "b": "c033",
+   "salto": 2,
+   "salto_8": 1,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c029",
+   "b": "c035",
+   "salto": 2,
+   "salto_8": 1,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c030",
+   "b": "c032",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c030",
+   "b": "c034",
+   "salto": 2,
+   "salto_8": 1,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c030",
+   "b": "c036",
+   "salto": 2,
+   "salto_8": 1,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c031",
+   "b": "c033",
+   "salto": 2,
+   "salto_8": 1,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c031",
+   "b": "c035",
+   "salto": 2,
+   "salto_8": 1,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c031",
+   "b": "c043",
+   "salto": 2,
+   "salto_8": 1,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c031",
+   "b": "c048",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c031",
+   "b": "c051",
+   "salto": 2,
+   "salto_8": 1,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c032",
+   "b": "c034",
+   "salto": 2,
+   "salto_8": 1,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c032",
+   "b": "c036",
+   "salto": 2,
+   "salto_8": 1,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c032",
+   "b": "c045",
+   "salto": 2,
+   "salto_8": 1,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c032",
+   "b": "c049",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c032",
+   "b": "c052",
+   "salto": 2,
+   "salto_8": 1,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c037",
+   "b": "c042",
+   "salto": 1,
+   "salto_8": 2,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c038",
+   "b": "c039",
+   "salto": -2,
+   "salto_8": -1,
+   "intervalo_salto": [
+    -2,
+    -1
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c038",
+   "b": "c042",
+   "salto": 1,
+   "salto_8": 2,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c039",
+   "b": "c044",
+   "salto": -1,
+   "salto_8": -2,
+   "intervalo_salto": [
+    -2,
+    -1
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c039",
+   "b": "c055",
+   "salto": 2,
+   "salto_8": 1,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c040",
+   "b": "c041",
+   "salto": -2,
+   "salto_8": -1,
+   "intervalo_salto": [
+    -2,
+    -1
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c040",
+   "b": "c042",
+   "salto": 1,
+   "salto_8": 2,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c041",
+   "b": "c046",
+   "salto": -1,
+   "salto_8": -2,
+   "intervalo_salto": [
+    -2,
+    -1
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c041",
+   "b": "c056",
+   "salto": 2,
+   "salto_8": 1,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c042",
+   "b": "c055",
+   "salto": -1,
+   "salto_8": -2,
+   "intervalo_salto": [
+    -2,
+    -1
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c042",
+   "b": "c056",
+   "salto": -1,
+   "salto_8": -2,
+   "intervalo_salto": [
+    -2,
+    -1
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c042",
+   "b": "c063",
+   "salto": -1,
+   "salto_8": -2,
+   "intervalo_salto": [
+    -2,
+    -1
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c042",
+   "b": "c064",
+   "salto": -1,
+   "salto_8": -2,
+   "intervalo_salto": [
+    -2,
+    -1
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c042",
+   "b": "c077",
+   "salto": -1,
+   "salto_8": -2,
+   "intervalo_salto": [
+    -2,
+    -1
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c043",
+   "b": "c044",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c043",
+   "b": "c048",
+   "salto": -2,
+   "salto_8": -1,
+   "intervalo_salto": [
+    -2,
+    -1
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c044",
+   "b": "c053",
+   "salto": -2,
+   "salto_8": -1,
+   "intervalo_salto": [
+    -2,
+    -1
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c044",
+   "b": "c057",
+   "salto": 1,
+   "salto_8": 2,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c044",
+   "b": "c060",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c045",
+   "b": "c046",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c045",
+   "b": "c049",
+   "salto": -2,
+   "salto_8": -1,
+   "intervalo_salto": [
+    -2,
+    -1
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c046",
+   "b": "c054",
+   "salto": -2,
+   "salto_8": -1,
+   "intervalo_salto": [
+    -2,
+    -1
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c046",
+   "b": "c058",
+   "salto": 1,
+   "salto_8": 2,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c046",
+   "b": "c062",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c047",
+   "b": "c048",
+   "salto": 1,
+   "salto_8": 2,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c047",
+   "b": "c053",
+   "salto": 1,
+   "salto_8": 2,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c047",
+   "b": "c059",
+   "salto": 1,
+   "salto_8": 2,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c047",
+   "b": "c071",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c047",
+   "b": "contorno",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c048",
+   "b": "c051",
+   "salto": 2,
+   "salto_8": 1,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c048",
+   "b": "c053",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c049",
+   "b": "c050",
+   "salto": -1,
+   "salto_8": -2,
+   "intervalo_salto": [
+    -2,
+    -1
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c049",
+   "b": "c052",
+   "salto": 2,
+   "salto_8": 1,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c049",
+   "b": "c054",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c050",
+   "b": "c054",
+   "salto": 1,
+   "salto_8": 2,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c050",
+   "b": "c061",
+   "salto": 1,
+   "salto_8": 2,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c050",
+   "b": "c072",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c050",
+   "b": "contorno",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c053",
+   "b": "c059",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c054",
+   "b": "c061",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c055",
+   "b": "c057",
+   "salto": -2,
+   "salto_8": -1,
+   "intervalo_salto": [
+    -2,
+    -1
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c056",
+   "b": "c058",
+   "salto": -2,
+   "salto_8": -1,
+   "intervalo_salto": [
+    -2,
+    -1
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c057",
+   "b": "c063",
+   "salto": 2,
+   "salto_8": 1,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c057",
+   "b": "c067",
+   "salto": -1,
+   "salto_8": -2,
+   "intervalo_salto": [
+    -2,
+    -1
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c058",
+   "b": "c064",
+   "salto": 2,
+   "salto_8": 1,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c058",
+   "b": "c069",
+   "salto": -1,
+   "salto_8": -2,
+   "intervalo_salto": [
+    -2,
+    -1
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c059",
+   "b": "c060",
+   "salto": 2,
+   "salto_8": 1,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c059",
+   "b": "c065",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c059",
+   "b": "c073",
+   "salto": 2,
+   "salto_8": 1,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c060",
+   "b": "c065",
+   "salto": -2,
+   "salto_8": -1,
+   "intervalo_salto": [
+    -2,
+    -1
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c061",
+   "b": "c062",
+   "salto": 2,
+   "salto_8": 1,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c061",
+   "b": "c066",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c061",
+   "b": "c074",
+   "salto": 2,
+   "salto_8": 1,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c062",
+   "b": "c066",
+   "salto": -2,
+   "salto_8": -1,
+   "intervalo_salto": [
+    -2,
+    -1
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c063",
+   "b": "c075",
+   "salto": -2,
+   "salto_8": -1,
+   "intervalo_salto": [
+    -2,
+    -1
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c064",
+   "b": "c076",
+   "salto": -2,
+   "salto_8": -1,
+   "intervalo_salto": [
+    -2,
+    -1
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c065",
+   "b": "c068",
+   "salto": 2,
+   "salto_8": 1,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c065",
+   "b": "c071",
+   "salto": -1,
+   "salto_8": -2,
+   "intervalo_salto": [
+    -2,
+    -1
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c065",
+   "b": "c073",
+   "salto": 2,
+   "salto_8": 1,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c065",
+   "b": "c078",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c065",
+   "b": "c081",
+   "salto": 2,
+   "salto_8": 1,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c066",
+   "b": "c070",
+   "salto": 2,
+   "salto_8": 1,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c066",
+   "b": "c072",
+   "salto": -1,
+   "salto_8": -2,
+   "intervalo_salto": [
+    -2,
+    -1
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c066",
+   "b": "c074",
+   "salto": 2,
+   "salto_8": 1,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c066",
+   "b": "c079",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c066",
+   "b": "c082",
+   "salto": 2,
+   "salto_8": 1,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c067",
+   "b": "c068",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c067",
+   "b": "c075",
+   "salto": 1,
+   "salto_8": 2,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c067",
+   "b": "c078",
+   "salto": -2,
+   "salto_8": -1,
+   "intervalo_salto": [
+    -2,
+    -1
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c067",
+   "b": "c083",
+   "salto": -2,
+   "salto_8": -1,
+   "intervalo_salto": [
+    -2,
+    -1
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c067",
+   "b": "c085",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c069",
+   "b": "c070",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c069",
+   "b": "c076",
+   "salto": 1,
+   "salto_8": 2,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c069",
+   "b": "c079",
+   "salto": -2,
+   "salto_8": -1,
+   "intervalo_salto": [
+    -2,
+    -1
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c069",
+   "b": "c084",
+   "salto": -2,
+   "salto_8": -1,
+   "intervalo_salto": [
+    -2,
+    -1
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c069",
+   "b": "c090",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c070",
+   "b": "c079",
+   "salto": -2,
+   "salto_8": -1,
+   "intervalo_salto": [
+    -2,
+    -1
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c071",
+   "b": "c089",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c071",
+   "b": "contorno",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c072",
+   "b": "c088",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c072",
+   "b": "contorno",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c075",
+   "b": "c077",
+   "salto": 2,
+   "salto_8": 1,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c075",
+   "b": "c080",
+   "salto": -1,
+   "salto_8": -2,
+   "intervalo_salto": [
+    -2,
+    -1
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c076",
+   "b": "c077",
+   "salto": 2,
+   "salto_8": 1,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c076",
+   "b": "c080",
+   "salto": -1,
+   "salto_8": -2,
+   "intervalo_salto": [
+    -2,
+    -1
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c078",
+   "b": "c081",
+   "salto": 2,
+   "salto_8": 1,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c078",
+   "b": "c083",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c078",
+   "b": "c089",
+   "salto": -1,
+   "salto_8": -2,
+   "intervalo_salto": [
+    -2,
+    -1
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c079",
+   "b": "c082",
+   "salto": 2,
+   "salto_8": 1,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c079",
+   "b": "c084",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c079",
+   "b": "c088",
+   "salto": -1,
+   "salto_8": -2,
+   "intervalo_salto": [
+    -2,
+    -1
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c080",
+   "b": "c087",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c080",
+   "b": "c092",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c080",
+   "b": "c095",
+   "salto": -2,
+   "salto_8": -1,
+   "intervalo_salto": [
+    -2,
+    -1
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c083",
+   "b": "c089",
+   "salto": -1,
+   "salto_8": -2,
+   "intervalo_salto": [
+    -2,
+    -1
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c083",
+   "b": "c093",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c084",
+   "b": "c088",
+   "salto": -1,
+   "salto_8": -2,
+   "intervalo_salto": [
+    -2,
+    -1
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c084",
+   "b": "c094",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c085",
+   "b": "c086",
+   "salto": -2,
+   "salto_8": -1,
+   "intervalo_salto": [
+    -2,
+    -1
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c085",
+   "b": "c093",
+   "salto": -2,
+   "salto_8": -1,
+   "intervalo_salto": [
+    -2,
+    -1
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c086",
+   "b": "c087",
+   "salto": 2,
+   "salto_8": 1,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c086",
+   "b": "c093",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c086",
+   "b": "c096",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c086",
+   "b": "c098",
+   "salto": 2,
+   "salto_8": 1,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c086",
+   "b": "c101",
+   "salto": 2,
+   "salto_8": 1,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c086",
+   "b": "c103",
+   "salto": -1,
+   "salto_8": -2,
+   "intervalo_salto": [
+    -2,
+    -1
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c087",
+   "b": "c096",
+   "salto": -2,
+   "salto_8": -1,
+   "intervalo_salto": [
+    -2,
+    -1
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c088",
+   "b": "c094",
+   "salto": 1,
+   "salto_8": 2,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c088",
+   "b": "c102",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c088",
+   "b": "contorno",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c089",
+   "b": "c093",
+   "salto": 1,
+   "salto_8": 2,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c089",
+   "b": "c103",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c089",
+   "b": "contorno",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c090",
+   "b": "c091",
+   "salto": -2,
+   "salto_8": -1,
+   "intervalo_salto": [
+    -2,
+    -1
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c090",
+   "b": "c094",
+   "salto": -2,
+   "salto_8": -1,
+   "intervalo_salto": [
+    -2,
+    -1
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c091",
+   "b": "c092",
+   "salto": 2,
+   "salto_8": 1,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c091",
+   "b": "c094",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c091",
+   "b": "c097",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c091",
+   "b": "c099",
+   "salto": 2,
+   "salto_8": 1,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c091",
+   "b": "c100",
+   "salto": 2,
+   "salto_8": 1,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c091",
+   "b": "c102",
+   "salto": -1,
+   "salto_8": -2,
+   "intervalo_salto": [
+    -2,
+    -1
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c092",
+   "b": "c097",
+   "salto": -2,
+   "salto_8": -1,
+   "intervalo_salto": [
+    -2,
+    -1
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c093",
+   "b": "c098",
+   "salto": 2,
+   "salto_8": 1,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c094",
+   "b": "c099",
+   "salto": 2,
+   "salto_8": 1,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c095",
+   "b": "c096",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c095",
+   "b": "c097",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c095",
+   "b": "c104",
+   "salto": -1,
+   "salto_8": -2,
+   "intervalo_salto": [
+    -2,
+    -1
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c096",
+   "b": "c101",
+   "salto": 2,
+   "salto_8": 1,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c096",
+   "b": "c104",
+   "salto": -1,
+   "salto_8": -2,
+   "intervalo_salto": [
+    -2,
+    -1
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c097",
+   "b": "c100",
+   "salto": 2,
+   "salto_8": 1,
+   "intervalo_salto": [
+    1,
+    2
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c097",
+   "b": "c104",
+   "salto": -1,
+   "salto_8": -2,
+   "intervalo_salto": [
+    -2,
+    -1
+   ],
+   "estable_7_8": false,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c102",
+   "b": "c104",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c102",
+   "b": "contorno",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c103",
+   "b": "c104",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c103",
+   "b": "contorno",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  },
+  {
+   "a": "c104",
+   "b": "contorno",
+   "salto": 0,
+   "salto_8": 0,
+   "intervalo_salto": [
+    0,
+    0
+   ],
+   "estable_7_8": true,
+   "procedencia": "diferencia de capas topologicas escaladas; no observado"
+  }
+ ]
+}

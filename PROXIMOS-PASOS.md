@@ -7,10 +7,12 @@ histórico. El registro de decisiones va en `docs/decisiones/`.
 
 ## Actualización — respuesta de Ferrer, 2026-08-28
 
-La comunicación personal registrada en `docs/fuentes.md`, entrada 11, **no
-levanta todavía** `BLOCKED_MISSING_SIGNED_LEVEL_CONSTRAINTS`: la captura
-permite contrastar el número global de niveles, pero no firma ninguna de las
-227 vecindades de la planta.
+La comunicación personal registrada en `docs/fuentes.md`, entrada 11, no
+levanta `BLOCKED_MISSING_SIGNED_LEVEL_CONSTRAINTS` como afirmación histórica:
+la captura permite contrastar el número global de niveles, pero no firma
+ninguna de las 227 vecindades de la planta. La decisión 0007 sí habilita una
+salida paralela `APPROXIMATE_LEVELS_AVAILABLE` para continuar el modelo 3D con
+una hipótesis radial explícita y reemplazable.
 
 Sí identifica la vía documental correcta. Ferrer indica que el sentido de
 ascenso debe deducirse de fotografías y que las piezas vecinas han de mantener
@@ -45,8 +47,10 @@ regular confirmados, 16 cuadrados marcados al límite de resolución. Las otras
 vecindades** llevan todas `"salto": null`. Suite en **588 tests superados** y
 `git diff --check` limpio.
 
-**Sigue sin propagarse nada.** El bloqueo ya no es la topología —está
-completa— sino documental: falta la evidencia del signo de cada paso.
+**La propagación histórica sigue bloqueada.** El bloqueo ya no es la topología
+—está completa— sino documental: falta la evidencia del signo de cada paso.
+Desde la decisión 0007 existe además una nivelación aproximada separada, apta
+para prototipos y explícitamente no verificada.
 
 Estado de reanudación: `BLOCKED_MISSING_SIGNED_LEVEL_CONSTRAINTS`.
 
@@ -77,6 +81,7 @@ estado perdido, y por tanto sujeta a evidencia.
 | Reglas de nivel candidatas | **tres refutadas** con testigo sobre la propuesta de Ferrer, no sobre la cúpula |
 | Tamaño del salto de nivel | **8 unidades**, pauta moderna documentada por Saseta y usada por Ferrer; no consta en los manuscritos |
 | Teorema del triángulo | **54 triángulos** (16 robustos = 8 pares espejo, N estricto 6): la planta exige descansos o piezas de dos niveles |
+| Nivelación aproximada | **disponible** — 105 caras, 227 saltos, niveles 0–7 y sensibilidad 7/8 explícita |
 
 ### Lo que hay que tirar
 
@@ -167,10 +172,11 @@ cada paso si hay ascenso, descanso o descenso.
 
 `BLOCKED_MISSING_SIGNED_LEVEL_CONSTRAINTS`
 
-No asignar niveles por brillo, radio ni distancia de grafo. Las teselas ya
-están identificadas y sus 227 vecindades listadas: lo único que falta es el
-signo de cada paso. Solo cuando esté firmado se comprobará si una propagación
-anclada en los 24 terminales de borde es consistente.
+No presentar niveles por brillo, radio o distancia de grafo como datos
+observados. Las teselas ya están identificadas y sus 227 vecindades listadas:
+lo único que falta para la versión histórica es el signo de cada paso. La
+decisión 0007 autoriza la distancia de grafo únicamente como hipótesis de
+trabajo separada en `datos/niveles_aproximados.json`.
 
 **Atajos ya cerrados por escrito** (decisión 0006): un nivel por medina, el
 ascenso hacia el centro y el reparto ortogonal/diagonal son imposibles sobre
@@ -235,9 +241,10 @@ no es su signo.
   piezas de distinto módulo, no forzar uno.
 - **Doble perfil.** Rehacer `adaraja.py` con las dos plantillas y la regla de
   paralelismo entre vecinas.
-- **Levantar y renderizar.** Solo cuando la planta con niveles esté validada
-  sobre la ortoimagen. **No repetir el error de renderizar sin validar la
-  planta.**
+- **Levantar y renderizar.** Ya puede hacerse un prototipo con
+  `datos/niveles_aproximados.json`, rotulado como aproximado y mostrando la
+  sensibilidad 7/8. La versión histórica seguirá esperando validación sobre
+  fotografías. **No presentar el prototipo como reconstrucción verificada.**
 - **Página interactiva.** Es el destino acordado: cúpula girable, selector de
   orden y controles de color. Queda para el final.
 
