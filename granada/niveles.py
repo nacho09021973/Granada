@@ -29,12 +29,27 @@ __all__ = [
     "RestriccionNivel",
     "RestriccionSinFirmar",
     "ResultadoNiveles",
+    "TopologiaAscenso",
     "TipoMocarabe",
     "admite_salto_unitario",
     "resolver_desde_vecindades",
     "resolver_niveles",
     "restricciones_firmadas",
 ]
+
+
+class TopologiaAscenso(str, Enum):
+    """Comportamiento generico de las flechas de ascendencia de una pieza.
+
+    La clasificacion no determina la orientacion de una instancia concreta ni
+    firma saltos con sus vecinas. Solo expresa la gramatica de los cuatro
+    grupos mostrados por Ferrer en el ejercicio docente de 2023.
+    """
+
+    DIVERGENTE = "divergente"
+    CONVERGENTE = "convergente"
+    MIXTA = "mixta"
+    NEUTRA = "neutra"
 
 
 class TipoMocarabe(str, Enum):
@@ -64,6 +79,16 @@ class TipoMocarabe(str, Enum):
     @property
     def salto_niveles(self) -> int:
         return 2 if self in (TipoMocarabe.A3, TipoMocarabe.D3) else 1
+
+    @property
+    def topologia_ascenso(self) -> TopologiaAscenso:
+        """Clase de ascendencia de la pieza antes de orientarla en la planta."""
+        return {
+            1: TopologiaAscenso.DIVERGENTE,
+            2: TopologiaAscenso.CONVERGENTE,
+            3: TopologiaAscenso.MIXTA,
+            4: TopologiaAscenso.NEUTRA,
+        }[self.topologia]
 
 
 @dataclass(frozen=True, slots=True)

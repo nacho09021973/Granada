@@ -38,6 +38,24 @@ flechas ni cotas**. Da la red de medinas, no el nivel absoluto de cada tesela.
 4. Un ciclo incompatible es un error. Un componente sin ancla queda
    explícitamente sin resolver: no se normaliza a cero ni se une por cercanía.
 
+## Adenda — clasificación de ascendencia (2026-08-28)
+
+La primera imagen del ejercicio docente de Ferrer de 2023 publica la gramática
+genérica de las siete piezas: A1/C1 divergentes, A2/C2 convergentes, A3/C3
+mixtas y B neutra. La nomenclatura de esa lámina es la de Jones y Goury; en la
+taxonomía usada por la tesis y este repositorio, C3 corresponde a la jaira D3 y
+B a B4.
+
+Se incorpora `TopologiaAscenso` a `granada/niveles.py` y se deriva del número
+topológico: 1 divergente, 2 convergente, 3 mixta y 4 neutra. Esto permite
+validar una pieza una vez identificados su tipo y orientación. **No asigna el
+tipo a ninguna cara de Dos Hermanas, no orienta instancias y no firma ninguna
+vecindad.** El bloqueo documental continúa.
+
+Fuente: cuarta y primera imágenes del ejercicio “2023. Muqarnas' compositions
+created by students”, <https://ignaciofpb.es/muqarnas>, consultadas a resolución
+original el 2026-08-28.
+
 Implementación: `granada/niveles.py`; pruebas: `tests/test_niveles.py`.
 
 ## Contraste fotométrico barato

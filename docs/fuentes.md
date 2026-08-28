@@ -467,7 +467,9 @@ La página docente señalada por Ferrer,
 ejercicio de 2023 se proporcionaron reglas simplificadas para componer una
 planta coherente. Ferrer precisa en el correo que la cuarta imagen empleaba
 piezas con flechas y líneas de nivel para comprobar esa coherencia. La página
-no publica una regla pieza por pieza aplicable directamente a Dos Hermanas.
+publica además, en la primera imagen, la clasificación genérica A1/C1
+divergentes, A2/C2 convergentes, A3/C3 mixtas y B neutra. No publica una
+asignación pieza por pieza aplicable directamente a Dos Hermanas.
 
 **Consecuencias operativas**:
 

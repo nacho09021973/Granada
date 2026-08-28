@@ -16,6 +16,7 @@ from granada.niveles import (
     RestriccionNivel,
     RestriccionSinFirmar,
     ResultadoNiveles,
+    TopologiaAscenso,
     TipoMocarabe,
     admite_salto_unitario,
     resolver_desde_vecindades,
@@ -66,6 +67,21 @@ def test_tipo_separa_figura_y_topologia() -> None:
     assert TipoMocarabe.C2.topologia == 2
     assert TipoMocarabe.B4.figura == "B"
     assert TipoMocarabe.B4.topologia == 4
+
+
+@pytest.mark.parametrize(
+    ("tipos", "esperada"),
+    [
+        ((TipoMocarabe.A1, TipoMocarabe.C1), TopologiaAscenso.DIVERGENTE),
+        ((TipoMocarabe.A2, TipoMocarabe.C2), TopologiaAscenso.CONVERGENTE),
+        ((TipoMocarabe.A3, TipoMocarabe.D3), TopologiaAscenso.MIXTA),
+        ((TipoMocarabe.B4,), TopologiaAscenso.NEUTRA),
+    ],
+)
+def test_topologia_de_ascenso_documentada_por_ferrer(
+    tipos: tuple[TipoMocarabe, ...], esperada: TopologiaAscenso
+) -> None:
+    assert all(tipo.topologia_ascenso is esperada for tipo in tipos)
 
 
 def test_asignacion_rechaza_tipo_y_nivel_invalidos() -> None:
