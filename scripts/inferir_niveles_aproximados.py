@@ -13,6 +13,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import statistics
 from collections import Counter, defaultdict, deque
 from pathlib import Path
 
@@ -27,6 +28,8 @@ HILADAS_SECCION = 23
 HILADAS_FERRER = 24
 NIVELES_TOPOLOGICOS = 7
 NIVELES_SENSIBILIDAD = 8
+PASO_HORIZONTAL_M = RADIO_BASE_M / HILADAS_SECCION
+PASO_VERTICAL_M = ALTURA_TOTAL_M / HILADAS_SECCION
 
 
 def distancias_desde_borde(dato: dict) -> dict[str, int]:
@@ -55,6 +58,36 @@ def nivel_por_capa(capa: int, capa_maxima: int, niveles: int) -> int:
     return round(capa * niveles / capa_maxima)
 
 
+def hilada_continua(radio_m: float) -> float:
+    """Hilada de la seccion medida que corresponde a un radio en planta.
+
+    Usa el paso horizontal medido sobre la seccion de Almagro. No es una regla
+    de nivel: solo situa una banda ya formada por la topologia contra una
+    seccion medida de forma independiente.
+    """
+    return (RADIO_BASE_M - radio_m) / PASO_HORIZONTAL_M
+
+
+def calibrar_bandas(radios_por_banda: dict[int, list[float]]) -> dict[int, dict]:
+    """Situa cada banda topologica en una hilada entera de la seccion."""
+    bandas = {}
+    for banda in sorted(radios_por_banda):
+        hiladas = sorted(hilada_continua(r) for r in radios_por_banda[banda])
+        cuartil = lambda p: hiladas[min(len(hiladas) - 1, int(p * (len(hiladas) - 1)))]
+        mediana = statistics.median(hiladas)
+        entera = max(0, min(HILADAS_SECCION, round(mediana)))
+        bandas[banda] = {
+            "banda": banda,
+            "caras": len(hiladas),
+            "radio_mediano_m": statistics.median(radios_por_banda[banda]),
+            "hilada_mediana": mediana,
+            "hilada": entera,
+            "iqr_hiladas": cuartil(0.75) - cuartil(0.25),
+            "altura_m": entera * PASO_VERTICAL_M,
+        }
+    return bandas
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--entrada", type=Path, default=ENTRADA)
@@ -65,6 +98,11 @@ def main() -> int:
     dato = json.loads(crudo)
     distancias = distancias_desde_borde(dato)
     capa_maxima = max(distancias.values())
+    radios_por_banda: dict[int, list[float]] = defaultdict(list)
+    for cara in dato["caras"]:
+        radios_por_banda[distancias[cara["id"]]].append(cara["radio_m"])
+    bandas = calibrar_bandas(radios_por_banda)
+
     caras = {}
     for cara in dato["caras"]:
         capa = distancias[cara["id"]]
@@ -82,6 +120,9 @@ def main() -> int:
             "intervalo_nivel": [min(n7, n8), max(n7, n8)],
             "estable_7_8": n7 == n8,
             "altura_conica_m": altura_conica,
+            "hilada": bandas[capa]["hilada"],
+            "altura_m": bandas[capa]["altura_m"],
+            "iqr_hiladas_de_su_banda": bandas[capa]["iqr_hiladas"],
         }
 
     vecindades = []
@@ -93,6 +134,8 @@ def main() -> int:
         nivel_b8 = 0 if b == "contorno" else caras[b]["nivel_8"]
         salto = nivel_b - nivel_a
         salto8 = nivel_b8 - nivel_a8
+        hilada_a = caras[a]["hilada"]
+        hilada_b = bandas[0]["hilada"] if b == "contorno" else caras[b]["hilada"]
         vecindades.append(
             {
                 "a": a,
@@ -101,6 +144,7 @@ def main() -> int:
                 "salto_8": salto8,
                 "intervalo_salto": [min(salto, salto8), max(salto, salto8)],
                 "estable_7_8": salto == salto8,
+                "salto_hiladas": hilada_b - hilada_a,
                 "procedencia": "diferencia de capas topologicas escaladas; no observado",
             }
         )
@@ -130,9 +174,29 @@ def main() -> int:
             "capas_del_grafo": capa_maxima,
             "niveles_topologicos_operativos": NIVELES_TOPOLOGICOS,
             "niveles_topologicos_sensibilidad": NIVELES_SENSIBILIDAD,
-            "paso_horizontal_hilada_m": RADIO_BASE_M / HILADAS_SECCION,
-            "paso_vertical_hilada_m": ALTURA_TOTAL_M / HILADAS_SECCION,
+            "paso_horizontal_hilada_m": PASO_HORIZONTAL_M,
+            "paso_vertical_hilada_m": PASO_VERTICAL_M,
             "cierre_de_ciclos": "garantizado al derivar cada salto de cotas absolutas",
+        },
+        "calibracion_altura": {
+            "problema": (
+                "el nivel topologico no da altura: repartir 4.67 m entre 7 niveles "
+                "uniformes desfasaba hasta 1.51 m frente a la seccion medida"
+            ),
+            "modelo": (
+                "la topologia agrupa las caras en bandas; la seccion medida situa "
+                "cada banda en una hilada entera por el radio mediano de sus caras"
+            ),
+            "no_es_la_estratificacion_refutada": (
+                "no asigna saltos por radio vecindad a vecindad, que es lo refutado "
+                "en la decision 0006: asigna cotas absolutas de banda, de las que los "
+                "saltos se derivan y por tanto cierran todos los ciclos"
+            ),
+            "supuesto": (
+                "la envolvente es de revolucion, medida como cono de 38 grados sobre "
+                "la seccion; las celdas cuelgan por debajo de esa envolvente"
+            ),
+            "bandas": [bandas[k] for k in sorted(bandas)],
         },
         "controles": {
             "caras": len(caras),
@@ -143,6 +207,16 @@ def main() -> int:
             "nivel_maximo": max(c["nivel"] for c in caras.values()),
             "conteo_por_nivel": {str(k): conteo_niveles[k] for k in sorted(conteo_niveles)},
             "conteo_por_salto": {str(k): conteo_saltos[k] for k in sorted(conteo_saltos)},
+            "hiladas_de_las_bandas": [bandas[k]["hilada"] for k in sorted(bandas)],
+            "bandas_ordenadas_como_las_hiladas": all(
+                bandas[a]["hilada"] < bandas[b]["hilada"]
+                for a, b in zip(sorted(bandas), sorted(bandas)[1:])
+            ),
+            "altura_de_la_banda_mas_alta_m": bandas[max(bandas)]["altura_m"],
+            "desfase_cima_frente_a_seccion_m": (
+                bandas[max(bandas)]["altura_m"] - ALTURA_TOTAL_M
+            ),
+            "iqr_maximo_de_banda_hiladas": max(b["iqr_hiladas"] for b in bandas.values()),
         },
         "caras": [caras[k] for k in sorted(caras)],
         "vecindades": vecindades,

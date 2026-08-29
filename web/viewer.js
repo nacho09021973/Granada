@@ -5,8 +5,9 @@ const COLORS = [
   0xd8ddd8, 0x9ab7a5, 0x65a6a6, 0x4c82a6,
   0x6e6aa6, 0xa05e8c, 0xbf665e, 0xd69a4a,
 ];
-const STEP_7 = 4.67 / 7;
-const STEP_8 = 4.67 / 8;
+// La altura ya no se reparte en niveles uniformes: cada banda topologica va
+// calibrada contra la seccion medida (decision 0009). El escenario 7/8 sigue
+// coloreando la sensibilidad, pero no decide la cota.
 
 const container = document.querySelector("#viewer");
 const renderer = new THREE.WebGLRenderer({
@@ -95,7 +96,6 @@ function buildModel() {
     model.remove(mesh);
   }
   meshes = [];
-  const step = scenario === 7 ? STEP_7 : STEP_8;
 
   for (const face of facesData.caras) {
     const info = levels.get(face.id);
@@ -108,7 +108,7 @@ function buildModel() {
     });
     shape.closePath();
 
-    const height = Math.max(0.10, level * step);
+    const height = Math.max(0.10, info.altura_m);
     const geometry = new THREE.ExtrudeGeometry(shape, {
       depth: height,
       bevelEnabled: true,
