@@ -1,7 +1,196 @@
 # Próximos pasos
 
-Estado a 2026-08-28. Documento de trabajo: se actualiza, no se conserva como
+Estado a 2026-08-29. Documento de trabajo: se actualiza, no se conserva como
 histórico. El registro de decisiones va en `docs/decisiones/`.
+
+---
+
+## Doble perfil y malla — 2026-08-29
+
+Hecha la segunda vía. **La cúpula ya sale como malla 3D exportable**
+(decisión 0010): `renders/cupula_aproximada.obj`, 105 celdas, 6.274 vértices y
+11.708 triángulos, cotas de 0,152 m a 4,670 m.
+
+`granada/plantilla.py` codifica lo documentado y exacto en `Fraction`: perfil
+**mayor** en quintos a 7P, **menor** en séptimos a 7,5P, nivel siguiente a 8P.
+`granada/malla.py` da a cada cara un sólido cerrado —plataforma a la cota de su
+banda y frente colgando— y `scripts/exportar_malla.py` escribe el OBJ y
+`datos/malla_cupula.json`. Ajuste al cono medido: **rms 0,234 m** sobre 4,67 m,
+un 5 %. Suite en **645 tests**.
+
+`granada/adaraja.py` sigue obsoleto **como modelo**, pero su `PerfilArco` se
+reutiliza como interpolador: es la primitiva de curva exacta, no un modelo de
+la pieza. Aclarado en su cabecera.
+
+### El paralelismo fuerza plantilla única, y eso es un hallazgo
+
+Perfiles paralelos son trasladados verticalmente, luego dos piezas vecinas han
+de compartir plantilla. El grafo dual es **conexo**, así que exigir paralelismo
+en las 227 vecindades **obliga a una sola plantilla en toda la cúpula** y la
+segunda sobra. Como la tesis documenta dos, el paralelismo no puede valer en
+todas a la vez: hay fronteras donde se rompe. Encaja con lo que la tesis
+advierte de esta cúpula —frente de 7P a 10P, «mocárabes de distinto módulo»—
+pero **ninguna fuente dice cuáles son esas fronteras**.
+
+Por eso todas las caras usan el perfil mayor y el validador da 0 vecindades
+rotas **de forma trivial**. Está escrito que es trivial para que nadie lo lea
+como validación. La plantilla menor está implementada y probada, sin asignar.
+
+### El render destapó dos fallos que los números no veían
+
+Mirar la malla —cautela 2— encontró lo que el rango de cotas y el residuo
+frente al cono daban por bueno:
+
+- **huecos abiertos de hasta 0,390 m entre todas las bandas**, por colgar cada
+  celda su propio vuelo radial en vez del salto hasta la banda de abajo. La
+  corrección es más fiel a la plantilla: 7/8 del salto real, y el octavo
+  restante como junta;
+- **púas por triangular en abanico** desde el centroide, inválido para las 51
+  caras no convexas. Sustituido por recorte de orejas.
+
+El rasterizador queda como `scripts/render_malla.py` y sus salidas en
+`renders/cupula_picada.png` y `renders/cupula_desde_abajo.png`. El control
+visual tiene que ser reproducible.
+
+### Lo que hay que decir al presentar la malla
+
+- **Una celda por cara, y una cara no es una adaraja.** La cara mediana abarca
+  **5,2 hiladas**: se reproduce el escalonado de las 6 bandas, no el de las 23.
+- El residuo máximo (0,71 m) está en el borde exterior: la planta no llega al
+  arranque de la cúpula.
+- El **octógono central** se lleva la cota del ápice porque su centroide está
+  en el eje, aunque su borde esté en la hilada 19. En la cúpula real es una
+  cupulilla, no una plataforma. Es donde más cuesta la aproximación de banda.
+
+### Siguiente
+
+Subdividir las 80 caras sin figura es lo único que baja de banda a hilada, y la
+figura 128 no las subdivide. Es tarea de fuente, no de código. Mientras tanto,
+la mejora barata es la que ya está pedida a Ferrer: la malla de su modelo del
+cuarto de maqueta de Contreras.
+
+---
+
+## Altura calibrada — 2026-08-29
+
+Hecha la primera de las dos vías acordadas para avanzar en el 3D. **La cota ya
+no sale del recuento de niveles, sino de la sección medida** (decisión 0009).
+
+El modelo anterior repartía 4,67 m entre 7 niveles uniformes y desfasaba hasta
+**1,51 m**, un 32 %. Dos defectos concretos: la banda exterior se clavaba en
+cota 0 cuando su radio mediano la sitúa ya a **seis hiladas** —se perdía 1,22 m
+de cúpula por abajo—, y los niveles 2 y 5 salían vacíos por estirar las 5 capas
+reales del grafo a 7 etiquetas.
+
+Ahora la topología agrupa y la sección sitúa: las 6 bandas caen en las hiladas
+**6, 11, 13, 17, 19 y 23**. Control: banda y radio medido, que son fuentes
+independientes, **coinciden en el orden**, y la cima cierra exacta en 4,67 m.
+No es la estratificación refutada: asigna cotas absolutas de banda, no saltos
+por radio, así que los ciclos cierran por construcción.
+
+`datos/niveles_aproximados.json` gana `hilada`, `altura_m` e
+`iqr_hiladas_de_su_banda` por cara y `salto_hiladas` por vecindad; el visor usa
+`altura_m`. Suite en **625 tests**.
+
+**Lo que hay que decir al presentarlo**: el teselado no cubre 23 hiladas, cubre
+**6 bandas**; cada banda vale entre 2 y 5 hiladas reales y no hay caras entre
+las hiladas 6-11, 13-17 y 19-23. Además las bandas 0 y 2 mezclan hiladas
+distintas (IQR 2,0 y 2,8 frente a menos de 0,25 en las otras cuatro): la banda
+2, con 40 caras, casi seguro contiene piezas de dos hiladas.
+
+**Siguiente**: la vía 2 — rehacer `granada/adaraja.py` con la plantilla de doble
+perfil y sacar malla exportable. Es lo que convierte las bandas en mocárabes;
+hoy siguen siendo prismas planos.
+
+---
+
+## Cambio de objetivo — 2026-08-29
+
+**El objetivo ya no es la reconstrucción exacta de Dos Hermanas, sino la mejor
+posible con los datos disponibles.** Queda escrito en la decisión 0008. No es
+una rebaja del rigor: las fuentes no coinciden entre sí, no hay tabla pública
+de cotas por pieza, y esperar a que aparezca tenía el modelo 3D parado. Lo que
+cambia es el techo declarado del resultado; lo que no cambia es que cada parte
+diga si está medida, inferida o parametrizada.
+
+Consecuencia operativa inmediata: **`datos/niveles_aproximados.json` deja de
+ser una vía paralela y pasa a ser la entrada normal del levantamiento**, con su
+etiqueta intacta. `BLOCKED_MISSING_SIGNED_LEVEL_CONSTRAINTS` sigue vigente
+sobre el dato histórico —los 227 saltos de `datos/caras_red.json` siguen sin
+firmar— pero ya no bloquea el entregable.
+
+Estado de reanudación: `APPROXIMATE_RECONSTRUCTION_TARGET`.
+
+### Material de Ferrer, recibido el 2026-08-29
+
+Registrado en la entrada 12 de `docs/fuentes.md` y trasladado de `renders/` a
+`docs/`, que es donde vive la fuente: seis imágenes y una grabación de pantalla.
+**Nada de ello muestra la cúpula construida.**
+
+Leyendas suyas: `Ferrer_5` es «4 x Cuarto de maqueta de la cúpula de Dos
+Hermanas de Rafael Contreras — s. XIX»; las demás imágenes son **trompas de
+mocárabes de la Alhambra** («squinches head to head»), leyenda que cubre el
+bloque y que **no se ha repartido fichero a fichero** — encaja en `Ferrer_1` y
+`Ferrer_2`, peor en `Ferrer_0`, `Ferrer_3` y `Ferrer_4`.
+
+Lo que aportan las maquetas impresas: el **apilado vertical de hiladas** y el
+frente en arco de cada celda a escala legible, cómo mantienen las piezas
+vecinas un sentido coherente, y una **sección construida** que contrasta contra
+las 23 hiladas de `docs/estratificacion.md` sin pasar por el alzado de Almagro.
+Lo que no aportan: ni flechas, ni cotas, ni escala, ni punto de vista declarado.
+
+#### `Ferrer_6` (vídeo): la pieza que más rinde
+
+No es un vídeo de la maqueta física, sino una **grabación de pantalla de un
+visor 3D** con un modelo navegable —con toda la pinta de fotogrametría— del
+cuarto de maqueta de Contreras. Audio en silencio digital, sin narración. **El
+modelo 3D es obra del propio Ferrer**, confirmado por él el 2026-08-29 — no es
+el escaneado de la cúpula de la entrada 11, al que ya no tiene acceso, sino un
+levantamiento suyo de la maqueta, que sí conserva.
+
+Da por primera vez **vistas oblicuas de un cuarto completo**, con el sentido de
+ascenso legible pieza a pieza y sin la simetría impuesta del montaje. Es lo que
+pedía la vía 1 de «dónde puede salir el signo», con una salvedad que no se
+puede perder: lo observado es **la maqueta de Contreras, no la cúpula**. Sirve
+para sustituir la inferencia por distancia de grafo de la decisión 0007 por
+orientaciones observadas, bajo la etiqueta «observado sobre la maqueta de
+Contreras» — nunca como restricción firmada de la entrada histórica.
+
+`Ferrer_5` es **muy probablemente un cenital de este mismo modelo** montado
+cuatro veces: misma paleta, mismo aspecto fundido de textura, mismo objeto. Sin
+confirmar. Si lo es, el vídeo lo sustituye como fuente.
+
+#### `Ferrer_5`: maqueta de Rafael Contreras, no fábrica
+
+Las líneas oscuras en aspa que se veían son **las costuras del montaje**:
+cuatro copias de un cuarto unidas por las diagonales. Tres límites, todos
+vinculantes:
+
+- **La simetría de orden 4 está impuesta, no observada** — la trampa exacta de
+  la cautela 5. Esta imagen nunca sirve como evidencia de simetría.
+- **Solo un cuarto es dato independiente.** Todo recuento sobre la imagen
+  completa se divide entre cuatro antes de dar un N.
+- **Es fuente terciaria**: media un intérprete del siglo XIX y la reducción a
+  escala de maqueta.
+
+**El rojo no se reabre**: el pigmento visible es policromía de Contreras, no
+nazarí, y no toca lo que descarta `docs/policromia.md`. Queda como lectura
+coloreada del siglo XIX, fechada y atribuida — hipótesis, nunca medida.
+
+Comprobar si **los inventarios 006601 y 006091 del Museo**, que ya arrastramos
+sin verificar más abajo, son maquetas de Contreras. Sería la vía al objeto en
+lugar de a una grabación de un modelo de un cuarto de él.
+
+**Qué pedirle**, por rendimiento: **la malla del modelo** (OBJ o PLY) del
+cuarto de maqueta, con su método y las condiciones de uso — es suya, así que
+falta el fichero y el permiso, no la información. Después: dónde se conserva la
+maqueta de Contreras y si el cuarto es de origen o lo conservado; si `Ferrer_5`
+sale de ese mismo modelo; qué trompa concreta es cada imagen; y qué
+proporciones y escala usan sus maquetas impresas.
+
+Mientras no llegue la malla, la grabación sirve para leer sentidos de ascenso a
+ojo; con la malla se leerían con geometría. No adelantar trabajo fino sobre
+480×856 comprimidos si el original está a una petición de distancia.
 
 ---
 
@@ -58,10 +247,13 @@ Estado de reanudación: `BLOCKED_MISSING_SIGNED_LEVEL_CONSTRAINTS`.
 
 ## Dónde estamos
 
-**Objetivo actual**: reconstruir la cúpula de mocárabes de la Sala de las Dos
-Hermanas **como el día de su inauguración** — yeso blanco de obra nueva y
-policromía original. Es una afirmación (B) del README: empírica, sobre un
-estado perdido, y por tanto sujeta a evidencia.
+**Objetivo actual**: la **mejor reconstrucción posible** de la cúpula de
+mocárabes de la Sala de las Dos Hermanas **como el día de su inauguración**
+—yeso blanco de obra nueva y policromía original— con los datos que hay. Muy
+aproximada, no exacta, porque las fuentes no coinciden entre sí (decisión
+0008). Sigue siendo una afirmación (B) del README: empírica, sobre un estado
+perdido, y por tanto sujeta a evidencia; lo que se declara más bajo es su
+precisión, no su exigencia de prueba.
 
 ### Lo que está hecho y se sostiene
 
@@ -82,6 +274,9 @@ estado perdido, y por tanto sujeta a evidencia.
 | Tamaño del salto de nivel | **8 unidades**, pauta moderna documentada por Saseta y usada por Ferrer; no consta en los manuscritos |
 | Teorema del triángulo | **54 triángulos** (16 robustos = 8 pares espejo, N estricto 6): la planta exige descansos o piezas de dos niveles |
 | Nivelación aproximada | **disponible** — 105 caras, 227 saltos, niveles 0–7 y sensibilidad 7/8 explícita |
+| Altura de cada banda | **calibrada** contra la sección — 6 bandas en las hiladas 6, 11, 13, 17, 19 y 23; cima exacta en 4,67 m |
+| Plantilla de doble perfil | **implementada** — mayor 7P en quintos, menor 7,5P en séptimos, nivel a 8P; exacta en `Fraction` |
+| Malla 3D | **exportable y mirada** — `renders/cupula_aproximada.obj`, 105 celdas, rms 0,234 m frente al cono |
 
 ### Lo que hay que tirar
 
@@ -89,9 +284,10 @@ estado perdido, y por tanto sujeta a evidencia.
   ninguna figura del sistema occidental.
 - `granada/estratificacion.py`: la **estratificación por coronas polares**
   completa. El modelo correcto es un teselado, no anillos concéntricos.
-- `granada/adaraja.py`: el **perfil de cónica única**. La tesis documenta
-  plantilla de **doble perfil** (mayor en quintos a 7P, menor en séptimos a
-  7,5P, nivel siguiente a 8P) con perfiles **paralelos** entre piezas vecinas.
+- `granada/adaraja.py`: el **perfil de cónica única** — sustituido por
+  `granada/plantilla.py` (decisión 0010). Su `PerfilArco` **no** se tira: se
+  reutiliza como interpolador exacto entre los puntos que la plantilla sí
+  documenta.
 - Sus tests correspondientes.
 
 No borrar todavía: hasta que el sustituto funcione, el código muerto sirve de

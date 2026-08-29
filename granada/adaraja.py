@@ -1,8 +1,13 @@
-"""OBSOLETO: perfil de conica unica, conservado solo como referencia.
+"""OBSOLETO como modelo; su primitiva de curva sigue en uso.
 
 La tesis documenta una plantilla de doble perfil y paralelismo entre piezas
-vecinas. Este modulo no representa ese sistema y no debe alimentar un nuevo
-render historico.
+vecinas. El **modelo de conica unica** de este modulo no representa ese sistema
+y no debe alimentar un nuevo render historico: lo sustituye
+`granada/plantilla.py` (decision 0010).
+
+Lo que si se conserva y se reutiliza es `PerfilArco`, la conica racional exacta
+en `Fraction`. Alli es la interpolacion declarada entre los puntos que la
+plantilla si documenta, no un modelo de la pieza.
 
 Alzado de la adaraja: el perfil concavo que cuelga de cada hilada.
 

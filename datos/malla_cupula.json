@@ -1,0 +1,33 @@
+{
+ "version": 1,
+ "estado": "APPROXIMATE_MESH_AVAILABLE",
+ "advertencia": "Malla aproximada. Una celda por cara del teselado, no una adaraja por pieza; no es una restitucion historica verificada.",
+ "fuente": {
+  "caras_red": "c01ebdbea5e7ef3b9a1ca29f3b60beacbaaae0f17ecbafe5f8c9f69a2dbe3e78",
+  "niveles_aproximados": "7df60c7f08ad547cfc3a610be2838640ca9659ed5e2f189dc9d81d5fdfa528fd"
+ },
+ "modelo": {
+  "plantilla": "mayor",
+  "cima_en_unidades_P": "7",
+  "unidades_entre_niveles": 8,
+  "fraccion_util": "7/8",
+  "division": 5,
+  "curva": "conica racional interpolada; eleccion de modelo, no medida",
+  "salto_vertical": "extension radial de la cara por la pendiente del cono",
+  "pendiente_cono": 1.282967032967033,
+  "subdivision_de_lado": 4,
+  "escala_profundidad": 1.0
+ },
+ "controles": {
+  "caras": 105,
+  "vertices": 6064,
+  "triangulos": 11708,
+  "grupos": 105,
+  "cota_minima_m": 0.15228260869565236,
+  "cota_maxima_m": 4.67,
+  "vecindades_no_paralelas": 0,
+  "residuo_rms_frente_al_cono_m": 0.23383412355605207,
+  "residuo_maximo_frente_al_cono_m": 0.55127733432469,
+  "hiladas_que_abarca_la_cara_mediana": 5.197493790631143
+ }
+}
