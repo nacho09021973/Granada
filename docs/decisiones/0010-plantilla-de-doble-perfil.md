@@ -92,7 +92,7 @@ sale de una cara cóncava de prueba.
   una adaraja.
 - Ninguna cima alcanza 8P: entre la cima y el nivel siguiente queda la junta.
   Construir una plantilla con cima 8P falla.
-- La malla cubre las **105 caras** en 105 grupos, 6.064 vértices y 11.708
+- La malla cubre las **105 caras** en 105 grupos, 6.225 vértices y 12.030
   triángulos, con cotas entre **0,152 m y 4,670 m** y radio máximo 3,47 m.
 - Entre el fondo de una banda y la plataforma de la inferior queda solo la
   junta, un octavo del salto: nunca un agujero abierto.
@@ -109,20 +109,42 @@ sale de una cara cóncava de prueba.
 - **El residuo máximo está en el borde exterior**: la banda 0 tiene su cota en
   la hilada 6 y su celda no baja hasta el arranque. La planta no llega al
   arranque de la cúpula.
-- **El octógono central se lleva la cota del ápice** porque su centroide está
-  en el eje, aunque su borde esté en la hilada 19. Es la pieza donde la
-  aproximación de banda cuesta más: en la cúpula real es una cupulilla, no una
-  plataforma.
+- **La cara del eje necesitó tratamiento aparte**, y es la única. Ver la sección
+  siguiente: el modelo de banda no vale para la pieza de cierre.
 - La curva del perfil no está medida. Cambiarla cambia el aspecto sin que
   ninguna fuente lo arbitre.
 
+## La pieza de cierre va aparte: es una cupulilla
+
+La cara que contiene el eje —`c042`, el octógono central de 1,177 m²— no puede
+tratarse como las demás. Su centroide está **en el eje**, así que la cota de
+banda la llevaba entera al ápice y remataba la cúpula con una **tapa plana de
+1,28 m de diámetro**. Era el límite del modelo de banda en su forma más visible.
+
+Los números dicen qué debería ser, y cierran solos:
+
+- el borde del octógono está a radio 0,633–0,659 m, que por la sección medida es
+  la **hilada 18,9 ≈ 19** — exactamente la cota de la banda de debajo;
+- del borde al ápice hay **0,812 m**, y el cono medido sube **0,825 m** en ese
+  radio: un 1,6 % de diferencia.
+
+La cupulilla es, por tanto, **el cono medido continuado hasta el eje**, no una
+invención. `granada.malla.corona` la construye con el mismo perfil de la
+plantilla, como superficie de revolución sobre el polígono del borde.
+`contiene_el_eje` la detecta con un punto-en-polígono sobre el origen, así que la
+regla vale para cualquier planta, no solo para esta.
+
 ## Lo que sigue viéndose mal, y es sabido
 
-El **octógono central** remata la cúpula como una tapa plana de 1,28 m a 4,67 m
-—un tambor, no una cupulilla—. Es el límite de banda llevado al extremo: su
-centroide está en el eje aunque su borde esté en la hilada 19. Y el conjunto lee
-como **seis bandejas**, no como una cúpula, porque seis bandas es lo que da esta
-planta.
+El conjunto lee como **seis bandejas**, no como una cúpula, porque seis bandas es
+lo que da esta planta.
+
+Y una advertencia sobre el **trasdós**: este modelo describe el **intradós**, que
+es lo que se ve y lo único que las fuentes documentan. La cara superior de cada
+celda es una plataforma horizontal, subproducto de la construcción, y la de la
+cupulilla también. Vista desde arriba la cúpula parece un escalonado de bandejas
+con un tambor central: eso **no es una afirmación sobre la forma exterior**, que
+no consta en ninguna fuente. Mirarla desde abajo es mirarla bien.
 
 Reproducción:
 

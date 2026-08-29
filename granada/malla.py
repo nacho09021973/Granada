@@ -191,6 +191,71 @@ def celda(
         malla.anadir_triangulo(arriba[i], abajo[j], arriba[j])
 
 
+def contiene_el_eje(poligono: list[tuple[float, float]]) -> bool:
+    """El eje de la cupula cae dentro de la cara, que es entonces la de cierre."""
+    dentro = False
+    for (ax, ay), (bx, by) in zip(poligono, poligono[1:] + poligono[:1]):
+        if (ay > 0) != (by > 0) and 0 < (bx - ax) * (0 - ay) / (by - ay) + ax:
+            dentro = not dentro
+    return dentro
+
+
+def corona(
+    malla: Malla,
+    poligono: list[tuple[float, float]],
+    cota_apice_m: float,
+    cota_borde_m: float,
+    plantilla: Plantilla = MAYOR,
+    subdivision: int = 4,
+    anillos: int = 6,
+) -> None:
+    """Anade la pieza de cierre: una cupulilla, no una plataforma plana.
+
+    La cara que contiene el eje no puede tratarse como las demas. Su centroide
+    esta en el eje, asi que la cota de banda la lleva entera al apice y remata la
+    cupula con una tapa plana. En realidad su borde apoya en la banda de debajo y
+    sube al apice describiendo una cupulilla: el cono medido continuado hasta el
+    eje.
+
+    Se construye como las demas celdas -tapa arriba, superficie curva debajo- solo
+    que aqui la superficie es de revolucion sobre el mismo perfil de la plantilla.
+    """
+    if anillos < 2:
+        raise ValueError(f"hacen falta al menos dos anillos, se recibio {anillos}")
+    if cota_apice_m < cota_borde_m:
+        raise ValueError("el apice no puede quedar por debajo del borde")
+    if _area_orientada(poligono) < 0:
+        poligono = list(reversed(poligono))
+
+    borde = _densificar(poligono, subdivision)
+    salto = cota_apice_m - cota_borde_m
+
+    tapa = [malla.anadir_vertice(x, y, cota_apice_m) for x, y in borde]
+    for i, j, k in triangular(borde):
+        malla.anadir_triangulo(tapa[i], tapa[j], tapa[k])
+
+    capas = []
+    for indice in range(anillos):
+        avance = Fraction(indice, anillos)
+        encogido = 1 - float(avance)
+        cota = cota_borde_m + salto * float(plantilla.altura_normalizada(avance))
+        capas.append(
+            [malla.anadir_vertice(x * encogido, y * encogido, cota) for x, y in borde]
+        )
+    apice = malla.anadir_vertice(0.0, 0.0, cota_apice_m)
+
+    n = len(borde)
+    for interior, exterior in zip(capas[1:], capas):
+        for i in range(n):
+            j = (i + 1) % n
+            malla.anadir_triangulo(exterior[j], exterior[i], interior[i])
+            malla.anadir_triangulo(exterior[j], interior[i], interior[j])
+    for i in range(n):
+        malla.anadir_triangulo(capas[-1][(i + 1) % n], capas[-1][i], apice)
+        malla.anadir_triangulo(tapa[i], tapa[(i + 1) % n], capas[0][i])
+        malla.anadir_triangulo(tapa[(i + 1) % n], capas[0][(i + 1) % n], capas[0][i])
+
+
 def cupula(
     caras: list[dict],
     plantillas: dict[str, Plantilla] | None = None,
@@ -200,18 +265,29 @@ def cupula(
     """Levanta las celdas de todas las caras.
 
     Cada cara del argumento lleva ``id``, ``poligono`` en metros, ``cota_m`` y
-    ``salto_vertical_m``.
+    ``salto_vertical_m``. La cara que contiene el eje se cierra como cupulilla.
     """
     malla = Malla()
     for cara in caras:
         malla.abrir_grupo(f"cara_{cara['id']}")
-        celda(
-            malla,
-            cara["poligono"],
-            cara["cota_m"],
-            cara["salto_vertical_m"],
-            (plantillas or {}).get(cara["id"], MAYOR),
-            subdivision,
-            escala_profundidad,
-        )
+        plantilla = (plantillas or {}).get(cara["id"], MAYOR)
+        if contiene_el_eje(cara["poligono"]):
+            corona(
+                malla,
+                cara["poligono"],
+                cara["cota_m"],
+                cara["cota_m"] - cara["salto_vertical_m"],
+                plantilla,
+                subdivision,
+            )
+        else:
+            celda(
+                malla,
+                cara["poligono"],
+                cara["cota_m"],
+                cara["salto_vertical_m"],
+                plantilla,
+                subdivision,
+                escala_profundidad,
+            )
     return malla

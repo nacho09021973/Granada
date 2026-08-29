@@ -4,7 +4,7 @@
  "advertencia": "Malla aproximada. Una celda por cara del teselado, no una adaraja por pieza; no es una restitucion historica verificada.",
  "fuente": {
   "caras_red": "c01ebdbea5e7ef3b9a1ca29f3b60beacbaaae0f17ecbafe5f8c9f69a2dbe3e78",
-  "niveles_aproximados": "7df60c7f08ad547cfc3a610be2838640ca9659ed5e2f189dc9d81d5fdfa528fd"
+  "niveles_aproximados": "04cd6f4b93c92bdbba0da0bfb31fea07687d464dd881ce82e8445f3a2b4c04f5"
  },
  "modelo": {
   "plantilla": "mayor",
@@ -20,8 +20,8 @@
  },
  "controles": {
   "caras": 105,
-  "vertices": 6064,
-  "triangulos": 11708,
+  "vertices": 6225,
+  "triangulos": 12030,
   "grupos": 105,
   "cota_minima_m": 0.15228260869565236,
   "cota_maxima_m": 4.67,

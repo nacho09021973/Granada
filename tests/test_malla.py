@@ -8,7 +8,7 @@ from pathlib import Path
 
 import pytest
 
-from granada.malla import Malla, celda, cupula, triangular
+from granada.malla import Malla, celda, contiene_el_eje, corona, cupula, triangular
 from granada.plantilla import MAYOR, MENOR
 
 
@@ -108,6 +108,48 @@ def test_la_cupula_agrupa_cada_cara_por_separado() -> None:
     assert "o cara_c001" in malla.a_obj()
 
 
+OCTOGONO = [
+    (math.cos(math.tau * i / 8) * 0.65, math.sin(math.tau * i / 8) * 0.65)
+    for i in range(8)
+]
+
+
+def test_solo_la_cara_de_cierre_contiene_el_eje() -> None:
+    assert contiene_el_eje(OCTOGONO)
+    assert not contiene_el_eje(TRIANGULO)
+
+
+def test_la_corona_apoya_en_el_borde_y_llega_al_apice_por_el_eje() -> None:
+    """La pieza de cierre es una cupulilla, no una tapa plana."""
+    malla = Malla()
+    corona(malla, OCTOGONO, cota_apice_m=4.67, cota_borde_m=3.858)
+    cotas = [v[2] for v in malla.vertices]
+    assert min(cotas) == pytest.approx(3.858)
+    assert max(cotas) == pytest.approx(4.67)
+    assert len({round(c, 6) for c in cotas}) > 2
+    en_el_eje = [v for v in malla.vertices if math.hypot(v[0], v[1]) < 1e-9]
+    assert en_el_eje and max(v[2] for v in en_el_eje) == pytest.approx(4.67)
+
+
+def test_la_corona_rechaza_entradas_imposibles() -> None:
+    with pytest.raises(ValueError):
+        corona(Malla(), OCTOGONO, 3.0, 4.0)
+    with pytest.raises(ValueError):
+        corona(Malla(), OCTOGONO, 4.67, 3.858, anillos=1)
+
+
+def test_la_cupula_cierra_con_corona_y_no_con_plataforma() -> None:
+    caras = [
+        {"id": "c000", "poligono": TRIANGULO, "cota_m": 1.2, "salto_vertical_m": 0.4},
+        {"id": "c042", "poligono": OCTOGONO, "cota_m": 4.67, "salto_vertical_m": 0.812},
+    ]
+    malla = cupula(caras)
+    inicio = dict(malla.grupos)["cara_c042"]
+    indices = {i for tri in malla.triangulos[inicio:] for i in tri}
+    radios = [math.hypot(*malla.vertices[i][:2]) for i in indices]
+    assert min(radios) < 1e-9, "la corona tiene que llegar al eje"
+
+
 def test_el_obj_exportado_declara_que_es_aproximado() -> None:
     texto = OBJ.read_text(encoding="utf-8")
     assert texto.startswith("#")
@@ -128,6 +170,25 @@ def test_el_obj_cubre_las_105_caras_y_cabe_en_la_cupula_medida() -> None:
     assert min(cotas) > 0.0
     assert max(cotas) == pytest.approx(ALTURA_TOTAL_M)
     assert max(math.hypot(v[0], v[1]) for v in vertices) < 3.79
+
+
+def test_en_el_obj_la_cara_del_eje_es_una_cupulilla() -> None:
+    """Antes remataba en una tapa plana de 1.28 m a 4.67 m."""
+    vertices, actual, cotas, radios = [], None, [], []
+    for linea in OBJ.read_text(encoding="utf-8").splitlines():
+        if linea.startswith("v "):
+            vertices.append(tuple(float(x) for x in linea.split()[1:4]))
+        elif linea.startswith("o "):
+            actual = linea[2:].strip()
+        elif linea.startswith("f ") and actual == "cara_c042":
+            for token in linea.split()[1:4]:
+                x, y, z = vertices[int(token.split("/")[0]) - 1]
+                cotas.append(z)
+                radios.append(math.hypot(x, y))
+    assert min(radios) < 1e-6, "la pieza de cierre no llega al eje"
+    assert len({round(c, 6) for c in cotas}) > 2, "sigue siendo una tapa plana"
+    assert min(cotas) == pytest.approx(3.858, abs=1e-3)
+    assert max(cotas) == pytest.approx(ALTURA_TOTAL_M)
 
 
 def test_el_informe_declara_su_estado_y_su_limite() -> None:

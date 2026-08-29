@@ -5,6 +5,22 @@ histórico. El registro de decisiones va en `docs/decisiones/`.
 
 ---
 
+## La pieza de cierre, resuelta — 2026-08-29
+
+El **octógono central** ya no remata en una tapa plana de 1,28 m: es una
+**cupulilla**. Su centroide está en el eje, así que la cota de banda lo llevaba
+entero al ápice; su borde, en cambio, está a radio 0,65 m, que por la sección es
+la hilada 18,9 ≈ 19 —la banda de debajo—, y del borde al ápice hay 0,812 m
+frente a los **0,825 m que sube el cono medido** en ese radio. Un 1,6 %: la
+cupulilla es el cono continuado hasta el eje, no una invención.
+
+`granada.malla.corona` la levanta con el mismo perfil de la plantilla, y
+`contiene_el_eje` la detecta por punto-en-polígono sobre el origen, así que la
+regla sirve para cualquier planta. Se nota desde abajo, que es como se mira una
+cúpula de mocárabes. Suite en **655 tests**.
+
+---
+
 ## El visor muestra ya la malla — 2026-08-29
 
 Mientras llega la respuesta de Ferrer —que vale como **perfeccionamiento**, no
@@ -31,8 +47,8 @@ natural que se le podía hacer.
 ## Doble perfil y malla — 2026-08-29
 
 Hecha la segunda vía. **La cúpula ya sale como malla 3D exportable**
-(decisión 0010): `renders/cupula_aproximada.obj`, 105 celdas, 6.274 vértices y
-11.708 triángulos, cotas de 0,152 m a 4,670 m.
+(decisión 0010): `renders/cupula_aproximada.obj`, 105 celdas, 6.225 vértices y
+12.030 triángulos, cotas de 0,152 m a 4,670 m.
 
 `granada/plantilla.py` codifica lo documentado y exacto en `Fraction`: perfil
 **mayor** en quintos a 7P, **menor** en séptimos a 7,5P, nivel siguiente a 8P.
@@ -81,9 +97,10 @@ visual tiene que ser reproducible.
   **5,2 hiladas**: se reproduce el escalonado de las 6 bandas, no el de las 23.
 - El residuo máximo (0,71 m) está en el borde exterior: la planta no llega al
   arranque de la cúpula.
-- El **octógono central** se lleva la cota del ápice porque su centroide está
-  en el eje, aunque su borde esté en la hilada 19. En la cúpula real es una
-  cupulilla, no una plataforma. Es donde más cuesta la aproximación de banda.
+- El **trasdós no es una afirmación.** El modelo describe el intradós, que es
+  lo que se ve y lo único documentado. Desde arriba parece un escalonado de
+  bandejas; eso es subproducto de la construcción por plataformas, no una forma
+  exterior sostenida por ninguna fuente.
 
 ### Siguiente
 
