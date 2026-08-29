@@ -5,6 +5,24 @@ histórico. El registro de decisiones va en `docs/decisiones/`.
 
 ---
 
+## Si Ferrer no contesta — hoja de ruta
+
+Escrita en [`docs/hoja-de-ruta.md`](docs/hoja-de-ruta.md). Fija cómo se toman las
+decisiones que ninguna fuente decide, para que se tomen **a la vista** y no por
+acumulación de atajos: decisión escrita, `procedencia` en el artefacto,
+interruptor en el código con lo defendible por defecto, y condición de muerte.
+
+Dos cosas de ahí que conviene no perder de vista:
+
+- **El umbral.** Hoy son 105 piezas, todas de una planta publicada. Subdividir a
+  hilada las llevaría a ~500, y cuatro de cada cinco no vendrían de ninguna
+  fuente. Cruzarlo obliga a renombrar: de «reconstrucción aproximada de la cúpula
+  de las Dos Hermanas» a «cúpula compuesta en el sistema de las Dos Hermanas».
+- **Segundo aviso el 2026-09-19.** Hasta esa fecha no se toca el vídeo; después
+  deja de ser un desperdicio y pasa a ser lo que hay.
+
+---
+
 ## La pieza de cierre, resuelta — 2026-08-29
 
 El **octógono central** ya no remata en una tapa plana de 1,28 m: es una
