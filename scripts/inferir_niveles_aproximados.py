@@ -68,6 +68,35 @@ def hilada_continua(radio_m: float) -> float:
     return (RADIO_BASE_M - radio_m) / PASO_HORIZONTAL_M
 
 
+def inversiones_por_cara(
+    caras: dict, vecindades: list[dict]
+) -> tuple[int, int, int]:
+    """Refuta asignar la hilada cara a cara por su radio, sin pasar por banda.
+
+    Seria mas fino -mas hiladas distintas- pero el radio solo no respeta la
+    topologia: cuenta en cuantas vecindades entre bandas distintas la cara mas
+    interior quedaria mas BAJA que la exterior, que es imposible en una cupula
+    por mensulas. Devuelve (hiladas distintas, inversiones, comparables).
+    """
+    hilada = {
+        identificador: max(0, min(HILADAS_SECCION, round(hilada_continua(c["radio_m"]))))
+        for identificador, c in caras.items()
+    }
+    inversiones = comparables = 0
+    for vecindad in vecindades:
+        a, b = vecindad["a"], vecindad["b"]
+        if b == "contorno":
+            continue
+        capa_a, capa_b = caras[a]["capa_desde_borde"], caras[b]["capa_desde_borde"]
+        if capa_a == capa_b:
+            continue
+        comparables += 1
+        interior, exterior = (a, b) if capa_a > capa_b else (b, a)
+        if hilada[interior] <= hilada[exterior]:
+            inversiones += 1
+    return len(set(hilada.values())), inversiones, comparables
+
+
 def calibrar_bandas(radios_por_banda: dict[int, list[float]]) -> dict[int, dict]:
     """Situa cada banda topologica en una hilada entera de la seccion."""
     bandas = {}
@@ -149,6 +178,7 @@ def main() -> int:
             }
         )
 
+    finura, inversiones, comparables = inversiones_por_cara(caras, dato["vecindades"])
     conteo_niveles = Counter(cara["nivel"] for cara in caras.values())
     conteo_saltos = Counter(v["salto"] for v in vecindades)
     documento = {
@@ -196,6 +226,12 @@ def main() -> int:
                 "la envolvente es de revolucion, medida como cono de 38 grados sobre "
                 "la seccion; las celdas cuelgan por debajo de esa envolvente"
             ),
+            "por_que_por_banda_y_no_por_cara": (
+                "asignar la hilada cara a cara por su radio daria mas escalones "
+                "pero invierte el orden topologico en 32 de 147 vecindades entre "
+                "bandas: la cara mas interior quedaria mas baja que la exterior, "
+                "imposible en una cupula por mensulas"
+            ),
             "bandas": [bandas[k] for k in sorted(bandas)],
         },
         "controles": {
@@ -217,6 +253,9 @@ def main() -> int:
                 bandas[max(bandas)]["altura_m"] - ALTURA_TOTAL_M
             ),
             "iqr_maximo_de_banda_hiladas": max(b["iqr_hiladas"] for b in bandas.values()),
+            "hiladas_si_se_asignara_cara_a_cara": finura,
+            "inversiones_si_se_asignara_cara_a_cara": inversiones,
+            "vecindades_entre_bandas_comparables": comparables,
         },
         "caras": [caras[k] for k in sorted(caras)],
         "vecindades": vecindades,

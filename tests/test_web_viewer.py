@@ -1,5 +1,6 @@
 """Controles estaticos del visor tridimensional."""
 
+import json
 from pathlib import Path
 
 
@@ -23,14 +24,31 @@ def test_el_visior_declara_su_alcance_y_los_dos_escenarios() -> None:
     assert 'id="uncertainty"' in html
 
 
-def test_la_geometria_procede_de_los_tres_artefactos_del_proyecto() -> None:
+def test_el_visor_muestra_la_misma_malla_que_se_exporta() -> None:
+    """Una sola geometria en el repositorio, no dos que puedan divergir.
+
+    El visor levantaba prismas planos por su cuenta mientras el OBJ llevaba las
+    celdas: dos modelos distintos y ninguna prueba que lo detectara. Ahora carga
+    el OBJ exportado, asi que pagina y malla no pueden separarse.
+    """
     js = (WEB / "viewer.js").read_text(encoding="utf-8")
-    for ruta in (
-        "../datos/red_medinas.json",
-        "../datos/caras_red.json",
-        "../datos/niveles_aproximados.json",
-    ):
-        assert ruta in js
-    assert "ExtrudeGeometry" in js
+    assert "../renders/cupula_aproximada.obj" in js
+    assert "../datos/niveles_aproximados.json" in js
+    assert "ExtrudeGeometry" not in js
     assert "preserveDrawingBuffer: true" in js
     assert "NaN|-?Infinity" in js
+
+
+def test_el_visor_lee_un_grupo_por_cara_del_obj() -> None:
+    """Los grupos del OBJ y las caras del modelo tienen que casar uno a uno."""
+    obj = (RAIZ / "renders" / "cupula_aproximada.obj").read_text(encoding="utf-8")
+    grupos = [
+        linea[2:].strip().removeprefix("cara_")
+        for linea in obj.splitlines()
+        if linea.startswith("o ")
+    ]
+    niveles = json.loads(
+        (RAIZ / "datos" / "niveles_aproximados.json").read_text(encoding="utf-8")
+    )
+    assert len(grupos) == 105
+    assert set(grupos) == {cara["id"] for cara in niveles["caras"]}

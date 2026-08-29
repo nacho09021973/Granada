@@ -105,8 +105,23 @@ def test_los_saltos_en_hiladas_cierran_los_ciclos() -> None:
         assert vecindad["salto_hiladas"] == destino - hiladas[vecindad["a"]]
 
 
-def test_el_visor_usa_la_altura_calibrada_y_no_el_reparto_uniforme() -> None:
+def test_la_altura_calibrada_llega_hasta_la_malla_y_el_visor() -> None:
+    """El visor ya no reparte alturas: carga el OBJ, que las trae calibradas."""
     viewer = (RAIZ / "web" / "viewer.js").read_text(encoding="utf-8")
-    assert "info.altura_m" in viewer
     assert "4.67 / 7" not in viewer
     assert "4.67 / 8" not in viewer
+    assert "../renders/cupula_aproximada.obj" in viewer
+
+    cotas_banda = {
+        round(banda["altura_m"], 6)
+        for banda in cargar()["calibracion_altura"]["bandas"]
+    }
+    plataformas = {
+        round(float(linea.split()[3]), 6)
+        for linea in (RAIZ / "renders" / "cupula_aproximada.obj")
+        .read_text(encoding="utf-8")
+        .splitlines()
+        if linea.startswith("v ")
+    }
+    # Toda cota de banda aparece en la malla: son las plataformas de las celdas.
+    assert cotas_banda <= plataformas

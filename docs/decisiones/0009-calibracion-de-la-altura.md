@@ -66,6 +66,23 @@ La cima cierra exacta: la banda 5 cae en la hilada 23 y da **4,67 m**, la altura
 medida, con desfase 0. No es sorprendente —el radio de la cara central es casi
 cero—, pero confirma que la escala no se ha ido.
 
+## Por banda y no por cara: refutado con números
+
+La objeción evidente es que asignar la hilada **cara a cara**, por el radio de
+cada centroide, daría más resolución. Se probó, y no vale:
+
+- da **10 hiladas distintas** en vez de 6, mejora modesta;
+- pero **invierte el orden topológico en 32 de 147 vecindades** entre bandas
+  distintas (21,8 %): la cara más interior quedaría **más baja** que su vecina
+  exterior, que es imposible en una cúpula por ménsulas;
+- y produce saltos de hasta **6 hiladas** entre vecinas, contra las piezas de
+  uno o dos niveles que documenta la tesis.
+
+Es la estratificación por coronas otra vez, colada por la puerta de atrás: el
+radio por sí solo no respeta el teselado. El control queda en el propio artefacto
+(`inversiones_si_se_asignara_cara_a_cara`) para que la refutación se regenere
+con los datos y no dependa de que alguien recuerde esta sección.
+
 ## Límites
 
 - **El teselado no cubre las 23 hiladas: cubre 6 bandas.** Los huecos entre

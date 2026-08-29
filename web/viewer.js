@@ -5,9 +5,9 @@ const COLORS = [
   0xd8ddd8, 0x9ab7a5, 0x65a6a6, 0x4c82a6,
   0x6e6aa6, 0xa05e8c, 0xbf665e, 0xd69a4a,
 ];
-// La altura ya no se reparte en niveles uniformes: cada banda topologica va
-// calibrada contra la seccion medida (decision 0009). El escenario 7/8 sigue
-// coloreando la sensibilidad, pero no decide la cota.
+// Los colores rotulan el nivel topologico inferido. La ALTURA no sale de ahi:
+// viene calibrada contra la seccion medida (decision 0009) dentro del OBJ. El
+// escenario 7/8 colorea la sensibilidad, no decide la cota.
 
 const container = document.querySelector("#viewer");
 const renderer = new THREE.WebGLRenderer({
@@ -71,16 +71,58 @@ let hovered = null;
 let scenario = 7;
 let showUncertainty = true;
 
-const [network, facesData, levelsData] = await Promise.all([
-  fetchProjectJson("../datos/red_medinas.json"),
-  fetchProjectJson("../datos/caras_red.json"),
+// La geometria es la MISMA malla que exporta scripts/exportar_malla.py. No se
+// reconstruye aqui: si el visor la levantara por su cuenta, la pagina y el OBJ
+// derivarian sin que nada lo detectase.
+const [levelsData, meshText] = await Promise.all([
   fetchProjectJson("../datos/niveles_aproximados.json"),
+  fetchProjectText("../renders/cupula_aproximada.obj"),
 ]);
 const levels = new Map(levelsData.caras.map(face => [face.id, face]));
+const cells = parseObj(meshText);
 
 function checkResponse(response) {
   if (!response.ok) throw new Error(`${response.status} ${response.url}`);
   return response;
+}
+
+async function fetchProjectText(url) {
+  return (checkResponse(await fetch(url))).text();
+}
+
+/** Lee el OBJ: vertices globales y un grupo de triangulos por cara. */
+function parseObj(text) {
+  const positions = [];
+  const groups = [];
+  let current = null;
+  for (const line of text.split("\n")) {
+    if (line.startsWith("v ")) {
+      const [x, y, z] = line.slice(2).trim().split(/\s+/).map(Number);
+      positions.push([x, y, z]);
+    } else if (line.startsWith("o ")) {
+      current = { id: line.slice(2).trim().replace(/^cara_/, ""), indices: [] };
+      groups.push(current);
+    } else if (line.startsWith("f ") && current) {
+      for (const token of line.slice(2).trim().split(/\s+/)) {
+        current.indices.push(Number(token.split("/")[0]) - 1);
+      }
+    }
+  }
+  return groups.map(group => {
+    const array = new Float32Array(group.indices.length * 3);
+    group.indices.forEach((index, slot) => {
+      const [x, y, z] = positions[index];
+      // La escena es Z arriba, como el OBJ. Solo se invierte Y, igual que hacia
+      // el levantado anterior con shape.moveTo(x, -y).
+      array[slot * 3] = x;
+      array[slot * 3 + 1] = -y;
+      array[slot * 3 + 2] = z;
+    });
+    const geometry = new THREE.BufferGeometry();
+    geometry.setAttribute("position", new THREE.BufferAttribute(array, 3));
+    geometry.computeVertexNormals();
+    return { id: group.id, geometry };
+  });
 }
 
 async function fetchProjectJson(url) {
@@ -91,32 +133,15 @@ async function fetchProjectJson(url) {
 
 function buildModel() {
   for (const mesh of meshes) {
-    mesh.geometry.dispose();
+    // La geometria se reutiliza entre reconstrucciones; solo cambia el material.
     mesh.material.dispose();
     model.remove(mesh);
   }
   meshes = [];
 
-  for (const face of facesData.caras) {
-    const info = levels.get(face.id);
+  for (const cell of cells) {
+    const info = levels.get(cell.id);
     const level = scenario === 7 ? info.nivel : info.nivel_8;
-    const shape = new THREE.Shape();
-    face.vertices.forEach((vertexIndex, index) => {
-      const [x, y] = network.nodos[vertexIndex];
-      if (index === 0) shape.moveTo(x, -y);
-      else shape.lineTo(x, -y);
-    });
-    shape.closePath();
-
-    const height = Math.max(0.10, info.altura_m);
-    const geometry = new THREE.ExtrudeGeometry(shape, {
-      depth: height,
-      bevelEnabled: true,
-      bevelSegments: 1,
-      bevelSize: 0.018,
-      bevelThickness: 0.018,
-      curveSegments: 1,
-    });
     const uncertain = !info.estable_7_8;
     const color = new THREE.Color(COLORS[level]);
     if (uncertain && showUncertainty) color.lerp(new THREE.Color(0xf0c85b), 0.28);
@@ -124,10 +149,11 @@ function buildModel() {
       color,
       roughness: 0.72,
       metalness: 0.02,
+      side: THREE.DoubleSide,
       transparent: uncertain && showUncertainty,
       opacity: uncertain && showUncertainty ? 0.80 : 1,
     });
-    const mesh = new THREE.Mesh(geometry, material);
+    const mesh = new THREE.Mesh(cell.geometry, material);
     mesh.castShadow = true;
     mesh.receiveShadow = true;
     mesh.userData = { ...info, level, uncertain };
@@ -152,13 +178,15 @@ function updateLegend() {
 function resetReadout() {
   document.querySelector("#face-id").textContent = "Modelo completo";
   document.querySelector("#face-level").textContent = "105 caras · 227 vecindades";
-  document.querySelector("#face-status").textContent = `Niveles inferidos 0–${scenario}`;
+  document.querySelector("#face-status").textContent =
+    `105 celdas · alturas calibradas · color por nivel inferido 0–${scenario}`;
 }
 
 function setReadout(mesh) {
   const info = mesh.userData;
   document.querySelector("#face-id").textContent = info.id;
-  document.querySelector("#face-level").textContent = `Nivel ${info.level} · capa ${info.capa_desde_borde}`;
+  document.querySelector("#face-level").textContent =
+    `Hilada ${info.hilada} · ${info.altura_m.toFixed(2)} m · banda ${info.capa_desde_borde}`;
   document.querySelector("#face-status").textContent = info.uncertain
     ? `Sensible: intervalo ${info.intervalo_nivel[0]}–${info.intervalo_nivel[1]}`
     : "Estable entre los escenarios 7 y 8";

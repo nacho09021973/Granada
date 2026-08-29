@@ -5,6 +5,29 @@ histórico. El registro de decisiones va en `docs/decisiones/`.
 
 ---
 
+## El visor muestra ya la malla — 2026-08-29
+
+Mientras llega la respuesta de Ferrer —que vale como **perfeccionamiento**, no
+como requisito— se cierran dos cosas que no dependían de él.
+
+**El visor cargaba un modelo obsoleto.** Levantaba prismas planos por su cuenta
+mientras el OBJ llevaba las celdas: dos geometrías distintas en el repositorio, la
+pública peor que la exportada, y ninguna prueba que lo detectara. Ahora
+`web/viewer.js` carga `renders/cupula_aproximada.obj` y no reconstruye nada, así
+que página y malla no pueden divergir. La ficha de cada cara muestra su hilada y
+su cota en metros; el escenario 7/8 colorea la sensibilidad y ya no decide altura.
+
+**Refutada la asignación de hilada cara a cara.** Parecía la mejora obvia sobre
+las 6 bandas. Da 10 hiladas distintas, pero **invierte el orden topológico en 32
+de 147 vecindades** (21,8 %): la cara más interior quedaría más baja que la
+exterior. Es la estratificación por coronas por la puerta de atrás. El control se
+regenera con los datos, en `inversiones_si_se_asignara_cara_a_cara`.
+
+Con eso, **el modelo de bandas de la decisión 0009 aguanta** el ataque más
+natural que se le podía hacer.
+
+---
+
 ## Doble perfil y malla — 2026-08-29
 
 Hecha la segunda vía. **La cúpula ya sale como malla 3D exportable**
