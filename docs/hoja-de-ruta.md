@@ -17,14 +17,12 @@ toda elección sin fuente cumple las cuatro:
 1. **Decisión escrita** en `docs/decisiones/`, con lo que se elige y lo que se
    descarta.
 2. **`procedencia` en el artefacto**, cara a cara o pieza a pieza. Nunca un
-   valor
-   inventado dentro de un campo que en otras filas es medido.
+   valor inventado dentro de un campo que en otras filas es medido.
 3. **Interruptor en el código**: una bandera con nombre, y el comportamiento
    defendible por defecto. Si hay que enseñar la versión especulativa, se pide
    explícitamente.
 4. **Condición de muerte**: qué evidencia concreta la tumbaría. Sin eso no es
-   una
-   hipótesis, es una preferencia.
+   una hipótesis, es una preferencia.
 
 Y una regla de higiene: **si Ferrer contesta más tarde, la capa inventada se
 revisa entera**, no se conserva porque ya estaba.
@@ -37,8 +35,7 @@ no vendrían de ninguna fuente**.
 
 Ese es el umbral. Cruzarlo no está prohibido, pero al cruzarlo el nombre honesto
 deja de ser «reconstrucción aproximada de la cúpula de las Dos Hermanas» y pasa
-a
-ser «cúpula compuesta en el sistema de las Dos Hermanas». Es un cambio de
+a ser «cúpula compuesta en el sistema de las Dos Hermanas». Es un cambio de
 afirmación, no de redacción: hay que tocar el README y decirlo.
 
 ## Plazo
@@ -59,12 +56,19 @@ original no llega, el vídeo deja de ser un desperdicio y pasa a ser lo que hay.
 - **Qué se hace**: extraer fotogramas a 2 fps, registrarlos contra el cuarto de
   planta, y anotar las orientaciones **legibles** con su fotograma, su región y
   el criterio de lectura.
-- **No es invención**, es evidencia mala: se etiqueta «observado sobre la
-  maqueta
-  de Contreras, fotograma N», nunca «observado sobre la cúpula».
-- **Cubre un cuarto y solo un cuarto.** Extenderlo al resto por simetría sería
-  usar como evidencia la simetría que nosotros impusimos — la cautela 5. Las
-  vecindades no observadas siguen sin firmar.
+- **No es invención**, es evidencia mala: se etiqueta «observado sobre una
+  reconstrucción decimonónica que rellena lagunas por diseño, fotograma N»,
+  nunca «observado sobre la cúpula». La entrada 13 de `fuentes.md` documenta que
+  las maquetas de Contreras **no son copias exactas**: rellenan huecos a
+  propósito para dar «una visión más completa».
+- **Se propaga por rotación C8, no por espejo.** La simetría rotacional está
+  medida por Fourier sobre la ortoimagen, independiente de la red, así que
+  usarla no es circular. La especular la entrada 7 dice expresamente que **no se
+  ha analizado**. Las órbitas están calculadas y controladas en
+  `datos/orbitas_c8.json` (decisión 0012): **14 caras y 27 vecindades** cubren
+  216 de las 227.
+- **La propagación no multiplica el N.** Observadas 27 vecindades son 27, no
+  216. Es la segunda mitad de la cautela 5, y esa sigue entera.
 - **Lo sustituye**: la malla de Ferrer, que permitiría leerlas con geometría en
   vez de a ojo.
 
@@ -78,14 +82,12 @@ original no llega, el vídeo deja de ser un desperdicio y pasa a ser lo que hay.
   hiladas y las bandas 2 y 4 abarcan 1,3–1,5. Hay un cambio de escala real ahí,
   y es el candidato natural a frontera de módulo.
 - **Es una hipótesis comprobable**: predice que las fronteras de módulo
-  coinciden
-  con las de banda. Si Ferrer dice que están en otro sitio, se cae limpiamente.
+  coinciden con las de banda. Si Ferrer dice que están en otro sitio, se cae
+  limpiamente.
 - **Coste si es falsa**: bajo. Mueve la profundidad de la pieza entre 7/8 y
-  15/16
-  del salto, un 6 %.
+  15/16 del salto, un 6 %.
 - **Hacerlo antes que el paso 3**: es barato, y si el 3 nunca llega, el modelo
-  se
-  queda con los dos perfiles usados, que es más fiel que con uno.
+  se queda con los dos perfiles usados, que es más fiel que con uno.
 
 ## Paso 3 — Bajar de banda a hilada
 
@@ -101,8 +103,7 @@ original no llega, el vídeo deja de ser un desperdicio y pasa a ser lo que hay.
   entre caras, que es lo que la decisión 0006 refutó. Aun así, no se puede
   presentar como pieza real.
 - **Coste si es falso**: alto, y del tipo peor. El relieve se vería mucho mejor
-  y
-  eso hace que parezca más preciso de lo que es.
+  y eso hace que parezca más preciso de lo que es.
 - **Cómo se entrega**: dos salidas, nunca una. `cupula_bandas.obj`, defendible y
   por defecto, y `cupula_subdividida.obj`, ilustrativa y rotulada como tal. Y
   antes de activarla por defecto, cruzar el umbral de arriba con su cambio de
@@ -111,9 +112,8 @@ original no llega, el vídeo deja de ser un desperdicio y pasa a ser lo que hay.
 ## Paso 4 — Policromía
 
 Aquí hay menos que inventar de lo que parece, porque **el objetivo ya lo
-decide**:
-«como el día de su inauguración, yeso blanco de obra nueva y policromía
-original».
+decide**: «como el día de su inauguración, yeso blanco de obra nueva y
+policromía original».
 
 - **Modo por defecto: yeso blanco.** No exige asignar ni un color, es
   literalmente lo que dice el objetivo, y es la mitad de la afirmación que sí
@@ -146,16 +146,13 @@ y es donde el proyecto puede crecer sin deberle nada a nadie.
 ## Lo que no se inventa, pase lo que pase
 
 - **No firmar vecindades por coherencia entre vecinas.** Ferrer fue explícito:
-  la
-  coherencia **valida** observaciones, no rellena las que faltan.
+  la coherencia **valida** observaciones, no rellena las que faltan.
 - **No usar la simetría impuesta como evidencia.** Ni la mitad espejada de la
   red, ni el montaje cuádruple de `Ferrer_5`.
 - **No reabrir los tres atajos refutados** de la decisión 0006. Cada uno tiene
-  su
-  ciclo testigo.
+  su ciclo testigo.
 - **No presentar nada de esto como observado sobre la cúpula.** Lo que se
-  observe
-  será sobre una maqueta del siglo XIX o sobre un dibujo.
+  observe será sobre una maqueta del siglo XIX o sobre un dibujo.
 - **No derivar geometría publicable** del material de Ferrer sin su permiso
   expreso, con el repositorio en MIT.
 

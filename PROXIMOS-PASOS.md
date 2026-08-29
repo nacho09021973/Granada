@@ -5,6 +5,55 @@ histórico. El registro de decisiones va en `docs/decisiones/`.
 
 ---
 
+## Órbitas C8 y las maquetas de Contreras — 2026-08-29
+
+**Decidido propagar por rotación, no por espejo** (decisión 0012), y corregida de
+paso una afirmación mía de la hoja de ruta que era demasiado estricta: dije que
+extender por simetría sería circular, y confundía dos cosas. La entrada 7 **mide**
+la simetría rotacional por Fourier sobre la ortoimagen, independiente de la red,
+así que usarla no es circular. Lo que esa misma entrada dice literalmente es que
+**«no se ha analizado la simetría especular»**. Ahí está el corte.
+
+Lo que sale: la rotación de 45° es **biyectiva y de orden exactamente 8**, con
+**14 órbitas de caras** —13 de tamaño 8 más el octógono central fijo— y **27
+órbitas de vecindades propagables** que cubren 216 de las 227. **El dominio
+fundamental es 14 caras y 27 vecindades**: el trabajo del paso 1 pasa de 227
+lecturas a 27.
+
+Control que lo sostiene: con giros que no son de simetría —22,5°, 30°, 60°— el
+desajuste máximo se multiplica por 3 a 5 y las caras con margen holgado caen de
+99 a 29–51. El fallo de 22,5° es significativo: es la retícula C16, y confirma la
+separación que hace la entrada 7 entre andamiaje angular de orden 16 y simetría
+exacta de orden 8.
+
+Cinco vecindades (2,2 %) no cierran. Residuo del dibujo, no fallo estructural,
+pero **por ahí no se propaga**: sus órbitas quedan marcadas y once vecindades sin
+cubrir. **Propagar no multiplica el N**: observadas 27 son 27, no 216.
+
+### El artículo sobre Contreras aprieta la etiqueta
+
+Entrada 13: González Pérez (2017), *Art in Translation* 9:1. Cierra tres cosas y
+aprieta una cuarta.
+
+- **La maqueta de Dos Hermanas existe y está localizada.** Es la que le valió a
+  Contreras el nombramiento de restaurador adornista: yeso, papel y madera,
+  194 × 109 cm, **1847, Museo Arqueológico Nacional de Madrid**, seccionada
+  —«vista exterior e interior»—. Candidato fuerte para la del vídeo, y vía
+  concreta para los inventarios 006601 y 006091 que arrastrábamos sin verificar.
+- **Escala habitual 1:12**, y los modelos podían ir con color o sin él.
+- **No son copias exactas.** Verbatim: el taller «rellenaba los huecos para dar
+  una visión más completa» y «la mayoría de los modelos no son copias exactas del
+  monumento original». La entrada 12 lo decía como reproche sin verificar; queda
+  verificado y **es más fuerte**.
+
+Consecuencia: leer sentidos de ascenso sobre esa maqueta es leer **la compleción
+de Contreras**. La etiqueta correcta no es «observado sobre una maqueta del siglo
+XIX» sino «observado sobre una reconstrucción decimonónica que rellena lagunas
+por diseño». Y corolario incómodo: si rellenaba hacia lo regular, su modelo será
+más simétrico que la fábrica, así que confirmarle simetría no informa de nada.
+
+---
+
 ## Si Ferrer no contesta — hoja de ruta
 
 Escrita en [`docs/hoja-de-ruta.md`](docs/hoja-de-ruta.md). Fija cómo se toman las

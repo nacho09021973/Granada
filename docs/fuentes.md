@@ -555,10 +555,13 @@ deja sin asignar** hasta que él lo precise.
 Ferrer da la leyenda: **«4 x Cuarto de maqueta de la cúpula de Dos Hermanas de
 Rafael Contreras — s. XIX»**. Es, por tanto, la única imagen de la serie que
 retrata Dos Hermanas, y aun así **no retrata la cúpula**: retrata una maqueta
-decimonónica de ella. Rafael Contreras fue restaurador de la Alhambra y produjo
-modelos a escala de sus salas; su obra de restauración se le reprocha
-interpretativa. Autoría, fecha, paradero de la maqueta y bibliografía **quedan
-sin verificar** por este proyecto.
+decimonónica de ella.
+
+**Verificado en la entrada 13** (González Pérez 2017): Contreras hizo en efecto
+una maqueta de Dos Hermanas —la que le valió el nombramiento de restaurador
+adornista en 1847, hoy en el Museo Arqueológico Nacional—, y sus maquetas
+**rellenan lagunas a propósito**: «not exact copies of the original monument».
+Leer cualquier cosa sobre ella es leer la compleción de Contreras.
 
 La leyenda explica lo que se veía en la imagen y se había leído mal: las líneas
 oscuras en aspa **no son trazados sobre el techo, son las costuras del
@@ -573,8 +576,9 @@ De ahí tres límites que hay que respetar antes de mirarle nada:
    **nunca** sirve como evidencia de simetría.
 2. **Solo un cuarto es dato independiente.** Cualquier recuento hecho sobre la
    imagen completa hay que dividirlo entre cuatro antes de dar un N.
-3. **Es fuente terciaria.** Entre ella y la fábrica hay un intérprete del siglo
-   XIX y el proceso de reducción a escala de maqueta.
+3. **Es fuente terciaria, y de las malas.** Entre ella y la fábrica hay un
+   intérprete del siglo XIX que rellenaba huecos por diseño (entrada 13) y la
+   reducción a escala de maqueta.
 
 **El rojo no se reabre.** El pigmento rojo visible es **policromía de
 Contreras**, no nazarí, y no toca lo que `docs/policromia.md` descarta sobre la
@@ -651,6 +655,72 @@ ffmpeg -i "docs/Ferrer_6 maqueta Contreras (grabación 2026-08-29).mp4" \
    `Ferrer_3` y `Ferrer_4` entran o no en esa leyenda.
 5. De sus maquetas impresas: qué fuente de proporciones se usó y a qué escala
    se imprimieron.
+
+---
+
+## 13. González Pérez (2017) — las maquetas de Rafael Contreras
+
+Asun González Pérez, «Reconstructing the Alhambra: Rafael Contreras and
+Architectural Models of the Alhambra in the Nineteenth Century», *Art in
+Translation* 9:1 (2017), pp. 29–49. DOI
+[10.1080/17561310.2017.1297041](https://doi.org/10.1080/17561310.2017.1297041).
+Aportado el 2026-08-29. **Leído.** El PDF se consulta en local y **no se
+redistribuye**: es obra de Taylor & Francis y va en `.gitignore`, como la tesis y
+el plano de la RABASF.
+
+Es la fuente que faltaba para situar `Ferrer_5` y `Ferrer_6` de la entrada 12.
+Cierra tres cosas y aprieta una cuarta.
+
+### La maqueta de Dos Hermanas existe, está fechada y localizada
+
+Contreras (1824–1890) fue nombrado «restaurador adornista» por Isabel II en
+**1847** después de presentarle **una maqueta tridimensional de la Sala de las
+Dos Hermanas**. El pie de la figura 2 la identifica: yeso, papel y madera,
+**194 × 109 cm, 1847, colección del Museo Arqueológico Nacional, Madrid**, y la
+describe como «vista exterior e interior», es decir seccionada.
+
+Eso convierte en un candidato concreto lo que la entrada 12 dejaba abierto. **No
+se afirma que sea la del vídeo de Ferrer**: es un candidato fuerte, fechado y con
+paradero, y la vía para comprobarlo es el MAN. Conecta además con los
+inventarios 006601 y 006091 que `PROXIMOS-PASOS.md` arrastra sin verificar.
+
+### La escala habitual es 1:12
+
+Para los modelos de venta. Responde a una de las preguntas pendientes de la
+entrada 12, aunque no necesariamente para la pieza de 1847, que es de
+presentación y no de catálogo. Los modelos se hacían en yeso, alabastro y
+madera, **con color o sin él** — la policromía de `Ferrer_5` es coherente con eso.
+
+### Y aquí está lo que aprieta: no son copias exactas
+
+> «The models show all of the wall decorations in an unblemished state, because
+> Contreras's workshop **filled in the gaps** to create a more complete vision of
+> the palace, as they did in the restoration. **Most of the models are thus not
+> exact copies of the original monument.**»
+
+La entrada 12 decía que a Contreras «se le reprocha interpretativa» su
+restauración y lo marcaba sin verificar. Queda verificado, y es **más fuerte de
+lo que se había escrito**: no es que interpretara al restaurar, es que las
+maquetas rellenan huecos a propósito para dar una imagen completa.
+
+**Consecuencia operativa, y no es menor.** Leer sentidos de ascenso sobre la
+maqueta es leer **la compleción de Contreras**, no la fábrica nazarí. La
+etiqueta correcta no es «observado sobre una maqueta del siglo XIX» sino
+**«observado sobre una reconstrucción decimonónica que rellena lagunas por
+diseño»**. Sigue siendo admisible bajo la decisión 0008 —es material de
+reconstrucción, que es lo que el objetivo aprobado permite— pero no es
+observación del monumento en ningún grado.
+
+Corolario incómodo: si el taller rellenaba para dar «una visión más completa»,
+su maqueta será **más regular que la cúpula real**. Confirmar simetría sobre ella
+no informa de nada, y buscarle asimetrías tampoco.
+
+### Lo que el método sí sostiene
+
+La técnica documentada es de **molde de barro prensado sobre el ornamento** y
+positivo en yeso — copia fiel del original allí donde se aplica. Pero el propio
+artículo acota que su restauración «se centraba solo en la superficie mural».
+Una bóveda de mocárabes no es superficie mural: no consta que se moldeara así.
 
 ---
 
