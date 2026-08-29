@@ -482,6 +482,178 @@ asignación pieza por pieza aplicable directamente a Dos Hermanas.
 
 ---
 
+## 12. Ferrer Pérez-Blanco — material de apoyo (2026-08-29)
+
+**Comunicación personal recibida el 2026-08-29**, enviada expresamente «como
+ayuda» tras la respuesta de la entrada 11: cinco imágenes y una grabación de
+pantalla. Se conservan en [`Ferrer_0 diseño.png`](Ferrer_0%20dise%C3%B1o.png),
+[`Ferrer_1.png`](Ferrer_1.png), [`Ferrer_2.png`](Ferrer_2.png),
+[`Ferrer_3.png`](Ferrer_3.png), [`Ferrer_4.png`](Ferrer_4.png),
+[`Ferrer_5.png`](Ferrer_5.png) y
+[`Ferrer_6 maqueta Contreras (grabación 2026-08-29).mp4`](Ferrer_6%20maqueta%20Contreras%20%28grabaci%C3%B3n%202026-08-29%29.mp4).
+Son obra de sus autores: se incorporan como evidencia de la comunicación y como
+referencia visual, **no como material libre para reutilización** ni para
+derivar geometría publicable sin permiso expreso. `Ferrer_0 diseño.png` ya
+estaba en el repositorio sin registrar; todo el conjunto se traslada aquí desde
+`renders/` porque es fuente, no salida.
+
+**Leyendas dadas por Ferrer**, literales:
+
+- de `Ferrer_5`: «4 x Cuarto de maqueta de la cúpula de Dos Hermanas de Rafael
+  Contreras — s. XIX»;
+- de las demás imágenes: «Alhambra muqarnas squinches head to head», que él
+  mismo traduce como **trompas de mocárabes de la Alhambra**;
+- el vídeo es la maqueta de Contreras de la cúpula de Dos Hermanas.
+
+### Qué es cada pieza
+
+| pieza | resolución | naturaleza | contenido observable |
+|---|---|---|---|
+| `Ferrer_0 diseño.png` | 810×675 | foto de maqueta impresa | alzado frontal: arcada octogonal y masa piramidal de mocárabes hasta una plataforma superior |
+| `Ferrer_4.png` | 659×842 | foto de maqueta impresa | **la misma pieza** en vista de esquina picada; se leen las hiladas del arranque a la plataforma |
+| `Ferrer_1.png` | 833×600 | foto de maqueta impresa | dos paños en ángulo con costura central visible, relieve en las caras interiores y arco cóncavo de remate |
+| `Ferrer_2.png` | 781×547 | foto de maqueta impresa | **el mismo conjunto** desde abajo; en planta los dos paños forman una V |
+| `Ferrer_3.png` | 859×861 | render sin textura | campo de mocárabes visto desde abajo, en gris de trabajo; aísla la geometría de la policromía |
+| `Ferrer_5.png` | 860×860 | **montaje** cenital | cuatro copias de un cuarto de la maqueta de Contreras, unidas por las diagonales |
+| `Ferrer_6 …mp4` | 480×856, 15,6 s, 30 fps | **grabación de pantalla de un modelo 3D navegable** | órbita alrededor de un cuarto de la maqueta de Contreras: exterior con tambor, ventanas y epigrafía, e interior de mocárabes en vistas oblicuas |
+
+La leyenda de las trompas cubre «las demás imágenes» en bloque y **no se ha
+repartido fichero a fichero**. Encaja sin forzar en `Ferrer_1` y `Ferrer_2`,
+donde la costura central es coherente con dos piezas puestas cabeza contra
+cabeza. Encaja peor en `Ferrer_0` y `Ferrer_4`, que se leen como una bóveda
+completa sobre arcada octogonal, y en `Ferrer_3`, que es un campo de techo. **Se
+deja sin asignar** hasta que él lo precise.
+
+### Lo que estas imágenes sí sostienen
+
+- **Ninguna de las seis muestra la cúpula construida.** Cinco documentan
+  maquetas —cuatro impresas por Ferrer, una del siglo XIX— y una es un render.
+  Bajo el objetivo aprobado en la decisión 0008 son material legítimo, porque
+  fijan cómo resuelve la geometría una reconstrucción competente, pero **no son
+  evidencia de la fábrica de la Alhambra**. La distancia es de un eslabón en
+  todas: son modelos *de* la cúpula, no la cúpula.
+- Muestran, a escala legible, lo que la ortoimagen cenital no deja ver: el
+  **apilado vertical de hiladas**, el frente en arco de cada celda, cómo las
+  piezas vecinas mantienen un sentido de ascenso coherente y cómo se resuelve
+  un rincón. Es material de contraste directo para `granada/adaraja.py` y para
+  la plantilla de doble perfil.
+- `Ferrer_1` y `Ferrer_2` dan una **sección construida**: contrastan contra las
+  23 hiladas y el cono de 38° de `docs/estratificacion.md` sin depender del
+  alzado de Almagro.
+- `Ferrer_3`, al no tener textura, separa relieve de policromía: es el control
+  natural del análisis de sombra de `datos/contraste_sombra_niveles.json`.
+
+### Lo que no sostienen
+
+- Ninguna trae flechas, cotas ni tabla pieza-a-pieza. **No firman ninguna de
+  las 227 vecindades.** El estado documental de la entrada 11 no cambia.
+- No llevan escala, punto de vista declarado ni identificación del monumento.
+  Sin eso no se registran contra la planta y no se miden ángulos ni pasos.
+
+### `Ferrer_5` — identificada por su autor: maqueta de Rafael Contreras
+
+Ferrer da la leyenda: **«4 x Cuarto de maqueta de la cúpula de Dos Hermanas de
+Rafael Contreras — s. XIX»**. Es, por tanto, la única imagen de la serie que
+retrata Dos Hermanas, y aun así **no retrata la cúpula**: retrata una maqueta
+decimonónica de ella. Rafael Contreras fue restaurador de la Alhambra y produjo
+modelos a escala de sus salas; su obra de restauración se le reprocha
+interpretativa. Autoría, fecha, paradero de la maqueta y bibliografía **quedan
+sin verificar** por este proyecto.
+
+La leyenda explica lo que se veía en la imagen y se había leído mal: las líneas
+oscuras en aspa **no son trazados sobre el techo, son las costuras del
+montaje**. La imagen es un compuesto de cuatro copias de un cuarto de maqueta,
+unidas por las diagonales.
+
+De ahí tres límites que hay que respetar antes de mirarle nada:
+
+1. **La simetría de orden 4 está impuesta, no observada.** Es exactamente la
+   trampa de la cautela 5 de `PROXIMOS-PASOS.md`, la misma que impide usar la
+   mitad espejada de la red como prueba de simetría especular. Esta imagen
+   **nunca** sirve como evidencia de simetría.
+2. **Solo un cuarto es dato independiente.** Cualquier recuento hecho sobre la
+   imagen completa hay que dividirlo entre cuatro antes de dar un N.
+3. **Es fuente terciaria.** Entre ella y la fábrica hay un intérprete del siglo
+   XIX y el proceso de reducción a escala de maqueta.
+
+**El rojo no se reabre.** El pigmento rojo visible es **policromía de
+Contreras**, no nazarí, y no toca lo que `docs/policromia.md` descarta sobre la
+ortoimagen del plano. Lo que sí constituye —y no es poco— es una **lectura
+tridimensional y coloreada del siglo XIX**, hecha por alguien con acceso
+directo a la sala en un estado de conservación mejor que el actual. Vale como
+hipótesis de policromía fechada y atribuida, jamás como medida.
+
+Posible hilo suelto: `PROXIMOS-PASOS.md` arrastra sin verificar **los
+inventarios 006601 y 006091 del Museo**. Conviene comprobar si corresponden a
+maquetas de Contreras; sería la vía para llegar al objeto y no a una foto de un
+cuarto de él.
+
+### `Ferrer_6` — el vídeo es lo más valioso del envío
+
+No es un vídeo de la maqueta física: es una **grabación de pantalla de un
+visor 3D** con un modelo navegable del cuarto de maqueta de Contreras. Se ve el
+cursor, la órbita del usuario y el fondo negro del visor. La geometría muestra
+bordes deshilachados, agujeros y fragmentos flotantes, y la textura es
+fotográfica: el conjunto es característico de **fotogrametría**, no de un
+modelado manual. La pista de audio es silencio digital (−91 dB): no hay
+narración que registrar.
+
+Aporta lo que no había en todo el proyecto: **vistas oblicuas de un cuarto
+completo**, con el sentido de ascenso de las piezas legible pieza a pieza, y sin
+la simetría impuesta del montaje de `Ferrer_5`. Esto es lo que
+`PROXIMOS-PASOS.md` pedía para firmar las vecindades —salvo que aquí lo
+observado es **la maqueta de Contreras, no la cúpula**. Sirve, por tanto, para
+sustituir la inferencia por distancia de grafo de la decisión 0007 por
+orientaciones observadas, siempre con la etiqueta «observado sobre la maqueta de
+Contreras».
+
+`Ferrer_5` es **muy probablemente un cenital de este mismo modelo**, montado
+cuatro veces: comparten paleta —rojo, dorado y nervios azul grisáceo—, el mismo
+aspecto fundido de textura fotogramétrica y el mismo objeto. No está confirmado
+por Ferrer; si lo está, el vídeo sustituye a `Ferrer_5` como fuente y el montaje
+deja de aportar nada propio.
+
+**El modelo 3D es obra del propio Ferrer**, confirmado por él el 2026-08-29.
+No debe confundirse con el escaneado de la entrada 11: aquel fue de la cúpula
+construida, hace años y sin acceso hoy a los ficheros; este es un levantamiento
+suyo de la maqueta de Contreras, y sí lo tiene.
+
+Eso cambia la naturaleza del material. Deja de ser una grabación de origen
+incierto y pasa a ser **un modelo atribuido, fechado y con su autor localizable
+y ya en conversación**. La consecuencia práctica es directa: lo que hay que
+pedirle no es información sobre el modelo, sino **el modelo** —malla en OBJ o
+PLY del cuarto—. Trabajar sobre 15,6 s de h264 a 480×856 cuando existe el
+original es desperdiciarlo.
+
+Límites que quedan: la grabación no trae escala, ni parámetros de cámara, ni
+condiciones de uso pactadas —esto último ahora es suyo de conceder, no un dato
+que falte—. Y sigue siendo modelo de un modelo: Contreras interpretó, y la
+fotogrametría de Ferrer aproximó lo que Contreras dejó. La cadena hasta la
+cúpula tiene dos eslabones, y ninguno se puede saltar al etiquetar resultados.
+
+Extracción de fotogramas para trabajar, reproducible y **no versionada**:
+
+```bash
+ffmpeg -i "docs/Ferrer_6 maqueta Contreras (grabación 2026-08-29).mp4" \
+  -vf fps=2 /tmp/ferrer6/f%03d.png
+```
+
+### Preguntas que hay que devolverle
+
+1. **La malla del modelo del cuarto de maqueta** (OBJ o PLY), con qué método la
+   levantó y en qué condiciones puede usarla el proyecto. Ya sabemos que es
+   suya; lo que falta es el fichero y el permiso. Es la petición que más rinde
+   de todas.
+2. Dónde se conserva hoy la maqueta de Contreras, y si es un cuarto de origen o
+   un cuarto conservado de una maqueta completa.
+3. Si `Ferrer_5` es un cenital de ese mismo modelo.
+4. Qué trompa concreta es cada una de las otras imágenes, y si `Ferrer_0`,
+   `Ferrer_3` y `Ferrer_4` entran o no en esa leyenda.
+5. De sus maquetas impresas: qué fuente de proporciones se usó y a qué escala
+   se imprimieron.
+
+---
+
 ## Pendiente de verificar
 
 - Recuento de piezas de la cúpula de las Dos Hermanas: circulan 5.416 piezas y

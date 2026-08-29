@@ -43,10 +43,20 @@ tipo (B) exige evidencia externa y no se deriva de (A).
 implícita, sostiene fidelidad a ninguna cúpula concreta. Cuando se aborde,
 irá acompañada de sus fuentes y de un margen de error explícito.
 
+**El objetivo declarado sobre Dos Hermanas es aproximado.** Desde la
+[decisión 0008](docs/decisiones/0008-objetivo-reconstruccion-aproximada.md) el
+proyecto no persigue la reconstrucción *exacta* de esa cúpula, sino la mejor
+posible con los datos que hay. La razón es que las fuentes no coinciden entre
+sí —23 hiladas medidas, 24 en un recuento comunicado, 7 niveles en la
+divulgación— y no existe tabla pública que asocie cada pieza a una cota. La
+distinción (A)/(B) sigue intacta: lo que baja es el techo declarado de (B), no
+el listón de la evidencia. Cada salida declara qué parte está medida, cuál
+inferida y cuál es un parámetro.
+
 Este README no afirma originalidad ni novedad frente a la literatura
 existente sobre mocárabes o sobre geometría islámica. La bibliografía se
-recogerá en [`docs/fuentes.md`](docs/fuentes.md) cuando haya fuentes
-verificadas que citar; hasta entonces el fichero está vacío a propósito.
+recoge en [`docs/fuentes.md`](docs/fuentes.md), donde cada entrada lleva su
+verificación y su techo de afirmación.
 
 ---
 
