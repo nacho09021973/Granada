@@ -10,13 +10,23 @@ evidencia (`granada/caras.py`: 9 figuras confirmadas, 16 al límite de
 resolución, 80 sin figura) y existe una representación topológica de niveles
 (`granada/niveles.py`). Las 227 vecindades entre caras llevan el salto
 explícitamente **sin firmar**: aún faltan las restricciones firmadas que
-permitirían propagar niveles desde el borde. Los perfiles de celda `cuna` y
-`rombo` siguen vigentes. La antigua estratificación por coronas, `trapecio` y
-el perfil de cónica única se conservan marcados como obsoletos hasta que exista
-sustituto.
-No hay todavía una planta histórica con niveles validada, geometría 3D
-aceptada ni exportación de mallas. El estado operativo está en
-[`PROXIMOS-PASOS.md`](PROXIMOS-PASOS.md).
+permitirían propagar niveles desde el borde.
+
+Sobre esa planta se levanta ya una **cúpula tridimensional aproximada**. Las
+cotas de sus seis bandas están calibradas contra la sección medida
+(`granada/niveles.py`, decisión 0009), la pieza de cada cara usa la plantilla de
+doble perfil documentada por la tesis (`granada/perfil.py`, exacta en
+`Fraction`) y `granada/malla.py` la exporta como OBJ, que es lo que carga el
+visor web. Los perfiles de celda `cuna` y `rombo` siguen vigentes. Los modelos
+refutados —coronas polares, `trapecio` y el perfil de cónica única— se retiraron
+en la decisión 0011; de aquel módulo solo sobrevive la cónica racional, como
+interpolador, en `granada/conica.py`.
+
+**Sigue sin haber una planta histórica con niveles validada.** Lo que hay es una
+reconstrucción aproximada que declara, pieza a pieza, qué está medido, qué
+inferido y qué es parámetro. El estado operativo está en
+[`PROXIMOS-PASOS.md`](PROXIMOS-PASOS.md) y las decisiones en
+[`docs/decisiones/`](docs/decisiones/).
 
 ---
 

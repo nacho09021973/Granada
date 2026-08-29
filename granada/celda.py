@@ -43,7 +43,6 @@ __all__ = [
     "Celda",
     "cuna",
     "rombo",
-    "trapecio",
     "anillo",
     "pasos_maximos",
 ]
@@ -217,46 +216,3 @@ def numeric_embedding_celda(celda: Celda) -> tuple[tuple[float, float], ...]:
     Solo para dibujar. Nunca para comparar ni decidir.
     """
     return tuple(numeric_embedding_xy(v) for v in celda.vertices)
-
-
-def trapecio(
-    ring: CyclotomicRing, radio_exterior: int, radio_interior: int, pasos: int = 2
-) -> Celda:
-    """OBSOLETO: celda del modelo descartado de coronas polares.
-
-    Se conserva temporalmente como referencia hasta que el teselado con
-    niveles sustituya por completo a la estratificacion antigua. No representa
-    ninguna figura del sistema occidental documentado por la tesis.
-
-    Trapecio anular: el sector entre dos radios enteros, de `pasos` de ancho.
-
-    Vertices: r_ext, r_ext*zeta^pasos, r_int*zeta^pasos, r_int. Los radios se
-    miden en unidades de planta y son enteros, asi que los cuatro vertices son
-    exactos en Z[zeta_m].
-
-    Es la celda de una hilada de la cupula: cada hilada es un anillo de estos,
-    y al subir un nivel ambos radios bajan en una unidad.
-    """
-    if not 1 <= pasos <= pasos_maximos(ring):
-        raise ValueError(
-            f"pasos fuera de rango para m={ring.m}: "
-            f"se esperaba 1..{pasos_maximos(ring)}, se recibio {pasos}"
-        )
-    if radio_interior < 0:
-        raise ValueError(f"radio interior negativo: {radio_interior}")
-    if radio_exterior <= radio_interior:
-        raise ValueError(
-            f"el radio exterior ({radio_exterior}) debe superar al interior "
-            f"({radio_interior})"
-        )
-    z = ring.zeta_power(pasos)
-    return Celda(
-        ring,
-        (
-            radio_exterior * ring.one,
-            radio_exterior * z,
-            radio_interior * z,
-            radio_interior * ring.one,
-        ),
-        f"trapecio-{radio_exterior}:{radio_interior}-{pasos}",
-    )

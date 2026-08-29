@@ -11,7 +11,7 @@ Que es medido y que es modelo
 - el **salto vertical** que abarca una cara es su extension radial por la
   pendiente medida del cono, `paso_vertical / paso_horizontal`;
 - la **proporcion** entre el frente y ese salto es la documentada, 7/8 o 15/16
-  (`granada.plantilla`);
+  (`granada.perfil`);
 - la **curva** entre los extremos del perfil es la conica racional: eleccion de
   modelo declarada, no una medida.
 
@@ -28,7 +28,7 @@ from __future__ import annotations
 import math
 from fractions import Fraction
 
-from granada.plantilla import MAYOR, Plantilla
+from granada.perfil import MAYOR, PlantillaPerfil
 
 
 class Malla:
@@ -139,16 +139,20 @@ def triangular(poligono: list[tuple[float, float]]) -> list[tuple[int, int, int]
     return triangulos
 
 
-def celda(
+def pieza(
     malla: Malla,
     poligono: list[tuple[float, float]],
     cota_m: float,
     salto_vertical_m: float,
-    plantilla: Plantilla = MAYOR,
+    plantilla: PlantillaPerfil = MAYOR,
     subdivision: int = 4,
     escala_profundidad: float = 1.0,
 ) -> None:
-    """Anade a la malla el solido de una cara: plataforma y frente colgando."""
+    """Anade a la malla el solido de una cara: plataforma y frente colgando.
+
+    Se llama `pieza` y no `celda` para no chocar con el modulo `granada.celda`,
+    que es la celda de la PLANTA. Esto es el solido levantado de una de ellas.
+    """
     if len(poligono) < 3:
         raise ValueError(f"una cara necesita 3 vertices o mas: {len(poligono)}")
     if salto_vertical_m < 0:
@@ -205,7 +209,7 @@ def corona(
     poligono: list[tuple[float, float]],
     cota_apice_m: float,
     cota_borde_m: float,
-    plantilla: Plantilla = MAYOR,
+    plantilla: PlantillaPerfil = MAYOR,
     subdivision: int = 4,
     anillos: int = 6,
 ) -> None:
@@ -258,7 +262,7 @@ def corona(
 
 def cupula(
     caras: list[dict],
-    plantillas: dict[str, Plantilla] | None = None,
+    plantillas: dict[str, PlantillaPerfil] | None = None,
     subdivision: int = 4,
     escala_profundidad: float = 1.0,
 ) -> Malla:
@@ -281,7 +285,7 @@ def cupula(
                 subdivision,
             )
         else:
-            celda(
+            pieza(
                 malla,
                 cara["poligono"],
                 cara["cota_m"],

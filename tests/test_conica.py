@@ -1,8 +1,11 @@
-"""Tests del alzado de la adaraja.
+"""Tests de la conica racional, la primitiva de curva del proyecto.
 
-El perfil es una conica racional: puntos de control y peso en Fraction, y
-evaluar en un t racional da coordenadas racionales. Sin trigonometria ni
-coma flotante salvo en la seccion final.
+Puntos de control y peso en Fraction, y evaluar en un t racional da coordenadas
+racionales. Sin trigonometria ni coma flotante salvo en la seccion final.
+
+Fue `test_adaraja.py`. Los tests de `malla_adaraja` y `PuntoMalla` se fueron con
+el modelo de perfil unico (decision 0011); el levantado se prueba ahora en
+`test_malla.py` y la plantilla en `test_perfil.py`.
 """
 
 from __future__ import annotations
@@ -14,20 +17,15 @@ from fractions import Fraction
 
 import pytest
 
-from granada import adaraja as mod_adaraja
-from granada.adaraja import (
+from granada import conica as mod_conica
+from granada.conica import (
     PESO_CIRCULO,
     PESO_PARABOLA,
     TIRO_CUENCO,
     TIRO_RECTO,
     PerfilArco,
-    PuntoMalla,
-    malla_adaraja,
-    numeric_embedding_punto,
 )
-from granada.cyclotomic import CyclotomicRing
 
-ORDENES = [16, 20, 24]
 TIROS = [Fraction(0), Fraction(1, 4), Fraction(1, 2), Fraction(4, 5), Fraction(1)]
 
 
@@ -120,96 +118,14 @@ def test_muestrear_devuelve_n_mas_uno() -> None:
 # --------------------------------------------------------------------------
 
 
-@pytest.mark.parametrize("m", ORDENES)
-def test_dimensiones_de_la_malla(m: int) -> None:
-    ring = CyclotomicRing(m)
-    malla = malla_adaraja(
-        ring, 5, 4, Fraction(0), Fraction(5, 4), n_perfil=6, n_ancho=3
-    )
-    assert len(malla) == 7
-    assert all(len(fila) == 4 for fila in malla)
-    for fila in malla:
-        for punto in fila:
-            assert isinstance(punto, PuntoMalla)
-            assert len(punto.plano) == ring.degree
-            for c in punto.plano:
-                assert isinstance(c, Fraction)
-            assert isinstance(punto.altura, Fraction)
+# Al irse `numeric_embedding_punto` con el modelo de perfil unico, este modulo se
+# quedo SIN frontera numerica: es exacto de punta a punta. La lista vacia no es un
+# descuido, es el estado del modulo.
+FRONTERA_NUMERICA: frozenset[str] = frozenset()
 
 
-@pytest.mark.parametrize("m", ORDENES)
-def test_las_esquinas_de_la_malla_son_las_de_la_celda(m: int) -> None:
-    """Abajo, el borde exterior; arriba, el interior. Enteros exactos."""
-    ring = CyclotomicRing(m)
-    malla = malla_adaraja(ring, 7, 6, Fraction(0), Fraction(1), pasos=2, n_ancho=2)
-    esperado_ext = PuntoMalla.desde_entero(7 * ring.one, Fraction(0))
-    esperado_int = PuntoMalla.desde_entero(6 * ring.one, Fraction(1))
-    assert malla[0][0] == esperado_ext
-    assert malla[-1][0] == esperado_int
-    # el otro borde angular
-    assert malla[0][-1] == PuntoMalla.desde_entero(
-        7 * ring.zeta_power(2), Fraction(0)
-    )
-
-
-@pytest.mark.parametrize("m", ORDENES)
-def test_las_alturas_de_la_malla_van_de_la_base_a_la_cima(m: int) -> None:
-    ring = CyclotomicRing(m)
-    base, cima = Fraction(3, 7), Fraction(11, 7)
-    malla = malla_adaraja(ring, 4, 3, base, cima, n_perfil=5)
-    assert malla[0][0].altura == base
-    assert malla[-1][0].altura == cima
-    alturas = [fila[0].altura for fila in malla]
-    assert alturas == sorted(alturas)
-    # dentro de una fila la altura es constante
-    for fila in malla:
-        assert len({p.altura for p in fila}) == 1
-
-
-def test_la_malla_recta_no_se_separa_de_la_cuerda() -> None:
-    """Con tiro=1/2 la adaraja es un tronco de cono liso."""
-    ring = CyclotomicRing(16)
-    malla = malla_adaraja(
-        ring, 10, 9, Fraction(0), Fraction(1), perfil=PerfilArco(tiro=TIRO_RECTO)
-    )
-    for fila in malla:
-        radio = fila[0].plano[0]  # el borde en zeta^0 es puramente real
-        assert radio + fila[0].altura == 10
-
-
-def test_la_malla_rechaza_argumentos_incoherentes() -> None:
-    ring = CyclotomicRing(16)
-    with pytest.raises(ValueError):
-        malla_adaraja(ring, 3, 5, Fraction(0), Fraction(1))
-    with pytest.raises(ValueError):
-        malla_adaraja(ring, 5, 4, Fraction(1), Fraction(0))
-    with pytest.raises(TypeError):
-        malla_adaraja(ring, 5, 4, 0.0, Fraction(1))  # type: ignore[arg-type]
-    with pytest.raises(ValueError):
-        malla_adaraja(ring, 5, 4, Fraction(0), Fraction(1), n_ancho=0)
-    with pytest.raises(ValueError):
-        malla_adaraja(ring, 5, 4, Fraction(0), Fraction(1), pasos=99)
-
-
-def test_punto_malla_valida_su_entrada() -> None:
-    ring = CyclotomicRing(16)
-    with pytest.raises(ValueError):
-        PuntoMalla(ring, [Fraction(1)], Fraction(0))
-    with pytest.raises(TypeError):
-        PuntoMalla(ring, [0.0] * ring.degree, Fraction(0))  # type: ignore[list-item]
-    with pytest.raises(TypeError):
-        PuntoMalla(ring, [Fraction(0)] * ring.degree, 0.0)  # type: ignore[arg-type]
-
-
-# --------------------------------------------------------------------------
-# Ausencia de coma flotante
-# --------------------------------------------------------------------------
-
-FRONTERA_NUMERICA = {"numeric_embedding_punto"}
-
-
-def test_ninguna_funcion_de_adaraja_usa_coma_flotante() -> None:
-    fuente = pathlib.Path(inspect.getfile(mod_adaraja)).read_text(encoding="utf-8")
+def test_ninguna_funcion_de_conica_usa_coma_flotante() -> None:
+    fuente = pathlib.Path(inspect.getfile(mod_conica)).read_text(encoding="utf-8")
     arbol = ast.parse(fuente)
 
     def usa_coma_flotante(nodo: ast.AST) -> list[str]:
@@ -232,7 +148,8 @@ def test_ninguna_funcion_de_adaraja_usa_coma_flotante() -> None:
         elif isinstance(nodo, ast.ClassDef):
             funciones.extend(h for h in nodo.body if isinstance(h, ast.FunctionDef))
 
-    assert len(funciones) > 8
+    # Guarda de que el recorrido AST encontro algo, no la asercion real.
+    assert len(funciones) > 5
     assert FRONTERA_NUMERICA <= {f.name for f in funciones}
 
     infracciones = {
@@ -264,18 +181,3 @@ def test_el_peso_circulo_aproxima_el_cuarto_de_circunferencia() -> None:
     assert float(medio[0]) == pytest.approx(exacto, rel=1e-4)
     # pero NO es exactamente el circulo: la diferencia existe y es medible
     assert float(medio[0]) != exacto
-
-
-def test_embedding_de_un_punto_de_la_malla() -> None:
-    import math
-
-    ring = CyclotomicRing(16)
-    malla = malla_adaraja(ring, 4, 3, Fraction(0), Fraction(2), pasos=2, n_ancho=2)
-    x, y, z = numeric_embedding_punto(malla[0][0])
-    assert (x, y, z) == pytest.approx((4.0, 0.0, 0.0))
-    x, y, z = numeric_embedding_punto(malla[-1][0])
-    assert (x, y, z) == pytest.approx((3.0, 0.0, 2.0))
-    # el borde en zeta^2 esta a 45 grados
-    x, y, _ = numeric_embedding_punto(malla[0][-1])
-    assert x == pytest.approx(4 * math.cos(math.pi / 4))
-    assert y == pytest.approx(4 * math.sin(math.pi / 4))

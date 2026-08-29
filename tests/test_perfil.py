@@ -11,14 +11,14 @@ from fractions import Fraction
 
 import pytest
 
-from granada.adaraja import PerfilArco
-from granada.plantilla import (
+from granada.conica import PerfilArco
+from granada.perfil import (
     CIMA_MAYOR,
     CIMA_MENOR,
     MAYOR,
     MENOR,
     UNIDADES_ENTRE_NIVELES,
-    Plantilla,
+    PlantillaPerfil,
     paralelas,
     vecindades_no_paralelas,
 )
@@ -50,7 +50,7 @@ def test_ninguna_cima_alcanza_el_nivel_siguiente() -> None:
         assert plantilla.cima < UNIDADES_ENTRE_NIVELES
         assert plantilla.fraccion_util < 1
     with pytest.raises(ValueError):
-        Plantilla("imposible", 5, Fraction(8), PerfilArco())
+        PlantillaPerfil("imposible", 5, Fraction(8), PerfilArco())
 
 
 def test_la_profundidad_conserva_la_proporcion_documentada() -> None:

@@ -23,7 +23,7 @@ RAIZ = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(RAIZ))
 
 from granada.malla import cupula  # noqa: E402
-from granada.plantilla import MAYOR, MENOR, vecindades_no_paralelas  # noqa: E402
+from granada.perfil import MAYOR, MENOR, vecindades_no_paralelas  # noqa: E402
 
 RED = RAIZ / "datos" / "red_medinas.json"
 CARAS = RAIZ / "datos" / "caras_red.json"

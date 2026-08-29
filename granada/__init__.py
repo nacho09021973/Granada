@@ -1,19 +1,18 @@
 """Granada: geometria exacta y topologia de cupulas de mocarabes.
 
-El nucleo aritmetico, las caras del teselado y la representacion topologica de
-niveles estan activos. Los modulos de coronas y perfil unico se conservan como
-referencia obsoleta. Ver PROXIMOS-PASOS.md.
+El nucleo aritmetico, las caras del teselado, la representacion topologica de
+niveles, la plantilla de doble perfil y el levantado de la malla estan activos.
+Los modelos refutados -coronas polares, trapecio y perfil unico- se han retirado
+(decision 0011); de aquel modulo solo queda la conica racional, como
+interpolador. Ver PROXIMOS-PASOS.md.
 """
 
-from granada.adaraja import (
+from granada.conica import (
     PESO_CIRCULO,
     PESO_PARABOLA,
     TIRO_CUENCO,
     TIRO_RECTO,
     PerfilArco,
-    PuntoMalla,
-    malla_adaraja,
-    numeric_embedding_punto,
 )
 from granada.caras import (
     CONTORNO,
@@ -37,13 +36,24 @@ from granada.celda import (
     numeric_embedding_celda,
     pasos_maximos,
     rombo,
-    trapecio,
 )
-from granada.estratificacion import (
-    HILADAS_MEDIDAS,
-    RAZON_MEDIDA,
-    Estratificacion,
-    numeric_embedding_hilada,
+from granada.malla import (
+    Malla,
+    contiene_el_eje,
+    corona,
+    cupula,
+    pieza,
+    triangular,
+)
+from granada.perfil import (
+    CIMA_MAYOR,
+    CIMA_MENOR,
+    MAYOR,
+    MENOR,
+    UNIDADES_ENTRE_NIVELES,
+    PlantillaPerfil,
+    paralelas,
+    vecindades_no_paralelas,
 )
 from granada.niveles import (
     AsignacionNivel,
@@ -84,14 +94,14 @@ __all__ = [
     "FiguraPlana",
     "GrafoNoAdmisible",
     "PerfilArco",
+    "PlantillaPerfil",
+    "Malla",
     "PLANTILLAS",
     "Plantilla",
-    "PuntoMalla",
     "PESO_CIRCULO",
     "PESO_PARABOLA",
     "TIRO_CUENCO",
     "TIRO_RECTO",
-    "Estratificacion",
     "ResultadoCaras",
     "Vecindad",
     "AsignacionNivel",
@@ -103,8 +113,11 @@ __all__ = [
     "ResultadoNiveles",
     "TopologiaAscenso",
     "TipoMocarabe",
-    "HILADAS_MEDIDAS",
-    "RAZON_MEDIDA",
+    "CIMA_MAYOR",
+    "CIMA_MENOR",
+    "MAYOR",
+    "MENOR",
+    "UNIDADES_ENTRE_NIVELES",
     "CyclotomicInteger",
     "CyclotomicRing",
     "RealCyclotomicInteger",
@@ -112,30 +125,33 @@ __all__ = [
     "anillo",
     "clasificar",
     "cruces_de_aristas",
+    "contiene_el_eje",
+    "corona",
     "cuna",
+    "cupula",
     "extraer_caras",
     "cyclotomic_polynomial",
     "divisors",
     "euler_phi",
-    "malla_adaraja",
     "numeric_embedding_celda",
-    "numeric_embedding_hilada",
-    "numeric_embedding_punto",
     "numeric_embedding_value",
     "numeric_embedding_xy",
     "pasos_maximos",
+    "pieza",
     "poly_add",
     "poly_divide_exact",
     "poly_mul",
     "poly_sub",
     "poly_trim",
+    "paralelas",
     "rombo",
     "resolver_desde_vecindades",
     "resolver_niveles",
     "restricciones_firmadas",
+    "triangular",
+    "vecindades_no_paralelas",
     "tolerancia_por_resolucion",
     "solve_integer_linear",
     "solve_rational_linear",
-    "trapecio",
     "__version__",
 ]

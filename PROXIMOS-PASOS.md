@@ -57,9 +57,9 @@ banda y frente colgando— y `scripts/exportar_malla.py` escribe el OBJ y
 `datos/malla_cupula.json`. Ajuste al cono medido: **rms 0,234 m** sobre 4,67 m,
 un 5 %. Suite en **645 tests**.
 
-`granada/adaraja.py` sigue obsoleto **como modelo**, pero su `PerfilArco` se
-reutiliza como interpolador: es la primitiva de curva exacta, no un modelo de
-la pieza. Aclarado en su cabecera.
+El modelo de cónica única quedó obsoleto, pero su `PerfilArco` se reutiliza como
+interpolador: es la primitiva de curva exacta, no un modelo de la pieza. El
+módulo se retiró y renombró después, en la decisión 0011.
 
 ### El paralelismo fuerza plantilla única, y eso es un hallazgo
 
@@ -138,8 +138,8 @@ las hiladas 6-11, 13-17 y 19-23. Además las bandas 0 y 2 mezclan hiladas
 distintas (IQR 2,0 y 2,8 frente a menos de 0,25 en las otras cuatro): la banda
 2, con 40 caras, casi seguro contiene piezas de dos hiladas.
 
-**Siguiente**: la vía 2 — rehacer `granada/adaraja.py` con la plantilla de doble
-perfil y sacar malla exportable. Es lo que convierte las bandas en mocárabes;
+**Siguiente**: la vía 2 — sustituir el perfil de cónica única por la plantilla de
+doble perfil y sacar malla exportable. Es lo que convierte las bandas en mocárabes;
 hoy siguen siendo prismas planos.
 
 ---
@@ -318,22 +318,24 @@ precisión, no su exigencia de prueba.
 | Plantilla de doble perfil | **implementada** — mayor 7P en quintos, menor 7,5P en séptimos, nivel a 8P; exacta en `Fraction` |
 | Malla 3D | **exportable y mirada** — `renders/cupula_aproximada.obj`, 105 celdas, rms 0,234 m frente al cono |
 
-### Lo que hay que tirar
+### Lo que había que tirar — hecho
 
-- `granada/celda.py`: la función **`trapecio`**. Me la inventé; no corresponde a
-  ninguna figura del sistema occidental.
-- `granada/estratificacion.py`: la **estratificación por coronas polares**
-  completa. El modelo correcto es un teselado, no anillos concéntricos.
-- `granada/adaraja.py`: el **perfil de cónica única** — sustituido por
-  `granada/plantilla.py` (decisión 0010). Su `PerfilArco` **no** se tira: se
-  reutiliza como interpolador exacto entre los puntos que la plantilla sí
-  documenta.
-- Sus tests correspondientes.
+Retirado el 2026-08-29 en la decisión 0011, una vez que el sustituto funciona:
+la estratificación por **coronas polares** entera, la celda **`trapecio`** que me
+inventé, y la geometría que colgaba del **perfil de cónica única**
+(`PuntoMalla`, `malla_adaraja`, `numeric_embedding_punto`), con sus tests.
 
-No borrar todavía: hasta que el sustituto funcione, el código muerto sirve de
-referencia. Pero que quede marcado como muerto.
+Sobrevive la **cónica racional**, que no era el error: el error era usarla como
+modelo de la pieza. Como interpolador exacto sigue valiendo, así que el módulo
+pasa de `adaraja.py` a `granada/conica.py` —el nombre viejo prometía un modelo
+que ya no contiene— y se queda **sin frontera numérica**: exacto de punta a
+punta.
 
----
+Dos colisiones de nombres resueltas al pasar, y las dos eran ambigüedades
+reales: `Plantilla` significaba figura de planta y perfil de pieza a la vez —la
+segunda es ahora `PlantillaPerfil` en `granada/perfil.py`—, y la función `celda`
+**sombreaba el módulo `granada.celda`** al exportarla; lo cazó un test que dejó
+de encontrar lo que inspeccionaba. Es `pieza`, que hace pareja con `corona`.
 
 ## Tarea del nivel de cada tesela: estado
 

@@ -33,7 +33,7 @@ from __future__ import annotations
 
 from fractions import Fraction
 
-from granada.adaraja import PerfilArco
+from granada.conica import PerfilArco
 
 
 UNIDADES_ENTRE_NIVELES = Fraction(8)
@@ -44,7 +44,7 @@ DIVISION_MENOR = 7
 MUESTRAS_INVERSION = 64
 
 
-class Plantilla:
+class PlantillaPerfil:
     """Uno de los dos perfiles documentados, con su division y su cima."""
 
     __slots__ = ("nombre", "division", "cima", "perfil", "_tabla")
@@ -110,7 +110,7 @@ class Plantilla:
         return salto_vertical * self.fraccion_util
 
     def __eq__(self, other: object) -> bool:
-        if not isinstance(other, Plantilla):
+        if not isinstance(other, PlantillaPerfil):
             return NotImplemented
         return (
             self.division == other.division
@@ -122,14 +122,14 @@ class Plantilla:
         return hash((self.division, self.cima, self.perfil))
 
     def __repr__(self) -> str:
-        return f"Plantilla({self.nombre!r}, division={self.division}, cima={self.cima})"
+        return f"PlantillaPerfil({self.nombre!r}, division={self.division}, cima={self.cima})"
 
 
-MAYOR = Plantilla("mayor", DIVISION_MAYOR, CIMA_MAYOR, PerfilArco())
-MENOR = Plantilla("menor", DIVISION_MENOR, CIMA_MENOR, PerfilArco())
+MAYOR = PlantillaPerfil("mayor", DIVISION_MAYOR, CIMA_MAYOR, PerfilArco())
+MENOR = PlantillaPerfil("menor", DIVISION_MENOR, CIMA_MENOR, PerfilArco())
 
 
-def paralelas(a: Plantilla, b: Plantilla) -> bool:
+def paralelas(a: PlantillaPerfil, b: PlantillaPerfil) -> bool:
     """Dos piezas tienen perfiles paralelos si comparten plantilla.
 
     Perfiles paralelos son trasladados verticalmente uno del otro. Dos piezas
@@ -141,7 +141,7 @@ def paralelas(a: Plantilla, b: Plantilla) -> bool:
 
 
 def vecindades_no_paralelas(
-    asignacion: dict[str, Plantilla],
+    asignacion: dict[str, PlantillaPerfil],
     vecindades: list[dict],
 ) -> list[tuple[str, str]]:
     """Vecindades cuyas dos piezas rompen el paralelismo documentado.

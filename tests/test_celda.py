@@ -253,7 +253,8 @@ def test_ninguna_funcion_de_celda_usa_coma_flotante() -> None:
         elif isinstance(nodo, ast.ClassDef):
             funciones.extend(h for h in nodo.body if isinstance(h, ast.FunctionDef))
 
-    assert len(funciones) > 8
+    # Guarda de que el recorrido AST encontro algo, no la asercion real.
+    assert len(funciones) > 6
     assert FRONTERA_NUMERICA <= {f.name for f in funciones}
 
     infracciones = {

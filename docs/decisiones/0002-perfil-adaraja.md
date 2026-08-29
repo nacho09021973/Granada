@@ -6,7 +6,9 @@ Estado: **obsoleta** desde 2026-08-24; se conserva como registro
 La lectura posterior de la tesis de Ferrer Pérez-Blanco documentó una
 plantilla de doble perfil (7P / 7,5P, nivel siguiente a 8P) y el paralelismo
 entre perfiles vecinos. La cónica única de esta decisión no debe alimentar un
-nuevo render histórico. El reemplazo aún no está decidido ni implementado.
+nuevo render histórico. El reemplazo está implementado desde la decisión 0010
+(`granada/perfil.py`) y el código de esta decisión se retiró en la 0011; la
+cónica racional sobrevive como interpolador en `granada/conica.py`.
 
 ## Contexto
 

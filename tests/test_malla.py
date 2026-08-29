@@ -8,8 +8,8 @@ from pathlib import Path
 
 import pytest
 
-from granada.malla import Malla, celda, contiene_el_eje, corona, cupula, triangular
-from granada.plantilla import MAYOR, MENOR
+from granada.malla import Malla, contiene_el_eje, corona, cupula, pieza, triangular
+from granada.perfil import MAYOR, MENOR
 
 
 RAIZ = Path(__file__).parents[1]
@@ -20,9 +20,9 @@ ALTURA_TOTAL_M = 4.67
 TRIANGULO = [(3.0, 0.0), (2.0, 1.0), (2.0, -1.0)]
 
 
-def test_la_celda_cuelga_exactamente_la_fraccion_documentada() -> None:
+def test_la_pieza_cuelga_exactamente_la_fraccion_documentada() -> None:
     malla = Malla()
-    celda(malla, TRIANGULO, cota_m=1.2, salto_vertical_m=0.8, plantilla=MAYOR)
+    pieza(malla, TRIANGULO, cota_m=1.2, salto_vertical_m=0.8, plantilla=MAYOR)
     cotas = [v[2] for v in malla.vertices]
     assert max(cotas) == pytest.approx(1.2)
     assert min(cotas) == pytest.approx(1.2 - 0.8 * 7 / 8)
@@ -32,19 +32,19 @@ def test_la_plantilla_menor_cuelga_mas_que_la_mayor() -> None:
     fondos = []
     for plantilla in (MAYOR, MENOR):
         malla = Malla()
-        celda(malla, TRIANGULO, 1.2, 0.8, plantilla)
+        pieza(malla, TRIANGULO, 1.2, 0.8, plantilla)
         fondos.append(min(v[2] for v in malla.vertices))
     assert fondos[1] < fondos[0]
 
 
-def test_la_celda_queda_cerrada_y_orientada() -> None:
+def test_la_pieza_queda_cerrada_y_orientada() -> None:
     malla = Malla()
-    celda(malla, TRIANGULO, 1.2, 0.8, subdivision=3)
+    pieza(malla, TRIANGULO, 1.2, 0.8, subdivision=3)
     # n puntos de borde: n-2 arriba, n-2 abajo y 2n de pared.
     assert len(malla.triangulos) == 4 * (3 * 3) - 4
     # invertir el poligono no cambia la geometria: se reorienta sola
     otra = Malla()
-    celda(otra, list(reversed(TRIANGULO)), 1.2, 0.8, subdivision=3)
+    pieza(otra, list(reversed(TRIANGULO)), 1.2, 0.8, subdivision=3)
     assert sorted(otra.vertices) == sorted(malla.vertices)
 
 
@@ -85,17 +85,17 @@ def test_la_triangulacion_de_una_concava_no_se_sale_del_poligono() -> None:
 
 def test_una_cara_sin_vuelo_radial_queda_plana() -> None:
     malla = Malla()
-    celda(malla, TRIANGULO, 1.2, salto_vertical_m=0.0)
+    pieza(malla, TRIANGULO, 1.2, salto_vertical_m=0.0)
     assert {round(v[2], 9) for v in malla.vertices} == {1.2}
 
 
-def test_la_celda_rechaza_entradas_imposibles() -> None:
+def test_la_pieza_rechaza_entradas_imposibles() -> None:
     with pytest.raises(ValueError):
-        celda(Malla(), [(0.0, 0.0), (1.0, 0.0)], 1.0, 0.5)
+        pieza(Malla(), [(0.0, 0.0), (1.0, 0.0)], 1.0, 0.5)
     with pytest.raises(ValueError):
-        celda(Malla(), TRIANGULO, 1.0, -0.5)
+        pieza(Malla(), TRIANGULO, 1.0, -0.5)
     with pytest.raises(ValueError):
-        celda(Malla(), TRIANGULO, 1.0, 0.5, subdivision=0)
+        pieza(Malla(), TRIANGULO, 1.0, 0.5, subdivision=0)
 
 
 def test_la_cupula_agrupa_cada_cara_por_separado() -> None:
