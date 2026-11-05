@@ -67,24 +67,31 @@ def normales_suaves(V, F, angulo=ANGULO_ARISTA):
     return unidad, esquinas
 
 
-def rasterizar(V, F, W, H, azim=0.0, elev=0.0, luces=(), perspectiva=None, suave=True, tono=None):
+def rasterizar(V, F, W, H, azim=0.0, elev=0.0, luces=(), perspectiva=None, suave=True, tono=None, encuadre=None):
     """Dibuja la malla y devuelve (imagen, (px, py)).
 
     Sin `perspectiva`: ortografica, encuadrando todo, vista desde (azim, elev).
     Con `perspectiva=(posicion, objetivo, fov_horizontal_grados)`: camara en
     `posicion` mirando a `objetivo`.
     `tono`: factor por triangulo que multiplica su color (1 = yeso tal cual).
+    `encuadre=(u0, v0, px_por_unidad)`: en ortografica, fija escala y pone el
+    origen del mundo en el pixel (u0, v0) en lugar de encuadrar la malla.
     """
     V = np.asarray(V, dtype=float)
     F = np.asarray(F, dtype=int)
     if perspectiva is None:
         der, arr, hac = camara(azim, elev)
         sx, sy, prof = V @ der, V @ arr, V @ hac
-        margen = 0.06
-        xmin, xmax, ymin, ymax = sx.min(), sx.max(), sy.min(), sy.max()
-        escala = min(W * (1 - 2 * margen) / (xmax - xmin), H * (1 - 2 * margen) / (ymax - ymin))
-        px = (sx - (xmin + xmax) / 2) * escala + W / 2
-        py = H / 2 - (sy - (ymin + ymax) / 2) * escala
+        if encuadre is None:
+            margen = 0.06
+            xmin, xmax, ymin, ymax = sx.min(), sx.max(), sy.min(), sy.max()
+            escala = min(W * (1 - 2 * margen) / (xmax - xmin), H * (1 - 2 * margen) / (ymax - ymin))
+            px = (sx - (xmin + xmax) / 2) * escala + W / 2
+            py = H / 2 - (sy - (ymin + ymax) / 2) * escala
+        else:
+            u0, v0, escala = encuadre
+            px = u0 + sx * escala
+            py = v0 - sy * escala
         visible = np.ones(len(F), dtype=bool)
         hacia_ojo = np.broadcast_to(hac, (len(F), 3))
     else:
