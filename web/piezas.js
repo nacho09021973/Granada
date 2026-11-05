@@ -14,6 +14,11 @@ const ESCENAS = {
     subtitulo: "Una hilada: 64 piezas A1 y A2 alternas",
     camara: [0, -2.5, -4.5], objetivo: [0, 4, 1.6],
   },
+  cupula: {
+    url: "../renders/cupula_piezas.obj",
+    subtitulo: "18 hiladas, 1792 piezas, sobre el cono medido",
+    camara: [0, -6, -14], objetivo: [0, 0, 9],
+  },
 };
 const ARISTA = Math.cos(THREE.MathUtils.degToRad(35));
 
@@ -34,6 +39,7 @@ controls.dampingFactor = 0.07;
 
 scene.add(new THREE.HemisphereLight(0xfff6e8, 0x3a3430, 1.4));
 const key = new THREE.DirectionalLight(0xfff1dc, 2.4);
+// Luz de las ventanas del tambor: de lado y desde abajo.
 key.position.set(-4, 6, -5);
 scene.add(key);
 const fill = new THREE.DirectionalLight(0xd8e2ff, 0.8);

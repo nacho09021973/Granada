@@ -78,7 +78,7 @@ def _tabla_curva(plantilla: PlantillaPerfil, muestras: int = 64) -> list[float]:
 
 
 _CURVA = _tabla_curva(MAYOR)
-_ALTURA_CURVA = PASO_NIVEL * float(MAYOR.fraccion_util)
+FRACCION_UTIL = float(MAYOR.fraccion_util)
 
 
 def curva(t: float) -> float:
@@ -94,20 +94,22 @@ def curva(t: float) -> float:
     return _CURVA[i] + f * (_CURVA[i + 1] - _CURVA[i])
 
 
-def _trompeta(media_anchura: float) -> Callable[[float, float], float]:
+def _trompeta(media_anchura: float, paso: float) -> Callable[[float, float], float]:
     """Pata en el eje x = 0; la curva sube hacia los dos lados."""
+    alto = paso * FRACCION_UTIL
 
     def z(x: float, y: float) -> float:
-        return _ALTURA_CURVA * curva((abs(x) - MEDIA_PATA) / (media_anchura - MEDIA_PATA))
+        return alto * curva((abs(x) - MEDIA_PATA) / (media_anchura - MEDIA_PATA))
 
     return z
 
 
-def _arco(media_anchura: float) -> Callable[[float, float], float]:
+def _arco(media_anchura: float, paso: float) -> Callable[[float, float], float]:
     """Patas en los extremos x = +-W; el arco sube hacia el eje."""
+    alto = paso * FRACCION_UTIL
 
     def z(x: float, y: float) -> float:
-        return _ALTURA_CURVA * curva(
+        return alto * curva(
             (media_anchura - abs(x) - MEDIA_PATA) / (media_anchura - MEDIA_PATA)
         )
 
@@ -119,17 +121,23 @@ def _nicho(
     media_luz: float,
     desde_y: float,
     apuntado: bool,
+    paso: float,
 ) -> Callable[[float, float], float]:
-    """Nicho del segundo nivel, abierto por debajo, en la parte delantera."""
-    arranque = PASO_NIVEL * 1.25
+    """Nicho del segundo nivel, abierto por debajo, en la parte delantera.
+
+    El arco se dibuja en planta con la luz dada y se escala en vertical con
+    paso / PASO_NIVEL, para que el nicho quepa en el prisma con cualquier paso.
+    """
+    arranque = paso * 1.25
     radio = 1.5 * media_luz
+    k = paso / PASO_NIVEL
 
     def techo(x: float) -> float:
         r = abs(x)
         if apuntado:
             centro = radio - media_luz
-            return arranque + math.sqrt(max(0.0, radio * radio - (r + centro) ** 2))
-        return arranque + math.sqrt(max(0.0, media_luz * media_luz - r * r))
+            return arranque + k * math.sqrt(max(0.0, radio * radio - (r + centro) ** 2))
+        return arranque + k * math.sqrt(max(0.0, media_luz * media_luz - r * r))
 
     def peso(d: float) -> float:
         """1 dentro del nicho, 0 fuera, con transicion lineal de ancho BORDE_NICHO."""
@@ -146,12 +154,13 @@ def _nicho(
     return z
 
 
-def _curva_fondo_frente(fondo: float) -> Callable[[float, float], float]:
+def _curva_fondo_frente(fondo: float, paso: float) -> Callable[[float, float], float]:
     """B: pata a lo largo del lado trasero; la curva sube hacia el frente."""
+    alto = paso * FRACCION_UTIL
 
     def z(x: float, y: float) -> float:
         d = y - fondo
-        return _ALTURA_CURVA * curva((d - MEDIA_PATA) / (-fondo - MEDIA_PATA))
+        return alto * curva((d - MEDIA_PATA) / (-fondo - MEDIA_PATA))
 
     return z
 
@@ -167,7 +176,9 @@ class Pieza:
     altura: float = ALTURA_PRISMA
 
 
-def pieza(tipo: str) -> Pieza:
+def pieza(tipo: str, paso: float = PASO_NIVEL) -> Pieza:
+    """El prisma `tipo` con altura de nivel `paso` (el prisma mide 2 * paso)."""
+    h = 2 * paso
     a_frente = ((-R2, 0.0), (0.0, -R2), (R2, 0.0))
     a_vertice = ((0.0, 0.0), (-R2, -R2), (R2, -R2))
     c_frente = ((-S22, 0.0), (0.0, -C22), (S22, 0.0))
@@ -177,19 +188,19 @@ def pieza(tipo: str) -> Pieza:
     rombo = ((0.0, 0.0), (-C22, -S22), (0.0, -2 * S22), (C22, -S22))
     rect = ((-R2, 0.0), (-R2, -1.0), (R2, -1.0), (R2, 0.0))
     if tipo == "A1":
-        return Pieza(tipo, a_frente, 1, _trompeta(R2))
+        return Pieza(tipo, a_frente, 1, _trompeta(R2, paso), h)
     if tipo == "A2":
-        return Pieza(tipo, a_vertice, 1, _arco(R2))
+        return Pieza(tipo, a_vertice, 1, _arco(R2, paso), h)
     if tipo == "A3":
-        return Pieza(tipo, a_frente, 2, _nicho(_trompeta(R2), 0.68 * R2, -0.45 * R2, False))
+        return Pieza(tipo, a_frente, 2, _nicho(_trompeta(R2, paso), 0.68 * R2, -0.45 * R2, False, paso), h)
     if tipo == "B":
-        return Pieza(tipo, rect, 1, _curva_fondo_frente(-1.0))
+        return Pieza(tipo, rect, 1, _curva_fondo_frente(-1.0, paso), h)
     if tipo == "C1":
-        return Pieza(tipo, c_frente, 1, _trompeta(S22))
+        return Pieza(tipo, c_frente, 1, _trompeta(S22, paso), h)
     if tipo == "C2":
-        return Pieza(tipo, c_vertice, 1, _arco(S22))
+        return Pieza(tipo, c_vertice, 1, _arco(S22, paso), h)
     if tipo == "C3":
-        return Pieza(tipo, rombo, 2, _nicho(_trompeta(C22), 0.6 * C22, -S22, True))
+        return Pieza(tipo, rombo, 2, _nicho(_trompeta(C22, paso), 0.6 * C22, -S22, True, paso), h)
     raise ValueError(f"tipo desconocido: {tipo!r}; los siete son {TIPOS}")
 
 

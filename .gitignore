@@ -53,3 +53,7 @@ docs/Teselado Ammann-Beenker En Alhambra.pdf
 # Gonzalez Perez (2017), Art in Translation 9:1. (c) Informa UK / Taylor &
 # Francis: se cita en fuentes.md entrada 13, no se redistribuye.
 docs/Reconstructing_the_Alhambra_Rafael_Contr.pdf
+
+# Malla de la cupula por piezas (~12 MB). Se regenera con
+# scripts/render_cupula_piezas.py; el PNG y datos/cupula_piezas.json si se versionan.
+renders/cupula_piezas.obj
