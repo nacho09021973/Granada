@@ -6,6 +6,7 @@ import pytest
 
 from granada.cupula import (
     FAMILIAS, PENDIENTE, RADIO_BASE, RADIO_CIERRE, cupula, doblar, plan_de_hiladas,
+    planta_por_defecto,
 )
 
 
@@ -33,12 +34,37 @@ def test_el_perfil_es_el_cono_medido(plan):
 
 
 def test_cada_vuelta_cierra_con_poco_estiramiento(plan):
+    """Multiplo de 16 para el orden 8; en las hiladas pequenas el salto de 16
+    piezas obliga a estirar hasta un 20 %."""
+    planta = planta_por_defecto()
     for h in plan:
-        assert h.piezas % 8 == 0
+        assert h.piezas % 16 == 0
         f = FAMILIAS[h.familia]
-        assert h.piezas * f.paso_tangencial * h.estiramiento == pytest.approx(2 * math.pi * h.radio_frente)
-        assert 0.85 < h.estiramiento < 1.15
+        largo = planta.arco(h.radio_frente)[2]
+        assert h.piezas * f.paso_tangencial * h.estiramiento == pytest.approx(largo)
+        assert 0.8 < h.estiramiento < 1.2
     assert plan[-1].radio_frente >= RADIO_CIERRE
+
+
+def test_la_planta_va_del_octogono_a_la_estrella():
+    planta = planta_por_defecto()
+    eje, diagonal_oct = 0.0, math.pi / 8
+    base, cierre = planta.radio_base, planta.radio_cierre
+    # arranque: octogono, lado plano a 0 grados y vertice a 22,5
+    assert planta.forma(eje, base) < planta.forma(diagonal_oct, base)
+    # cierre: estrella, punta a 0 y 45 grados, entrante a 22,5
+    assert planta.forma(eje, cierre) > planta.forma(diagonal_oct, cierre)
+    assert planta.forma(math.pi / 4, cierre) == pytest.approx(planta.forma(eje, cierre))
+    assert planta.forma(eje, cierre) / planta.forma(diagonal_oct, cierre) == pytest.approx(
+        math.sqrt(2) * math.cos(math.pi / 8))
+
+
+def test_en_contorno_respeta_el_orden_8():
+    planta = planta_por_defecto()
+    F = 6.0
+    a = planta.punto(0.3, F)
+    b = planta.punto(0.3 + math.pi / 4, F)
+    assert math.hypot(*a) == pytest.approx(math.hypot(*b))
 
 
 def test_doblar_pone_el_frente_en_el_radio_y_la_trasera_detras():
