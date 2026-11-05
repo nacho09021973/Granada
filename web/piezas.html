@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Granada · Piezas de mocárabe</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    #viewer { background: #1c1a19; }
+    .identity h1, .identity p { color: #efe6d6; }
+    footer { color: #b9ae9c; }
+  </style>
+  <script type="importmap">
+    { "imports": { "three": "./vendor/three.module.min.js" } }
+  </script>
+</head>
+<body>
+  <main id="viewer" aria-label="Piezas de mocárabe de Jones y Goury en 3D">
+    <header class="identity">
+      <h1>Mocárabes de Jones y Goury</h1>
+      <p id="subtitulo">Las siete piezas de la lámina X</p>
+    </header>
+
+    <div class="toolbar" role="toolbar" aria-label="Qué mostrar">
+      <div class="segmented">
+        <button type="button" class="active" data-escena="piezas" aria-pressed="true">7 piezas</button>
+        <button type="button" data-escena="hilada" aria-pressed="false">Hilada A1/A2</button>
+      </div>
+      <label class="toggle">
+        <input id="autorotate" type="checkbox">
+        <span aria-hidden="true"></span>
+        Rotación
+      </label>
+      <button id="reset" class="command" type="button">Restablecer vista</button>
+    </div>
+
+    <footer>Modelo declarado en granada/piezas.py y granada/hilada.py · la secuencia de la hilada es de demostración, no leída de Dos Hermanas</footer>
+    <div id="loading">Cargando malla…</div>
+  </main>
+  <script type="module" src="piezas.js"></script>
+</body>
+</html>
