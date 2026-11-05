@@ -1,5 +1,12 @@
 # Contraste de la cúpula por piezas con la ortoimagen (2026-11-05)
 
+**Alcance.** La ortoimagen es base de estudio y de apoyo, no el aspecto que se
+busca: el modelo pretende ser una cúpula coloreada y tridimensional, no
+reproducir la luz de una fotografía cenital. De este contraste vale lo
+**geométrico** (orientación, fase, dónde están las simetrías). Las diferencias de
+brillo —centro oscuro, cupulines oscuros— son de luz y acabado y no se corrigen
+para parecerse a la foto.
+
 Script: `scripts/contrastar_ortoimagen.py`. Datos: `datos/contraste_ortoimagen.json`.
 Imagen: `renders/contraste_ortoimagen.png` (ortoimagen | modelo | mezcla).
 
