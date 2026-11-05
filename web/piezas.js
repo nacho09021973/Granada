@@ -16,7 +16,7 @@ const ESCENAS = {
   },
   cupula: {
     url: "../renders/cupula_piezas.obj",
-    subtitulo: "18 hiladas, 1984 piezas · del octógono a la estrella de 8 puntas",
+    subtitulo: "18 hiladas, 16 cupulines · del octógono a la estrella de 8 puntas",
     camara: [0, -6, -14], objetivo: [0, 0, 9],
   },
 };

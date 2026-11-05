@@ -39,7 +39,14 @@ Modelo, declarado:
   Asi la trasera de cada hilada cae exactamente en el frente de la anterior; a
   cambio las piezas se tuercen donde el contorno no es perpendicular al radio.
   El oficio usa piezas rectas;
-- la cupulilla de cierre y el tambor son superficies de relleno.
+- la cupulilla de cierre y el tambor son superficies de relleno;
+- **los 16 cupulines**: posicion y diametro medidos en la ortoimagen
+  (`datos/cupulines.json`, `scripts/medir_cupulines.py`, con escala supuesta).
+  Cada cupulin tiene el eje normal al cono (inclinado atan(1,28) = 52 grados
+  de la vertical: eleccion, no medida). Se quitan las piezas de la trama cuyo
+  centroide cae en su cilindro, se pone un pocillo poco profundo que tapa el
+  corte y encima una cupula pequena con piezas a escala 0,4. Su interior no esta leido; la forma real es una cupulita de
+  mocarabes que aqui solo se imita.
 """
 
 from __future__ import annotations
@@ -181,7 +188,13 @@ def planta_por_defecto(radio_base: float = RADIO_BASE, estrella: bool = True) ->
     return Planta(radio_base, circulo[-1].radio_frente, estrella)
 
 
-def plan_de_hiladas(radio_base: float = RADIO_BASE, secuencia=SECUENCIA, planta: Planta | None = None) -> list[Hilada]:
+def plan_de_hiladas(
+    radio_base: float = RADIO_BASE,
+    secuencia=SECUENCIA,
+    planta: Planta | None = None,
+    cierre: float = RADIO_CIERRE,
+    multiplo: int = 16,
+) -> list[Hilada]:
     """Radios medios, cotas y numero de piezas de cada hilada, de abajo arriba."""
     if planta is None:
         planta = planta_por_defecto(radio_base)
@@ -193,10 +206,10 @@ def plan_de_hiladas(radio_base: float = RADIO_BASE, secuencia=SECUENCIA, planta:
         nombre = secuencia[k % len(secuencia)]
         f = FAMILIAS[nombre]
         radio = trasera - f.fondo
-        if radio < RADIO_CIERRE:
+        if radio < cierre:
             break
         exacto = planta.arco(radio)[2] / f.paso_tangencial
-        n = max(16, 16 * round(exacto / 16))
+        n = max(multiplo, multiplo * round(exacto / multiplo))
         paso = PENDIENTE * f.fondo
         hiladas.append(Hilada(k, nombre, radio, cota, paso, n, exacto / n))
         cota += paso
@@ -273,12 +286,60 @@ def _tambor(planta: Planta, radio: float, abajo: float, arriba: float, n: int = 
     return V, F
 
 
-def cupula(subdivision: int = 8, radio_base: float = RADIO_BASE, estrella: bool = True):
-    """Grupos (nombre, V, F): una por hilada, la cupulilla y el tambor."""
-    planta = planta_por_defecto(radio_base, estrella)
-    hiladas = plan_de_hiladas(radio_base, planta=planta)
-    plantillas: dict[tuple[str, float], tuple] = {}
+@dataclass(frozen=True)
+class Cupulin:
+    """Una de las 16 cupulas pequenas del anillo exterior, en unidades del cateto."""
+
+    x: float
+    y: float
+    radio: float
+
+    def marco(self, radio_base: float = RADIO_BASE):
+        """Origen sobre el cono y ejes (e1 tangente, e2, n normal al cono).
+
+        El eje del cupulin es la normal a la superficie del cono, que apunta
+        hacia arriba y hacia fuera: inclinada atan(PENDIENTE) desde la vertical.
+        """
+        d = math.hypot(self.x, self.y)
+        u = np.array([self.x / d, self.y / d, 0.0])
+        t = np.array([-u[1], u[0], 0.0])
+        b = math.atan(PENDIENTE)
+        n = u * math.sin(b) + np.array([0.0, 0.0, 1.0]) * math.cos(b)
+        e2 = np.cross(n, t)
+        origen = np.array([self.x, self.y, cota_del_cono(self.x, self.y, radio_base)])
+        return origen, t, e2, n
+
+    def contiene(self, punto, radio_base: float = RADIO_BASE) -> bool:
+        """El punto cae dentro del cilindro del cupulin, medido en su plano."""
+        o, e1, e2, n = self.marco(radio_base)
+        d = np.asarray(punto, dtype=float) - o
+        return math.hypot(d @ e1, d @ e2) < self.radio and -1.0 < d @ n < 4.0
+
+
+CUPULINES = RAIZ / "datos" / "cupulines.json"
+ESCALA_CUPULIN = 0.4
+"""Tamano de las piezas de un cupulin respecto a las de la cupula. Eleccion:
+con piezas de tamano normal no cabe ni una hilada en 0,55 m de diametro."""
+CIERRE_CUPULIN = 1.2
+
+
+def cupulines_medidos(ruta: Path = CUPULINES) -> list[Cupulin]:
+    """Las 16 posiciones de `datos/cupulines.json` (scripts/medir_cupulines.py)."""
+    r = json.loads(ruta.read_text(encoding="utf-8"))["resultado"]
+    radio = r["radio_m"] / CATETO_M
+    media = r["diametro_m"] / 2 / CATETO_M
+    fuera = []
+    for k in range(r["copias"]):
+        a = math.radians(r["fase_grados"] + k * 360 / r["copias"])
+        fuera.append(Cupulin(radio * math.cos(a), radio * math.sin(a), media))
+    return fuera
+
+
+def _montar(planta: Planta, hiladas, subdivision: int, plantillas: dict, descartar=None):
+    """Malla de cada hilada. `descartar(cx, cy, cz)` quita las piezas cuyo
+    centroide devuelve True; se devuelven tambien las cotas que ocupaban."""
     grupos = []
+    quitadas: list[tuple[float, float, float, float]] = []
     for h in hiladas:
         V: list[Punto3] = []
         F = []
@@ -290,10 +351,92 @@ def cupula(subdivision: int = 8, radio_base: float = RADIO_BASE, estrella: bool 
                 plantillas[clave] = malla(pieza(tipo, h.paso), subdivision)
             Vp, Fp = plantillas[clave]
             inicio = i * paso_t * h.estiramiento
+            colocada = en_contorno(Vp, planta, h.radio_frente, arco, inicio, h.estiramiento, h.cota)
+            if descartar is not None:
+                cx = sum(v[0] for v in colocada) / len(colocada)
+                cy = sum(v[1] for v in colocada) / len(colocada)
+                cz = sum(v[2] for v in colocada) / len(colocada)
+                if descartar(cx, cy, cz):
+                    quitadas.append((cx, cy, h.cota, h.cota + 2 * h.paso))
+                    continue
             base = len(V)
-            V.extend(en_contorno(Vp, planta, h.radio_frente, arco, inicio, h.estiramiento, h.cota))
+            V.extend(colocada)
             F.extend((a + base, b + base, c + base) for a, b, c in Fp)
         grupos.append((f"hilada_{h.indice:02d}_{h.familia}", V, F))
+    return grupos, quitadas
+
+
+def cota_del_cono(x: float, y: float, radio_base: float = RADIO_BASE) -> float:
+    """Arranque de las hiladas a la distancia del eje de (x, y), sobre el cono medido."""
+    return max(0.0, (radio_base - math.hypot(x, y)) * PENDIENTE)
+
+
+def _tubo(cx: float, cy: float, radio: float, abajo, arriba: float, n: int = 48):
+    """Pocillo vertical; `abajo(x, y)` da la cota de su borde inferior."""
+    V: list[Punto3] = []
+    F = []
+    for i in range(n):
+        a = 2 * math.pi * i / n
+        x, y = cx + radio * math.cos(a), cy + radio * math.sin(a)
+        V.extend([(x, y, abajo(x, y)), (x, y, arriba)])
+    for i in range(n):
+        a, b = 2 * i, 2 * ((i + 1) % n)
+        F.append((a, b, b + 1))
+        F.append((a, b + 1, a + 1))
+    return V, F
+
+
+def cupulin(c: Cupulin, profundidad: float, subdivision: int = 5, plantillas=None, radio_base: float = RADIO_BASE):
+    """Pocillo cilindrico de `profundidad` con eje normal al cono y, encima,
+    una cupula pequena de piezas a escala `ESCALA_CUPULIN` con su cupulilla."""
+    if plantillas is None:
+        plantillas = {}
+    e = ESCALA_CUPULIN
+    base = c.radio / e
+    planta = Planta(base, CIERRE_CUPULIN, False)
+    hiladas = plan_de_hiladas(base, planta=planta, cierre=CIERRE_CUPULIN, multiplo=8)
+    grupos, _ = _montar(planta, hiladas, subdivision, plantillas)
+    if hiladas:
+        u = hiladas[-1]
+        grupos.append(("cupulilla", *_cupulilla(planta, u.radio_frente, u.cota, u.paso, n=48, m=8)))
+    local: list[Punto3] = []
+    F = []
+    for _, Vg, Fg in grupos:
+        b = len(local)
+        local.extend((e * x, e * y, profundidad + e * z) for x, y, z in Vg)
+        F.extend((p + b, q + b, r + b) for p, q, r in Fg)
+    Vt, Ft = _tubo(0.0, 0.0, c.radio, lambda x, y: 0.0, profundidad + 2 * e * hiladas[0].paso)
+    b = len(local)
+    local.extend(Vt)
+    F.extend((p + b, q + b, r + b) for p, q, r in Ft)
+    o, e1, e2, n = c.marco(radio_base)
+    L = np.asarray(local)
+    G = o + L[:, :1] * e1 + L[:, 1:2] * e2 + L[:, 2:3] * n
+    return [tuple(v) for v in G.tolist()], F
+
+
+def cupula(
+    subdivision: int = 8,
+    radio_base: float = RADIO_BASE,
+    estrella: bool = True,
+    con_cupulines: bool = True,
+):
+    """Grupos (nombre, V, F): una por hilada, los cupulines, la cupulilla y el tambor."""
+    planta = planta_por_defecto(radio_base, estrella)
+    hiladas = plan_de_hiladas(radio_base, planta=planta)
+    plantillas: dict[tuple[str, float], tuple] = {}
+    huecos = cupulines_medidos() if con_cupulines else []
+
+    def en_hueco(x: float, y: float, z: float) -> bool:
+        return any(c.contiene((x, y, z), radio_base) for c in huecos)
+
+    grupos, quitadas = _montar(planta, hiladas, subdivision, plantillas, en_hueco if huecos else None)
+    mini: dict = {}
+    for k, c in enumerate(huecos):
+        # El pocillo llega a la tapa de las piezas quitadas, medida a lo largo
+        # de la normal; ahi arranca la cupula pequena.
+        profundidad = 2 * hiladas[0].paso * math.cos(math.atan(PENDIENTE))
+        grupos.append((f"cupulin_{k:02d}", *cupulin(c, profundidad, plantillas=mini, radio_base=radio_base)))
     ultima = hiladas[-1]
     grupos.append(("cupulilla", *_cupulilla(planta, ultima.radio_frente, ultima.cota, ultima.paso)))
     # El tambor sube hasta la tapa de la primera hilada: si acabara en su

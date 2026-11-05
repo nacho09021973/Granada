@@ -6,7 +6,7 @@ import pytest
 
 from granada.cupula import (
     FAMILIAS, PENDIENTE, RADIO_BASE, RADIO_CIERRE, cupula, doblar, plan_de_hiladas,
-    planta_por_defecto,
+    planta_por_defecto, cupulines_medidos,
 )
 
 
@@ -75,7 +75,31 @@ def test_doblar_pone_el_frente_en_el_radio_y_la_trasera_detras():
 
 
 def test_cupula_reducida_monta_todas_las_hiladas():
-    hiladas, grupos = cupula(subdivision=2, radio_base=6.0)
+    hiladas, grupos = cupula(subdivision=2, radio_base=6.0, con_cupulines=False)
     nombres = [g[0] for g in grupos]
     assert len(nombres) == len(hiladas) + 2
     assert nombres[-2:] == ["cupulilla", "tambor"]
+
+
+def test_cupulines_medidos_son_16_en_orden_8_dentro_de_la_cupula():
+    cs = cupulines_medidos()
+    assert len(cs) == 16
+    r = [math.hypot(c.x, c.y) for c in cs]
+    assert max(r) - min(r) == pytest.approx(0, abs=1e-9)
+    assert all(ri + c.radio < RADIO_BASE for ri, c in zip(r, cs))
+    a0 = math.atan2(cs[0].y, cs[0].x)
+    a2 = math.atan2(cs[2].y, cs[2].x)
+    assert (a2 - a0) % (2 * math.pi) == pytest.approx(math.pi / 4)
+
+
+def test_cupula_con_cupulines_quita_piezas_y_anade_16():
+    sin, grupos_sin = cupula(subdivision=2, con_cupulines=False)
+    hiladas, grupos = cupula(subdivision=2)
+    nombres = [g[0] for g in grupos]
+    assert sum(n.startswith("cupulin_") for n in nombres) == 16
+    assert hiladas == sin
+
+    def trama(gs):
+        return sum(len(g[2]) for g in gs if g[0].startswith("hilada_"))
+
+    assert trama(grupos) < trama(grupos_sin)
