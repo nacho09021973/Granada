@@ -21,11 +21,24 @@ def test_etiquetas_cubren_la_malla_con_n2_de_tapa_y_de_fondo(tipo):
     assert sum(e.values()) == len(F)
 
 
-def test_las_paredes_y_tapas_son_yeso_y_los_fondos_pigmento():
+def test_domina_el_yeso_y_el_color_va_en_las_celdillas_arqueadas():
     assert colorear("A1", "pared", 3, 0) == "yeso"
     assert colorear("A2", "tapa", 3, 0) == "yeso"
+    assert colorear("A1", "fondo", 3, 0) == "yeso"
     assert colorear("A3", "fondo", 3, 0) == "oro"
-    assert {colorear(t, "fondo", h, 0) for t in ("A1", "A2", "C1") for h in range(3)} == {"azul", "rojo", "verde"}
+    assert {colorear("A2", "fondo", h, 0) for h in range(6)} == {"azul", "almagra", "verde", "yeso"}
+
+
+def test_los_tonos_son_los_medidos():
+    import colorsys
+    from granada.color import LIMPIEZA, MEDIDOS
+
+    for nombre in LIMPIEZA:
+        medido = [int(MEDIDOS[nombre][i:i + 2], 16) / 255 for i in (1, 3, 5)]
+        limpio = [c / 255 for c in rgb(nombre)]
+        h0 = colorsys.rgb_to_hsv(*medido)[0]
+        h1 = colorsys.rgb_to_hsv(*limpio)[0]
+        assert abs(h0 - h1) < 0.01, nombre
 
 
 def test_paleta_es_hex_valido():
@@ -35,6 +48,7 @@ def test_paleta_es_hex_valido():
 
 def test_cupula_coloreada_tiene_un_color_por_triangulo():
     _, grupos = cupula(subdivision=2, color=True)
-    for nombre, V, F, C in grupos:
-        assert len(C) == len(F), nombre
+    for nombre, V, F, C, S in grupos:
+        assert len(C) == len(F) == len(S), nombre
         assert set(C) <= set(PALETA), nombre
+        assert all(0 < s <= 1 for s in S), nombre

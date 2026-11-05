@@ -290,6 +290,31 @@ def etiquetas(p: Pieza, V, F, tolerancia: float = 1e-9) -> list[str]:
     return fuera
 
 
+SOMBRA_PARED = 0.6
+SOMBRA_TAPA = 0.5
+
+
+def oclusion(p: Pieza, V, F, etiqueta: list[str]) -> list[float]:
+    """Factor de luz por triangulo (1 = sin sombra). Eleccion estetica.
+
+    Imita la oclusion ambiental de una celdilla: en el fondo curvo, cuanto mas
+    sube dentro de la pieza, menos luz le llega; las paredes quedan en
+    penumbra, porque en la cupula montada son el fondo de las juntas entre
+    hiladas, y las tapas casi no se ven.
+    """
+    paso = p.altura / 2
+    fuera = []
+    for tri, e in zip(F, etiqueta):
+        if e == "pared":
+            fuera.append(SOMBRA_PARED)
+        elif e == "tapa":
+            fuera.append(SOMBRA_TAPA)
+        else:
+            t = sum(V[i][2] for i in tri) / 3 / paso
+            fuera.append(max(0.45, 1.0 - 0.32 * t))
+    return fuera
+
+
 def soldar(V, F, decimales: int = 9):
     """Funde vertices coincidentes y quita triangulos degenerados."""
     clave: dict[tuple[float, float, float], int] = {}

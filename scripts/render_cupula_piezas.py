@@ -28,7 +28,7 @@ from PIL import Image
 RAIZ = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(RAIZ))
 
-from granada.color import PALETA, rgb  # noqa: E402
+from granada.color import material, paleta_materiales, rgb  # noqa: E402
 from granada.cupula import CATETO_M, PENDIENTE, RADIO_BASE, cupula  # noqa: E402
 from granada.piezas import escribir_obj  # noqa: E402
 from granada.render3d import rasterizar  # noqa: E402
@@ -46,13 +46,18 @@ def main() -> int:
 
     t0 = time.time()
     hiladas, grupos = cupula(args.subdivision, color=True)
-    escribir_obj(args.obj, grupos, paleta=PALETA)
-    V, F, colores = [], [], []
-    for _, Vg, Fg, Cg in grupos:
+    escribir_obj(
+        args.obj,
+        [(n, Vg, Fg, [material(c, s) for c, s in zip(Cg, Sg)]) for n, Vg, Fg, Cg, Sg in grupos],
+        paleta=paleta_materiales(),
+    )
+    V, F, colores, sombras = [], [], [], []
+    for _, Vg, Fg, Cg, Sg in grupos:
         base = len(V)
         V.extend(Vg)
         F.extend((a + base, b + base, c + base) for a, b, c in Fg)
         colores.extend(rgb(c) for c in Cg)
+        sombras.extend(Sg)
 
     L = args.lado
     # La luz de la sala entra por las ventanas del tambor: de lado y desde abajo.
@@ -66,7 +71,7 @@ def main() -> int:
     lienzo.paste(b, (L, 0))
     lienzo.save(args.png)
     # Obra recien acabada: mas luz ambiente para que el yeso llegue a blanco.
-    claro = dict(luces=luces, colores=colores, ambiente=0.55)
+    claro = dict(luces=luces, colores=colores, tono=sombras, ambiente=0.6)
     a, _ = rasterizar(V, F, L, L, perspectiva=visitante, **claro)
     b, _ = rasterizar(V, F, L, L, perspectiva=cenital, **claro)
     lienzo = Image.new("RGB", (2 * L, L))

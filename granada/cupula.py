@@ -58,7 +58,7 @@ from pathlib import Path
 
 import numpy as np
 
-from granada.piezas import C22, R2, S22, Punto3, etiquetas, malla, pieza
+from granada.piezas import C22, R2, S22, Punto3, etiquetas, malla, oclusion, pieza
 
 RAIZ = Path(__file__).resolve().parents[1]
 NIVELES = RAIZ / "datos" / "niveles_aproximados.json"
@@ -339,13 +339,14 @@ def _montar(planta: Planta, hiladas, subdivision: int, plantillas: dict, descart
     """Malla de cada hilada. `descartar(cx, cy, cz)` quita las piezas cuyo
     centroide devuelve True; se devuelven tambien las cotas que ocupaban.
     Con `colorear(tipo, etiqueta, hilada, indice)` cada grupo lleva ademas el
-    nombre de color de cada triangulo."""
+    nombre de color y el factor de sombra de cada triangulo."""
     grupos = []
     quitadas: list[tuple[float, float, float, float]] = []
     for h in hiladas:
         V: list[Punto3] = []
         F = []
         C: list[str] = []
+        S: list[float] = []
         paso_t = FAMILIAS[h.familia].paso_tangencial
         arco = planta.arco(h.radio_frente)
         for i, tipo in enumerate(h.tipos()):
@@ -353,8 +354,9 @@ def _montar(planta: Planta, hiladas, subdivision: int, plantillas: dict, descart
             if clave not in plantillas:
                 pz = pieza(tipo, h.paso)
                 Vm, Fm = malla(pz, subdivision)
-                plantillas[clave] = (Vm, Fm, etiquetas(pz, Vm, Fm))
-            Vp, Fp, Ep = plantillas[clave]
+                Em = etiquetas(pz, Vm, Fm)
+                plantillas[clave] = (Vm, Fm, Em, oclusion(pz, Vm, Fm, Em))
+            Vp, Fp, Ep, Sp = plantillas[clave]
             inicio = i * paso_t * h.estiramiento
             colocada = en_contorno(Vp, planta, h.radio_frente, arco, inicio, h.estiramiento, h.cota)
             if descartar is not None:
@@ -369,8 +371,9 @@ def _montar(planta: Planta, hiladas, subdivision: int, plantillas: dict, descart
             F.extend((a + base, b + base, c + base) for a, b, c in Fp)
             if colorear is not None:
                 C.extend(colorear(tipo, e, h.indice, i) for e in Ep)
+                S.extend(Sp)
         nombre = f"hilada_{h.indice:02d}_{h.familia}"
-        grupos.append((nombre, V, F, C) if colorear is not None else (nombre, V, F))
+        grupos.append((nombre, V, F, C, S) if colorear is not None else (nombre, V, F))
     return grupos, quitadas
 
 
@@ -407,26 +410,29 @@ def cupulin(c: Cupulin, profundidad: float, subdivision: int = 5, plantillas=Non
     if hiladas:
         u = hiladas[-1]
         Vc, Fc = _cupulilla(planta, u.radio_frente, u.cota, u.paso, n=48, m=8)
-        grupos.append(("cupulilla", Vc, Fc, [oro] * len(Fc)))
+        grupos.append(("cupulilla", Vc, Fc, [oro] * len(Fc), [0.8] * len(Fc)))
     local: list[Punto3] = []
     F = []
     C: list[str] = []
+    S: list[float] = []
     for g in grupos:
         _, Vg, Fg = g[:3]
         b = len(local)
         local.extend((e * x, e * y, profundidad + e * z) for x, y, z in Vg)
         F.extend((p + b, q + b, r + b) for p, q, r in Fg)
         C.extend(g[3] if len(g) > 3 else ["yeso"] * len(Fg))
+        S.extend(g[4] if len(g) > 4 else [1.0] * len(Fg))
     Vt, Ft = _tubo(0.0, 0.0, c.radio, lambda x, y: 0.0, profundidad + 2 * e * hiladas[0].paso)
     b = len(local)
     local.extend(Vt)
     F.extend((p + b, q + b, r + b) for p, q, r in Ft)
     C.extend(["yeso"] * len(Ft))
+    S.extend([0.55] * len(Ft))
     o, e1, e2, n = c.marco(radio_base)
     L = np.asarray(local)
     G = o + L[:, :1] * e1 + L[:, 1:2] * e2 + L[:, 2:3] * n
     V = [tuple(v) for v in G.tolist()]
-    return (V, F, C) if colorear is not None else (V, F)
+    return (V, F, C, S) if colorear is not None else (V, F)
 
 
 def cupula(
@@ -438,8 +444,8 @@ def cupula(
 ):
     """Grupos (nombre, V, F): una por hilada, los cupulines, la cupulilla y el tambor.
 
-    Con `color=True` cada grupo es (nombre, V, F, colores), con el reparto de
-    `granada.color` (restitucion, no dato)."""
+    Con `color=True` cada grupo es (nombre, V, F, colores, sombras), con el
+    reparto de `granada.color` (eleccion estetica, no dato)."""
     from granada.color import colorear, colorear_cupulin
 
     pintar = colorear if color else None
@@ -465,8 +471,8 @@ def cupula(
     # arranque, por las celdillas de esa hilada se veria el vacio.
     Vt, Ft = _tambor(planta, radio_base, -6.0, 2 * hiladas[0].paso)
     if color:
-        grupos.append(("cupulilla", Vc, Fc, ["oro"] * len(Fc)))
-        grupos.append(("tambor", Vt, Ft, ["yeso"] * len(Ft)))
+        grupos.append(("cupulilla", Vc, Fc, ["oro"] * len(Fc), [0.95] * len(Fc)))
+        grupos.append(("tambor", Vt, Ft, ["yeso"] * len(Ft), [0.75] * len(Ft)))
     else:
         grupos.append(("cupulilla", Vc, Fc))
         grupos.append(("tambor", Vt, Ft))
