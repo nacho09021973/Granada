@@ -13,85 +13,18 @@ del PDF). La geometria y sus supuestos estan en `granada/piezas.py`.
 from __future__ import annotations
 
 import argparse
-import math
 import sys
 from pathlib import Path
 
-import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 
 RAIZ = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(RAIZ))
 
 from granada.piezas import TIPOS, NIVELES, escribir_obj, malla, pieza  # noqa: E402
+from granada.render3d import rasterizar  # noqa: E402
 
 SEPARACION = 2.1
-YESO = np.array([238, 228, 210], dtype=float)
-FONDO_ARRIBA = np.array([46, 42, 40], dtype=float)
-FONDO_ABAJO = np.array([20, 19, 20], dtype=float)
-
-
-def camara(azim: float, elev: float):
-    """Base ortonormal de una camara que mira al origen desde (azim, elev)."""
-    a, e = math.radians(azim), math.radians(elev)
-    hacia = np.array([math.sin(a) * math.cos(e), math.cos(a) * math.cos(e), math.sin(e)])
-    derecha = np.cross(hacia, np.array([0.0, 0.0, 1.0]))
-    derecha /= np.linalg.norm(derecha)
-    arriba = np.cross(derecha, hacia)
-    return derecha, arriba, hacia
-
-
-def rasterizar(V, F, W, H, azim, elev, luces):
-    """Proyeccion ortografica con z-buffer y sombreado lambertiano por cara."""
-    V = np.asarray(V, dtype=float)
-    F = np.asarray(F, dtype=int)
-    der, arr, hac = camara(azim, elev)
-    sx, sy, prof = V @ der, V @ arr, V @ hac
-    margen = 0.06
-    xmin, xmax, ymin, ymax = sx.min(), sx.max(), sy.min(), sy.max()
-    escala = min(W * (1 - 2 * margen) / (xmax - xmin), H * (1 - 2 * margen) / (ymax - ymin))
-    px = (sx - (xmin + xmax) / 2) * escala + W / 2
-    py = H / 2 - (sy - (ymin + ymax) / 2) * escala
-
-    a, b, c = V[F[:, 0]], V[F[:, 1]], V[F[:, 2]]
-    n = np.cross(b - a, c - a)
-    n /= np.linalg.norm(n, axis=1, keepdims=True) + 1e-12
-    hacia_camara = n @ hac
-    n[hacia_camara < 0] *= -1  # dos caras: sombrea la cara que mira a la camara
-    luz = np.full(len(F), 0.32)
-    for direccion, intensidad in luces:
-        d = np.asarray(direccion, dtype=float)
-        d /= np.linalg.norm(d)
-        luz += intensidad * np.clip(n @ d, 0, None)
-    color = np.clip(YESO[None, :] * luz[:, None], 0, 255)
-
-    zbuf = np.full((H, W), -np.inf)
-    img = np.zeros((H, W, 3))
-    t = np.linspace(0, 1, H)[:, None, None]
-    img[:] = FONDO_ARRIBA * (1 - t) + FONDO_ABAJO * t
-    for k in range(len(F)):
-        i0, i1, i2 = F[k]
-        x0, y0, x1, y1, x2, y2 = px[i0], py[i0], px[i1], py[i1], px[i2], py[i2]
-        bx0, bx1 = int(max(0, math.floor(min(x0, x1, x2)))), int(min(W - 1, math.ceil(max(x0, x1, x2))))
-        by0, by1 = int(max(0, math.floor(min(y0, y1, y2)))), int(min(H - 1, math.ceil(max(y0, y1, y2))))
-        if bx0 > bx1 or by0 > by1:
-            continue
-        den = (y1 - y2) * (x0 - x2) + (x2 - x1) * (y0 - y2)
-        if abs(den) < 1e-12:
-            continue
-        gx, gy = np.meshgrid(np.arange(bx0, bx1 + 1) + 0.5, np.arange(by0, by1 + 1) + 0.5)
-        l0 = ((y1 - y2) * (gx - x2) + (x2 - x1) * (gy - y2)) / den
-        l1 = ((y2 - y0) * (gx - x2) + (x0 - x2) * (gy - y2)) / den
-        l2 = 1 - l0 - l1
-        dentro = (l0 >= -1e-6) & (l1 >= -1e-6) & (l2 >= -1e-6)
-        if not dentro.any():
-            continue
-        z = l0 * prof[i0] + l1 * prof[i1] + l2 * prof[i2]
-        sub = zbuf[by0 : by1 + 1, bx0 : bx1 + 1]
-        gana = dentro & (z > sub)
-        sub[gana] = z[gana]
-        img[by0 : by1 + 1, bx0 : bx1 + 1][gana] = color[k]
-    return Image.fromarray(img.astype(np.uint8)), (px, py)
 
 
 def construir():
