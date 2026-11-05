@@ -67,12 +67,13 @@ def normales_suaves(V, F, angulo=ANGULO_ARISTA):
     return unidad, esquinas
 
 
-def rasterizar(V, F, W, H, azim=0.0, elev=0.0, luces=(), perspectiva=None, suave=True):
+def rasterizar(V, F, W, H, azim=0.0, elev=0.0, luces=(), perspectiva=None, suave=True, tono=None):
     """Dibuja la malla y devuelve (imagen, (px, py)).
 
     Sin `perspectiva`: ortografica, encuadrando todo, vista desde (azim, elev).
     Con `perspectiva=(posicion, objetivo, fov_horizontal_grados)`: camara en
     `posicion` mirando a `objetivo`.
+    `tono`: factor por triangulo que multiplica su color (1 = yeso tal cual).
     """
     V = np.asarray(V, dtype=float)
     F = np.asarray(F, dtype=int)
@@ -115,6 +116,8 @@ def rasterizar(V, F, W, H, azim=0.0, elev=0.0, luces=(), perspectiva=None, suave
         dl = np.asarray(direccion, dtype=float)
         dl /= np.linalg.norm(dl)
         luz += intensidad * np.clip(esquinas @ dl, 0, None)
+    if tono is not None:
+        luz = luz * np.asarray(tono, dtype=float)[:, None]
     color = np.clip(YESO[None, None, :] * luz[:, :, None], 0, 255)
 
     zbuf = np.full((H, W), -np.inf)
