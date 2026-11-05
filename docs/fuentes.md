@@ -733,3 +733,306 @@ menos. Está en `.gitignore` por el mismo motivo que el PDF.
 - Los manuscritos del siglo XVII: Fray Andrés de San Miguel y Diego López de
   Arenas. Son la fuente primaria del sistema occidental y la raíz de la
   entrada 1.
+
+---
+
+## 13. Gámiz Gordo y Ferrer Pérez-Blanco (2019) — la gramática de Jones y Goury
+
+**Una gramática de mocárabes: Dibujos de la Alhambra de Jones y Goury
+(1834-1845)** / *A Grammar of Muqarnas*. *VLC arquitectura* 6(2), octubre 2019,
+pp. 57-87. ISSN 2341-3050.
+DOI [10.4995/vlc.2019.10947](https://doi.org/10.4995/vlc.2019.10947).
+
+- Autores: **Antonio Gámiz Gordo** (ETS de Arquitectura de Sevilla) e **Ignacio
+  Ferrer Pérez-Blanco** (École Polytechnique Fédérale de Lausanne).
+- Recibido 10-11-2018, aceptado 09-10-2019.
+- **LEÍDO DIRECTAMENTE** el 2026-08-26 en
+  `docs/2019VLCGAMIZ_FERRER_MUQARNASALHAMBRA.pdf`, 31 páginas. Antes se disponía
+  sólo de la página 15 y de la reproducción del artículo al final de la tesis.
+- **Verificado**: portada, autores, afiliaciones, fechas, DOI, la sección
+  IMAGE SOURCES y las páginas 69-71 palabra a palabra.
+- **Licencia: NO CONSTA en el PDF.** No hay mención de Creative Commons ni de
+  condiciones de reutilización en ninguna de las 31 páginas. Pendiente de
+  comprobar en la web de la revista. Mientras tanto **se cita y se describe, no
+  se reproduce**.
+
+### Por qué importa
+
+Es la fuente que **refuta** la afirmación de `docs/teselado.md` de que la
+topología de la pieza no se puede leer de una planta. Decisión completa en
+`docs/decisiones/0008-alfabeto-de-piezas.md`. Lo esencial:
+
+1. **El texto original de Jones y Goury, impreso en la lámina X**, transcrito en
+   las pp. 69-70: siete formas de tres figuras en planta —triángulo rectángulo
+   (A), rectángulo (B), triángulo isósceles de **45°** (C)—, con **C3** definido
+   como «a rhomboid, formed by the double isosceles triangle».
+2. **La nomenclatura A1, A2, A3, B, C1, C2, C3 es de Jones y Goury**, no de los
+   autores (p. 70). La **D** de la tesis es renombre de Ferrer para el rombo
+   (tesis §2.5.2, p. 197). De ahí **C3 = D3**, jairas de dos niveles.
+3. **«Las piezas A3 y C3, que ascienden dos niveles»** (p. 70), dicho en
+   palabras. Coincide con las dos únicas piezas de la leyenda con doble flecha
+   apilada, y con las dos únicas «de dos niveles» de la tesis.
+4. **«Flechas indicando el sentido de ascenso del mocárabe»** (p. 70): la
+   semántica de la notación, declarada por los autores.
+5. **«Jones y Goury detallaron con precisión las "patillas" de estos mocárabes,
+   lo que permite identificar su tipo con exactitud»** (p. 70). Es la frase que
+   cambia el problema.
+6. **C4 es añadido de los autores**, «que Jones y Goury no dibujaron,
+   asimilándola con la C1» (p. 70). No entra en el alfabeto de siete.
+
+### Lo que hay que desconfiar, y está dicho aquí
+
+Jones y Goury afirman en la lámina X que «**a piece may be combined with any one
+of the others by either of its sides**». La tesis explica que eso es una
+**simplificación didáctica**: para ellos el perfil «carece de definición
+geométrica» y no tienen el doble perfil de los manuscritos de carpintería
+(§2.5.2, p. 197). Y este mismo artículo dice (p. 79) que muchos de los mocárabes
+deformados que dibujaron «no obedecían al proceso de agrupación formulado por
+ellos mismos». **No se usa como regla combinatoria.**
+
+### Resoluciones útiles, medidas con `pdfimages -list`
+
+| figura | pág. PDF | imagen | qué es | derechos |
+|---|---:|---|---|---|
+| 5 | 15 | 1713 × 910 @ 300 ppi | prismas, PLAN rotulado, alzado, leyenda | mixta |
+| 9 | 21 | 1723 × 1040 @ 300 ppi | pechina de la Barca, lámina X + foto y dibujos propios | mixta |
+| **10** | **24** | **827 × 1566 @ 300 ppi** | **Dos Hermanas: planta y sección, lámina X** [^lamx] | **Jones y Goury solo** |
+| 11 | 25 | 1713 × 839 @ 300 ppi | lámina XV, sección del patio de los Leones | Jones y Goury solo |
+
+[^lamx]: Precisado el 2026-08-27 (entrada 14): no está en la hoja grabada de la
+    lámina X sino en su **hoja de texto**, la página 98 del tomo I, grabada en
+    madera bajo las dos columnas. Sigue siendo lámina X y sigue siendo dominio
+    público; cambia dónde hay que ir a buscarla.
+
+La figura 10 da el octógono en ~790 px, es decir **~110 px/m**, frente a los
+**72,5 px/m** de los que se digitalizó `red_medinas.json`: **1,5× mejor**, y el
+doble que la reproducción dentro de la tesis. Es lámina X pura según IMAGE
+SOURCES, o sea **grabado de 1842-45 en dominio público**.
+
+**Lo que NO sostiene**: nada sobre la cúpula de Dos Hermanas pieza a pieza. El
+sector rotulado de la fig. 5 tiene 18 celdas y es la muestra de gramática; el
+dibujo de la cúpula tiene 5416 piezas y a 110 px/m una pieza son ~10 px. Que la
+lámina resuelva figura, orientación y la marca A1/A3 en la cúpula **está sin
+comprobar**.
+
+---
+
+## 14. Jones y Goury (1842-45) — el escaneo del Getty, y por qué no sirve
+
+**Plans, elevations, sections, and details of the Alhambra.** Owen Jones y
+Jules Goury. Escaneo del **Getty Research Institute** vía Internet Archive,
+identificador **`gri_33125012280661`**
+(<https://archive.org/details/gri_33125012280661>). Aportado el 2026-08-26 como
+`docs/gri_33125012280661.pdf`, 356 páginas, 9,0 MB. Es el **tomo I**;
+el tomo II es otro ítem y va en la entrada 15.
+
+- **Obra en dominio público**: Goury murió en 1834, Jones en 1874.
+- **VERIFICADO directamente** el 2026-08-26.
+
+### Lo que sí aporta: el texto tipográfico de la lámina X
+
+Páginas **97-98** del PDF, bilingüe inglés/francés, completo. Es la fuente
+primaria del pasaje que el artículo de *VLC arquitectura* cita en traducción
+(entrada 13), y trae dos datos que aquel no recoge:
+
+> «**Nearly five thousand pieces** enter into the construction of the ceiling of
+> the Hall of the Two Sisters; and although they are simply of plaster,
+> **strengthened here and there with pieces of reed**, no part of the palace is,
+> in the present day, in a more perfect state of preservation.»
+> / «Près de **cinq mille morceaux** entrent dans la construction du plafond de
+> la Salle des Deux Sœurs, et quoique ce ne soit que du plâtre, **renforcé avec
+> des roseaux**…»
+
+Dos consecuencias para el repositorio:
+
+1. **El 5416 no es de Jones y Goury.** Ellos dicen «cerca de cinco mil». El
+   **5416 es el recuento de Gámiz Gordo y Ferrer** (entrada 13). Citar cada
+   número a quien es.
+2. **Yeso reforzado con cañas**, dicho por quienes lo vieron en 1834-37, y con
+   una nota sobre su estado de conservación entonces. Relevante para el objetivo
+   (B) de reconstruir el material, no sólo la geometría.
+
+### Lo que NO aporta: geometría. El derivado está comprimido con MRC
+
+**No usar este PDF para medir nada.** Cada página son tres capas:
+
+| capa | tamaño | qué es |
+|---|---|---|
+| miniatura | 684 × 1000 @ 100 ppi | descarte |
+| fondo JPX | 2053 × 3000 @ 300 ppi | **6,4 KB** para una lámina entera |
+| «smask» JBIG2 | 2053 × 3000, 1 bpc | **máscara de segmentación**, 87 % negra |
+
+Seis kilobytes de JPEG2000 para 2053 × 3000 es compresión catastrófica: el color
+queda como manchas sin contorno. Y la capa bilevel **no es una capa de línea**,
+es la máscara que decide qué píxel viene del fondo; extraída y mirada, convierte
+el grabado fino en borrones. Comprobado sobre la lámina X a resolución nativa:
+los perfiles escalonados aparecen como fragmentos de color flotando **sin
+ninguna línea que los una**, y el rótulo «Section on th…» sobrevive sólo porque
+es tipografía.
+
+Ningún trabajo de este repositorio se puede hacer sobre eso: el método mide con
+márgenes de **un píxel del dibujo** y afirma cosas a **0,35 px** (cautela 7,
+decisión 0007).
+
+### Y su lámina X grabada no lleva el dibujo que hace falta
+
+La **página 101** es la lámina X de este ejemplar —lo confirma la página 103,
+cuyo texto dice «a portion of the arch, **shewn in Plate X.**»— y muestra la
+**pechina de la sala de la Barca en color**, con su planta en cuadrante. Es la
+figura 9 del artículo.
+
+**No están en esa hoja** ni la fila de prismas con el «PLAN» rotulado (figura 5
+del artículo) ni la planta y sección de Dos Hermanas (figura 10).
+
+### Resuelto el 2026-08-27: no están en la lámina, están en su texto
+
+No hay estado distinto ni hoja incompleta. Los dibujos de mocárabes de la
+lámina X **no se imprimieron en la lámina**: son grabados de madera intercalados
+en sus **hojas de texto**, las páginas 97 y 98 del propio PDF, que la entrada ya
+tenía localizadas y había leído solo como texto.
+
+- La **página 98** lleva, bajo las dos columnas, la **sección** de la cúpula de
+  Dos Hermanas y debajo su **planta octogonal**. Puesta al lado de la imagen
+  embebida de la figura 10 del artículo (827 × 1566), es **el mismo grabado**.
+- La **página 97** lleva, bajo el texto, las **figuras primarias A, B y C en
+  planta** con los rótulos (a a, a b, a c) que el texto cita, y el romboide C3.
+  El MRC las ha dejado en un puñado de puntos sueltos: se sabe que están por su
+  posición y por el texto, no porque se vean.
+
+Y el propio texto de la lámina lo decía, en la frase inmediatamente anterior al
+pasaje de los cinco mil trozos:
+
+> «The conical ceilings of the Halls of Justice, Abencerrages, and Two Sisters,
+> **of which we here give the plan and section**, as well as the columns and
+> arches of a similar construction…»
+
+O sea que la atribución del artículo —«detalle lámina X»— **es correcta**. Lo
+que estaba mal era buscar el dibujo en la hoja grabada.
+
+### Qué habría que conseguir en su lugar — comprobado el 2026-08-27
+
+Consultada la ficha del ítem, **la hipótesis del `_jp2.zip` no se sostiene**.
+Los derivados `_jp2.zip` de Internet Archive están normalizados a **3000 px de
+alto**, sea cual sea la hoja —comprobado sobre las 220 páginas del tomo II, que
+varían de ancho y no de alto—. Es un derivado de tamaño fijo, no el máster. La
+etiqueta EXIF de 300 ppi que traen dentro es el valor por defecto que escribe
+Capture One y no dice nada del original.
+
+Medido sobre el octógono de la página 98, que es la prueba que importa:
+
+| origen | octógono | equivalente |
+|---|---:|---|
+| figura 10 del artículo (entrada 13), 827 × 1566 @ 300 ppi | **771 px** | ~110 px/m |
+| lo que daría el `_jp2.zip` del tomo I | **668 px** | ~95 px/m |
+
+(La entrada 13 daba el octógono de la figura 10 en «~790 px»; remedido con
+umbral sobre la imagen embebida salen **771**. No cambia el ~110 px/m.)
+
+El `_jp2.zip` **sale un 13 % peor** que lo que ya hay en el repositorio. Su
+única ventaja sería no llevar MRC, y la figura 10 del artículo tampoco lo lleva.
+**No aporta nada medible: no hace falta descargarlo.**
+
+Lo que sí queda identificado es el fichero que habría que conseguir:
+`gri_33125012280661_images.zip`, **2,9 GB**, el paquete de imágenes de cámara
+sin normalizar (Phase One IQ180, capturado el 2019-03-06). A ~8 MB por página
+son mucho mayores que los 3000 px del derivado; **cuánto mayores está sin
+comprobar**, y de eso depende todo.
+
+Antes de bajar 2,9 GB conviene tener presente la escala real del grabado. En el
+papel ese octógono mide **~14,6 cm**, y una de las 5416 piezas cae en **~1,8 mm
+de papel** —de ahí los ~10 px por pieza que ya anotaba la entrada 13—. Para
+leerlo pieza a pieza no hace falta un escaneo mejor de las 356 hojas: hace falta
+un escaneo alto de **una sola hoja**, la 98 del tomo I.
+
+El listón está medido y es concreto: la figura 10 de la entrada 13 ya da
+**~110 px/m** sobre el octógono de Dos Hermanas. Un escaneo sólo aporta si
+supera eso **con trazo continuo**, y la prueba de aceptación es la de la
+decisión 0008: **¿resuelve pieza a pieza, con orientación legible, y separa A1
+de A3?**
+
+---
+
+## 15. Jones y Goury, tomo II — el `_jp2.zip` aportado el 2026-08-27
+
+**Details and ornaments from the Alhambra**, que es el título propio del
+**tomo II** de la obra de la entrada 14. Escaneo del **Getty Research
+Institute** vía Internet Archive, identificador **`gri_33125008608388`**
+(<https://archive.org/details/gri_33125008608388>). Aportado como
+`docs/gri_33125008608388_jp2.zip`: **220 imágenes JP2**, 29,7 MB.
+
+- **Obra en dominio público** y el ítem viene marcado `NOT_IN_COPYRIGHT`.
+- **VERIFICADO directamente** el 2026-08-27: abiertas las 220 páginas.
+- Hoja de **58 cm** de alto (catálogo del Getty), que el derivado normaliza a
+  3000 px de imagen y ~2620 px de papel: **~4500 px/m de papel**.
+
+### Es el tomo que no lleva la cúpula
+
+Leída entera la **«LIST OF PLATES»** de la página 12, las **50 láminas I–L** de
+este tomo son ornamento: paneles, frisos, capiteles, zócalos, mosaicos. **No hay
+ni una planta ni una sección.** Su lámina X son «sunk lines on the walls, House
+of the Commandant» y no tiene nada que ver con la lámina X del tomo I.
+
+**La prueba de aceptación de la decisión 0008 no llega a plantearse**: no hay
+aquí dibujo de la cúpula de Dos Hermanas que resuelva o deje de resolver pieza a
+pieza. Ese dibujo está en el tomo I, página 98 (entrada 14).
+
+Correspondencia útil, comprobada en los dos sentidos contra los rótulos de las
+propias láminas: **página = 16 + 4·(lámina − 1)**. La lista de la página 12
+remite además a «vide plate N, vol. i» en una docena de entradas, así que sirve
+de índice cruzado hacia el tomo I.
+
+### Lo que sí aporta, y no es poco: mocárabes en color
+
+El tomo es cromolitografía, y trae mocárabes **de la propia sala de las Dos
+Hermanas**, con su policromía, a escalas grandes declaradas en la hoja:
+
+| lámina | pág. | n.º | escala | qué es |
+|---|---:|---:|---|---|
+| **XXXIX** | **168** | 63 | **⅔ del natural** | cornisa de mocárabes en el arranque del arco de la Ventana, **sala de las Dos Hermanas**: alzado **y planta** |
+| XXIV | 108 | 36 | ¾ del natural | ménsulas del pórtico del patio de los Leones, con fleco de mocárabes |
+
+A ⅔ del natural sobre 4500 px/m de papel, la lámina XXXIX resuelve el elemento
+real a **~3000 px/m**: un tercio de milímetro por píxel, unas **27 veces** la
+figura 10 del artículo. Es, con diferencia, el dibujo de mocárabes de mayor
+resolución que hay en el repositorio.
+
+Y trae la correspondencia **planta ↔ alzado** del mismo elemento, coloreada
+celda a celda, que es justo la relación que `docs/teselado.md` intenta levantar
+por otros medios. Con la cautela de que es una cornisa, no la cúpula.
+
+### La cautela que hay que ponerle al color
+
+Jones **restituye**. Sus cromolitografías son una reconstrucción del color
+original, no un registro del estado en que lo encontró, y él mismo lo dejó
+dicho: la lámina 38 del **tomo I** se titula «Estado actual de los colores /
+Actual state of the colours», y existe precisamente porque las demás no lo son.
+
+Es la distinción A/B del README, hecha por un dibujante hacia 1845. Así que:
+
+- **No es medida.** `docs/policromia.md` mide sobre la ortoimagen de 2021 y
+  descarta el rojo porque su periodicidad angular no supera la línea base del
+  propio yeso. La lámina XXXIX no puede refutar eso ni confirmarlo.
+- **Sí es la primera fuente que reparte color celda a celda** en mocárabes de
+  esta sala, que es exactamente lo que `policromia.md` declara no tener.
+- Y da **oro de fondo**, que `policromia.md` había excluido *a priori* por
+  indistinguible del yeso envejecido y de la suciedad.
+
+Queda como hipótesis contrastable, no como dato. Y con ella queda una tarea
+concreta: la **lámina 38 del tomo I**, que al ser «estado actual» sí es
+registro, y permitiría medir cuánto se separa la restitución de Jones de lo que
+tenía delante.
+
+### Calidad del derivado, medida
+
+- **21,4 KB por megapíxel** de media sobre las 220 páginas, frente a los
+  **1,04 KB/MP** de la capa de fondo del PDF del tomo I (entrada 14): **veinte
+  veces** más información por píxel, y sin máscara bilevel que trocee el trazo.
+- Comprobado a 1:1 sobre la lámina XXXIX: trazo continuo, colores planos
+  separados limpiamente, sin los borrones del MRC. **Aquí sí se puede medir.**
+
+Lo cual acota bien el problema del tomo I: el defecto de aquel PDF **es el MRC,
+no el escáner**. Un `_jp2.zip` del tomo I tendría esta misma calidad de trazo
+—y, como mide la entrada 14, menos resolución que la figura 10 del artículo.
+
+El fichero **no se versiona**: excluido en `.gitignore` por tamaño y por ser
+fuente de consulta, no dato. Los derechos no son el motivo.

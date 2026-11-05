@@ -1,7 +1,44 @@
 # Próximos pasos
 
-Estado a 2026-08-25. Documento de trabajo: se actualiza, no se conserva como
+Estado a 2026-08-27. Documento de trabajo: se actualiza, no se conserva como
 histórico. El registro de decisiones va en `docs/decisiones/`.
+
+---
+
+## Cierre de jornada — 2026-08-27
+
+Aportado `docs/gri_33125008608388_jp2.zip`. **Es el tomo II**, no el tomo I:
+«Details and ornaments from the Alhambra», 220 páginas, 50 láminas de ornamento.
+Leída entera su lista de láminas, **no contiene ni una planta ni una sección**,
+así que la prueba de aceptación de la decisión 0008 no llega a plantearse sobre
+él. Entrada 15 de `fuentes.md`.
+
+De haberlo abierto salen tres cosas que sí valen:
+
+1. **Se cierra el «sin resolver» de la entrada 14.** La planta y la sección de
+   la cúpula de Dos Hermanas **sí** están en el ejemplar del Getty del tomo I:
+   no en la lámina grabada (pág. 101) sino en sus **hojas de texto**, grabadas
+   en madera bajo las columnas de las **páginas 97 y 98**. La página 98 es la
+   figura 10 del artículo. Lo decía la propia lámina: «the conical ceilings […]
+   **of which we here give the plan and section**».
+2. **El `_jp2.zip` no es la vía, y ya no hay que probarlo.** Los derivados de
+   Internet Archive están normalizados a 3000 px de alto. Medido sobre el
+   octógono de la página 98: el derivado daría **668 px** frente a los **771 px**
+   que ya da la figura 10 del artículo. Es **un 13 % peor**. El fichero que
+   habría que conseguir es `gri_33125012280661_images.zip`, **2,9 GB**, y su
+   resolución real está **sin comprobar**.
+3. **Mocárabes de Dos Hermanas en color, a ⅔ del natural.** La lámina XXXIX del
+   tomo II (pág. 168) es la cornisa de mocárabes del arranque del arco de la
+   Ventana, en **alzado y planta**, policromada, y resuelve el elemento real a
+   **~3000 px/m**: unas 27 veces la figura 10. Es una **restitución** de Jones,
+   no una medida —él mismo separó ambas cosas dedicando la lámina 38 del tomo I
+   al «estado actual de los colores»—, así que entra como hipótesis, no como
+   dato. Pero es la primera fuente que reparte color celda a celda en mocárabes
+   de esta sala, que es justo lo que `docs/policromia.md` declara no tener.
+
+**El bloqueo no se mueve**: sigue siendo el signo del salto de nivel, y ninguna
+de estas tres cosas lo firma. Estado de reanudación intacto:
+`BLOCKED_MISSING_SIGNED_LEVEL_CONSTRAINTS`.
 
 ---
 
@@ -294,6 +331,101 @@ Así que la petición a quien pueda contestar es mucho más pequeña de lo que
 parecía: **un salto firmado sirve para empezar y diez lo cierran**, en vez de
 5.416 cotas o 211 signos.
 
+**La topología SÍ se lee de la planta (2026-08-26).** Llegó el artículo
+completo de Gámiz Gordo y Ferrer, *VLC arquitectura* 6(2) 2019 —entrada 13 de
+`fuentes.md`, decisión **0008**—, y refuta una afirmación de `teselado.md` sobre
+la que descansaba la forma del bloqueo. Lo que sale, todo con cita literal:
+
+- **El alfabeto es de siete piezas y es de Jones y Goury**, no de nadie
+  posterior: A1, A2, A3, B, C1, C2, C3, de tres figuras en planta —triángulo
+  rectángulo, rectángulo, isósceles de 45°—. La **D** de la tesis es renombre de
+  Ferrer para el rombo, así que **C3 = D3**.
+- **«Las piezas A3 y C3, que ascienden dos niveles.»** Dicho en palabras, y
+  coincidente con las dos únicas piezas que llevan doble flecha apilada en la
+  leyenda y con las dos únicas «de dos niveles» de la tesis. Tres caminos, las
+  mismas dos piezas.
+- **Las flechas son «el sentido de ascenso del mocárabe»**, declarado por los
+  autores. Y hay que distinguir **apiladas** (dos niveles) de **divergentes**
+  (un nivel, dos sentidos): confundirlas es el error de lectura obvio.
+- **«Jones y Goury detallaron con precisión las "patillas" […], lo que permite
+  identificar su tipo con exactitud.»** Es la frase que cambia el problema.
+- Y el resultado que de verdad importa: **figura + orientación identifican el
+  tipo salvo un único par, A1 frente a A3** — que es exactamente el par de un
+  nivel frente a dos. El problema de nivel, en cuanto a legibilidad en planta,
+  se reduce a **un binario por celda de figura A**. En el «PLAN» grabado ese
+  binario está marcado con un arco (5 de 5, 0 falsos positivos entre 13), pero
+  con **dos cautelas**: A3 y «pieza de borde» están confundidas en ese sector, y
+  el arco **no** marca «dos niveles» en general, porque C3 no lo lleva.
+- **Restricción de vecindad documentada** (tesis §2.5.2, A3): el segundo nivel
+  de una A3 exige que su vecina **sea A2 o B**. Parte del problema pasa a ser
+  satisfacción de restricciones, no firma de saltos.
+- **Cuarta aparición del paso de 8 unidades**, ahora cuantitativa: perfil
+  inferior a 7,5P con niveles de 8P «corresponde pues a 0,5P».
+
+**Y lo que hay que desconfiar, escrito para no olvidarlo.** Jones y Goury
+afirman en la lámina X que «a piece may be combined with any one of the others
+by either of its sides». La tesis explica que es una **simplificación
+didáctica** —para ellos el perfil «carece de definición geométrica»— y el propio
+artículo dice que muchos mocárabes que dibujaron «no obedecían al proceso de
+agrupación formulado por ellos mismos». **No se usa como regla combinatoria.**
+
+**El bloqueo no se mueve, pero cambia de forma.** Sigue
+`BLOCKED_MISSING_SIGNED_LEVEL_CONSTRAINTS`, y por una razón de **escala** que
+ahora está clara: el alfabeto es de **piezas** y la lámina X tiene **5416**,
+mientras que las **105 caras** de la red de medinas no son mocárabes. Asignar un
+tipo del alfabeto a una cara de `caras_red.json` sería un error de escala. Lo
+que cae no es el bloqueo: es la creencia de que una planta no podía resolverlo.
+
+**Y hay una medida nueva para la redigitalización.** La **figura 10** del
+artículo es lámina X **pura** —lo dice su sección IMAGE SOURCES—, embebida a
+**827 × 1566 px**: el octógono ocupa ~790 px, o sea **~110 px/m** frente a los
+**72,5 px/m** de los que salió `red_medinas.json`. Ya es **1,5× mejor sin salir
+del repositorio**, y grabado de 1842-45 en **dominio público**. Dos controles
+que hoy se pueden montar con eso y con nada más:
+
+1. **Comparar redes de medinas cara a cara.** En la fig. 10 la mitad inferior
+   del octógono muestra la retícula principal en polígonos grandes. Si es
+   convención del dibujo y no defecto de impresión, es directamente comparable
+   con `red_medinas.json`, y esa comparación arbitra entre las dos plantas.
+2. **Contar hiladas contra Almagro.** La sección de la lámina X tiene las
+   hiladas separadas; contrastarlas con las **24 ± 1** de
+   `estratificacion.md` es un control cruzado entre dos documentos
+   independientes.
+
+El criterio para juzgar un escaneo de la lámina X ya no es «¿trae sección
+corregistrada?» sino **«¿resuelve pieza a pieza, con orientación legible, y
+separa A1 de A3?»**.
+
+**Y tres cosas más del capítulo 3, que estaba sin leer en estas secciones**
+(§3.2.3 y §3.2.4; salieron al comprobar un fichero aportado como «Lamina X.pdf»
+que resultó ser la página 250 de la tesis, no la lámina):
+
+- **El dibujo de la cúpula no lleva rótulos de tipo.** «La pequeña pechina de
+  ejemplo es el **único plano** en el que nombraron los mocárabes». La salida
+  cómoda queda cerrada por escrito.
+- **Los ángulos son fijos en el sistema occidental**, «por lo que la pieza del
+  mismo tipo del nivel más alto y el más bajo son **exactamente la misma**». A
+  favor: el alfabeto es independiente del nivel y la separación de
+  `granada/niveles.py` es una propiedad del sistema, no una comodidad. En
+  contra: **ninguna medida de la forma en planta puede dar la cota**. Lo
+  intrínseco al tipo es cuántos niveles asciende, nunca en cuál está. Es el
+  enunciado limpio del bloqueo.
+- **La pata es el dato, y hay dos notaciones que lo codifican.** Los artesanos
+  magrebíes marcan con un punto la esquina donde va la pata, y «gracias al
+  punteado de las vecinas **se puede extraer el sentido de los mocárabes**».
+  Jones y Goury dibujan esa misma pata como patilla. Dos sistemas
+  independientes codificando la misma magnitud.
+
+Con dos corolarios que cierran tentaciones: **el color no sirve** —las piezas
+coloreadas «pueden ascender o descender», y algunas del mismo color «tienen
+sentido contrario»—, lo cual vale también para `docs/policromia.md`; y **A3 es
+rara** («uno de los menos empleados», sin correspondencia en los dibujos de
+artesanos que reproduce Paccard), así que el binario A1/A3 no tiene prior 50-50.
+
+De regalo, una corroboración documental del análisis de sombra: los sinos
+«representan **concavidades** en la composición». Es la razón de que 15 de 16
+cupulines salieran más oscuros.
+
 **Dónde puede salir el signo**, por orden de coste:
 
 1. Una planta de Dos Hermanas —de la tesis o de otro autor— que traiga flechas
@@ -375,6 +507,16 @@ parecía: **un salto firmado sirve para empezar y diez lo cierran**, en vez de
   128 no las subdivide; una planta más fina de esta cúpula las resolvería.
 - **Las nueve filas restantes** de la tabla de planos del APAG en
   `docs/investigacion-preliminar.md`, sin verificar.
+- **`gri_33125012280661_images.zip`** (2,9 GB, tomo I de Jones y Goury): es el
+  único derivado que podría superar los ~110 px/m de la figura 10 sobre el
+  octógono de Dos Hermanas. **Su resolución real está sin comprobar.** Y antes
+  de bajarlo: en el papel ese octógono mide ~14,6 cm y una pieza ~1,8 mm, así
+  que lo que de verdad haría falta es un escaneo alto de **una sola hoja**, la
+  página 98 del tomo I. Entrada 14.
+- **La lámina 38 del tomo I**, «Estado actual de los colores». Al ser registro
+  y no restitución, permitiría calibrar cuánto se separa el color restituido de
+  Jones —lámina XXXIX del tomo II, entrada 15— de lo que él tenía delante. Sin
+  consultar.
 - **La capa vectorial** de AA-415_23, sin extraer. Daría geometría en vez de
   fotometría para la medición del orden de simetría.
 - **La fotografía de la cúpula** aportada el 2026-08-25

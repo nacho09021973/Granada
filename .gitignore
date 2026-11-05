@@ -63,3 +63,27 @@ docs/Teselado Ammann-Beenker En Alhambra.pdf
 # origen y licencia esten registrados en docs/fuentes.md. Si resulta ser
 # libre y redistribuible, quitar esta linea.
 docs/Cúpula_de_la_sala_de_las_Dos_Hermanas_(Alhambra,_Granada).jpg
+# Articulo de Gamiz Gordo y Ferrer Perez-Blanco, VLC arquitectura 6(2) 2019,
+# aportado completo el 2026-08-26. Su licencia NO consta en el PDF: leidas las
+# 31 paginas, no hay mencion de Creative Commons ni condiciones de
+# reutilizacion. Mismo trato que la tesis hasta comprobarlo en la web de la
+# revista. Entrada 13 de docs/fuentes.md.
+docs/2019VLCGAMIZ_FERRER_MUQARNASALHAMBRA.pdf
+# "Lamina X.pdf", aportado el 2026-08-26. Pese al nombre NO es la lamina de
+# Jones y Goury: sus metadatos dan Title (Ferrer Perez-Blanco, Ignacio
+# Tesis.pdf) y es un extracto de la pagina 250 de la tesis hecho con PDF24.
+# La tesis ya esta excluida arriba, asi que su extracto tambien.
+docs/Lamina X.pdf
+# Escaneo del Getty Research Institute via Internet Archive
+# (gri_33125012280661) de Jones y Goury 1842-45, aportado el 2026-08-26. La
+# obra es dominio publico y el escaneo se distribuye libremente: NO se excluye
+# por derechos, sino por tamano (9 MB) y por ser fuente de consulta, no dato.
+# Y ademas es inservible para medir: derivado MRC, ver entrada 14 de fuentes.md.
+docs/gri_33125012280661.pdf
+# Paquete _jp2.zip del escaneo del Getty via Internet Archive
+# (gri_33125008608388) de Jones y Goury, TOMO II ("Details and ornaments from
+# the Alhambra"), aportado el 2026-08-27. Obra en dominio publico y el item
+# viene marcado NOT_IN_COPYRIGHT: NO se excluye por derechos, sino por tamano
+# (30 MB, 220 imagenes) y por ser fuente de consulta, no dato. Entrada 15 de
+# docs/fuentes.md.
+docs/gri_33125008608388_jp2.zip
