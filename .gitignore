@@ -57,3 +57,4 @@ docs/Reconstructing_the_Alhambra_Rafael_Contr.pdf
 # Malla de la cupula por piezas (~12 MB). Se regenera con
 # scripts/render_cupula_piezas.py; el PNG y datos/cupula_piezas.json si se versionan.
 renders/cupula_piezas.obj
+renders/cupula_piezas.mtl

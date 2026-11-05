@@ -266,6 +266,30 @@ def malla(p: Pieza, n: int = SUBDIVISION) -> tuple[list[Punto3], list[tuple[int,
     return soldar(V, F)
 
 
+def etiquetas(p: Pieza, V, F, tolerancia: float = 1e-9) -> list[str]:
+    """Clasifica cada triangulo de `malla(p)`: 'pared', 'tapa' o 'fondo'.
+
+    Pared: sus tres vertices estan sobre un mismo lado del poligono de planta.
+    Tapa: los tres a la altura del prisma. Fondo: el resto, la cara curva.
+    """
+    lados = [(p.planta[k], p.planta[(k + 1) % len(p.planta)]) for k in range(len(p.planta))]
+
+    def en_lado(v, a, b) -> bool:
+        cruz = (b[0] - a[0]) * (v[1] - a[1]) - (b[1] - a[1]) * (v[0] - a[0])
+        return abs(cruz) < tolerancia * 1e3
+
+    fuera = []
+    for tri in F:
+        vs = [V[i] for i in tri]
+        if any(all(en_lado(v, a, b) for v in vs) for a, b in lados):
+            fuera.append("pared")
+        elif all(abs(v[2] - p.altura) < tolerancia for v in vs):
+            fuera.append("tapa")
+        else:
+            fuera.append("fondo")
+    return fuera
+
+
 def soldar(V, F, decimales: int = 9):
     """Funde vertices coincidentes y quita triangulos degenerados."""
     clave: dict[tuple[float, float, float], int] = {}
@@ -285,12 +309,29 @@ def soldar(V, F, decimales: int = 9):
     return W, G
 
 
-def escribir_obj(ruta, grupos: list[tuple[str, list[Punto3], list[tuple[int, int, int]]]]) -> None:
+def escribir_obj(ruta, grupos, paleta: dict[str, str] | None = None) -> None:
+    """Grupos (nombre, V, F) o (nombre, V, F, colores). Con `paleta` y colores
+    por cara escribe ademas el .mtl al lado y un `usemtl` por cambio de color."""
     lineas = ["# Alfabeto de Jones y Goury, modelo declarado en granada/piezas.py"]
+    if paleta:
+        mtl = ruta.with_suffix(".mtl")
+        lineas.append(f"mtllib {mtl.name}")
+        bloques = []
+        for nombre, h in paleta.items():
+            r, g, b = (int(h.lstrip("#")[i:i + 2], 16) / 255 for i in (0, 2, 4))
+            bloques.append(f"newmtl {nombre}\nKd {r:.4f} {g:.4f} {b:.4f}\n")
+        mtl.write_text("\n".join(bloques), encoding="utf-8")
     desplazamiento = 1
-    for nombre, V, F in grupos:
+    for grupo in grupos:
+        nombre, V, F = grupo[:3]
+        colores = grupo[3] if len(grupo) > 3 and paleta else None
         lineas.append(f"g {nombre}")
         lineas.extend(f"v {x:.6f} {y:.6f} {z:.6f}" for x, y, z in V)
-        lineas.extend(f"f {a + desplazamiento} {b + desplazamiento} {c + desplazamiento}" for a, b, c in F)
+        actual = None
+        for k, (a, b, c) in enumerate(F):
+            if colores is not None and colores[k] != actual:
+                actual = colores[k]
+                lineas.append(f"usemtl {actual}")
+            lineas.append(f"f {a + desplazamiento} {b + desplazamiento} {c + desplazamiento}")
         desplazamiento += len(V)
     ruta.write_text("\n".join(lineas) + "\n", encoding="utf-8")

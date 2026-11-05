@@ -67,13 +67,15 @@ def normales_suaves(V, F, angulo=ANGULO_ARISTA):
     return unidad, esquinas
 
 
-def rasterizar(V, F, W, H, azim=0.0, elev=0.0, luces=(), perspectiva=None, suave=True, tono=None, encuadre=None):
+def rasterizar(V, F, W, H, azim=0.0, elev=0.0, luces=(), perspectiva=None, suave=True, tono=None, encuadre=None, colores=None, ambiente=AMBIENTE):
     """Dibuja la malla y devuelve (imagen, (px, py)).
 
     Sin `perspectiva`: ortografica, encuadrando todo, vista desde (azim, elev).
     Con `perspectiva=(posicion, objetivo, fov_horizontal_grados)`: camara en
     `posicion` mirando a `objetivo`.
     `tono`: factor por triangulo que multiplica su color (1 = yeso tal cual).
+    `colores`: color base RGB (0-255) por triangulo; por defecto, yeso.
+    `ambiente`: luz que reciben todas las caras, mire donde mire.
     `encuadre=(u0, v0, px_por_unidad)`: en ortografica, fija escala y pone el
     origen del mundo en el pixel (u0, v0) en lugar de encuadrar la malla.
     """
@@ -118,14 +120,15 @@ def rasterizar(V, F, W, H, azim=0.0, elev=0.0, luces=(), perspectiva=None, suave
         esquinas = np.repeat(unidad[:, None, :], 3, axis=1)
     girar = np.einsum("ij,ij->i", unidad, hacia_ojo) < 0
     esquinas = np.where(girar[:, None, None], -esquinas, esquinas)
-    luz = np.full(esquinas.shape[:2], AMBIENTE)
+    luz = np.full(esquinas.shape[:2], ambiente)
     for direccion, intensidad in luces:
         dl = np.asarray(direccion, dtype=float)
         dl /= np.linalg.norm(dl)
         luz += intensidad * np.clip(esquinas @ dl, 0, None)
     if tono is not None:
         luz = luz * np.asarray(tono, dtype=float)[:, None]
-    color = np.clip(YESO[None, None, :] * luz[:, :, None], 0, 255)
+    base = YESO[None, None, :] if colores is None else np.asarray(colores, dtype=float)[:, None, :]
+    color = np.clip(base * luz[:, :, None], 0, 255)
 
     zbuf = np.full((H, W), -np.inf)
     img = np.zeros((H, W, 3))

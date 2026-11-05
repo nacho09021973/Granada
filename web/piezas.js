@@ -16,7 +16,7 @@ const ESCENAS = {
   },
   cupula: {
     url: "../renders/cupula_piezas.obj",
-    subtitulo: "18 hiladas, 16 cupulines · del octógono a la estrella de 8 puntas",
+    subtitulo: "Como recién acabada: yeso, lapislázuli, bermellón, verde y oro",
     camara: [0, -6, -14], objetivo: [0, 0, 9],
   },
 };
@@ -49,29 +49,52 @@ scene.add(fill);
 const material = new THREE.MeshStandardMaterial({
   color: 0xeee4d2, roughness: 0.85, metalness: 0, side: THREE.DoubleSide,
 });
+// Con colores por cara (del .mtl que escribe granada/piezas.escribir_obj).
+const materialColor = new THREE.MeshStandardMaterial({
+  vertexColors: true, roughness: 0.6, metalness: 0, side: THREE.DoubleSide,
+});
 const modelo = new THREE.Group();
 scene.add(modelo);
 const cache = new Map();
 
+/** Lee el .mtl: nombre -> [r, g, b] lineales de Kd. */
+function leerMtl(texto) {
+  const kd = new Map();
+  let actual = null;
+  for (const linea of texto.split("\n")) {
+    if (linea.startsWith("newmtl ")) actual = linea.slice(7).trim();
+    else if (linea.startsWith("Kd ") && actual) {
+      const c = new THREE.Color().setRGB(...linea.slice(3).trim().split(/\s+/).map(Number), THREE.SRGBColorSpace);
+      kd.set(actual, [c.r, c.g, c.b]);
+    }
+  }
+  return kd;
+}
+
 /** Lee el OBJ y devuelve una geometria por grupo, con normales de arista. */
-function leerObj(texto) {
+function leerObj(texto, kd) {
   const v = [];
   const grupos = [];
   let actual = null;
+  let color = null;
   for (const linea of texto.split("\n")) {
     if (linea.startsWith("v ")) v.push(linea.slice(2).trim().split(/\s+/).map(Number));
-    else if (linea.startsWith("g ")) grupos.push(actual = { caras: [] });
+    else if (linea.startsWith("g ")) grupos.push(actual = { caras: [], colores: [] });
+    else if (linea.startsWith("usemtl ")) color = kd.get(linea.slice(7).trim()) ?? null;
     else if (linea.startsWith("f ") && actual) {
       actual.caras.push(linea.slice(2).trim().split(/\s+/).map(t => Number(t.split("/")[0]) - 1));
+      actual.colores.push(color);
     }
   }
-  return grupos.map(g => geometria(v, g.caras));
+  return grupos.map(g => geometria(v, g.caras, g.colores));
 }
 
-function geometria(v, caras) {
+function geometria(v, caras, colores) {
   const n = caras.length;
   const pos = new Float32Array(n * 9);
   const nor = new Float32Array(n * 9);
+  const conColor = colores.some(c => c !== null);
+  const col = conColor ? new Float32Array(n * 9) : null;
   const normal = [];
   const porVertice = new Map();
   caras.forEach((f, i) => {
@@ -93,12 +116,19 @@ function geometria(v, caras) {
       }
       s.normalize();
       nor.set([s.x, s.y, s.z], i * 9 + j * 3);
+      if (col) col.set(colores[i] ?? [0.9, 0.87, 0.82], i * 9 + j * 3);
     });
   });
   const geo = new THREE.BufferGeometry();
   geo.setAttribute("position", new THREE.BufferAttribute(pos, 3));
   geo.setAttribute("normal", new THREE.BufferAttribute(nor, 3));
+  if (col) geo.setAttribute("color", new THREE.BufferAttribute(col, 3));
   return geo;
+}
+
+async function textoSiExiste(url) {
+  const r = await fetch(url);
+  return r.ok ? r.text() : null;
 }
 
 async function mostrar(nombre) {
@@ -108,10 +138,15 @@ async function mostrar(nombre) {
   if (!cache.has(nombre)) {
     const r = await fetch(escena.url);
     if (!r.ok) throw new Error(`${r.status} ${r.url}`);
-    cache.set(nombre, leerObj(await r.text()));
+    const texto = await r.text();
+    const mtl = /^mtllib (.+)$/m.exec(texto);
+    const kd = mtl ? leerMtl(await textoSiExiste(new URL(mtl[1].trim(), r.url)) ?? "") : new Map();
+    cache.set(nombre, leerObj(texto, kd));
   }
   modelo.clear();
-  for (const geo of cache.get(nombre)) modelo.add(new THREE.Mesh(geo, material));
+  for (const geo of cache.get(nombre)) {
+    modelo.add(new THREE.Mesh(geo, geo.getAttribute("color") ? materialColor : material));
+  }
   document.querySelector("#subtitulo").textContent = escena.subtitulo;
   document.querySelectorAll("[data-escena]").forEach(b => {
     const activo = b.dataset.escena === nombre;

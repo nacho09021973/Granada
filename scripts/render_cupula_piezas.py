@@ -3,9 +3,12 @@
 
 Salidas:
 - `renders/cupula_piezas.png`: vista de un visitante bajo la cupula y vista
-  cenital desde el centro;
-- `renders/cupula_piezas.obj`: la malla, para el visor web. Es grande y se
-  regenera con este script, por eso esta en `.gitignore`;
+  cenital desde el centro, en yeso;
+- `renders/cupula_color.png`: las mismas vistas con el color de
+  `granada/color.py` (restitucion, no dato);
+- `renders/cupula_piezas.obj` y `.mtl`: la malla con su color por cara, para
+  el visor web. Es grande y se regenera con este script, por eso esta en
+  `.gitignore`;
 - `datos/cupula_piezas.json`: el plan de hiladas y los controles.
 
 Supuestos en `granada/cupula.py`.
@@ -25,6 +28,7 @@ from PIL import Image
 RAIZ = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(RAIZ))
 
+from granada.color import PALETA, rgb  # noqa: E402
 from granada.cupula import CATETO_M, PENDIENTE, RADIO_BASE, cupula  # noqa: E402
 from granada.piezas import escribir_obj  # noqa: E402
 from granada.render3d import rasterizar  # noqa: E402
@@ -36,17 +40,19 @@ def main() -> int:
     ap.add_argument("--lado", type=int, default=1100)
     ap.add_argument("--obj", type=Path, default=RAIZ / "renders" / "cupula_piezas.obj")
     ap.add_argument("--png", type=Path, default=RAIZ / "renders" / "cupula_piezas.png")
+    ap.add_argument("--png-color", type=Path, default=RAIZ / "renders" / "cupula_color.png")
     ap.add_argument("--informe", type=Path, default=RAIZ / "datos" / "cupula_piezas.json")
     args = ap.parse_args()
 
     t0 = time.time()
-    hiladas, grupos = cupula(args.subdivision)
-    escribir_obj(args.obj, grupos)
-    V, F = [], []
-    for _, Vg, Fg in grupos:
+    hiladas, grupos = cupula(args.subdivision, color=True)
+    escribir_obj(args.obj, grupos, paleta=PALETA)
+    V, F, colores = [], [], []
+    for _, Vg, Fg, Cg in grupos:
         base = len(V)
         V.extend(Vg)
         F.extend((a + base, b + base, c + base) for a, b, c in Fg)
+        colores.extend(rgb(c) for c in Cg)
 
     L = args.lado
     # La luz de la sala entra por las ventanas del tambor: de lado y desde abajo.
@@ -59,6 +65,14 @@ def main() -> int:
     lienzo.paste(a, (0, 0))
     lienzo.paste(b, (L, 0))
     lienzo.save(args.png)
+    # Obra recien acabada: mas luz ambiente para que el yeso llegue a blanco.
+    claro = dict(luces=luces, colores=colores, ambiente=0.55)
+    a, _ = rasterizar(V, F, L, L, perspectiva=visitante, **claro)
+    b, _ = rasterizar(V, F, L, L, perspectiva=cenital, **claro)
+    lienzo = Image.new("RGB", (2 * L, L))
+    lienzo.paste(a, (0, 0))
+    lienzo.paste(b, (L, 0))
+    lienzo.save(args.png_color)
 
     informe = {
         "version": 1,

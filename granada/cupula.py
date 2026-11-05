@@ -58,7 +58,7 @@ from pathlib import Path
 
 import numpy as np
 
-from granada.piezas import C22, R2, S22, Punto3, malla, pieza
+from granada.piezas import C22, R2, S22, Punto3, etiquetas, malla, pieza
 
 RAIZ = Path(__file__).resolve().parents[1]
 NIVELES = RAIZ / "datos" / "niveles_aproximados.json"
@@ -335,21 +335,26 @@ def cupulines_medidos(ruta: Path = CUPULINES) -> list[Cupulin]:
     return fuera
 
 
-def _montar(planta: Planta, hiladas, subdivision: int, plantillas: dict, descartar=None):
+def _montar(planta: Planta, hiladas, subdivision: int, plantillas: dict, descartar=None, colorear=None):
     """Malla de cada hilada. `descartar(cx, cy, cz)` quita las piezas cuyo
-    centroide devuelve True; se devuelven tambien las cotas que ocupaban."""
+    centroide devuelve True; se devuelven tambien las cotas que ocupaban.
+    Con `colorear(tipo, etiqueta, hilada, indice)` cada grupo lleva ademas el
+    nombre de color de cada triangulo."""
     grupos = []
     quitadas: list[tuple[float, float, float, float]] = []
     for h in hiladas:
         V: list[Punto3] = []
         F = []
+        C: list[str] = []
         paso_t = FAMILIAS[h.familia].paso_tangencial
         arco = planta.arco(h.radio_frente)
         for i, tipo in enumerate(h.tipos()):
             clave = (tipo, h.paso)
             if clave not in plantillas:
-                plantillas[clave] = malla(pieza(tipo, h.paso), subdivision)
-            Vp, Fp = plantillas[clave]
+                pz = pieza(tipo, h.paso)
+                Vm, Fm = malla(pz, subdivision)
+                plantillas[clave] = (Vm, Fm, etiquetas(pz, Vm, Fm))
+            Vp, Fp, Ep = plantillas[clave]
             inicio = i * paso_t * h.estiramiento
             colocada = en_contorno(Vp, planta, h.radio_frente, arco, inicio, h.estiramiento, h.cota)
             if descartar is not None:
@@ -362,7 +367,10 @@ def _montar(planta: Planta, hiladas, subdivision: int, plantillas: dict, descart
             base = len(V)
             V.extend(colocada)
             F.extend((a + base, b + base, c + base) for a, b, c in Fp)
-        grupos.append((f"hilada_{h.indice:02d}_{h.familia}", V, F))
+            if colorear is not None:
+                C.extend(colorear(tipo, e, h.indice, i) for e in Ep)
+        nombre = f"hilada_{h.indice:02d}_{h.familia}"
+        grupos.append((nombre, V, F, C) if colorear is not None else (nombre, V, F))
     return grupos, quitadas
 
 
@@ -386,7 +394,7 @@ def _tubo(cx: float, cy: float, radio: float, abajo, arriba: float, n: int = 48)
     return V, F
 
 
-def cupulin(c: Cupulin, profundidad: float, subdivision: int = 5, plantillas=None, radio_base: float = RADIO_BASE):
+def cupulin(c: Cupulin, profundidad: float, subdivision: int = 5, plantillas=None, radio_base: float = RADIO_BASE, colorear=None, oro: str = "oro"):
     """Pocillo cilindrico de `profundidad` con eje normal al cono y, encima,
     una cupula pequena de piezas a escala `ESCALA_CUPULIN` con su cupulilla."""
     if plantillas is None:
@@ -395,24 +403,30 @@ def cupulin(c: Cupulin, profundidad: float, subdivision: int = 5, plantillas=Non
     base = c.radio / e
     planta = Planta(base, CIERRE_CUPULIN, False)
     hiladas = plan_de_hiladas(base, planta=planta, cierre=CIERRE_CUPULIN, multiplo=8)
-    grupos, _ = _montar(planta, hiladas, subdivision, plantillas)
+    grupos, _ = _montar(planta, hiladas, subdivision, plantillas, colorear=colorear)
     if hiladas:
         u = hiladas[-1]
-        grupos.append(("cupulilla", *_cupulilla(planta, u.radio_frente, u.cota, u.paso, n=48, m=8)))
+        Vc, Fc = _cupulilla(planta, u.radio_frente, u.cota, u.paso, n=48, m=8)
+        grupos.append(("cupulilla", Vc, Fc, [oro] * len(Fc)))
     local: list[Punto3] = []
     F = []
-    for _, Vg, Fg in grupos:
+    C: list[str] = []
+    for g in grupos:
+        _, Vg, Fg = g[:3]
         b = len(local)
         local.extend((e * x, e * y, profundidad + e * z) for x, y, z in Vg)
         F.extend((p + b, q + b, r + b) for p, q, r in Fg)
+        C.extend(g[3] if len(g) > 3 else ["yeso"] * len(Fg))
     Vt, Ft = _tubo(0.0, 0.0, c.radio, lambda x, y: 0.0, profundidad + 2 * e * hiladas[0].paso)
     b = len(local)
     local.extend(Vt)
     F.extend((p + b, q + b, r + b) for p, q, r in Ft)
+    C.extend(["yeso"] * len(Ft))
     o, e1, e2, n = c.marco(radio_base)
     L = np.asarray(local)
     G = o + L[:, :1] * e1 + L[:, 1:2] * e2 + L[:, 2:3] * n
-    return [tuple(v) for v in G.tolist()], F
+    V = [tuple(v) for v in G.tolist()]
+    return (V, F, C) if colorear is not None else (V, F)
 
 
 def cupula(
@@ -420,8 +434,16 @@ def cupula(
     radio_base: float = RADIO_BASE,
     estrella: bool = True,
     con_cupulines: bool = True,
+    color: bool = False,
 ):
-    """Grupos (nombre, V, F): una por hilada, los cupulines, la cupulilla y el tambor."""
+    """Grupos (nombre, V, F): una por hilada, los cupulines, la cupulilla y el tambor.
+
+    Con `color=True` cada grupo es (nombre, V, F, colores), con el reparto de
+    `granada.color` (restitucion, no dato)."""
+    from granada.color import colorear, colorear_cupulin
+
+    pintar = colorear if color else None
+    pintar_cupulin = colorear_cupulin if color else None
     planta = planta_por_defecto(radio_base, estrella)
     hiladas = plan_de_hiladas(radio_base, planta=planta)
     plantillas: dict[tuple[str, float], tuple] = {}
@@ -430,16 +452,22 @@ def cupula(
     def en_hueco(x: float, y: float, z: float) -> bool:
         return any(c.contiene((x, y, z), radio_base) for c in huecos)
 
-    grupos, quitadas = _montar(planta, hiladas, subdivision, plantillas, en_hueco if huecos else None)
+    grupos, quitadas = _montar(planta, hiladas, subdivision, plantillas, en_hueco if huecos else None, pintar)
     mini: dict = {}
     for k, c in enumerate(huecos):
         # El pocillo llega a la tapa de las piezas quitadas, medida a lo largo
         # de la normal; ahi arranca la cupula pequena.
         profundidad = 2 * hiladas[0].paso * math.cos(math.atan(PENDIENTE))
-        grupos.append((f"cupulin_{k:02d}", *cupulin(c, profundidad, plantillas=mini, radio_base=radio_base)))
+        grupos.append((f"cupulin_{k:02d}", *cupulin(c, profundidad, plantillas=mini, radio_base=radio_base, colorear=pintar_cupulin)))
     ultima = hiladas[-1]
-    grupos.append(("cupulilla", *_cupulilla(planta, ultima.radio_frente, ultima.cota, ultima.paso)))
+    Vc, Fc = _cupulilla(planta, ultima.radio_frente, ultima.cota, ultima.paso)
     # El tambor sube hasta la tapa de la primera hilada: si acabara en su
     # arranque, por las celdillas de esa hilada se veria el vacio.
-    grupos.append(("tambor", *_tambor(planta, radio_base, -6.0, 2 * hiladas[0].paso)))
+    Vt, Ft = _tambor(planta, radio_base, -6.0, 2 * hiladas[0].paso)
+    if color:
+        grupos.append(("cupulilla", Vc, Fc, ["oro"] * len(Fc)))
+        grupos.append(("tambor", Vt, Ft, ["yeso"] * len(Ft)))
+    else:
+        grupos.append(("cupulilla", Vc, Fc))
+        grupos.append(("tambor", Vt, Ft))
     return hiladas, grupos
