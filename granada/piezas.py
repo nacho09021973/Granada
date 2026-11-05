@@ -16,6 +16,9 @@ Fuente:
 - la vista frontal de cada prisma en el grabado: trompeta con la pata en el eje
   (A1, A3, C1, C3), arco con las patas en las esquinas (A2, C2), curva de fondo
   a frente (B), nicho de medio punto (A3) y apuntado (C3) en el nivel superior;
+  el arco de A2 y C2 se cierra por detras en nicho (ver `_arco`): el grabado
+  da la vista frontal, y extruirla dejaba un tunel por el que asomaba la
+  hilada de debajo;
 - la curva: la plantilla mayor de `granada.perfil` (cima a 7P, nivel a 8P).
 
 Modelo, declarado y no medido:
@@ -104,14 +107,40 @@ def _trompeta(media_anchura: float, paso: float) -> Callable[[float, float], flo
     return z
 
 
-def _arco(media_anchura: float, paso: float) -> Callable[[float, float], float]:
-    """Patas en los extremos x = +-W; el arco sube hacia el eje."""
+EXPONENTE_CIERRE = 16
+"""Cuanto se ciñe el arco a los catetos al cerrar el nicho. Con 16 el hueco
+que queda en el borde trasero no pasa del 4,6 % de la altura del arco, y solo
+junto a las patas."""
+
+
+def _arco(media_anchura: float, paso: float, fondo: float | None = None) -> Callable[[float, float], float]:
+    """Patas en los extremos x = +-W; el arco sube hacia el eje.
+
+    Sin `fondo`, el arco se extruye en profundidad: un tunel abierto por
+    detras. Con `fondo` (la profundidad del triangulo, vertice al frente en
+    y = 0 y lado trasero en y = -fondo) el arco se cierra en nicho:
+    z = arco(x) * g, con g = 1 sobre los catetos -donde la pieza casa con sus
+    vecinas, que no cambian- y g -> 0 en el lado trasero, donde el fondo baja a
+    la cota de la pata y empalma con la hilada de debajo. La cupula sube hacia
+    el centro, asi que la celdilla tiene que bajar hacia atras, no abrirse.
+    """
     alto = paso * FRACCION_UTIL
 
-    def z(x: float, y: float) -> float:
+    def arco(x: float) -> float:
         return alto * curva(
             (media_anchura - abs(x) - MEDIA_PATA) / (media_anchura - MEDIA_PATA)
         )
+
+    if fondo is None:
+        return lambda x, y: arco(x)
+
+    def z(x: float, y: float) -> float:
+        t = min(1.0, max(0.0, -y / fondo))
+        if t <= 0:
+            return arco(x)
+        q = min(1.0, abs(x) / (t * media_anchura))
+        g = 1.0 - (1.0 - q ** EXPONENTE_CIERRE) * t * t
+        return arco(x) * g
 
     return z
 
@@ -190,7 +219,7 @@ def pieza(tipo: str, paso: float = PASO_NIVEL) -> Pieza:
     if tipo == "A1":
         return Pieza(tipo, a_frente, 1, _trompeta(R2, paso), h)
     if tipo == "A2":
-        return Pieza(tipo, a_vertice, 1, _arco(R2, paso), h)
+        return Pieza(tipo, a_vertice, 1, _arco(R2, paso, R2), h)
     if tipo == "A3":
         return Pieza(tipo, a_frente, 2, _nicho(_trompeta(R2, paso), 0.68 * R2, -0.45 * R2, False, paso), h)
     if tipo == "B":
@@ -198,7 +227,7 @@ def pieza(tipo: str, paso: float = PASO_NIVEL) -> Pieza:
     if tipo == "C1":
         return Pieza(tipo, c_frente, 1, _trompeta(S22, paso), h)
     if tipo == "C2":
-        return Pieza(tipo, c_vertice, 1, _arco(S22, paso), h)
+        return Pieza(tipo, c_vertice, 1, _arco(S22, paso, C22), h)
     if tipo == "C3":
         return Pieza(tipo, rombo, 2, _nicho(_trompeta(C22, paso), 0.6 * C22, -S22, True, paso), h)
     raise ValueError(f"tipo desconocido: {tipo!r}; los siete son {TIPOS}")
