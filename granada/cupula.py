@@ -39,13 +39,15 @@ Modelo, declarado:
   Asi la trasera de cada hilada cae exactamente en el frente de la anterior; a
   cambio las piezas se tuercen donde el contorno no es perpendicular al radio.
   El oficio usa piezas rectas;
-- la cupulilla de cierre y el tambor son superficies de relleno;
+- la cupulilla de cierre y el tambor son superficies de relleno; el tambor
+  lleva un friso azul entre filetes de oro (`FRISO_TAMBOR`), por estetica;
 - **los 16 cupulines**: posicion y diametro medidos en la ortoimagen
   (`datos/cupulines.json`, `scripts/medir_cupulines.py`, con escala supuesta).
   Cada cupulin tiene el eje normal al cono (inclinado atan(1,28) = 52 grados
   de la vertical: eleccion, no medida). Se quitan las piezas de la trama cuyo
   centroide cae en su cilindro, se pone un pocillo poco profundo que tapa el
-  corte y encima una cupula pequena con piezas a escala 0,4. Su interior no esta leido; la forma real es una cupulita de
+  corte y encima una cupula pequena con piezas a escala 0,4. Un marco de yeso
+  con filete de oro (`MARCO_CUPULIN`) tapa el borde del corte. Su interior no esta leido; la forma real es una cupulita de
   mocarabes que aqui solo se imita.
 """
 
@@ -286,6 +288,54 @@ def _tambor(planta: Planta, radio: float, abajo: float, arriba: float, n: int = 
     return V, F
 
 
+FRISO_TAMBOR = (
+    # (cota inferior, cota superior, color, luz) en unidades del cateto,
+    # con 0 en el arranque de la cupula. Eleccion estetica.
+    (-6.0, -1.5, "yeso", 0.95),
+    (-1.5, -1.35, "oro", 1.0),
+    (-1.35, -0.45, "azul", 0.9),
+    (-0.45, -0.3, "oro", 1.0),
+    (-0.3, None, "yeso", 0.95),
+)
+
+
+def _tambor_friso(planta: Planta, radio: float, arriba: float, n: int = 384):
+    """Tambor en bandas horizontales: zocalo, filetes de oro y friso."""
+    V: list[Punto3] = []
+    F = []
+    C: list[str] = []
+    S: list[float] = []
+    for z0, z1, color, luz in FRISO_TAMBOR:
+        Vb, Fb = _tambor(planta, radio, z0, arriba if z1 is None else z1, n)
+        b = len(V)
+        V.extend(Vb)
+        F.extend((p + b, q + b, r + b) for p, q, r in Fb)
+        C.extend([color] * len(Fb))
+        S.extend([luz] * len(Fb))
+    return V, F, C, S
+
+
+def _corona(radio_in: float, radio_out: float, z: float, n: int = 64):
+    """Corona plana en el plano z del marco local."""
+    V: list[Punto3] = []
+    F = []
+    for i in range(n):
+        a = 2 * math.pi * i / n
+        V.append((radio_in * math.cos(a), radio_in * math.sin(a), z))
+        V.append((radio_out * math.cos(a), radio_out * math.sin(a), z))
+    for i in range(n):
+        a, b = 2 * i, 2 * ((i + 1) % n)
+        F.append((a, b, b + 1))
+        F.append((a, b + 1, a + 1))
+    return V, F
+
+
+MARCO_CUPULIN = 1.45
+"""Radio exterior del marco de yeso de cada cupulin, respecto al hueco."""
+FILETE_CUPULIN = 0.08
+"""Ancho del filete de oro en el borde del hueco, en unidades del cateto."""
+
+
 @dataclass(frozen=True)
 class Cupulin:
     """Una de las 16 cupulas pequenas del anillo exterior, en unidades del cateto."""
@@ -428,6 +478,19 @@ def cupulin(c: Cupulin, profundidad: float, subdivision: int = 5, plantillas=Non
     F.extend((p + b, q + b, r + b) for p, q, r in Ft)
     C.extend(["yeso"] * len(Ft))
     S.extend([0.55] * len(Ft))
+    # Marco: corona de yeso justo por debajo de las patas de las piezas
+    # vecinas, que tapa el corte de la trama, con un filete de oro en el borde.
+    bajo = -0.03
+    for r0, r1, color, luz in (
+        (c.radio, c.radio + FILETE_CUPULIN, oro, 1.0),
+        (c.radio + FILETE_CUPULIN, c.radio * MARCO_CUPULIN, "yeso", 0.95),
+    ):
+        Vr, Fr = _corona(r0, r1, bajo)
+        b = len(local)
+        local.extend(Vr)
+        F.extend((p + b, q + b, r + b) for p, q, r in Fr)
+        C.extend([color] * len(Fr))
+        S.extend([luz] * len(Fr))
     o, e1, e2, n = c.marco(radio_base)
     L = np.asarray(local)
     G = o + L[:, :1] * e1 + L[:, 1:2] * e2 + L[:, 2:3] * n
@@ -472,7 +535,7 @@ def cupula(
     Vt, Ft = _tambor(planta, radio_base, -6.0, 2 * hiladas[0].paso)
     if color:
         grupos.append(("cupulilla", Vc, Fc, ["oro"] * len(Fc), [0.95] * len(Fc)))
-        grupos.append(("tambor", Vt, Ft, ["yeso"] * len(Ft), [0.75] * len(Ft)))
+        grupos.append(("tambor", *_tambor_friso(planta, radio_base, 2 * hiladas[0].paso)))
     else:
         grupos.append(("cupulilla", Vc, Fc))
         grupos.append(("tambor", Vt, Ft))

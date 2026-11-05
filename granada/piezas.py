@@ -319,17 +319,18 @@ def etiquetas(p: Pieza, V, F, tolerancia: float = 1e-9) -> list[str]:
     return fuera
 
 
-SOMBRA_PARED = 0.6
-SOMBRA_TAPA = 0.5
+SOMBRA_PARED = 0.9
+"""Las caras verticales que asoman entre hiladas se leen como filetes de yeso
+claro, como en los mocarabes reales; en penumbra salian grises."""
+SOMBRA_TAPA = 0.85
 
 
 def oclusion(p: Pieza, V, F, etiqueta: list[str]) -> list[float]:
     """Factor de luz por triangulo (1 = sin sombra). Eleccion estetica.
 
     Imita la oclusion ambiental de una celdilla: en el fondo curvo, cuanto mas
-    sube dentro de la pieza, menos luz le llega; las paredes quedan en
-    penumbra, porque en la cupula montada son el fondo de las juntas entre
-    hiladas, y las tapas casi no se ven.
+    sube dentro de la pieza, menos luz le llega; las paredes quedan
+    casi a plena luz, porque entre hiladas se leen como filetes de yeso.
     """
     paso = p.altura / 2
     fuera = []
