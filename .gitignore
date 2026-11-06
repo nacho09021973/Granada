@@ -53,3 +53,15 @@ docs/Teselado Ammann-Beenker En Alhambra.pdf
 # Gonzalez Perez (2017), Art in Translation 9:1. (c) Informa UK / Taylor &
 # Francis: se cita en fuentes.md entrada 13, no se redistribuye.
 docs/Reconstructing_the_Alhambra_Rafael_Contr.pdf
+
+# Malla de la cupula por piezas (~12 MB). Se regenera con
+# scripts/render_cupula_piezas.py; el PNG y datos/cupula_piezas.json si se versionan.
+renders/cupula_piezas.obj
+renders/cupula_piezas.mtl
+# Malla fina para el render de zoom profundo (scripts/render_cycles.py --zoom).
+renders/cupula_piezas_n24.obj
+renders/cupula_piezas_n24.mtl
+
+# Teselas del visor de zoom (decenas de MB): se generan con scripts/teselar_dzi.py
+# y se publican en la rama gh-pages con scripts/publicar_web.sh.
+web/zoom/

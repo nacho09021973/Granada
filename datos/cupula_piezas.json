@@ -1,0 +1,185 @@
+{
+  "version": 1,
+  "estado": "APPROXIMATE_PIECE_DOME",
+  "advertencia": "Cupula de demostracion: secuencia de familias y A3 intercaladas elegidas, no leidas de Dos Hermanas. Pendiente y radio de arranque, medidos.",
+  "modelo": {
+    "modulo": "granada/cupula.py",
+    "subdivision": 8,
+    "pendiente_medida": 1.282967032967033,
+    "cateto_m": 0.22381466813208983,
+    "radio_base_cateto": 16.263455967290593
+  },
+  "controles": {
+    "hiladas": 18,
+    "piezas": 1984,
+    "estiramiento_min": 0.8767091538283815,
+    "estiramiento_max": 1.0745261069929157,
+    "altura_hiladas_m": 4.028256272862439,
+    "vertices": 286080,
+    "triangulos": 550720
+  },
+  "hiladas": [
+    {
+      "indice": 0,
+      "familia": "A",
+      "radio_frente": 15.556349186104045,
+      "cota": 0.0,
+      "paso": 0.9071946890497741,
+      "piezas": 144,
+      "estiramiento": 0.9832078607823895
+    },
+    {
+      "indice": 1,
+      "familia": "A",
+      "radio_frente": 14.849242404917497,
+      "cota": 0.9071946890497741,
+      "paso": 0.9071946890497741,
+      "piezas": 128,
+      "estiramiento": 1.0487340002145937
+    },
+    {
+      "indice": 2,
+      "familia": "C",
+      "radio_frente": 13.925362872406211,
+      "cota": 1.8143893780995481,
+      "paso": 1.1853069826449751,
+      "piezas": 224,
+      "estiramiento": 1.03151449962315
+    },
+    {
+      "indice": 3,
+      "familia": "A",
+      "radio_frente": 13.218256091219663,
+      "cota": 2.9996963607445233,
+      "paso": 0.9071946890497741,
+      "piezas": 112,
+      "estiramiento": 1.0627798218547395
+    },
+    {
+      "indice": 4,
+      "familia": "A",
+      "radio_frente": 12.511149310033115,
+      "cota": 3.9068910497942975,
+      "paso": 0.9071946890497741,
+      "piezas": 112,
+      "estiramiento": 1.0194207393998211
+    },
+    {
+      "indice": 5,
+      "familia": "C",
+      "radio_frente": 11.58726977752183,
+      "cota": 4.814085738844072,
+      "paso": 1.1853069826449751,
+      "piezas": 208,
+      "estiramiento": 0.971407038547031
+    },
+    {
+      "indice": 6,
+      "familia": "A",
+      "radio_frente": 10.880162996335281,
+      "cota": 5.999392721489047,
+      "paso": 0.9071946890497741,
+      "piezas": 112,
+      "estiramiento": 0.948819386052063
+    },
+    {
+      "indice": 7,
+      "familia": "A",
+      "radio_frente": 10.173056215148733,
+      "cota": 6.906587410538821,
+      "paso": 0.9071946890497741,
+      "piezas": 96,
+      "estiramiento": 1.073613310064024
+    },
+    {
+      "indice": 8,
+      "familia": "C",
+      "radio_frente": 9.249176682637447,
+      "cota": 7.813782099588595,
+      "paso": 1.1853069826449751,
+      "piezas": 176,
+      "estiramiento": 1.0262413816247546
+    },
+    {
+      "indice": 9,
+      "familia": "A",
+      "radio_frente": 8.5420699014509,
+      "cota": 8.99908908223357,
+      "paso": 0.9071946890497741,
+      "piezas": 96,
+      "estiramiento": 0.9610211025497876
+    },
+    {
+      "indice": 10,
+      "familia": "A",
+      "radio_frente": 7.8349631202643515,
+      "cota": 9.906283771283345,
+      "paso": 0.9071946890497741,
+      "piezas": 80,
+      "estiramiento": 1.0660926814771718
+    },
+    {
+      "indice": 11,
+      "familia": "C",
+      "radio_frente": 6.9110835877530645,
+      "cota": 10.813478460333119,
+      "paso": 1.1853069826449751,
+      "piezas": 144,
+      "estiramiento": 0.9653326327481643
+    },
+    {
+      "indice": 12,
+      "familia": "A",
+      "radio_frente": 6.203976806566517,
+      "cota": 11.998785442978095,
+      "paso": 0.9071946890497741,
+      "piezas": 64,
+      "estiramiento": 1.0552082645462961
+    },
+    {
+      "indice": 13,
+      "familia": "A",
+      "radio_frente": 5.496870025379969,
+      "cota": 12.905980132027869,
+      "paso": 0.9071946890497741,
+      "piezas": 64,
+      "estiramiento": 0.9349394526714622
+    },
+    {
+      "indice": 14,
+      "familia": "C",
+      "radio_frente": 4.572990492868682,
+      "cota": 13.813174821077643,
+      "paso": 1.1853069826449751,
+      "piezas": 96,
+      "estiramiento": 0.9581255014414792
+    },
+    {
+      "indice": 15,
+      "familia": "A",
+      "radio_frente": 3.8658837116821343,
+      "cota": 14.998481803722619,
+      "paso": 0.9071946890497741,
+      "piezas": 48,
+      "estiramiento": 0.8767091538283815
+    },
+    {
+      "indice": 16,
+      "familia": "A",
+      "radio_frente": 3.158776930495587,
+      "cota": 15.905676492772393,
+      "paso": 0.9071946890497741,
+      "piezas": 32,
+      "estiramiento": 1.0745261069929157
+    },
+    {
+      "indice": 17,
+      "familia": "C",
+      "radio_frente": 2.2348973979843,
+      "cota": 16.812871181822167,
+      "paso": 1.1853069826449751,
+      "piezas": 48,
+      "estiramiento": 0.9365041075214214
+    }
+  ]
+}
