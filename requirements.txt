@@ -1,0 +1,15 @@
+# Núcleo exacto (granada/cyclotomic.py y lo que construye sobre él):
+# solo biblioteca estándar. Ver docs/decisiones/0001 y 0015.
+
+# Tests
+pytest==9.1.1
+
+# Geometría numérica, render y análisis de imagen de la rama cupula-por-piezas
+# (granada/cupula.py, granada/render3d.py y scripts de render y contraste).
+numpy==2.5.4
+pillow==13.0.0
+scipy==1.18.1
+scikit-image==0.26.0
+
+# Render físico (scripts/render_cycles.py): Blender 4.x con Cycles, fuera de
+# pip. Se ejecuta con su propio Python: blender -b -P scripts/render_cycles.py
