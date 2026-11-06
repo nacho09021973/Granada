@@ -23,7 +23,8 @@ Ninguna decisión lo registraba, y el repo no declaraba dependencias.
    —que la exactitud se pueda leer entera sin seguir la pista a una
    dependencia— se mantiene ahí.
 3. El render físico usa Blender con Cycles, instalado fuera de pip; en la
-   máquina local, GPU NVIDIA (`--dispositivo optix` o `cuda`).
+   máquina local, GPU NVIDIA con `--dispositivo cuda` y, en WSL2,
+   `LD_LIBRARY_PATH=/usr/lib/wsl/lib` (detalle en `scripts/render_cycles.py`).
 
 ## Consecuencias
 

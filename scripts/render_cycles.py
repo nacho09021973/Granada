@@ -1,6 +1,6 @@
 """Render fisico de la cupula por piezas con Blender Cycles.
 
-Uso (Blender 4.2, sin ventana):
+Uso (Blender 4.5 LTS, sin ventana; probado con 4.5.15):
 
     ~/.local/opt/blender/blender -b -P scripts/render_cycles.py -- \
         [--muestras 128] [--lado 1400] [--vistas visitante,cenital]
@@ -14,13 +14,23 @@ Zoom profundo (vista cenital a 8192 px para el visor web/zoom.html):
 
     python3 scripts/render_cupula_piezas.py --subdivision 24 --solo-obj \
         --obj renders/cupula_piezas_n24.obj
-    blender -b -P scripts/render_cycles.py -- --obj renders/cupula_piezas_n24.obj \
-        --lado 8192 --vistas cenital --sufijo _8k --muestras 128 --dispositivo optix
+    ~/.local/opt/blender/blender -b -P scripts/render_cycles.py -- --obj renders/cupula_piezas_n24.obj \
+        --lado 8192 --vistas cenital --sufijo _8k --muestras 128 --dispositivo cuda
     python3 scripts/teselar_dzi.py renders/cupula_cycles_cenital_8k.png web/zoom/cupula_cenital
 
 En CPU (4 nucleos) un recorte de 1024 px a esa escala con 32 muestras tardo
-4 min: la imagen entera, unas 4-5 h. `--dispositivo optix` (o `cuda`) usa la
+4 min: la imagen entera, unas 4-5 h. `--dispositivo cuda` (o `optix`) usa la
 GPU NVIDIA.
+
+En WSL2, Blender no encuentra la GPU si no se le indica la carpeta de las
+librerias de NVIDIA para WSL (dentro de Blender `cuInit` devuelve "sin
+dispositivo"):
+
+    export LD_LIBRARY_PATH=/usr/lib/wsl/lib
+
+Con eso, en la RTX 5060 local (driver 621.01, Blender 4.5.15) CUDA funciona:
+vista cenital de 600 px con 32 muestras en 13 s. OptiX falla al iniciarse
+(error 7805), asi que alli se usa `cuda`.
 
 Que es dato y que es escena
 ---------------------------
