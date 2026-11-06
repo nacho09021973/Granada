@@ -48,6 +48,15 @@ Thumbs.db
 # AA-415_23.pdf es material de la RABASF: estuvo en el historial y se retiro
 # de el reescribiendolo el 2026-08-25. No volver a anadirlo.
 docs/AA-415_23.pdf
+# AA-415_23.dxf es una vectorizacion automatica (Scan2CAD) del mismo plano,
+# recibida el 2026-08-26. Es obra derivada de material de la RABASF: si el PDF
+# no se redistribuye, su calco tampoco. Mismo motivo, mismo trato.
+docs/AA-415_23.dxf
+# Las dos ortoimagenes del mismo plano, extraidas de su PDF el 2026-08-26 a
+# resolucion nativa (300 ppi, 472,5 px/m). Son el contenido integro de la
+# lamina, no una cita: mismo material de la RABASF, mismo trato que el PDF.
+docs/AA-415_23_orto_techo.jpg
+docs/AA-415_23_seccion.jpg
 docs/Ferrer Pérez-Blanco, Ignacio Tesis.pdf
 docs/Teselado Ammann-Beenker En Alhambra.pdf
 # Gonzalez Perez (2017), Art in Translation 9:1. (c) Informa UK / Taylor &
@@ -65,3 +74,32 @@ renders/cupula_piezas_n24.mtl
 # Teselas del visor de zoom (decenas de MB): se generan con scripts/teselar_dzi.py
 # y se publican en la rama gh-pages con scripts/publicar_web.sh.
 web/zoom/
+
+# Fotografia de la cupula aportada el 2026-08-25. Excluida hasta que su
+# origen y licencia esten registrados en docs/fuentes.md. Si resulta ser
+# libre y redistribuible, quitar esta linea.
+docs/Cúpula_de_la_sala_de_las_Dos_Hermanas_(Alhambra,_Granada).jpg
+# Articulo de Gamiz Gordo y Ferrer Perez-Blanco, VLC arquitectura 6(2) 2019,
+# aportado completo el 2026-08-26. Su licencia NO consta en el PDF: leidas las
+# 31 paginas, no hay mencion de Creative Commons ni condiciones de
+# reutilizacion. Mismo trato que la tesis hasta comprobarlo en la web de la
+# revista. Entrada 16 de docs/fuentes.md.
+docs/2019VLCGAMIZ_FERRER_MUQARNASALHAMBRA.pdf
+# "Lamina X.pdf", aportado el 2026-08-26. Pese al nombre NO es la lamina de
+# Jones y Goury: sus metadatos dan Title (Ferrer Perez-Blanco, Ignacio
+# Tesis.pdf) y es un extracto de la pagina 250 de la tesis hecho con PDF24.
+# La tesis ya esta excluida arriba, asi que su extracto tambien.
+docs/Lamina X.pdf
+# Escaneo del Getty Research Institute via Internet Archive
+# (gri_33125012280661) de Jones y Goury 1842-45, aportado el 2026-08-26. La
+# obra es dominio publico y el escaneo se distribuye libremente: NO se excluye
+# por derechos, sino por tamano (9 MB) y por ser fuente de consulta, no dato.
+# Y ademas es inservible para medir: derivado MRC, ver entrada 17 de fuentes.md.
+docs/gri_33125012280661.pdf
+# Paquete _jp2.zip del escaneo del Getty via Internet Archive
+# (gri_33125008608388) de Jones y Goury, TOMO II ("Details and ornaments from
+# the Alhambra"), aportado el 2026-08-27. Obra en dominio publico y el item
+# viene marcado NOT_IN_COPYRIGHT: NO se excluye por derechos, sino por tamano
+# (30 MB, 220 imagenes) y por ser fuente de consulta, no dato. Entrada 18 de
+# docs/fuentes.md.
+docs/gri_33125008608388_jp2.zip
