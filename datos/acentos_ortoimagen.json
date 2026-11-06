@@ -1,0 +1,160 @@
+{
+  "fuente": "docs/AA-415_23_orto_techo.jpg, recorte 20-80 %, 1400 px",
+  "yeso": {
+    "fraccion_de_pixeles": 0.4526,
+    "mediana_cuartil_claro": "#BCB8AF"
+  },
+  "por_umbral": {
+    "S>=0.20 V>=0.28": {
+      "fraccion_de_pixeles": 0.1682,
+      "bandas": {
+        "granate": {
+          "peso": 0.0246,
+          "mediana": "#5D4844"
+        },
+        "tierra": {
+          "peso": 0.7276,
+          "mediana": "#706051"
+        },
+        "ocre": {
+          "peso": 0.1573,
+          "mediana": "#635C49"
+        },
+        "verde": {
+          "peso": 0.0756,
+          "mediana": "#3F5748"
+        },
+        "azul": {
+          "peso": 0.0149,
+          "mediana": "#2F4C50"
+        }
+      }
+    },
+    "S>=0.20 V>=0.45": {
+      "fraccion_de_pixeles": 0.0673,
+      "bandas": {
+        "granate": {
+          "peso": 0.0113,
+          "mediana": "#826862"
+        },
+        "tierra": {
+          "peso": 0.8674,
+          "mediana": "#8A7766"
+        },
+        "ocre": {
+          "peso": 0.1061,
+          "mediana": "#7D7561"
+        },
+        "verde": {
+          "peso": 0.0132,
+          "mediana": "#5C7A6A"
+        },
+        "azul": {
+          "peso": 0.002,
+          "mediana": "#5C787B"
+        }
+      }
+    },
+    "S>=0.30 V>=0.28": {
+      "fraccion_de_pixeles": 0.0579,
+      "bandas": {
+        "granate": {
+          "peso": 0.0216,
+          "mediana": "#543935"
+        },
+        "tierra": {
+          "peso": 0.7458,
+          "mediana": "#604E3D"
+        },
+        "ocre": {
+          "peso": 0.0931,
+          "mediana": "#564D37"
+        },
+        "verde": {
+          "peso": 0.1065,
+          "mediana": "#345547"
+        },
+        "azul": {
+          "peso": 0.033,
+          "mediana": "#29494F"
+        }
+      }
+    },
+    "S>=0.30 V>=0.45": {
+      "fraccion_de_pixeles": 0.0133,
+      "bandas": {
+        "granate": {
+          "peso": 0.0055,
+          "mediana": "#7B5A51"
+        },
+        "tierra": {
+          "peso": 0.9258,
+          "mediana": "#836B55"
+        },
+        "ocre": {
+          "peso": 0.0496,
+          "mediana": "#7F7050"
+        },
+        "verde": {
+          "peso": 0.0168,
+          "mediana": "#507864"
+        },
+        "azul": {
+          "peso": 0.0023,
+          "mediana": "#507575"
+        }
+      }
+    },
+    "S>=0.40 V>=0.28": {
+      "fraccion_de_pixeles": 0.0194,
+      "bandas": {
+        "granate": {
+          "peso": 0.0209,
+          "mediana": "#4F332C"
+        },
+        "tierra": {
+          "peso": 0.7011,
+          "mediana": "#57412E"
+        },
+        "ocre": {
+          "peso": 0.0728,
+          "mediana": "#584A2E"
+        },
+        "verde": {
+          "peso": 0.1329,
+          "mediana": "#2D5446"
+        },
+        "azul": {
+          "peso": 0.0723,
+          "mediana": "#25474D"
+        }
+      }
+    },
+    "S>=0.40 V>=0.45": {
+      "fraccion_de_pixeles": 0.002,
+      "bandas": {
+        "granate": {
+          "peso": 0.0022,
+          "mediana": "#784D42"
+        },
+        "tierra": {
+          "peso": 0.8725,
+          "mediana": "#7D6146"
+        },
+        "ocre": {
+          "peso": 0.1146,
+          "mediana": "#816C44"
+        },
+        "verde": {
+          "peso": 0.0082,
+          "mediana": "#457666"
+        },
+        "azul": {
+          "peso": 0.0025,
+          "mediana": "#447474"
+        }
+      }
+    }
+  },
+  "nota": "color del estado de 2021 bajo la luz del levantamiento; no es el color original"
+}

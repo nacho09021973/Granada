@@ -1,0 +1,11 @@
+{
+  "reparto": "anillos",
+  "filtro": {
+    "recorte": "20-80 %",
+    "saturacion_min": 0.2,
+    "valor_min": 0.28
+  },
+  "fraccion_pigmento_modelo": 0.306,
+  "fraccion_pigmento_ortoimagen": 0.172,
+  "nota": "calibracion estetica; la foto es el estado de 2021, no el original"
+}

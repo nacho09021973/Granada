@@ -43,8 +43,8 @@ Modelo, declarado:
   lleva un friso azul entre filetes de oro (`FRISO_TAMBOR`), por estetica;
 - **los 16 cupulines**: posicion y diametro medidos en la ortoimagen
   (`datos/cupulines.json`, `scripts/medir_cupulines.py`, con escala supuesta).
-  Cada cupulin tiene el eje normal al cono (inclinado atan(1,28) = 52 grados
-  de la vertical: eleccion, no medida). Se quitan las piezas de la trama cuyo
+  Cada cupulin tiene el eje vertical (`EJE_CUPULIN_GRADOS`; hasta 2026-11-06,
+  normal al cono, 52 grados: eleccion, no medida). Se quitan las piezas de la trama cuyo
   centroide cae en su cilindro, se pone un pocillo poco profundo que tapa el
   corte y encima una cupula pequena con piezas a escala 0,4. Un marco de yeso
   con filete de oro (`MARCO_CUPULIN`) tapa el borde del corte. Su interior no esta leido; la forma real es una cupulita de
@@ -334,6 +334,12 @@ MARCO_CUPULIN = 1.45
 """Radio exterior del marco de yeso de cada cupulin, respecto al hueco."""
 FILETE_CUPULIN = 0.08
 """Ancho del filete de oro en el borde del hueco, en unidades del cateto."""
+EJE_CUPULIN_GRADOS = 0.0
+"""Inclinacion del eje de cada cupulin desde la vertical. Hasta el 2026-11-06
+era la normal al cono (52 grados), eleccion no medida: desde abajo el pozo
+ensenaba su pared y la cupulita apenas asomaba. En la ortoimagen las bocas se
+ven redondas, y con 52 grados se verian como elipses de razon cos 52 = 0,62:
+eso apunta a un eje casi vertical. Sigue siendo eleccion, no medida."""
 
 
 @dataclass(frozen=True)
@@ -353,17 +359,19 @@ class Cupulin:
         d = math.hypot(self.x, self.y)
         u = np.array([self.x / d, self.y / d, 0.0])
         t = np.array([-u[1], u[0], 0.0])
-        b = math.atan(PENDIENTE)
+        b = math.radians(EJE_CUPULIN_GRADOS)
         n = u * math.sin(b) + np.array([0.0, 0.0, 1.0]) * math.cos(b)
         e2 = np.cross(n, t)
         origen = np.array([self.x, self.y, cota_del_cono(self.x, self.y, radio_base)])
         return origen, t, e2, n
 
-    def contiene(self, punto, radio_base: float = RADIO_BASE) -> bool:
-        """El punto cae dentro del cilindro del cupulin, medido en su plano."""
+    def contiene(self, punto, radio_base: float = RADIO_BASE, radio: float | None = None) -> bool:
+        """El punto cae dentro del cilindro del cupulin, medido en su plano.
+        `radio` amplia el cilindro (por defecto, el del pocillo)."""
         o, e1, e2, n = self.marco(radio_base)
         d = np.asarray(punto, dtype=float) - o
-        return math.hypot(d @ e1, d @ e2) < self.radio and -1.0 < d @ n < 4.0
+        r = self.radio if radio is None else radio
+        return math.hypot(d @ e1, d @ e2) < r and -4.0 < d @ n < 7.0
 
 
 CUPULINES = RAIZ / "datos" / "cupulines.json"
@@ -386,8 +394,8 @@ def cupulines_medidos(ruta: Path = CUPULINES) -> list[Cupulin]:
 
 
 def _montar(planta: Planta, hiladas, subdivision: int, plantillas: dict, descartar=None, colorear=None):
-    """Malla de cada hilada. `descartar(cx, cy, cz)` quita las piezas cuyo
-    centroide devuelve True; se devuelven tambien las cotas que ocupaban.
+    """Malla de cada hilada. `descartar(vertices)` quita las piezas para las
+    que devuelve True; se devuelven tambien las cotas que ocupaban.
     Con `colorear(tipo, etiqueta, hilada, indice)` cada grupo lleva ademas el
     nombre de color y el factor de sombra de cada triangulo."""
     grupos = []
@@ -413,7 +421,7 @@ def _montar(planta: Planta, hiladas, subdivision: int, plantillas: dict, descart
                 cx = sum(v[0] for v in colocada) / len(colocada)
                 cy = sum(v[1] for v in colocada) / len(colocada)
                 cz = sum(v[2] for v in colocada) / len(colocada)
-                if descartar(cx, cy, cz):
+                if descartar(colocada):
                     quitadas.append((cx, cy, h.cota, h.cota + 2 * h.paso))
                     continue
             base = len(V)
@@ -461,6 +469,17 @@ def cupulin(c: Cupulin, profundidad: float, subdivision: int = 5, plantillas=Non
         u = hiladas[-1]
         Vc, Fc = _cupulilla(planta, u.radio_frente, u.cota, u.paso, n=48, m=8)
         grupos.append(("cupulilla", Vc, Fc, [oro] * len(Fc), [0.8] * len(Fc)))
+    o, e1, e2, n = c.marco(radio_base)
+
+    def superficie(x: float, y: float) -> float:
+        """Cota local del cono bajo (x, y) del marco, medida a lo largo de n."""
+        q = o + x * e1 + y * e2
+        return (cota_del_cono(q[0], q[1], radio_base) - q[2]) / n[2]
+
+    borde = [superficie(c.radio * math.cos(a), c.radio * math.sin(a)) for a in np.linspace(0, 2 * math.pi, 48, endpoint=False)]
+    # La cupulita arranca por encima del punto mas alto de la boca: asi, vista
+    # a lo largo del eje, se ve entera.
+    fondo = max(borde) + profundidad
     local: list[Punto3] = []
     F = []
     C: list[str] = []
@@ -468,11 +487,11 @@ def cupulin(c: Cupulin, profundidad: float, subdivision: int = 5, plantillas=Non
     for g in grupos:
         _, Vg, Fg = g[:3]
         b = len(local)
-        local.extend((e * x, e * y, profundidad + e * z) for x, y, z in Vg)
+        local.extend((e * x, e * y, fondo + e * z) for x, y, z in Vg)
         F.extend((p + b, q + b, r + b) for p, q, r in Fg)
         C.extend(g[3] if len(g) > 3 else ["yeso"] * len(Fg))
         S.extend(g[4] if len(g) > 4 else [1.0] * len(Fg))
-    Vt, Ft = _tubo(0.0, 0.0, c.radio, lambda x, y: 0.0, profundidad + 2 * e * hiladas[0].paso)
+    Vt, Ft = _tubo(0.0, 0.0, c.radio, superficie, fondo + 2 * e * hiladas[0].paso)
     b = len(local)
     local.extend(Vt)
     F.extend((p + b, q + b, r + b) for p, q, r in Ft)
@@ -487,11 +506,10 @@ def cupulin(c: Cupulin, profundidad: float, subdivision: int = 5, plantillas=Non
     ):
         Vr, Fr = _corona(r0, r1, bajo)
         b = len(local)
-        local.extend(Vr)
+        local.extend((x, y, z + superficie(x, y)) for x, y, z in Vr)
         F.extend((p + b, q + b, r + b) for p, q, r in Fr)
         C.extend([color] * len(Fr))
         S.extend([luz] * len(Fr))
-    o, e1, e2, n = c.marco(radio_base)
     L = np.asarray(local)
     G = o + L[:, :1] * e1 + L[:, 1:2] * e2 + L[:, 2:3] * n
     V = [tuple(v) for v in G.tolist()]
@@ -504,22 +522,41 @@ def cupula(
     estrella: bool = True,
     con_cupulines: bool = True,
     color: bool = False,
+    reparto: str = "disperso",
 ):
     """Grupos (nombre, V, F): una por hilada, los cupulines, la cupulilla y el tambor.
 
     Con `color=True` cada grupo es (nombre, V, F, colores, sombras), con el
-    reparto de `granada.color` (eleccion estetica, no dato)."""
-    from granada.color import colorear, colorear_cupulin
+    reparto de `granada.color` (eleccion estetica, no dato): `"disperso"`, yeso
+    con color suelto en celdillas, o `"anillos"`, el de 2026-11-05."""
+    from granada.color import colorear, colorear_cupulin, colorear_cupulin_disperso, disperso
 
-    pintar = colorear if color else None
-    pintar_cupulin = colorear_cupulin if color else None
     planta = planta_por_defecto(radio_base, estrella)
     hiladas = plan_de_hiladas(radio_base, planta=planta)
+    if reparto == "disperso":
+        por_sector = {h.indice: len(h.tipos()) // 8 for h in hiladas}
+        pintar, pintar_cupulin = disperso(por_sector), colorear_cupulin_disperso
+    elif reparto == "anillos":
+        pintar, pintar_cupulin = colorear, colorear_cupulin
+    else:
+        raise ValueError(f"reparto desconocido: {reparto!r}")
+    if not color:
+        pintar = pintar_cupulin = None
     plantillas: dict[tuple[str, float], tuple] = {}
     huecos = cupulines_medidos() if con_cupulines else []
 
-    def en_hueco(x: float, y: float, z: float) -> bool:
-        return any(c.contiene((x, y, z), radio_base) for c in huecos)
+    marcos = [(c.marco(radio_base), c.radio * MARCO_CUPULIN) for c in huecos]
+
+    def en_hueco(vertices) -> bool:
+        # Fuera las piezas con el centroide sobre el marco, no solo sobre el
+        # pocillo: si no, sus patas tapan el marco y el cupulin se ve a medio
+        # hacer. Quitar toda pieza que lo toque deja huecos fuera del marco.
+        P = np.asarray(vertices, dtype=float).mean(axis=0)
+        for (o, e1, e2, n), r in marcos:
+            d = P - o
+            if math.hypot(d @ e1, d @ e2) < r and -4.0 < d @ n < 7.0:
+                return True
+        return False
 
     grupos, quitadas = _montar(planta, hiladas, subdivision, plantillas, en_hueco if huecos else None, pintar)
     mini: dict = {}

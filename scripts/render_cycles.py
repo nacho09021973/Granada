@@ -3,7 +3,11 @@
 Uso (Blender 4.5 LTS, sin ventana; probado con 4.5.15):
 
     ~/.local/opt/blender/blender -b -P scripts/render_cycles.py -- \
-        [--muestras 128] [--lado 1400] [--vistas visitante,cenital]
+        [--muestras 128] [--lado 1400] [--vistas visitante,cenital,ortogonal]
+
+`ortogonal` imita la ortoimagen de AA-415_23: proyeccion ortogonal desde abajo,
+la cupula entera, y un panel de luz pareja bajo la camara (LUZ_LEVANTAMIENTO_W)
+en vez de solo la luz de las ventanas.
 
 Entrada: `renders/cupula_piezas.obj` y `.mtl`, que escribe
 `scripts/render_cupula_piezas.py` (el .obj esta en .gitignore: regenerarlo
@@ -67,7 +71,16 @@ OBJ = RAIZ / "renders" / "cupula_piezas.obj"
 VISTAS = {
     "visitante": ((0.0, -6.0, -14.0), (0.0, 4.0, 9.0), 80.0),
     "cenital": ((0.0, 0.0, -13.0), (0.0, 0.001, 10.0), 90.0),
+    # Como la ortoimagen de AA-415_23: proyeccion ortogonal desde abajo, con la
+    # cupula entera en el encuadre. El tercer valor es el ancho abarcado
+    # (ortho_scale), no un angulo: el radio de arranque es 16,3.
+    "ortogonal": ((0.0, 0.0, -20.0), (0.0, 0.001, 10.0), 35.0),
 }
+ORTOGONALES = {"ortogonal"}
+LUZ_LEVANTAMIENTO_W = 4000.0
+"""Solo en las vistas ortogonales: un panel de luz bajo la camara, que da la
+luz pareja de un levantamiento fotogrametrico en vez de la de las ventanas.
+Escena para comparar con la ortoimagen, no dato."""
 
 SUELO = -24.0
 """Cota del suelo de la sala (el tambor baja hasta -6)."""
@@ -483,10 +496,28 @@ def sol(contorno: np.ndarray):
         o.rotation_quaternion = direccion.to_track_quat("-Z", "Y")
 
 
+def luz_levantamiento(posicion, ancho: float):
+    """Panel cuadrado justo detras de la camara, mirando hacia arriba."""
+    if "levantamiento" in bpy.data.objects:
+        return
+    luz = bpy.data.lights.new("levantamiento", "AREA")
+    luz.shape = "SQUARE"
+    luz.size = ancho * 1.2
+    luz.energy = LUZ_LEVANTAMIENTO_W
+    o = bpy.data.objects.new("levantamiento", luz)
+    bpy.context.collection.objects.link(o)
+    o.location = (posicion[0], posicion[1], posicion[2] - 0.5)
+    o.rotation_euler = (math.pi, 0.0, 0.0)
+
+
 def camara(nombre: str, posicion, objetivo, fov: float):
     cam = bpy.data.cameras.new(nombre)
     cam.sensor_fit = "HORIZONTAL"
-    cam.angle = math.radians(fov)
+    if nombre in ORTOGONALES:
+        cam.type = "ORTHO"
+        cam.ortho_scale = fov
+    else:
+        cam.angle = math.radians(fov)
     cam.clip_start = 0.05
     cam.clip_end = 200.0
     o = bpy.data.objects.new(nombre, cam)
@@ -566,6 +597,8 @@ def main() -> int:
     for nombre in args.vistas.split(","):
         pos, obj, fov = VISTAS[nombre]
         bpy.context.scene.camera = camara(nombre, pos, obj, fov)
+        if nombre in ORTOGONALES:
+            luz_levantamiento(pos, fov)
         ruta = args.salida / f"cupula_cycles_{nombre}{args.sufijo}.png"
         bpy.context.scene.render.filepath = str(ruta)
         bpy.ops.render.render(write_still=True)

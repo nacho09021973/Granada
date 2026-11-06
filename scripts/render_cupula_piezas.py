@@ -43,11 +43,13 @@ def main() -> int:
     ap.add_argument("--png", type=Path, default=RAIZ / "renders" / "cupula_piezas.png")
     ap.add_argument("--png-color", type=Path, default=RAIZ / "renders" / "cupula_color.png")
     ap.add_argument("--informe", type=Path, default=RAIZ / "datos" / "cupula_piezas.json")
+    ap.add_argument("--reparto", default="disperso", choices=("disperso", "anillos"),
+                    help="color: yeso con policromia suelta (defecto) o anillos (2026-11-05)")
     ap.add_argument("--solo-obj", action="store_true", help="escribe solo el .obj (para Cycles), sin renders ni informe")
     args = ap.parse_args()
 
     t0 = time.time()
-    hiladas, grupos = cupula(args.subdivision, color=True)
+    hiladas, grupos = cupula(args.subdivision, color=True, reparto=args.reparto)
     escribir_obj(
         args.obj,
         [(n, Vg, Fg, [material(c, s) for c, s in zip(Cg, Sg)]) for n, Vg, Fg, Cg, Sg in grupos],
