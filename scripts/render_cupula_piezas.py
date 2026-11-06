@@ -43,6 +43,7 @@ def main() -> int:
     ap.add_argument("--png", type=Path, default=RAIZ / "renders" / "cupula_piezas.png")
     ap.add_argument("--png-color", type=Path, default=RAIZ / "renders" / "cupula_color.png")
     ap.add_argument("--informe", type=Path, default=RAIZ / "datos" / "cupula_piezas.json")
+    ap.add_argument("--solo-obj", action="store_true", help="escribe solo el .obj (para Cycles), sin renders ni informe")
     args = ap.parse_args()
 
     t0 = time.time()
@@ -52,6 +53,9 @@ def main() -> int:
         [(n, Vg, Fg, [material(c, s) for c, s in zip(Cg, Sg)]) for n, Vg, Fg, Cg, Sg in grupos],
         paleta=paleta_materiales(),
     )
+    if args.solo_obj:
+        print(f"-> {args.obj} ({sum(len(g[2]) for g in grupos)} triangulos, {time.time() - t0:.0f} s)")
+        return 0
     V, F, colores, sombras = [], [], [], []
     for _, Vg, Fg, Cg, Sg in grupos:
         base = len(V)

@@ -58,3 +58,10 @@ docs/Reconstructing_the_Alhambra_Rafael_Contr.pdf
 # scripts/render_cupula_piezas.py; el PNG y datos/cupula_piezas.json si se versionan.
 renders/cupula_piezas.obj
 renders/cupula_piezas.mtl
+# Malla fina para el render de zoom profundo (scripts/render_cycles.py --zoom).
+renders/cupula_piezas_n24.obj
+renders/cupula_piezas_n24.mtl
+
+# Teselas del visor de zoom (decenas de MB): se generan con scripts/teselar_dzi.py
+# y se publican en la rama gh-pages con scripts/publicar_web.sh.
+web/zoom/

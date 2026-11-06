@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Granada · Cúpula en detalle</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Visor de zoom profundo: fondo oscuro para que la imagen mande. */
+    #viewer { background: #151413; }
+    #zoom { position: absolute; inset: 0; }
+    .identity h1 { color: #f3efe6; }
+    .identity p { color: #b8b2a6; }
+    footer { color: #b8b2a6; }
+    .toolbar { gap: 8px; }
+    .toolbar .command { min-width: 40px; }
+    #loading { color: #f3efe6; background: #151413; }
+  </style>
+</head>
+<body>
+  <main id="viewer" aria-label="Render de la cúpula de la Sala de las Dos Hermanas, ampliable">
+    <div id="zoom"></div>
+
+    <header class="identity">
+      <h1>Sala de las Dos Hermanas</h1>
+      <p>Cúpula vista desde el centro de la sala · rueda o pellizco para acercar</p>
+    </header>
+
+    <div class="toolbar" role="toolbar" aria-label="Controles de zoom">
+      <button id="acercar" class="command" type="button" aria-label="Acercar">+</button>
+      <button id="alejar" class="command" type="button" aria-label="Alejar">−</button>
+      <button id="inicio" class="command" type="button">Vista completa</button>
+      <button id="pantalla" class="command" type="button">Pantalla completa</button>
+    </div>
+
+    <footer>Restitución hipotética: disposición de piezas en parte supuesta y color restituido · render, no fotografía</footer>
+    <div id="loading">Cargando imagen…</div>
+  </main>
+
+  <script src="vendor/openseadragon.min.js"></script>
+  <script>
+    const visor = OpenSeadragon({
+      element: document.getElementById("zoom"),
+      tileSources: "zoom/cupula_cenital.dzi",
+      showNavigationControl: false,
+      showNavigator: true,
+      navigatorPosition: "BOTTOM_RIGHT",
+      navigatorBackground: "#151413",
+      navigatorBorderColor: "#6b655c",
+      maxZoomPixelRatio: 2,
+      visibilityRatio: 0.8,
+      constrainDuringPan: true,
+      animationTime: 0.6,
+      springStiffness: 8,
+      gestureSettingsMouse: { clickToZoom: false, dblClickToZoom: true },
+    });
+    visor.addOnceHandler("open", () => document.getElementById("loading").classList.add("done"));
+    visor.addHandler("open-failed", () => {
+      document.getElementById("loading").textContent = "No se encontró la imagen (web/zoom/cupula_cenital.dzi).";
+    });
+    const vp = () => visor.viewport;
+    document.getElementById("acercar").onclick = () => vp().zoomBy(1.6).applyConstraints();
+    document.getElementById("alejar").onclick = () => vp().zoomBy(1 / 1.6).applyConstraints();
+    document.getElementById("inicio").onclick = () => vp().goHome();
+    document.getElementById("pantalla").onclick = () => visor.setFullScreen(!visor.isFullPage());
+  </script>
+</body>
+</html>

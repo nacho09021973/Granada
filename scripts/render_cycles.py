@@ -10,6 +10,18 @@ Entrada: `renders/cupula_piezas.obj` y `.mtl`, que escribe
 antes si cambio la malla). Salida: `renders/cupula_cycles_<vista>.png`, una
 imagen por vista.
 
+Zoom profundo (vista cenital a 8192 px para el visor web/zoom.html):
+
+    python3 scripts/render_cupula_piezas.py --subdivision 24 --solo-obj \
+        --obj renders/cupula_piezas_n24.obj
+    blender -b -P scripts/render_cycles.py -- --obj renders/cupula_piezas_n24.obj \
+        --lado 8192 --vistas cenital --sufijo _8k --muestras 128 --dispositivo optix
+    python3 scripts/teselar_dzi.py renders/cupula_cycles_cenital_8k.png web/zoom/cupula_cenital
+
+En CPU (4 nucleos) un recorte de 1024 px a esa escala con 32 muestras tardo
+4 min: la imagen entera, unas 4-5 h. `--dispositivo optix` (o `cuda`) usa la
+GPU NVIDIA.
+
 Que es dato y que es escena
 ---------------------------
 La malla y sus colores son los del modelo (`granada/cupula.py`,
@@ -95,6 +107,14 @@ def argumentos():
     ap.add_argument("--vistas", default="visitante,cenital")
     ap.add_argument("--salida", type=Path, default=RAIZ / "renders")
     ap.add_argument("--sufijo", default="")
+    ap.add_argument("--obj", type=Path, default=OBJ)
+    ap.add_argument("--sin-limpieza", action="store_true", help="sin eliminador de ruido (diagnostico)")
+    ap.add_argument("--dispositivo", choices=("cpu", "cuda", "optix"), default="cpu",
+                    help="cpu, o GPU NVIDIA con cuda u optix (RTX)")
+    ap.add_argument(
+        "--recorte", default=None,
+        help="x0,y0,x1,y1 en fracciones de la imagen (y desde arriba): renderiza solo ese trozo",
+    )
     return ap.parse_args(argv)
 
 
@@ -204,15 +224,30 @@ def material_yeso(nombre: str, color, rugosidad=0.85, grano=0.25, translucidez=0
     bsdf.inputs["Roughness"].default_value = rugosidad
     bsdf.inputs["Subsurface Weight"].default_value = translucidez
     bsdf.inputs["Subsurface Radius"].default_value = (0.08, 0.06, 0.04)
-    # Grano: ruido fino en relieve.
-    fino = nt.nodes.new("ShaderNodeTexNoise")
-    fino.inputs["Scale"].default_value = 28.0
-    fino.inputs["Detail"].default_value = 8.0
-    fino.inputs["Roughness"].default_value = 0.65
+    # Relieve del yeso a tres escalas: ondulacion de la llana (~4 cm), grano
+    # (~8 mm) y poro (~1,5 mm), en unidades del cateto (0,22 m).
+    alto = None
+    for escala, peso in ((5.0, 0.5), (28.0, 0.35), (150.0, 0.15)):
+        capa = nt.nodes.new("ShaderNodeTexNoise")
+        capa.inputs["Scale"].default_value = escala
+        capa.inputs["Detail"].default_value = 6.0
+        capa.inputs["Roughness"].default_value = 0.6
+        pesada = nt.nodes.new("ShaderNodeMath")
+        pesada.operation = "MULTIPLY"
+        pesada.inputs[1].default_value = peso
+        nt.links.new(capa.outputs["Fac"], pesada.inputs[0])
+        if alto is None:
+            alto = pesada.outputs["Value"]
+        else:
+            suma = nt.nodes.new("ShaderNodeMath")
+            suma.operation = "ADD"
+            nt.links.new(alto, suma.inputs[0])
+            nt.links.new(pesada.outputs["Value"], suma.inputs[1])
+            alto = suma.outputs["Value"]
     relieve = nt.nodes.new("ShaderNodeBump")
-    relieve.inputs["Strength"].default_value = grano
-    relieve.inputs["Distance"].default_value = 0.02
-    nt.links.new(fino.outputs["Fac"], relieve.inputs["Height"])
+    relieve.inputs["Strength"].default_value = min(1.0, 2.4 * grano)
+    relieve.inputs["Distance"].default_value = 0.2
+    nt.links.new(alto, relieve.inputs["Height"])
     nt.links.new(relieve.outputs["Normal"], bsdf.inputs["Normal"])
     return m
 
@@ -258,8 +293,8 @@ def material_ventana():
     return m
 
 
-def importar(colores):
-    bpy.ops.wm.obj_import(filepath=str(OBJ), forward_axis="Y", up_axis="Z", use_split_groups=True)
+def importar(obj: Path, colores):
+    bpy.ops.wm.obj_import(filepath=str(obj), forward_axis="Y", up_axis="Z", use_split_groups=True)
     objetos = [o for o in bpy.context.scene.objects if o.type == "MESH"]
     propios = {}
     for nombre, color in colores.items():
@@ -453,6 +488,24 @@ def camara(nombre: str, posicion, objetivo, fov: float):
     return o
 
 
+def dispositivo(nombre: str):
+    """CPU, o todas las GPU NVIDIA que vea Cycles con CUDA u OptiX."""
+    esc = bpy.context.scene
+    if nombre == "cpu":
+        esc.cycles.device = "CPU"
+        return
+    prefs = bpy.context.preferences.addons["cycles"].preferences
+    prefs.compute_device_type = nombre.upper()
+    prefs.get_devices()
+    gpus = [d for d in prefs.devices if d.type == nombre.upper()]
+    if not gpus:
+        raise SystemExit(f"Cycles no ve ninguna GPU {nombre.upper()}: revisar el driver de NVIDIA")
+    for d in prefs.devices:
+        d.use = d.type == nombre.upper()
+    esc.cycles.device = "GPU"
+    print("GPU:", ", ".join(d.name for d in gpus))
+
+
 def ajustes(muestras: int, lado: int):
     esc = bpy.context.scene
     esc.render.engine = "CYCLES"
@@ -482,14 +535,24 @@ def ajustes(muestras: int, lado: int):
 def main() -> int:
     args = argumentos()
     limpiar()
-    colores = colores_del_mtl(OBJ.with_suffix(".mtl"))
-    objetos, propios = importar(colores)
+    colores = colores_del_mtl(args.obj.with_suffix(".mtl"))
+    objetos, propios = importar(args.obj, colores)
     contorno, cota = contorno_del_tambor(objetos)
     sala(contorno, cota, material_yeso("yeso_sala", colores["yeso"], grano=0.3, variacion=0.1))
     ventanas(contorno, material_ventana(), propios["yeso"])
     sol(contorno)
     ajustes(args.muestras, args.lado)
+    dispositivo(args.dispositivo)
+    bpy.context.scene.cycles.use_denoising = not args.sin_limpieza
     args.salida.mkdir(parents=True, exist_ok=True)
+    if args.recorte:
+        x0, y0, x1, y1 = (float(v) for v in args.recorte.split(","))
+        r = bpy.context.scene.render
+        r.use_border = True
+        r.use_crop_to_border = True
+        # Blender cuenta y desde abajo.
+        r.border_min_x, r.border_max_x = x0, x1
+        r.border_min_y, r.border_max_y = 1 - y1, 1 - y0
     for nombre in args.vistas.split(","):
         pos, obj, fov = VISTAS[nombre]
         bpy.context.scene.camera = camara(nombre, pos, obj, fov)
