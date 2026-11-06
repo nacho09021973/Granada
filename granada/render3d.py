@@ -67,8 +67,28 @@ def normales_suaves(V, F, angulo=ANGULO_ARISTA):
     return unidad, esquinas
 
 
-def rasterizar(V, F, W, H, azim=0.0, elev=0.0, luces=(), perspectiva=None, suave=True, tono=None, encuadre=None, colores=None, ambiente=AMBIENTE):
+def rasterizar(V, F, W, H, *args, supermuestreo: int = 1, encuadre=None, **kw):
     """Dibuja la malla y devuelve (imagen, (px, py)).
+
+    `supermuestreo=k`: dibuja a k*W x k*H y reduce promediando bloques de k x k
+    (antialiasing). Sin el, cada pixel es una sola muestra y los bordes y los
+    filetes de uno o dos pixeles salen en escalera o rotos. `px, py` se
+    devuelven en pixeles de la imagen final. Resto de argumentos: `_rasterizar`.
+    """
+    k = int(supermuestreo)
+    if k < 1:
+        raise ValueError(f"supermuestreo debe ser >= 1, se recibio {supermuestreo}")
+    if k == 1:
+        return _rasterizar(V, F, W, H, *args, encuadre=encuadre, **kw)
+    if encuadre is not None:
+        u0, v0, escala = encuadre
+        encuadre = (u0 * k, v0 * k, escala * k)
+    img, (px, py) = _rasterizar(V, F, W * k, H * k, *args, encuadre=encuadre, **kw)
+    return img.reduce(k), (px / k, py / k)
+
+
+def _rasterizar(V, F, W, H, azim=0.0, elev=0.0, luces=(), perspectiva=None, suave=True, tono=None, encuadre=None, colores=None, ambiente=AMBIENTE):
+    """Dibuja la malla con una muestra por pixel y devuelve (imagen, (px, py)).
 
     Sin `perspectiva`: ortografica, encuadrando todo, vista desde (azim, elev).
     Con `perspectiva=(posicion, objetivo, fov_horizontal_grados)`: camara en
