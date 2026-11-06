@@ -203,6 +203,10 @@ class Pieza:
     fondo: Callable[[float, float], float]
     """Cota de la cara inferior en cada punto de la planta."""
     altura: float = ALTURA_PRISMA
+    eje: str = "x"
+    """Coordenada que es constante a lo largo de las patas: "x" (patas en
+    x = cte) o "y" (B, pata a lo largo del lado trasero). La rejilla va en
+    columnas paralelas a las patas. Ver `_rejilla`."""
 
 
 def pieza(tipo: str, paso: float = PASO_NIVEL) -> Pieza:
@@ -223,7 +227,7 @@ def pieza(tipo: str, paso: float = PASO_NIVEL) -> Pieza:
     if tipo == "A3":
         return Pieza(tipo, a_frente, 2, _nicho(_trompeta(R2, paso), 0.68 * R2, -0.45 * R2, False, paso), h)
     if tipo == "B":
-        return Pieza(tipo, rect, 1, _curva_fondo_frente(-1.0, paso), h)
+        return Pieza(tipo, rect, 1, _curva_fondo_frente(-1.0, paso), h, eje="y")
     if tipo == "C1":
         return Pieza(tipo, c_frente, 1, _trompeta(S22, paso), h)
     if tipo == "C2":
@@ -237,61 +241,243 @@ def pieza(tipo: str, paso: float = PASO_NIVEL) -> Pieza:
 # Malla
 
 
-def _rejilla(a: Punto2, b: Punto2, c: Punto2, n: int):
-    """Subdivide el triangulo abc en n*n triangulos; devuelve puntos y caras."""
+FINURA = 600
+"""Muestras con que se mide la variacion del fondo para repartir la rejilla."""
+
+
+def _repartir(longitud, variacion, cortes: int) -> list[float]:
+    """`cortes` + 1 posiciones en [0, 1] que reparten por igual la longitud
+    de la curva (posicion, cota) en norma L1: mas densas donde el fondo cambia
+    deprisa. `variacion[i]` es |dz| entre las muestras i e i + 1."""
+    acumulado = [0.0]
+    paso = longitud / (len(variacion))
+    for dz in variacion:
+        acumulado.append(acumulado[-1] + paso + dz)
+    total = acumulado[-1]
+    fuera, i = [], 0
+    for k in range(cortes + 1):
+        objetivo = total * k / cortes
+        while i < len(variacion) - 1 and acumulado[i + 1] < objetivo:
+            i += 1
+        tramo = acumulado[i + 1] - acumulado[i]
+        f = 0.0 if tramo <= 0 else (objetivo - acumulado[i]) / tramo
+        fuera.append(min(1.0, (i + min(1.0, max(0.0, f))) / len(variacion)))
+    fuera[0], fuera[-1] = 0.0, 1.0
+    return fuera
+
+
+QUIEBRO = 2.0
+"""Salto de pendiente del fondo (cota por unidad de cateto) a partir del cual
+un cambio de pendiente se trata como arista y recibe su linea de rejilla. Las
+patas saltan de 0 a mas de 15; los tramos de la curva tabulada, menos de 1."""
+
+
+def _quiebros(perfiles: list[list[float]], paso: float, minimo: int = 1) -> list[int]:
+    """Indices de muestra donde el fondo se quiebra en `minimo` perfiles.
+
+    `perfiles`: incrementos de cota con signo entre muestras separadas `paso`.
+    Un quiebro es un maximo local del salto de pendiente que supera `QUIEBRO`.
+    Con `minimo` > 1 solo cuentan los que aparecen en la misma muestra (+-2) en
+    varios perfiles: aristas paralelas a las columnas, como las patas; uno
+    oblicuo cambia de sitio de perfil a perfil y lo recogen las filas.
+    """
+    marcas: list[set[int]] = []
+    for dz in perfiles:
+        salto = [0.0] + [abs(dz[i] - dz[i - 1]) / paso for i in range(1, len(dz))]
+        aqui = set()
+        for i in range(1, len(salto) - 1):
+            if salto[i] >= QUIEBRO and salto[i] >= salto[i - 1] and salto[i] >= salto[i + 1]:
+                aqui.add(i)
+        marcas.append(aqui)
+    fuera = set()
+    for aqui in marcas:
+        for i in aqui:
+            if sum(any(abs(i - j) <= 2 for j in otro) for otro in marcas) >= minimo:
+                fuera.add(i)
+    elegidos, ultimo = [], None
+    for i in sorted(fuera):
+        if ultimo is None or i - ultimo > 2:
+            elegidos.append(i)
+        ultimo = i
+    return elegidos
+
+
+def _rejilla(p: Pieza, n: int):
+    """Triangulacion de la planta que sigue al fondo; devuelve puntos y caras.
+
+    Con la rejilla en abanico desde un vertice, la linea de la pata -donde el
+    fondo sube casi en vertical- cruzaba los triangulos en oblicuo y se dibujaba
+    en diente de sierra. Aqui la planta se corta en columnas paralelas a las
+    patas (`p.eje`): `n` repartidas por la variacion del fondo, una en cada
+    vertice para que las cuerdas sean rectas y una en cada quiebro paralelo a
+    ellas. Cada cuerda lleva max(2, n // 2) filas con el mismo criterio mas una
+    en cada quiebro suyo (el borde del nicho, por ejemplo). Dos columnas
+    vecinas se cosen en cremallera por la coordenada a lo largo de la cuerda,
+    de modo que un quiebro recto une puntos a la misma altura. Caras en sentido
+    antihorario en planta.
+    """
+    if p.eje == "x":
+        a_local = lambda x, y: (x, y)  # noqa: E731
+    elif p.eje == "y":
+        a_local = lambda x, y: (y, x)  # noqa: E731
+    else:
+        raise ValueError(f"eje debe ser 'x' o 'y', se recibio {p.eje!r}")
+    poligono = [a_local(x, y) for x, y in p.planta]
+    z = lambda s, t: p.fondo(*a_local(s, t))  # noqa: E731  (a_local es su propia inversa)
+    s0, s1 = min(q[0] for q in poligono), max(q[0] for q in poligono)
+    lados = list(zip(poligono, poligono[1:] + poligono[:1]))
+
+    def cuerda(s: float) -> tuple[float, float]:
+        ts = []
+        for (xa, ya), (xb, yb) in lados:
+            if xa == xb:
+                if abs(s - xa) < 1e-12:
+                    ts += [ya, yb]
+                continue
+            f = (s - xa) / (xb - xa)
+            if -1e-12 <= f <= 1 + 1e-12:
+                ts.append(ya + f * (yb - ya))
+        return min(ts), max(ts)
+
+    def incrementos(xs, linea):
+        zs = [linea(x) for x in xs]
+        return [b - a for a, b in zip(zs, zs[1:])]
+
+    # Columnas: variacion del fondo a lo largo de s en cinco lineas de la cuerda.
+    ss = [s0 + (s1 - s0) * i / FINURA for i in range(FINURA + 1)]
+    perfiles = []
+    for u in (0.1, 0.3, 0.5, 0.7, 0.9):
+        def linea(s, u=u):
+            t0, t1 = cuerda(s)
+            return z(s, t0 + u * (t1 - t0))
+        perfiles.append(incrementos(ss, linea))
+    # La mayor de las cinco: una subida que solo ocupa parte de la cuerda (el
+    # nicho) cuenta entera.
+    mayor = [max(abs(d) for d in col) for col in zip(*perfiles)]
+    columnas = {round(s0 + (s1 - s0) * f, 12) for f in _repartir(s1 - s0, mayor, n)}
+    columnas |= {round(q[0], 12) for q in poligono}
+    columnas |= {round(ss[i], 12) for i in _quiebros(perfiles, (s1 - s0) / FINURA, minimo=3)}
+    columnas = sorted(columnas)
+
+    # Filas de quiebro: aristas rectas a lo largo de s (el borde del nicho),
+    # las que salen a la misma t en tres de cinco columnas.
+    t_min, t_max = min(q[1] for q in poligono), max(q[1] for q in poligono)
+    tt = [t_min + (t_max - t_min) * i / FINURA for i in range(FINURA + 1)]
+    perfiles_t = [incrementos(tt, lambda t, s=s0 + (s1 - s0) * f: z(s, t)) for f in (0.1, 0.3, 0.5, 0.7, 0.9)]
+    filas_quiebro = [tt[i] for i in _quiebros(perfiles_t, (t_max - t_min) / FINURA, minimo=3)]
+
+    filas = max(2, n // 2)
     puntos: list[Punto2] = []
-    indice: dict[tuple[int, int], int] = {}
-    for i in range(n + 1):
-        for j in range(n + 1 - i):
-            u, v = i / n, j / n
-            w = 1 - u - v
-            indice[(i, j)] = len(puntos)
-            puntos.append((w * a[0] + u * b[0] + v * c[0], w * a[1] + u * b[1] + v * c[1]))
+    # Cada columna: lista de (t, indice, ancla); ancla = numero de la fila de
+    # quiebro que pasa por ese punto, o None.
+    rejilla: list[list[tuple[float, int, int | None]]] = []
+    for s in columnas:
+        t0, t1 = cuerda(s)
+        if t1 - t0 < 1e-12:
+            marcas = {round(t0, 12): None}
+        else:
+            ts = [t0 + (t1 - t0) * i / FINURA for i in range(FINURA + 1)]
+            dz = incrementos(ts, lambda t, s=s: z(s, t))
+            marcas = {round(t0 + u * (t1 - t0), 12): None for u in _repartir(t1 - t0, [abs(d) for d in dz], filas)}
+            for k, t in enumerate(filas_quiebro):
+                if t0 + 1e-9 < t < t1 - 1e-9:
+                    # Sustituye al punto repartido mas cercano si esta muy cerca.
+                    cerca = min(marcas, key=lambda m: abs(m - t))
+                    if abs(cerca - t) < 0.25 * (t1 - t0) / filas and cerca not in (round(t0, 12), round(t1, 12)):
+                        del marcas[cerca]
+                    marcas[round(t, 12)] = k
+        fila = []
+        for t in sorted(marcas):
+            fila.append((t, len(puntos), marcas[t]))
+            puntos.append(a_local(s, t))
+        rejilla.append(fila)
+
+    def area(a, b, c):
+        (xa, ya), (xb, yb), (xc, yc) = puntos[a], puntos[b], puntos[c]
+        return (xb - xa) * (yc - ya) - (yb - ya) * (xc - xa)
+
+    def desvio(a, c):
+        (xa, ya), (xc, yc) = puntos[a], puntos[c]
+        return abs((p.fondo(xa, ya) + p.fondo(xc, yc)) / 2 - p.fondo((xa + xc) / 2, (ya + yc) / 2))
+
     caras = []
-    for i in range(n):
-        for j in range(n - i):
-            caras.append((indice[(i, j)], indice[(i + 1, j)], indice[(i, j + 1)]))
-            if j < n - i - 1:
-                caras.append((indice[(i + 1, j)], indice[(i + 1, j + 1)], indice[(i, j + 1)]))
+
+    def anadir(t):
+        ar = area(*t)
+        if abs(ar) > 1e-14:
+            caras.append(t if ar > 0 else (t[0], t[2], t[1]))
+
+    def coser(izq, der):
+        """Cose dos tramos de columna por su posicion relativa en el tramo."""
+        def relativa(tramo):
+            a, b = tramo[0][0], tramo[-1][0]
+            return [0.0 if b - a < 1e-12 else (t - a) / (b - a) for t, _, _ in tramo]
+        ui, ud = relativa(izq), relativa(der)
+        i = j = 0
+        while i < len(izq) - 1 or j < len(der) - 1:
+            if j == len(der) - 1:
+                paso = "i"
+            elif i == len(izq) - 1:
+                paso = "d"
+            elif abs(ui[i + 1] - ud[j + 1]) < 1e-9:
+                paso = "ambos"
+            else:
+                paso = "i" if ui[i + 1] < ud[j + 1] else "d"
+            if paso == "ambos":
+                a, b, c, d = izq[i][1], der[j][1], der[j + 1][1], izq[i + 1][1]
+                if desvio(a, c) <= desvio(b, d):
+                    anadir((a, b, c)); anadir((a, c, d))  # noqa: E702
+                else:
+                    anadir((a, b, d)); anadir((b, c, d))  # noqa: E702
+                i += 1
+                j += 1
+            elif paso == "i":
+                anadir((izq[i][1], der[j][1], izq[i + 1][1]))
+                i += 1
+            else:
+                anadir((izq[i][1], der[j][1], der[j + 1][1]))
+                j += 1
+
+    for izq, der in zip(rejilla, rejilla[1:]):
+        comunes = sorted({m for _, _, m in izq if m is not None} & {m for _, _, m in der if m is not None})
+        cortes_i = [0] + [next(k for k, e in enumerate(izq) if e[2] == m) for m in comunes] + [len(izq) - 1]
+        cortes_d = [0] + [next(k for k, e in enumerate(der) if e[2] == m) for m in comunes] + [len(der) - 1]
+        for (a, b), (c, d) in zip(zip(cortes_i, cortes_i[1:]), zip(cortes_d, cortes_d[1:])):
+            coser(izq[a : b + 1], der[c : d + 1])
     return puntos, caras
 
 
 def malla(p: Pieza, n: int = SUBDIVISION) -> tuple[list[Punto3], list[tuple[int, int, int]]]:
     """Solido cerrado: tapa, fondo curvo y paredes. Normales hacia fuera."""
-    V: list[Punto3] = []
+    puntos, caras = _rejilla(p, n)
+    # Funde los puntos repetidos (las cuerdas de longitud cero en los vertices).
+    clave: dict[tuple[float, float], int] = {}
+    nuevo = []
+    unicos: list[Punto2] = []
+    for x, y in puntos:
+        k = (round(x, 9), round(y, 9))
+        if k not in clave:
+            clave[k] = len(unicos)
+            unicos.append((x, y))
+        nuevo.append(clave[k])
+    caras = [(nuevo[a], nuevo[b], nuevo[c]) for a, b, c in caras]
+    caras = [t for t in caras if len(set(t)) == 3]
+    m = len(unicos)
+    V: list[Punto3] = [(x, y, p.altura) for x, y in unicos] + [(x, y, p.fondo(x, y)) for x, y in unicos]
     F: list[tuple[int, int, int]] = []
-    planta = p.planta
-    o = planta[0]
-    for k in range(1, len(planta) - 1):
-        puntos, caras = _rejilla(o, planta[k], planta[k + 1], n)
-        base = len(V)
-        for x, y in puntos:
-            V.append((x, y, p.altura))
-        for a, b, c in caras:
-            F.append((base + a, base + b, base + c))
-        base = len(V)
-        for x, y in puntos:
-            V.append((x, y, p.fondo(x, y)))
-        for a, b, c in caras:
-            F.append((base + a, base + c, base + b))
-    m = len(planta)
-    for k in range(m):
-        a, b = planta[k], planta[(k + 1) % m]
-        for s in range(n):
-            t0, t1 = s / n, (s + 1) / n
-            p0 = (a[0] + t0 * (b[0] - a[0]), a[1] + t0 * (b[1] - a[1]))
-            p1 = (a[0] + t1 * (b[0] - a[0]), a[1] + t1 * (b[1] - a[1]))
-            base = len(V)
-            V.extend(
-                [
-                    (p0[0], p0[1], p.fondo(*p0)),
-                    (p1[0], p1[1], p.fondo(*p1)),
-                    (p1[0], p1[1], p.altura),
-                    (p0[0], p0[1], p.altura),
-                ]
-            )
-            F.append((base, base + 1, base + 2))
-            F.append((base, base + 2, base + 3))
+    for a, b, c in caras:
+        F.append((a, b, c))
+        F.append((m + a, m + c, m + b))
+    # Paredes sobre las aristas del borde, que solo usa un triangulo; en el
+    # sentido de ese triangulo (antihorario) la pared mira hacia fuera.
+    usos: dict[tuple[int, int], int] = {}
+    for a, b, c in caras:
+        for u, v in ((a, b), (b, c), (c, a)):
+            usos[(u, v)] = usos.get((u, v), 0) + 1
+    for (u, v) in usos:
+        if (v, u) not in usos:
+            F.append((m + u, m + v, v))
+            F.append((m + u, v, u))
     return soldar(V, F)
 
 
