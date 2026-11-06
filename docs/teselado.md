@@ -364,10 +364,23 @@ ciclos independientes que ya daba la decisión 0004, como tenía que ser.
 ### Qué se puede leer de la planta y qué no
 
 De una planta se lee la **figura** (medio cuadrado, media jaira, jaira,
-cuadrado, octógono). La **topología** de la pieza —A1, A2, A3, B4, C1, C2,
-D3— no se lee de la planta: es lo que las flechas de la planta propuesta
-codifican, y la figura 128 no las trae. El módulo clasifica figuras y **nunca**
-asigna un `TipoMocarabe`.
+cuadrado, octógono). El módulo clasifica figuras y **nunca** asigna un
+`TipoMocarabe`.
+
+**Corregido el 2026-08-26 — decisión 0016.** Aquí decía que la **topología**
+—A1, A2, A3, B4, C1, C2, D3— «no se lee de la planta: es lo que las flechas de
+la planta propuesta codifican». Es falso, y la fuente que lo desmiente es el
+propio artículo de Gámiz Gordo y Ferrer (entrada 16 de `fuentes.md`): «Jones y
+Goury detallaron con precisión las "patillas" de estos mocárabes, lo que
+permite identificar su tipo con exactitud». De una planta que resuelva pieza a
+pieza, **figura + orientación identifican el tipo salvo un único par: A1 frente
+a A3** — que es justo el par de un nivel frente a dos. Las flechas son notación
+analítica posterior; las patillas son registro dibujado.
+
+Lo que sigue en pie es el **error de escala**: el alfabeto es de **piezas**, y
+la lámina X tiene 5416. Las 105 caras de la red de medinas no son mocárabes, y
+la figura 128 no resuelve el despiece. Por eso `TipoMocarabe` sigue sin
+asignarse aquí.
 
 ### Clasificación, con tolerancia heredada y no elegida
 
