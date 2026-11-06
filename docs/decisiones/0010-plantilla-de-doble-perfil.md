@@ -60,6 +60,14 @@ escrito que es trivial para que nadie lo lea como una validación. La plantilla
 menor está implementada y probada, pero no se asigna a ninguna cara porque no
 hay evidencia para hacerlo.
 
+> **Actualización, 2026-08-29.** La [decisión 0013](0013-asignacion-de-plantilla-por-banda.md)
+> reparte las dos plantillas por bandas y sitúa la frontera entre la 2 y la 3.
+> No hay evidencia nueva: la frontera **se elige**, con criterios escritos. Lo
+> que sigue vigente de aquí es el callejón que lo obliga; lo que cambia es que
+> el control de paralelismo deja de ser trivial —16 vecindades rotas, todas en
+> la frontera— y que el defecto de `exportar_malla.py` ya no es la plantilla
+> única.
+
 ## Dos defectos que solo vio el render
 
 Los controles numéricos —rango de cotas, residuo frente al cono, recuento de

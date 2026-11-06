@@ -134,7 +134,9 @@ tesis observa en la Alhambra y que Jones y Goury simplificaron al término
 
 Consecuencia para `granada/adaraja.py`: la cónica racional de un solo mando de
 profundidad no es el modelo correcto. Hacen falta dos perfiles, y la elección
-de cuál usa cada pieza.
+de cuál usa cada pieza. Los dos perfiles están en `granada/perfil.py` (decisión
+0010); **cuál le toca a cada cara no lo dice la fuente**, y se elige en la
+decisión 0013 con criterios escritos.
 
 ### La pendiente: mi medición encaja
 

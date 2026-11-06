@@ -17,10 +17,39 @@ cotas de sus seis bandas están calibradas contra la sección medida
 (`granada/niveles.py`, decisión 0009), la pieza de cada cara usa la plantilla de
 doble perfil documentada por la tesis (`granada/perfil.py`, exacta en
 `Fraction`) y `granada/malla.py` la exporta como OBJ, que es lo que carga el
-visor web. Los perfiles de celda `cuna` y `rombo` siguen vigentes. Los modelos
+visor web. **Cuál de los dos perfiles le toca a cada cara no lo dice ninguna
+fuente**: se reparte por bandas con una frontera de módulo que *elegimos*, con
+los criterios escritos en `granada/asignacion.py` y la decisión 0013, declarada
+cara a cara en `datos/malla_cupula.json` y en la ficha del visor. El visor usa
+**yeso blanco por defecto**; la paleta de niveles queda como capa analítica
+opcional y cualquier tono elegido por el usuario se rotula sin atribución
+histórica. Los perfiles de celda `cuna` y `rombo` siguen vigentes. Los modelos
 refutados —coronas polares, `trapecio` y el perfil de cónica única— se retiraron
 en la decisión 0011; de aquel módulo solo sobrevive la cónica racional, como
 interpolador, en `granada/conica.py`.
+
+El visor separa esa aproximación histórica de la vía matemática: la vista
+**Comparar trazados** presenta tres cúpulas contemporáneas de 8, 10 y 12
+sectores, con 40, 50 y 60 paños. Comparten cinco coronas y el mismo perfil para
+que solo cambie el ritmo angular. No son deformaciones de Dos Hermanas ni una
+tipología atribuida históricamente: la composición se registra como decisión
+expositiva en la 0014. Se generan en Z[ζₘ] con
+`scripts/exportar_ordenes_sinteticos.py`; el JSON conserva los coeficientes
+exactos, las cotas racionales y el embedding numérico separado.
+
+### Láminas comparativas
+
+- [Vista general](renders/cupulas_comparativas_general.png) — 3600 × 1600 px.
+- [Lectura desde el intradós](renders/cupulas_comparativas_intrados.png) —
+  3600 × 1600 px.
+
+Cada lámina identifica las tres familias y declara que se trata de una
+comparación contemporánea. Los seis renders individuales están también en
+`renders/`. Se regeneran, junto con las láminas, mediante:
+
+```bash
+python scripts/render_cupulas_comparativas.py
+```
 
 **Sigue sin haber una planta histórica con niveles validada.** Lo que hay es una
 reconstrucción aproximada que declara, pieza a pieza, qué está medido, qué
@@ -49,9 +78,10 @@ precisión, y de las deformaciones reales documentadas: asentamientos,
 reparaciones, tolerancias de ejecución, reconstrucciones. Una afirmación de
 tipo (B) exige evidencia externa y no se deriva de (A).
 
-**(B) no está implementado.** Nada en este repositorio, ni ahora ni de forma
-implícita, sostiene fidelidad a ninguna cúpula concreta. Cuando se aborde,
-irá acompañada de sus fuentes y de un margen de error explícito.
+**(B) solo está implementado como aproximación declarada.** La salida de Dos
+Hermanas combina planta publicada, cotas calibradas e hipótesis con procedencia;
+no sostiene una restitución histórica verificada. La vista comparativa no forma
+parte de (B): es una composición contemporánea separada.
 
 **El objetivo declarado sobre Dos Hermanas es aproximado.** Desde la
 [decisión 0008](docs/decisiones/0008-objetivo-reconstruccion-aproximada.md) el

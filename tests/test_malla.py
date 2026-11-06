@@ -196,8 +196,12 @@ def test_el_informe_declara_su_estado_y_su_limite() -> None:
     assert informe["estado"] == "APPROXIMATE_MESH_AVAILABLE"
     assert "no una adaraja" in informe["advertencia"]
     assert informe["modelo"]["unidades_entre_niveles"] == 8
-    assert informe["modelo"]["fraccion_util"] == "7/8"
     assert "no medida" in informe["modelo"]["curva"]
+    # Las dos plantillas conviven desde la decision 0013, asi que la fraccion
+    # util ya no es un valor del modelo sino uno de cada plantilla.
+    plantillas = informe["modelo"]["plantillas"]
+    assert plantillas["mayor"]["fraccion_util"] == "7/8"
+    assert plantillas["menor"]["fraccion_util"] == "15/16"
     assert informe["controles"]["caras"] == 105
     assert informe["controles"]["hiladas_que_abarca_la_cara_mediana"] > 4
 
@@ -212,26 +216,60 @@ def test_la_malla_no_se_aleja_del_cono_medido() -> None:
 def test_las_bandas_se_apoyan_unas_en_otras_sin_hueco() -> None:
     """El primer levantado dejaba huecos de hasta 0.39 m entre bandas.
 
-    La celda cuelga 7/8 del salto hasta la banda de debajo, asi que entre el
-    fondo de una banda y la plataforma de la inferior solo queda la junta: un
-    octavo de ese salto, nunca un agujero abierto.
+    La celda cuelga 7/8 -o 15/16- del salto hasta la banda de debajo, asi que
+    entre el fondo de una banda y la plataforma de la inferior solo queda la
+    junta, nunca un agujero abierto. Se comprueba sobre el OBJ y contra la
+    junta que el informe declara cara a cara, no sobre la aritmetica sola.
     """
     niveles = json.loads(
         (RAIZ / "datos" / "niveles_aproximados.json").read_text(encoding="utf-8")
     )
-    cotas = [0.0] + [b["altura_m"] for b in niveles["calibracion_altura"]["bandas"]]
-    for inferior, superior in zip(cotas, cotas[1:]):
-        salto = superior - inferior
-        junta = salto / 8
-        assert junta == pytest.approx(salto - salto * 7 / 8)
+    cotas = sorted({cara["altura_m"] for cara in niveles["caras"]})
+    debajo = {
+        cara["id"]: (
+            cotas[cotas.index(cara["altura_m"]) - 1]
+            if cotas.index(cara["altura_m"])
+            else 0.0
+        )
+        for cara in niveles["caras"]
+    }
+    fondos = _fondos_por_grupo()
+    for fila in json.loads(INFORME.read_text(encoding="utf-8"))["caras"]:
+        junta = fondos[fila["id"]] - debajo[fila["id"]]
+        if fila["pieza_de_cierre"]:
+            assert junta == pytest.approx(0.0, abs=2e-6), "la cupulilla apoya"
+            continue
         assert 0 < junta < 0.16
+        # el OBJ escribe seis decimales, de ahi la tolerancia
+        assert junta == pytest.approx(fila["junta_m"], abs=2e-6)
 
 
-def test_el_paralelismo_se_cumple_en_la_asignacion_publicada() -> None:
-    """Trivial con plantilla uniforme, y por eso se deja escrito que lo es."""
+def _fondos_por_grupo() -> dict[str, float]:
+    """Cota minima de cada grupo del OBJ, que es el fondo de esa pieza."""
+    vertices, actual, fondos = [], None, {}
+    for linea in OBJ.read_text(encoding="utf-8").splitlines():
+        if linea.startswith("v "):
+            vertices.append(tuple(float(x) for x in linea.split()[1:4]))
+        elif linea.startswith("o "):
+            actual = linea[2:].strip().removeprefix("cara_")
+        elif linea.startswith("f "):
+            for token in linea.split()[1:4]:
+                z = vertices[int(token.split("/")[0]) - 1][2]
+                fondos[actual] = min(fondos.get(actual, z), z)
+    return fondos
+
+
+def test_el_paralelismo_se_rompe_solo_en_la_frontera_de_modulo() -> None:
+    """Con dos plantillas ya no es trivial: 16 vecindades rotas, y todas ahi.
+
+    La decision 0010 dejaba 0 vecindades rotas porque usaba una sola plantilla,
+    y lo dejo escrito para que nadie lo leyera como una validacion. Desde la
+    0013 hay frontera, y el control que importa es que no se rompa nada fuera.
+    """
     informe = json.loads(INFORME.read_text(encoding="utf-8"))
-    assert informe["controles"]["vecindades_no_paralelas"] == 0
-    assert informe["modelo"]["plantilla"] == "mayor"
+    assert informe["controles"]["vecindades_no_paralelas"] == 16
+    assert informe["controles"]["vecindades_no_paralelas_fuera_de_la_frontera"] == 0
+    assert informe["modelo"]["asignacion"]["frontera"] == 3
 
 
 def test_el_render_existe_y_es_reproducible() -> None:

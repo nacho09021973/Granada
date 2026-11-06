@@ -1,7 +1,96 @@
 # Próximos pasos
 
-Estado a 2026-08-29. Documento de trabajo: se actualiza, no se conserva como
+Estado a 2026-08-30. Documento de trabajo: se actualiza, no se conserva como
 histórico. El registro de decisiones va en `docs/decisiones/`.
+
+---
+
+## Cúpulas comparativas para una lectura histórica — 2026-08-30
+
+**Paso 5 cerrado y primera composición completa del paso 6.** El visor separa
+dos afirmaciones que no deben mezclarse: «Dos Hermanas» conserva la malla
+histórica aproximada; «Comparar trazados» muestra tres cúpulas contemporáneas
+de **8, 10 y 12 sectores**, con 40, 50 y 60 paños respectivamente.
+
+Las tres usan la misma regla —cinco coronas y el mismo perfil escalonado— para
+que la comparación aísle el ritmo angular. Esa composición no viene de una
+fuente: es una elección expositiva registrada en la decisión 0014, con cotas
+racionales y unidades relativas. No se atribuye a un taller, un monumento ni
+una tipología histórica.
+
+La interfaz habla primero al historiador: «familia de trazado», «corona»,
+«sector», «paño», procedencia y límites. La notación ciclotómica queda en la
+metodología, no en los controles. Hay vista general y lectura desde el intradós.
+El acabado es sobrio y la ficha distingue lo documentado, lo calibrado, lo
+propuesto y lo estrictamente comparativo.
+
+Por debajo, `scripts/exportar_ordenes_sinteticos.py` conserva la auditoría:
+planta exacta en Z[ζₘ], coeficientes enteros vértice a vértice, alturas
+racionales y embedding numérico separado. Suite en **659 tests**; el artefacto
+se regenera de forma idéntica.
+
+La entrega estática acompaña al visor: `cupulas_comparativas_general.png` y
+`cupulas_comparativas_intrados.png`, ambas a 3600 × 1600 px, más seis renders
+individuales a 1200 × 1200. Las láminas llevan título, recuento de sectores,
+coronas y paños, y la advertencia de alcance en el propio gráfico; no dependen
+de que quien las reciba haya leído el repositorio.
+
+---
+
+## Yeso por defecto y color analítico separado — 2026-08-30
+
+Hecha la base no especulativa de los pasos 4 y 5. El visor abre ahora en **yeso
+blanco de obra nueva**, sin asignar pigmentos a ninguna pieza. La paleta que ya
+existía se conserva como capa **analítica por niveles inferidos**, no como
+policromía, y solo en esa capa aparecen los escenarios 7/8 y la incertidumbre.
+
+El selector de tono es una ayuda de visualización y lo dice en la ficha: en
+cuanto se aparta del blanco por defecto queda **sin atribución histórica**. No
+se han incorporado el verde medido ni la lectura roja y dorada de Contreras,
+porque repartirlos entre piezas sigue necesitando una decisión con procedencia.
+
+El selector de orden se resuelve en la entrada superior como vista sintética
+separada, sin deformar la malla de Dos Hermanas.
+
+---
+
+## Paso 2 dado: qué plantilla usa cada banda — 2026-08-29
+
+**Decisión 0013.** Es la primera vez que el proyecto **elige** algo que ninguna
+fuente dice, y por eso va con las cuatro garantías de la hoja de ruta puestas.
+
+**Bandas 0, 1 y 2 —88 caras— con el perfil menor; bandas 3, 4 y 5 —17— con el
+mayor.** La frontera de módulo cae entre la banda 2 y la 3.
+
+La elección se hace con **seis criterios en orden**, y el orden es lo que
+importa: lo documentado por delante de lo nuestro. Pesa primero romper el
+paralelismo en las menos vecindades posibles —el paralelismo es lo único aquí
+que sale de una observación de la tesis—, y eso deja **16 vecindades rotas de
+211**, todas cruzando la frontera y ninguna dentro de un grupo. El empate entre
+las dos fronteras que rompen 16 lo deshace la planta: entre la banda 2 y la 3 la
+subdivisión angular pasa de **40 caras a 8**, el mayor cambio de la cúpula,
+mientras que entre la 3 y la 4 no cambia nada.
+
+**Y una corrección a la hoja de ruta.** Proponía alternar plantilla entre bandas
+anchas y estrechas. Esa alternancia es la que mejor iguala las juntas —
+dispersión 1,5 frente a 4— y a la vez la que **más** rompe el paralelismo: 115
+vecindades de 211. Es exactamente la clase de atajo que cuadra bonito y se aleja
+de la fuente, así que queda en el catálogo de la decisión como rival descartado,
+no fuera de él. La constancia de la junta, que es argumento nuestro y no una
+fuente, solo decidió de qué lado va cada plantilla.
+
+Lo que hay que mirar con desconfianza, dicho aquí y en la decisión:
+
+- **el defecto de `exportar_malla.py` es ahora el reparto**, no la plantilla
+  única. Es una lectura discutible de la regla 3 de la hoja de ruta: se defiende
+  porque la plantilla única tampoco es «no inventar» —afirma un módulo único que
+  la tesis y el residuo del 18–23 % contradicen—, pero se revierte con
+  `--plantilla mayor`, que reproduce exacto el modelo de la decisión 0010;
+- **el umbral sigue sin cruzarse**: 105 piezas, las mismas caras de la planta
+  publicada. Esto no añade ni una pieza, solo cambia la profundidad de 88 de
+  ellas un 7,1 %.
+
+Suite en 636 tests. Renders regenerados y mirados, que es la cautela 2.
 
 ---
 

@@ -1,5 +1,5 @@
 {
- "version": 1,
+ "version": 2,
  "estado": "APPROXIMATE_MESH_AVAILABLE",
  "advertencia": "Malla aproximada. Una celda por cara del teselado, no una adaraja por pieza; no es una restitucion historica verificada.",
  "fuente": {
@@ -7,14 +7,331 @@
   "niveles_aproximados": "04cd6f4b93c92bdbba0da0bfb31fea07687d464dd881ce82e8445f3a2b4c04f5"
  },
  "modelo": {
-  "plantilla": "mayor",
-  "cima_en_unidades_P": "7",
+  "asignacion": {
+   "etiqueta": "menor|mayor@3",
+   "abajo": "menor",
+   "arriba": "mayor",
+   "frontera": 3,
+   "juntas_P": [
+    "3",
+    "5/2",
+    "1",
+    "4",
+    "2",
+    "4"
+   ],
+   "dispersion_de_junta": "4",
+   "vecindades_no_paralelas": 16,
+   "caras_por_grupo": [
+    88,
+    17
+   ],
+   "cambio_de_subdivision": "5",
+   "degenerado": false,
+   "procedencia": "DECIDIDA, no medida: las dos plantillas estan documentadas, el reparto entre bandas no lo dice ninguna fuente",
+   "criterios": [
+    "1. Se usan las dos plantillas: la tesis documenta dos, y el residuo del 18-23 % del mejor modulo unico dice que esta cupula no tiene uno solo.",
+    "2. Los dos grupos de bandas son contiguos: un grupo de modulo es una region seguida de la cupula, no bandas sueltas.",
+    "3. Ningun grupo se queda con una sola cara: la pieza de cierre va aparte desde la decision 0010 y aislarla no es una frontera de modulo.",
+    "4. Se rompe el paralelismo en las menos vecindades posibles. Es el unico de estos criterios que viene de una observacion de la fuente, asi que va por delante de los nuestros.",
+    "5. Entre empates, la frontera cae donde mas cambia la subdivision angular de la planta -las caras por banda-, que es donde se veria un cambio de modulo.",
+    "6. Entre empates, la junta queda lo mas constante posible entre bandas. Es un argumento fisico nuestro, no una fuente: va el ultimo."
+   ],
+   "caras_por_plantilla": {
+    "mayor": 17,
+    "menor": 88
+   },
+   "alternativas": [
+    {
+     "etiqueta": "uniforme-mayor",
+     "abajo": "mayor",
+     "arriba": "mayor",
+     "frontera": 0,
+     "juntas_P": [
+      "6",
+      "5",
+      "2",
+      "4",
+      "2",
+      "4"
+     ],
+     "dispersion_de_junta": "3",
+     "vecindades_no_paralelas": 0,
+     "caras_por_grupo": [
+      0,
+      105
+     ],
+     "cambio_de_subdivision": "1",
+     "degenerado": false
+    },
+    {
+     "etiqueta": "uniforme-menor",
+     "abajo": "menor",
+     "arriba": "menor",
+     "frontera": 0,
+     "juntas_P": [
+      "3",
+      "5/2",
+      "1",
+      "2",
+      "1",
+      "2"
+     ],
+     "dispersion_de_junta": "3",
+     "vecindades_no_paralelas": 0,
+     "caras_por_grupo": [
+      0,
+      105
+     ],
+     "cambio_de_subdivision": "1",
+     "degenerado": false
+    },
+    {
+     "etiqueta": "mayor|menor@5",
+     "abajo": "mayor",
+     "arriba": "menor",
+     "frontera": 5,
+     "juntas_P": [
+      "6",
+      "5",
+      "2",
+      "4",
+      "2",
+      "2"
+     ],
+     "dispersion_de_junta": "3",
+     "vecindades_no_paralelas": 8,
+     "caras_por_grupo": [
+      104,
+      1
+     ],
+     "cambio_de_subdivision": "8",
+     "degenerado": true
+    },
+    {
+     "etiqueta": "menor|mayor@5",
+     "abajo": "menor",
+     "arriba": "mayor",
+     "frontera": 5,
+     "juntas_P": [
+      "3",
+      "5/2",
+      "1",
+      "2",
+      "1",
+      "4"
+     ],
+     "dispersion_de_junta": "4",
+     "vecindades_no_paralelas": 8,
+     "caras_por_grupo": [
+      104,
+      1
+     ],
+     "cambio_de_subdivision": "8",
+     "degenerado": true
+    },
+    {
+     "etiqueta": "menor|mayor@3",
+     "abajo": "menor",
+     "arriba": "mayor",
+     "frontera": 3,
+     "juntas_P": [
+      "3",
+      "5/2",
+      "1",
+      "4",
+      "2",
+      "4"
+     ],
+     "dispersion_de_junta": "4",
+     "vecindades_no_paralelas": 16,
+     "caras_por_grupo": [
+      88,
+      17
+     ],
+     "cambio_de_subdivision": "5",
+     "degenerado": false
+    },
+    {
+     "etiqueta": "mayor|menor@3",
+     "abajo": "mayor",
+     "arriba": "menor",
+     "frontera": 3,
+     "juntas_P": [
+      "6",
+      "5",
+      "2",
+      "2",
+      "1",
+      "2"
+     ],
+     "dispersion_de_junta": "6",
+     "vecindades_no_paralelas": 16,
+     "caras_por_grupo": [
+      88,
+      17
+     ],
+     "cambio_de_subdivision": "5",
+     "degenerado": false
+    },
+    {
+     "etiqueta": "menor|mayor@4",
+     "abajo": "menor",
+     "arriba": "mayor",
+     "frontera": 4,
+     "juntas_P": [
+      "3",
+      "5/2",
+      "1",
+      "2",
+      "2",
+      "4"
+     ],
+     "dispersion_de_junta": "4",
+     "vecindades_no_paralelas": 16,
+     "caras_por_grupo": [
+      96,
+      9
+     ],
+     "cambio_de_subdivision": "1",
+     "degenerado": false
+    },
+    {
+     "etiqueta": "mayor|menor@4",
+     "abajo": "mayor",
+     "arriba": "menor",
+     "frontera": 4,
+     "juntas_P": [
+      "6",
+      "5",
+      "2",
+      "4",
+      "1",
+      "2"
+     ],
+     "dispersion_de_junta": "6",
+     "vecindades_no_paralelas": 16,
+     "caras_por_grupo": [
+      96,
+      9
+     ],
+     "cambio_de_subdivision": "1",
+     "degenerado": false
+    },
+    {
+     "etiqueta": "menor|mayor@1",
+     "abajo": "menor",
+     "arriba": "mayor",
+     "frontera": 1,
+     "juntas_P": [
+      "3",
+      "5",
+      "2",
+      "4",
+      "2",
+      "4"
+     ],
+     "dispersion_de_junta": "5/2",
+     "vecindades_no_paralelas": 32,
+     "caras_por_grupo": [
+      16,
+      89
+     ],
+     "cambio_de_subdivision": "2",
+     "degenerado": false
+    },
+    {
+     "etiqueta": "mayor|menor@1",
+     "abajo": "mayor",
+     "arriba": "menor",
+     "frontera": 1,
+     "juntas_P": [
+      "6",
+      "5/2",
+      "1",
+      "2",
+      "1",
+      "2"
+     ],
+     "dispersion_de_junta": "6",
+     "vecindades_no_paralelas": 32,
+     "caras_por_grupo": [
+      16,
+      89
+     ],
+     "cambio_de_subdivision": "2",
+     "degenerado": false
+    },
+    {
+     "etiqueta": "menor|mayor@2",
+     "abajo": "menor",
+     "arriba": "mayor",
+     "frontera": 2,
+     "juntas_P": [
+      "3",
+      "5/2",
+      "2",
+      "4",
+      "2",
+      "4"
+     ],
+     "dispersion_de_junta": "2",
+     "vecindades_no_paralelas": 75,
+     "caras_por_grupo": [
+      48,
+      57
+     ],
+     "cambio_de_subdivision": "5/4",
+     "degenerado": false
+    },
+    {
+     "etiqueta": "mayor|menor@2",
+     "abajo": "mayor",
+     "arriba": "menor",
+     "frontera": 2,
+     "juntas_P": [
+      "6",
+      "5",
+      "1",
+      "2",
+      "1",
+      "2"
+     ],
+     "dispersion_de_junta": "6",
+     "vecindades_no_paralelas": 75,
+     "caras_por_grupo": [
+      48,
+      57
+     ],
+     "cambio_de_subdivision": "5/4",
+     "degenerado": false
+    }
+   ]
+  },
+  "plantillas": {
+   "mayor": {
+    "cima_en_unidades_P": "7",
+    "fraccion_util": "7/8",
+    "division": 5
+   },
+   "menor": {
+    "cima_en_unidades_P": "15/2",
+    "fraccion_util": "15/16",
+    "division": 7
+   }
+  },
   "unidades_entre_niveles": 8,
-  "fraccion_util": "7/8",
-  "division": 5,
   "curva": "conica racional interpolada; eleccion de modelo, no medida",
   "salto_vertical": "extension radial de la cara por la pendiente del cono",
   "pendiente_cono": 1.282967032967033,
+  "saltos_de_banda_en_hiladas": [
+   6,
+   5,
+   2,
+   4,
+   2,
+   4
+  ],
   "subdivision_de_lado": 4,
   "escala_profundidad": 1.0
  },
@@ -23,11 +340,1068 @@
   "vertices": 6225,
   "triangulos": 12030,
   "grupos": 105,
-  "cota_minima_m": 0.15228260869565236,
+  "cota_minima_m": 0.07614130434782629,
   "cota_maxima_m": 4.67,
-  "vecindades_no_paralelas": 0,
+  "vecindades_no_paralelas": 16,
+  "vecindades_no_paralelas_fuera_de_la_frontera": 0,
+  "junta_minima_P": "1",
+  "junta_maxima_P": "4",
+  "junta_minima_m": 0.025380434782608697,
+  "junta_de_la_pieza_de_cierre": "no aplica: la cupulilla apoya en la banda de abajo (decision 0010)",
   "residuo_rms_frente_al_cono_m": 0.23383412355605207,
   "residuo_maximo_frente_al_cono_m": 0.55127733432469,
   "hiladas_que_abarca_la_cara_mediana": 5.197493790631143
- }
+ },
+ "caras": [
+  {
+   "id": "c000",
+   "banda": 0,
+   "hilada": 6,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "3",
+   "junta_m": 0.0761413043478261,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c000 por estar en la banda 0, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c001",
+   "banda": 0,
+   "hilada": 6,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "3",
+   "junta_m": 0.0761413043478261,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c001 por estar en la banda 0, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c002",
+   "banda": 0,
+   "hilada": 6,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "3",
+   "junta_m": 0.0761413043478261,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c002 por estar en la banda 0, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c003",
+   "banda": 1,
+   "hilada": 11,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "5/2",
+   "junta_m": 0.06345108695652174,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c003 por estar en la banda 1, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c004",
+   "banda": 1,
+   "hilada": 11,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "5/2",
+   "junta_m": 0.06345108695652174,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c004 por estar en la banda 1, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c005",
+   "banda": 1,
+   "hilada": 11,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "5/2",
+   "junta_m": 0.06345108695652174,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c005 por estar en la banda 1, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c006",
+   "banda": 1,
+   "hilada": 11,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "5/2",
+   "junta_m": 0.06345108695652174,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c006 por estar en la banda 1, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c007",
+   "banda": 0,
+   "hilada": 6,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "3",
+   "junta_m": 0.0761413043478261,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c007 por estar en la banda 0, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c008",
+   "banda": 0,
+   "hilada": 6,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "3",
+   "junta_m": 0.0761413043478261,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c008 por estar en la banda 0, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c009",
+   "banda": 1,
+   "hilada": 11,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "5/2",
+   "junta_m": 0.06345108695652174,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c009 por estar en la banda 1, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c010",
+   "banda": 1,
+   "hilada": 11,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "5/2",
+   "junta_m": 0.06345108695652174,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c010 por estar en la banda 1, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c011",
+   "banda": 1,
+   "hilada": 11,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "5/2",
+   "junta_m": 0.06345108695652174,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c011 por estar en la banda 1, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c012",
+   "banda": 2,
+   "hilada": 13,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "1",
+   "junta_m": 0.025380434782608697,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c012 por estar en la banda 2, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c013",
+   "banda": 2,
+   "hilada": 13,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "1",
+   "junta_m": 0.025380434782608697,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c013 por estar en la banda 2, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c014",
+   "banda": 2,
+   "hilada": 13,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "1",
+   "junta_m": 0.025380434782608697,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c014 por estar en la banda 2, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c015",
+   "banda": 2,
+   "hilada": 13,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "1",
+   "junta_m": 0.025380434782608697,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c015 por estar en la banda 2, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c016",
+   "banda": 2,
+   "hilada": 13,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "1",
+   "junta_m": 0.025380434782608697,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c016 por estar en la banda 2, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c017",
+   "banda": 2,
+   "hilada": 13,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "1",
+   "junta_m": 0.025380434782608697,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c017 por estar en la banda 2, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c018",
+   "banda": 2,
+   "hilada": 13,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "1",
+   "junta_m": 0.025380434782608697,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c018 por estar en la banda 2, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c019",
+   "banda": 1,
+   "hilada": 11,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "5/2",
+   "junta_m": 0.06345108695652174,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c019 por estar en la banda 1, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c020",
+   "banda": 1,
+   "hilada": 11,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "5/2",
+   "junta_m": 0.06345108695652174,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c020 por estar en la banda 1, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c021",
+   "banda": 0,
+   "hilada": 6,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "3",
+   "junta_m": 0.0761413043478261,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c021 por estar en la banda 0, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c022",
+   "banda": 0,
+   "hilada": 6,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "3",
+   "junta_m": 0.0761413043478261,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c022 por estar en la banda 0, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c023",
+   "banda": 2,
+   "hilada": 13,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "1",
+   "junta_m": 0.025380434782608697,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c023 por estar en la banda 2, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c024",
+   "banda": 2,
+   "hilada": 13,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "1",
+   "junta_m": 0.025380434782608697,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c024 por estar en la banda 2, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c025",
+   "banda": 2,
+   "hilada": 13,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "1",
+   "junta_m": 0.025380434782608697,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c025 por estar en la banda 2, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c026",
+   "banda": 3,
+   "hilada": 17,
+   "plantilla": "mayor",
+   "pieza_de_cierre": false,
+   "junta_P": "4",
+   "junta_m": 0.10152173913043479,
+   "procedencia": "plantilla mayor documentada (tesis); asignada a c026 por estar en la banda 3, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c027",
+   "banda": 2,
+   "hilada": 13,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "1",
+   "junta_m": 0.025380434782608697,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c027 por estar en la banda 2, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c028",
+   "banda": 3,
+   "hilada": 17,
+   "plantilla": "mayor",
+   "pieza_de_cierre": false,
+   "junta_P": "4",
+   "junta_m": 0.10152173913043479,
+   "procedencia": "plantilla mayor documentada (tesis); asignada a c028 por estar en la banda 3, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c029",
+   "banda": 1,
+   "hilada": 11,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "5/2",
+   "junta_m": 0.06345108695652174,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c029 por estar en la banda 1, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c030",
+   "banda": 1,
+   "hilada": 11,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "5/2",
+   "junta_m": 0.06345108695652174,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c030 por estar en la banda 1, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c031",
+   "banda": 1,
+   "hilada": 11,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "5/2",
+   "junta_m": 0.06345108695652174,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c031 por estar en la banda 1, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c032",
+   "banda": 1,
+   "hilada": 11,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "5/2",
+   "junta_m": 0.06345108695652174,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c032 por estar en la banda 1, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c033",
+   "banda": 2,
+   "hilada": 13,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "1",
+   "junta_m": 0.025380434782608697,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c033 por estar en la banda 2, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c034",
+   "banda": 2,
+   "hilada": 13,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "1",
+   "junta_m": 0.025380434782608697,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c034 por estar en la banda 2, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c035",
+   "banda": 2,
+   "hilada": 13,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "1",
+   "junta_m": 0.025380434782608697,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c035 por estar en la banda 2, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c036",
+   "banda": 2,
+   "hilada": 13,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "1",
+   "junta_m": 0.025380434782608697,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c036 por estar en la banda 2, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c037",
+   "banda": 4,
+   "hilada": 19,
+   "plantilla": "mayor",
+   "pieza_de_cierre": false,
+   "junta_P": "2",
+   "junta_m": 0.050760869565217394,
+   "procedencia": "plantilla mayor documentada (tesis); asignada a c037 por estar en la banda 4, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c038",
+   "banda": 4,
+   "hilada": 19,
+   "plantilla": "mayor",
+   "pieza_de_cierre": false,
+   "junta_P": "2",
+   "junta_m": 0.050760869565217394,
+   "procedencia": "plantilla mayor documentada (tesis); asignada a c038 por estar en la banda 4, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c039",
+   "banda": 3,
+   "hilada": 17,
+   "plantilla": "mayor",
+   "pieza_de_cierre": false,
+   "junta_P": "4",
+   "junta_m": 0.10152173913043479,
+   "procedencia": "plantilla mayor documentada (tesis); asignada a c039 por estar en la banda 3, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c040",
+   "banda": 4,
+   "hilada": 19,
+   "plantilla": "mayor",
+   "pieza_de_cierre": false,
+   "junta_P": "2",
+   "junta_m": 0.050760869565217394,
+   "procedencia": "plantilla mayor documentada (tesis); asignada a c040 por estar en la banda 4, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c041",
+   "banda": 3,
+   "hilada": 17,
+   "plantilla": "mayor",
+   "pieza_de_cierre": false,
+   "junta_P": "4",
+   "junta_m": 0.10152173913043479,
+   "procedencia": "plantilla mayor documentada (tesis); asignada a c041 por estar en la banda 3, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c042",
+   "banda": 5,
+   "hilada": 23,
+   "plantilla": "mayor",
+   "pieza_de_cierre": true,
+   "junta_P": null,
+   "junta_m": null,
+   "procedencia": "plantilla mayor documentada (tesis); asignada a c042 por estar en la banda 5, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida; cupulilla apoyada en la banda de abajo, sin junta (decision 0010)"
+  },
+  {
+   "id": "c043",
+   "banda": 2,
+   "hilada": 13,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "1",
+   "junta_m": 0.025380434782608697,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c043 por estar en la banda 2, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c044",
+   "banda": 2,
+   "hilada": 13,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "1",
+   "junta_m": 0.025380434782608697,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c044 por estar en la banda 2, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c045",
+   "banda": 2,
+   "hilada": 13,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "1",
+   "junta_m": 0.025380434782608697,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c045 por estar en la banda 2, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c046",
+   "banda": 2,
+   "hilada": 13,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "1",
+   "junta_m": 0.025380434782608697,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c046 por estar en la banda 2, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c047",
+   "banda": 0,
+   "hilada": 6,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "3",
+   "junta_m": 0.0761413043478261,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c047 por estar en la banda 0, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c048",
+   "banda": 1,
+   "hilada": 11,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "5/2",
+   "junta_m": 0.06345108695652174,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c048 por estar en la banda 1, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c049",
+   "banda": 1,
+   "hilada": 11,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "5/2",
+   "junta_m": 0.06345108695652174,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c049 por estar en la banda 1, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c050",
+   "banda": 0,
+   "hilada": 6,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "3",
+   "junta_m": 0.0761413043478261,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c050 por estar en la banda 0, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c051",
+   "banda": 2,
+   "hilada": 13,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "1",
+   "junta_m": 0.025380434782608697,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c051 por estar en la banda 2, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c052",
+   "banda": 2,
+   "hilada": 13,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "1",
+   "junta_m": 0.025380434782608697,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c052 por estar en la banda 2, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c053",
+   "banda": 1,
+   "hilada": 11,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "5/2",
+   "junta_m": 0.06345108695652174,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c053 por estar en la banda 1, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c054",
+   "banda": 1,
+   "hilada": 11,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "5/2",
+   "junta_m": 0.06345108695652174,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c054 por estar en la banda 1, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c055",
+   "banda": 4,
+   "hilada": 19,
+   "plantilla": "mayor",
+   "pieza_de_cierre": false,
+   "junta_P": "2",
+   "junta_m": 0.050760869565217394,
+   "procedencia": "plantilla mayor documentada (tesis); asignada a c055 por estar en la banda 4, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c056",
+   "banda": 4,
+   "hilada": 19,
+   "plantilla": "mayor",
+   "pieza_de_cierre": false,
+   "junta_P": "2",
+   "junta_m": 0.050760869565217394,
+   "procedencia": "plantilla mayor documentada (tesis); asignada a c056 por estar en la banda 4, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c057",
+   "banda": 3,
+   "hilada": 17,
+   "plantilla": "mayor",
+   "pieza_de_cierre": false,
+   "junta_P": "4",
+   "junta_m": 0.10152173913043479,
+   "procedencia": "plantilla mayor documentada (tesis); asignada a c057 por estar en la banda 3, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c058",
+   "banda": 3,
+   "hilada": 17,
+   "plantilla": "mayor",
+   "pieza_de_cierre": false,
+   "junta_P": "4",
+   "junta_m": 0.10152173913043479,
+   "procedencia": "plantilla mayor documentada (tesis); asignada a c058 por estar en la banda 3, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c059",
+   "banda": 1,
+   "hilada": 11,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "5/2",
+   "junta_m": 0.06345108695652174,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c059 por estar en la banda 1, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c060",
+   "banda": 2,
+   "hilada": 13,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "1",
+   "junta_m": 0.025380434782608697,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c060 por estar en la banda 2, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c061",
+   "banda": 1,
+   "hilada": 11,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "5/2",
+   "junta_m": 0.06345108695652174,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c061 por estar en la banda 1, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c062",
+   "banda": 2,
+   "hilada": 13,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "1",
+   "junta_m": 0.025380434782608697,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c062 por estar en la banda 2, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c063",
+   "banda": 4,
+   "hilada": 19,
+   "plantilla": "mayor",
+   "pieza_de_cierre": false,
+   "junta_P": "2",
+   "junta_m": 0.050760869565217394,
+   "procedencia": "plantilla mayor documentada (tesis); asignada a c063 por estar en la banda 4, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c064",
+   "banda": 4,
+   "hilada": 19,
+   "plantilla": "mayor",
+   "pieza_de_cierre": false,
+   "junta_P": "2",
+   "junta_m": 0.050760869565217394,
+   "procedencia": "plantilla mayor documentada (tesis); asignada a c064 por estar en la banda 4, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c065",
+   "banda": 1,
+   "hilada": 11,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "5/2",
+   "junta_m": 0.06345108695652174,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c065 por estar en la banda 1, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c066",
+   "banda": 1,
+   "hilada": 11,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "5/2",
+   "junta_m": 0.06345108695652174,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c066 por estar en la banda 1, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c067",
+   "banda": 2,
+   "hilada": 13,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "1",
+   "junta_m": 0.025380434782608697,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c067 por estar en la banda 2, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c068",
+   "banda": 2,
+   "hilada": 13,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "1",
+   "junta_m": 0.025380434782608697,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c068 por estar en la banda 2, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c069",
+   "banda": 2,
+   "hilada": 13,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "1",
+   "junta_m": 0.025380434782608697,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c069 por estar en la banda 2, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c070",
+   "banda": 2,
+   "hilada": 13,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "1",
+   "junta_m": 0.025380434782608697,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c070 por estar en la banda 2, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c071",
+   "banda": 0,
+   "hilada": 6,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "3",
+   "junta_m": 0.0761413043478261,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c071 por estar en la banda 0, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c072",
+   "banda": 0,
+   "hilada": 6,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "3",
+   "junta_m": 0.0761413043478261,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c072 por estar en la banda 0, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c073",
+   "banda": 2,
+   "hilada": 13,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "1",
+   "junta_m": 0.025380434782608697,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c073 por estar en la banda 2, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c074",
+   "banda": 2,
+   "hilada": 13,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "1",
+   "junta_m": 0.025380434782608697,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c074 por estar en la banda 2, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c075",
+   "banda": 3,
+   "hilada": 17,
+   "plantilla": "mayor",
+   "pieza_de_cierre": false,
+   "junta_P": "4",
+   "junta_m": 0.10152173913043479,
+   "procedencia": "plantilla mayor documentada (tesis); asignada a c075 por estar en la banda 3, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c076",
+   "banda": 3,
+   "hilada": 17,
+   "plantilla": "mayor",
+   "pieza_de_cierre": false,
+   "junta_P": "4",
+   "junta_m": 0.10152173913043479,
+   "procedencia": "plantilla mayor documentada (tesis); asignada a c076 por estar en la banda 3, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c077",
+   "banda": 4,
+   "hilada": 19,
+   "plantilla": "mayor",
+   "pieza_de_cierre": false,
+   "junta_P": "2",
+   "junta_m": 0.050760869565217394,
+   "procedencia": "plantilla mayor documentada (tesis); asignada a c077 por estar en la banda 4, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c078",
+   "banda": 1,
+   "hilada": 11,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "5/2",
+   "junta_m": 0.06345108695652174,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c078 por estar en la banda 1, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c079",
+   "banda": 1,
+   "hilada": 11,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "5/2",
+   "junta_m": 0.06345108695652174,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c079 por estar en la banda 1, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c080",
+   "banda": 2,
+   "hilada": 13,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "1",
+   "junta_m": 0.025380434782608697,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c080 por estar en la banda 2, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c081",
+   "banda": 2,
+   "hilada": 13,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "1",
+   "junta_m": 0.025380434782608697,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c081 por estar en la banda 2, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c082",
+   "banda": 2,
+   "hilada": 13,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "1",
+   "junta_m": 0.025380434782608697,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c082 por estar en la banda 2, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c083",
+   "banda": 1,
+   "hilada": 11,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "5/2",
+   "junta_m": 0.06345108695652174,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c083 por estar en la banda 1, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c084",
+   "banda": 1,
+   "hilada": 11,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "5/2",
+   "junta_m": 0.06345108695652174,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c084 por estar en la banda 1, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c085",
+   "banda": 2,
+   "hilada": 13,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "1",
+   "junta_m": 0.025380434782608697,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c085 por estar en la banda 2, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c086",
+   "banda": 1,
+   "hilada": 11,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "5/2",
+   "junta_m": 0.06345108695652174,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c086 por estar en la banda 1, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c087",
+   "banda": 2,
+   "hilada": 13,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "1",
+   "junta_m": 0.025380434782608697,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c087 por estar en la banda 2, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c088",
+   "banda": 0,
+   "hilada": 6,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "3",
+   "junta_m": 0.0761413043478261,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c088 por estar en la banda 0, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c089",
+   "banda": 0,
+   "hilada": 6,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "3",
+   "junta_m": 0.0761413043478261,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c089 por estar en la banda 0, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c090",
+   "banda": 2,
+   "hilada": 13,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "1",
+   "junta_m": 0.025380434782608697,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c090 por estar en la banda 2, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c091",
+   "banda": 1,
+   "hilada": 11,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "5/2",
+   "junta_m": 0.06345108695652174,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c091 por estar en la banda 1, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c092",
+   "banda": 2,
+   "hilada": 13,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "1",
+   "junta_m": 0.025380434782608697,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c092 por estar en la banda 2, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c093",
+   "banda": 1,
+   "hilada": 11,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "5/2",
+   "junta_m": 0.06345108695652174,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c093 por estar en la banda 1, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c094",
+   "banda": 1,
+   "hilada": 11,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "5/2",
+   "junta_m": 0.06345108695652174,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c094 por estar en la banda 1, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c095",
+   "banda": 1,
+   "hilada": 11,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "5/2",
+   "junta_m": 0.06345108695652174,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c095 por estar en la banda 1, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c096",
+   "banda": 1,
+   "hilada": 11,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "5/2",
+   "junta_m": 0.06345108695652174,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c096 por estar en la banda 1, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c097",
+   "banda": 1,
+   "hilada": 11,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "5/2",
+   "junta_m": 0.06345108695652174,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c097 por estar en la banda 1, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c098",
+   "banda": 2,
+   "hilada": 13,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "1",
+   "junta_m": 0.025380434782608697,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c098 por estar en la banda 2, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c099",
+   "banda": 2,
+   "hilada": 13,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "1",
+   "junta_m": 0.025380434782608697,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c099 por estar en la banda 2, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c100",
+   "banda": 2,
+   "hilada": 13,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "1",
+   "junta_m": 0.025380434782608697,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c100 por estar en la banda 2, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c101",
+   "banda": 2,
+   "hilada": 13,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "1",
+   "junta_m": 0.025380434782608697,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c101 por estar en la banda 2, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c102",
+   "banda": 0,
+   "hilada": 6,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "3",
+   "junta_m": 0.0761413043478261,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c102 por estar en la banda 0, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c103",
+   "banda": 0,
+   "hilada": 6,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "3",
+   "junta_m": 0.0761413043478261,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c103 por estar en la banda 0, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  },
+  {
+   "id": "c104",
+   "banda": 0,
+   "hilada": 6,
+   "plantilla": "menor",
+   "pieza_de_cierre": false,
+   "junta_P": "3",
+   "junta_m": 0.0761413043478261,
+   "procedencia": "plantilla menor documentada (tesis); asignada a c104 por estar en la banda 0, con la frontera de modulo DECIDIDA en 2|3 (decision 0013), no medida"
+  }
+ ]
 }

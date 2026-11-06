@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Granada · Dos Hermanas 3D</title>
+  <title>La cúpula de las Dos Hermanas · modelo interpretativo</title>
   <link rel="stylesheet" href="styles.css">
   <script type="importmap">
     {
@@ -14,18 +14,45 @@
   </script>
 </head>
 <body>
-  <main id="viewer" aria-label="Modelo tridimensional aproximado de la Sala de las Dos Hermanas">
+  <main id="viewer" aria-label="Modelo tridimensional interpretativo de la cúpula de las Dos Hermanas">
     <header class="identity">
-      <h1>Sala de las Dos Hermanas</h1>
-      <p>Modelo topológico aproximado</p>
+      <span class="overline">Alhambra · Granada</span>
+      <h1 id="view-title">Cúpula de las Dos Hermanas</h1>
+      <p id="view-subtitle">Hipótesis tridimensional · estado de la evidencia</p>
     </header>
 
     <div class="toolbar" role="toolbar" aria-label="Controles del modelo">
-      <div class="segmented" aria-label="Número de niveles">
+      <label class="field">
+        <span>Vista</span>
+        <select id="view-mode">
+          <option value="historical" selected>Dos Hermanas</option>
+          <option value="synthetic">Comparar trazados</option>
+        </select>
+      </label>
+      <label id="finish-control" class="field">
+        <span>Acabado</span>
+        <select id="color-mode">
+          <option value="plaster" selected>Yeso blanco</option>
+          <option value="levels">Lectura de niveles</option>
+        </select>
+      </label>
+      <label id="order-control" class="field" hidden>
+        <span>Familia de trazado</span>
+        <select id="synthetic-order">
+          <option value="16" selected>Ocho sectores · 45°</option>
+          <option value="20">Diez sectores · 36°</option>
+          <option value="24">Doce sectores · 30°</option>
+        </select>
+      </label>
+      <label id="plaster-control" class="field color-field">
+        <span>Tono</span>
+        <input id="plaster-color" type="color" value="#e8e4da" aria-label="Tono de visualización del yeso">
+      </label>
+      <div id="scenario-control" class="segmented" aria-label="Número de niveles" hidden>
         <button type="button" class="active" data-scenario="7" aria-pressed="true">7 niveles</button>
         <button type="button" data-scenario="8" aria-pressed="false">8 niveles</button>
       </div>
-      <label class="toggle">
+      <label id="uncertainty-control" class="toggle" hidden>
         <input id="uncertainty" type="checkbox" checked>
         <span aria-hidden="true"></span>
         Incertidumbre
@@ -35,22 +62,35 @@
         <span aria-hidden="true"></span>
         Rotación
       </label>
+      <div class="viewpoints" role="group" aria-label="Punto de vista">
+        <button type="button" class="active" data-viewpoint="overview" aria-pressed="true">General</button>
+        <button type="button" data-viewpoint="intrados" aria-pressed="false">Desde abajo</button>
+      </div>
       <button id="reset" class="command" type="button">Restablecer vista</button>
     </div>
 
-    <aside class="readout" aria-live="polite">
-      <span id="face-id">Modelo completo</span>
-      <strong id="face-level">105 caras · 227 vecindades</strong>
-      <span id="face-status">105 celdas · bandas en las hiladas 6, 11, 13, 17, 19 y 23</span>
+    <aside class="context-card" aria-live="polite">
+      <span id="context-kicker">Estado de la evidencia</span>
+      <p id="context-copy">La planta procede de un dibujo publicado. Las cotas se calibran contra una sección medida; el reparto entre los dos perfiles es una hipótesis declarada.</p>
+      <details>
+        <summary>Procedencia y límites</summary>
+        <p id="method-copy">Cada región conserva su procedencia. El modelo aproxima seis bandas, no las 23 hiladas de la fábrica, y no constituye una restitución histórica verificada.</p>
+      </details>
     </aside>
 
-    <div class="legend" aria-label="Escala de nivel">
-      <span>Nivel</span>
+    <aside class="readout" aria-live="polite">
+      <span id="face-id">Lectura general</span>
+      <strong id="face-level">105 regiones de planta · seis bandas</strong>
+      <span id="face-status">Planta documentada · altura calibrada · reparto de perfiles propuesto</span>
+    </aside>
+
+    <div class="legend" aria-label="Leyenda del acabado">
+      <span id="legend-title">Acabado</span>
       <div id="legend-swatches"></div>
     </div>
 
-    <footer>Hipótesis para prototipado · no es una restitución histórica verificada</footer>
-    <div id="loading">Construyendo geometría…</div>
+    <footer id="scope-note">Modelo de trabajo · no es una restitución histórica verificada</footer>
+    <div id="loading"><span>Preparando el modelo</span></div>
   </main>
   <script type="module" src="viewer.js"></script>
 </body>

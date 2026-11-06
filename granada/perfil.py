@@ -11,8 +11,9 @@ La tesis de Ferrer Perez-Blanco documenta que no hay un perfil unico, sino una
 Eso es lo documentado y aqui se respeta de forma exacta, en `Fraction`. Lo que
 la fuente **no** da es la curva entre esos puntos ni que pieza usa cada
 plantilla. La curva se interpola con la conica racional de `granada.adaraja`,
-que es una **eleccion de modelo declarada**, no una medida; la asignacion queda
-abierta y por defecto todas las caras usan el perfil mayor.
+que es una **eleccion de modelo declarada**, no una medida; la asignacion la
+**elige** `granada.asignacion` con criterios escritos (decision 0013), y aqui
+por defecto todas las caras usan el perfil mayor.
 
 Sobre P
 -------

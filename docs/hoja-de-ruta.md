@@ -72,22 +72,32 @@ original no llega, el vídeo deja de ser un desperdicio y pasa a ser lo que hay.
 - **Lo sustituye**: la malla de Ferrer, que permitiría leerlas con geometría en
   vez de a ojo.
 
-## Paso 2 — Asignar plantilla mayor o menor a cada cara
+## Paso 2 — Asignar plantilla mayor o menor a cada cara — **hecho**
 
-- **Qué falta**: la tesis documenta dos perfiles y el paralelismo entre vecinas
-  obliga a que existan fronteras donde se rompe (decisión 0010). Ninguna fuente
-  dice cuáles.
-- **Qué decidimos**: una plantilla por banda, cambiando en las fronteras de
-  banda. Tiene apoyo en los propios datos: las bandas 0, 1 y 3 abarcan 5–7
-  hiladas y las bandas 2 y 4 abarcan 1,3–1,5. Hay un cambio de escala real ahí,
-  y es el candidato natural a frontera de módulo.
-- **Es una hipótesis comprobable**: predice que las fronteras de módulo
-  coinciden con las de banda. Si Ferrer dice que están en otro sitio, se cae
-  limpiamente.
+Decisión 0013, el 2026-08-29. **Bandas 0, 1 y 2 con el perfil menor** —88
+caras—, **bandas 3, 4 y 5 con el mayor** —17—, y la frontera de módulo entre la
+banda 2 y la 3.
+
+- **Qué faltaba**: la tesis documenta dos perfiles y el paralelismo entre
+  vecinas obliga a que existan fronteras donde se rompe (decisión 0010).
+  Ninguna fuente dice cuáles.
+- **Cómo se eligió**: seis criterios en orden, con lo documentado por delante
+  de lo nuestro. El que más pesa es romper el paralelismo en las menos
+  vecindades posibles, que es lo único que aquí viene de una observación de la
+  fuente; el empate lo deshace dónde cambia la subdivisión angular de la planta
+  —de 40 caras por banda a 8—, y la constancia de la junta, que es argumento
+  nuestro, solo decide de qué lado va cada plantilla.
+- **Una corrección a lo que decía aquí**: la alternancia banda ancha / banda
+  estrecha que este documento proponía es justo la que **más** rompe el
+  paralelismo —115 vecindades de 211— aunque sea la que mejor iguala las
+  juntas. Queda en el catálogo de la decisión 0013 como rival descartado.
+- **Es una hipótesis comprobable**: predice que la frontera de módulo cae entre
+  las bandas 2 y 3. Si Ferrer la sitúa en otro sitio, se cae limpiamente.
 - **Coste si es falsa**: bajo. Mueve la profundidad de la pieza entre 7/8 y
-  15/16 del salto, un 6 %.
-- **Hacerlo antes que el paso 3**: es barato, y si el 3 nunca llega, el modelo
-  se queda con los dos perfiles usados, que es más fiel que con uno.
+  15/16 del salto, un 7,1 %, y no toca ninguna cota ni la topología.
+- **El interruptor**: `--plantilla por-banda` es el defecto y `--plantilla
+  mayor` reproduce el modelo de la decisión 0010. Que el defecto sea el
+  repartido es una lectura discutible de la regla 3, argumentada en la 0013.
 
 ## Paso 3 — Bajar de banda a hilada
 
@@ -109,16 +119,18 @@ original no llega, el vídeo deja de ser un desperdicio y pasa a ser lo que hay.
   antes de activarla por defecto, cruzar el umbral de arriba con su cambio de
   nombre.
 
-## Paso 4 — Policromía
+## Paso 4 — Policromía — **base hecha**
 
 Aquí hay menos que inventar de lo que parece, porque **el objetivo ya lo
 decide**: «como el día de su inauguración, yeso blanco de obra nueva y
 policromía original».
 
-- **Modo por defecto: yeso blanco.** No exige asignar ni un color, es
+- **Modo por defecto: yeso blanco — hecho.** No exige asignar ni un color, es
   literalmente lo que dice el objetivo, y es la mitad de la afirmación que sí
-  está sostenida.
-- **Capa opcional A, paleta medida**: `docs/paleta.md` sostiene el verde y
+  está sostenida. El visor separa este acabado de la capa analítica por niveles
+  y rotula cualquier tono del usuario como visualización sin atribución
+  histórica.
+- **Capa opcional A, paleta medida**: `docs/policromia.md` sostiene el verde y
   descarta el rojo sobre la ortoimagen del plano. Aplicarla exige decidir qué
   color va en qué pieza, y eso no lo dice nadie: iría por tipo de pieza, con
   `procedencia` en cada una.
@@ -128,18 +140,28 @@ policromía original».
 - **El oro y el negro no entran.** Sin fuente de pigmento in situ el oro es
   indistinguible de la suciedad, y el negro de la sombra.
 
-## Paso 5 — Terminar la página interactiva
+## Paso 5 — Terminar la página interactiva — **hecho**
 
-**Cero invención, y es el destino acordado.** Falta el selector de orden y los
-controles de color; la cúpula girable y la ficha por cara ya están. Si todo lo
-demás se atasca, esto se puede terminar igual.
+**Cero invención, y es el destino acordado.** Están la cúpula girable, la ficha
+por cara, los controles de acabado y color y el selector de orden. El selector
+no deforma la malla histórica: abre una vista sintética propia para los órdenes
+16, 20 y 24, alimentada por `datos/ordenes_sinteticos.json`. La interfaz los
+presenta como familias de 8, 10 y 12 sectores, con vista general y desde abajo,
+procedencia y límites escritos para una audiencia histórica. Cada celda
+conserva sus coeficientes exactos en Z[ζₘ]; las coordenadas decimales se
+declaran como embedding numérico exclusivo para visualización.
 
-## Paso 6 — La afirmación (A), que nunca dependió de nadie
+## Paso 6 — La afirmación (A), que nunca dependió de nadie — **en curso**
 
 El generador sintético de orden arbitrario es **matemático**: se sostiene o se
 refuta con una demostración, no con una fuente. Ninguna de las esperas de este
 documento le afecta. Si la vía histórica se cierra del todo, esta sigue abierta
-y es donde el proyecto puede crecer sin deberle nada a nadie.
+y es donde el proyecto puede crecer sin deberle nada a nadie. La primera
+composición completa ya está: tres cúpulas comparativas de cinco coronas y 8,
+10 o 12 sectores. Su volumen es una decisión contemporánea explícita (0014), no
+una reconstrucción. El siguiente trabajo es sustituir esa regla expositiva por
+una regla tipológica cuando exista una composición histórica documentada que
+el proyecto decida modelar.
 
 ---
 
