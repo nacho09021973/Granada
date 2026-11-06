@@ -107,3 +107,7 @@ docs/gri_33125008608388_jp2.zip
 # Imagen generada con Gemini, aportada el 2026-11-06 (copia en Drive, Granada-docs).
 # No es dato ni fuente: referencia visual, fuera del repositorio.
 renders/cupula de color gemini.jpg
+
+# Render de 8192 px (~94 MB) para el visor de zoom: se regenera con
+# scripts/render_cycles.py (ver su docstring). Copia en Drive, Granada-docs.
+renders/cupula_cycles_cenital_8k.png
