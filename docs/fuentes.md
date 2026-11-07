@@ -1261,6 +1261,23 @@ supera eso **con trazo continuo**, y la prueba de aceptación es la de la
 decisión 0016: **¿resuelve pieza a pieza, con orientación legible, y separa A1
 de A3?**
 
+### Comprobado el 2026-11-06: el `_images.zip` tampoco es el máster
+
+Internet Archive sirve cada fichero de dentro del zip por separado, así que no
+hizo falta bajar los 2,9 GB. Sus 358 miembros son TIFF sin comprimir de
+~18,5 MB. Bajadas `gri_33125012280661_0097.tif` y `_0098.tif`:
+
+- **2063 × 3000** y **2053 × 3000** px, RGB, sin compresión, 300 ppi en la
+  etiqueta. El mismo alto normalizado de 3000 px que el `_jp2.zip`.
+- La hoja de la sección y la planta de Dos Hermanas es la `_0097` (página 98
+  del PDF contando desde 1). Su octógono mide **663 px** a lo ancho, medido
+  sobre una fila con umbral: igual que los 668 px del `_jp2.zip` y por debajo
+  de los 771 px de la figura 10 de la entrada 16.
+
+**La vía del Internet Archive queda cerrada**: ningún derivado público supera
+lo que ya hay. Lo que falta es un escaneo de alta resolución de esa hoja,
+pedido a una biblioteca que tenga la obra.
+
 ---
 
 ## 18. Jones y Goury, tomo II — el `_jp2.zip` aportado el 2026-08-27

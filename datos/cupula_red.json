@@ -1,0 +1,757 @@
+{
+  "version": 1,
+  "estado": "APPROXIMATE_PIECE_DOME_ON_RED",
+  "advertencia": "Red de medinas de la tesis de Ferrer (figura 128), registrada en datos/registro_red.json. El relleno de cada celda es eleccion, no leido de Dos Hermanas. Pendiente y radio de arranque, medidos.",
+  "modelo": {
+    "modulo": "granada/celdas.py",
+    "subdivision": 8,
+    "escala_celda": 0.475,
+    "pendiente_medida": 1.282967032967033,
+    "cateto_m": 0.22381466813208983
+  },
+  "controles": {
+    "celdas": 105,
+    "piezas": 5392,
+    "piezas_jones_goury": 5416,
+    "celdas_sin_hiladas": 40,
+    "vertices": 643748,
+    "triangulos": 1245600
+  },
+  "celdas": [
+    {
+      "cara": "c000",
+      "orbita": "c000",
+      "radio_medio": 2.5259720103480165,
+      "hiladas": 5,
+      "piezas": 168
+    },
+    {
+      "cara": "c001",
+      "orbita": "c001",
+      "radio_medio": 2.455860916096011,
+      "hiladas": 5,
+      "piezas": 164
+    },
+    {
+      "cara": "c002",
+      "orbita": "c001",
+      "radio_medio": 2.466704871655184,
+      "hiladas": 5,
+      "piezas": 164
+    },
+    {
+      "cara": "c003",
+      "orbita": "c003",
+      "radio_medio": 1.1324075973910135,
+      "hiladas": 2,
+      "piezas": 32
+    },
+    {
+      "cara": "c004",
+      "orbita": "c004",
+      "radio_medio": 1.566102967755274,
+      "hiladas": 3,
+      "piezas": 88
+    },
+    {
+      "cara": "c005",
+      "orbita": "c005",
+      "radio_medio": 1.1723672740464242,
+      "hiladas": 2,
+      "piezas": 36
+    },
+    {
+      "cara": "c006",
+      "orbita": "c004",
+      "radio_medio": 1.54404296849101,
+      "hiladas": 3,
+      "piezas": 88
+    },
+    {
+      "cara": "c007",
+      "orbita": "c000",
+      "radio_medio": 2.504334381348793,
+      "hiladas": 5,
+      "piezas": 168
+    },
+    {
+      "cara": "c008",
+      "orbita": "c000",
+      "radio_medio": 2.50243490204507,
+      "hiladas": 5,
+      "piezas": 168
+    },
+    {
+      "cara": "c009",
+      "orbita": "c009",
+      "radio_medio": 1.2858580637285657,
+      "hiladas": 2,
+      "piezas": 32
+    },
+    {
+      "cara": "c010",
+      "orbita": "c005",
+      "radio_medio": 1.1443707788159891,
+      "hiladas": 2,
+      "piezas": 32
+    },
+    {
+      "cara": "c011",
+      "orbita": "c003",
+      "radio_medio": 1.1456473552518418,
+      "hiladas": 2,
+      "piezas": 32
+    },
+    {
+      "cara": "c012",
+      "orbita": "c012",
+      "radio_medio": 0.337242741054673,
+      "hiladas": 0,
+      "piezas": 0
+    },
+    {
+      "cara": "c013",
+      "orbita": "c013",
+      "radio_medio": 0.3423984202536173,
+      "hiladas": 0,
+      "piezas": 0
+    },
+    {
+      "cara": "c014",
+      "orbita": "c013",
+      "radio_medio": 0.34914650724639046,
+      "hiladas": 0,
+      "piezas": 0
+    },
+    {
+      "cara": "c015",
+      "orbita": "c012",
+      "radio_medio": 0.3422498142683656,
+      "hiladas": 0,
+      "piezas": 0
+    },
+    {
+      "cara": "c016",
+      "orbita": "c016",
+      "radio_medio": 1.820074423430278,
+      "hiladas": 3,
+      "piezas": 96
+    },
+    {
+      "cara": "c017",
+      "orbita": "c017",
+      "radio_medio": 0.6428144376377954,
+      "hiladas": 0,
+      "piezas": 0
+    },
+    {
+      "cara": "c018",
+      "orbita": "c018",
+      "radio_medio": 0.6397899754575926,
+      "hiladas": 0,
+      "piezas": 0
+    },
+    {
+      "cara": "c019",
+      "orbita": "c009",
+      "radio_medio": 1.2421040812856288,
+      "hiladas": 2,
+      "piezas": 32
+    },
+    {
+      "cara": "c020",
+      "orbita": "c009",
+      "radio_medio": 1.2709423677845084,
+      "hiladas": 2,
+      "piezas": 32
+    },
+    {
+      "cara": "c021",
+      "orbita": "c001",
+      "radio_medio": 2.4610151594089866,
+      "hiladas": 5,
+      "piezas": 164
+    },
+    {
+      "cara": "c022",
+      "orbita": "c001",
+      "radio_medio": 2.4772181577976546,
+      "hiladas": 5,
+      "piezas": 168
+    },
+    {
+      "cara": "c023",
+      "orbita": "c018",
+      "radio_medio": 0.6334820783633566,
+      "hiladas": 0,
+      "piezas": 0
+    },
+    {
+      "cara": "c024",
+      "orbita": "c017",
+      "radio_medio": 0.6538106423907202,
+      "hiladas": 0,
+      "piezas": 0
+    },
+    {
+      "cara": "c025",
+      "orbita": "c016",
+      "radio_medio": 1.8536929493304997,
+      "hiladas": 3,
+      "piezas": 96
+    },
+    {
+      "cara": "c026",
+      "orbita": "c026",
+      "radio_medio": 1.3637711343075496,
+      "hiladas": 2,
+      "piezas": 40
+    },
+    {
+      "cara": "c027",
+      "orbita": "c016",
+      "radio_medio": 1.8444195473412714,
+      "hiladas": 3,
+      "piezas": 96
+    },
+    {
+      "cara": "c028",
+      "orbita": "c026",
+      "radio_medio": 1.382208182998376,
+      "hiladas": 2,
+      "piezas": 40
+    },
+    {
+      "cara": "c029",
+      "orbita": "c003",
+      "radio_medio": 1.174181521446065,
+      "hiladas": 2,
+      "piezas": 36
+    },
+    {
+      "cara": "c030",
+      "orbita": "c005",
+      "radio_medio": 1.1755599839004074,
+      "hiladas": 2,
+      "piezas": 32
+    },
+    {
+      "cara": "c031",
+      "orbita": "c004",
+      "radio_medio": 1.5570031071439179,
+      "hiladas": 3,
+      "piezas": 88
+    },
+    {
+      "cara": "c032",
+      "orbita": "c004",
+      "radio_medio": 1.536267996075304,
+      "hiladas": 2,
+      "piezas": 64
+    },
+    {
+      "cara": "c033",
+      "orbita": "c012",
+      "radio_medio": 0.34889069715728094,
+      "hiladas": 0,
+      "piezas": 0
+    },
+    {
+      "cara": "c034",
+      "orbita": "c013",
+      "radio_medio": 0.3491485204039822,
+      "hiladas": 0,
+      "piezas": 0
+    },
+    {
+      "cara": "c035",
+      "orbita": "c017",
+      "radio_medio": 0.5986676203149854,
+      "hiladas": 0,
+      "piezas": 0
+    },
+    {
+      "cara": "c036",
+      "orbita": "c018",
+      "radio_medio": 0.598529631023014,
+      "hiladas": 0,
+      "piezas": 0
+    },
+    {
+      "cara": "c037",
+      "orbita": "c037",
+      "radio_medio": 0.6637032802794846,
+      "hiladas": 0,
+      "piezas": 0
+    },
+    {
+      "cara": "c038",
+      "orbita": "c037",
+      "radio_medio": 0.6435273011986204,
+      "hiladas": 0,
+      "piezas": 0
+    },
+    {
+      "cara": "c039",
+      "orbita": "c026",
+      "radio_medio": 1.371248118063369,
+      "hiladas": 2,
+      "piezas": 40
+    },
+    {
+      "cara": "c040",
+      "orbita": "c037",
+      "radio_medio": 0.6369845802685405,
+      "hiladas": 0,
+      "piezas": 0
+    },
+    {
+      "cara": "c041",
+      "orbita": "c026",
+      "radio_medio": 1.3811896698429862,
+      "hiladas": 2,
+      "piezas": 40
+    },
+    {
+      "cara": "c042",
+      "orbita": "c042",
+      "radio_medio": 2.9523335352139912,
+      "hiladas": 6,
+      "piezas": 236
+    },
+    {
+      "cara": "c043",
+      "orbita": "c018",
+      "radio_medio": 0.6270350840289112,
+      "hiladas": 0,
+      "piezas": 0
+    },
+    {
+      "cara": "c044",
+      "orbita": "c016",
+      "radio_medio": 1.8529350210955375,
+      "hiladas": 3,
+      "piezas": 96
+    },
+    {
+      "cara": "c045",
+      "orbita": "c017",
+      "radio_medio": 0.6273014273870977,
+      "hiladas": 0,
+      "piezas": 0
+    },
+    {
+      "cara": "c046",
+      "orbita": "c016",
+      "radio_medio": 1.8510712419424777,
+      "hiladas": 3,
+      "piezas": 96
+    },
+    {
+      "cara": "c047",
+      "orbita": "c000",
+      "radio_medio": 2.54832456210175,
+      "hiladas": 5,
+      "piezas": 168
+    },
+    {
+      "cara": "c048",
+      "orbita": "c005",
+      "radio_medio": 1.1646576297330624,
+      "hiladas": 2,
+      "piezas": 36
+    },
+    {
+      "cara": "c049",
+      "orbita": "c003",
+      "radio_medio": 1.1621541970258282,
+      "hiladas": 2,
+      "piezas": 36
+    },
+    {
+      "cara": "c050",
+      "orbita": "c000",
+      "radio_medio": 2.523736819738574,
+      "hiladas": 5,
+      "piezas": 168
+    },
+    {
+      "cara": "c051",
+      "orbita": "c013",
+      "radio_medio": 0.36774757025101706,
+      "hiladas": 0,
+      "piezas": 0
+    },
+    {
+      "cara": "c052",
+      "orbita": "c012",
+      "radio_medio": 0.34094955162180146,
+      "hiladas": 0,
+      "piezas": 0
+    },
+    {
+      "cara": "c053",
+      "orbita": "c009",
+      "radio_medio": 1.2504640871125068,
+      "hiladas": 2,
+      "piezas": 32
+    },
+    {
+      "cara": "c054",
+      "orbita": "c009",
+      "radio_medio": 1.2354812305851672,
+      "hiladas": 2,
+      "piezas": 32
+    },
+    {
+      "cara": "c055",
+      "orbita": "c037",
+      "radio_medio": 0.641826256615387,
+      "hiladas": 0,
+      "piezas": 0
+    },
+    {
+      "cara": "c056",
+      "orbita": "c037",
+      "radio_medio": 0.6530398349288684,
+      "hiladas": 0,
+      "piezas": 0
+    },
+    {
+      "cara": "c057",
+      "orbita": "c026",
+      "radio_medio": 1.3721411080243817,
+      "hiladas": 2,
+      "piezas": 40
+    },
+    {
+      "cara": "c058",
+      "orbita": "c026",
+      "radio_medio": 1.3831960429777794,
+      "hiladas": 2,
+      "piezas": 40
+    },
+    {
+      "cara": "c059",
+      "orbita": "c003",
+      "radio_medio": 1.1472335815627146,
+      "hiladas": 2,
+      "piezas": 32
+    },
+    {
+      "cara": "c060",
+      "orbita": "c017",
+      "radio_medio": 0.6221374373062378,
+      "hiladas": 0,
+      "piezas": 0
+    },
+    {
+      "cara": "c061",
+      "orbita": "c005",
+      "radio_medio": 1.1456637396624354,
+      "hiladas": 2,
+      "piezas": 32
+    },
+    {
+      "cara": "c062",
+      "orbita": "c018",
+      "radio_medio": 0.6251504772441424,
+      "hiladas": 0,
+      "piezas": 0
+    },
+    {
+      "cara": "c063",
+      "orbita": "c037",
+      "radio_medio": 0.6516460506999274,
+      "hiladas": 0,
+      "piezas": 0
+    },
+    {
+      "cara": "c064",
+      "orbita": "c037",
+      "radio_medio": 0.6490337409501776,
+      "hiladas": 0,
+      "piezas": 0
+    },
+    {
+      "cara": "c065",
+      "orbita": "c004",
+      "radio_medio": 1.5364435404167693,
+      "hiladas": 2,
+      "piezas": 68
+    },
+    {
+      "cara": "c066",
+      "orbita": "c004",
+      "radio_medio": 1.5348583848977284,
+      "hiladas": 2,
+      "piezas": 64
+    },
+    {
+      "cara": "c067",
+      "orbita": "c016",
+      "radio_medio": 1.856330751582004,
+      "hiladas": 3,
+      "piezas": 96
+    },
+    {
+      "cara": "c068",
+      "orbita": "c018",
+      "radio_medio": 0.5406321727867368,
+      "hiladas": 0,
+      "piezas": 0
+    },
+    {
+      "cara": "c069",
+      "orbita": "c016",
+      "radio_medio": 1.855439008939111,
+      "hiladas": 3,
+      "piezas": 96
+    },
+    {
+      "cara": "c070",
+      "orbita": "c017",
+      "radio_medio": 0.6023241741852595,
+      "hiladas": 0,
+      "piezas": 0
+    },
+    {
+      "cara": "c071",
+      "orbita": "c001",
+      "radio_medio": 2.475703768928885,
+      "hiladas": 5,
+      "piezas": 168
+    },
+    {
+      "cara": "c072",
+      "orbita": "c001",
+      "radio_medio": 2.473808218170284,
+      "hiladas": 5,
+      "piezas": 164
+    },
+    {
+      "cara": "c073",
+      "orbita": "c012",
+      "radio_medio": 0.34721824990349726,
+      "hiladas": 0,
+      "piezas": 0
+    },
+    {
+      "cara": "c074",
+      "orbita": "c013",
+      "radio_medio": 0.3409516119416251,
+      "hiladas": 0,
+      "piezas": 0
+    },
+    {
+      "cara": "c075",
+      "orbita": "c026",
+      "radio_medio": 1.3613297036604097,
+      "hiladas": 2,
+      "piezas": 40
+    },
+    {
+      "cara": "c076",
+      "orbita": "c026",
+      "radio_medio": 1.3822503687311998,
+      "hiladas": 2,
+      "piezas": 40
+    },
+    {
+      "cara": "c077",
+      "orbita": "c037",
+      "radio_medio": 0.6523410526012529,
+      "hiladas": 0,
+      "piezas": 0
+    },
+    {
+      "cara": "c078",
+      "orbita": "c005",
+      "radio_medio": 1.173829103555188,
+      "hiladas": 2,
+      "piezas": 32
+    },
+    {
+      "cara": "c079",
+      "orbita": "c003",
+      "radio_medio": 1.1875676757579356,
+      "hiladas": 2,
+      "piezas": 36
+    },
+    {
+      "cara": "c080",
+      "orbita": "c016",
+      "radio_medio": 1.8494888760382275,
+      "hiladas": 3,
+      "piezas": 96
+    },
+    {
+      "cara": "c081",
+      "orbita": "c013",
+      "radio_medio": 0.3488939775164026,
+      "hiladas": 0,
+      "piezas": 0
+    },
+    {
+      "cara": "c082",
+      "orbita": "c012",
+      "radio_medio": 0.3491470306751988,
+      "hiladas": 0,
+      "piezas": 0
+    },
+    {
+      "cara": "c083",
+      "orbita": "c009",
+      "radio_medio": 1.2419028844263515,
+      "hiladas": 2,
+      "piezas": 32
+    },
+    {
+      "cara": "c084",
+      "orbita": "c009",
+      "radio_medio": 1.2532357715733051,
+      "hiladas": 2,
+      "piezas": 32
+    },
+    {
+      "cara": "c085",
+      "orbita": "c017",
+      "radio_medio": 0.6302625396308822,
+      "hiladas": 0,
+      "piezas": 0
+    },
+    {
+      "cara": "c086",
+      "orbita": "c004",
+      "radio_medio": 1.5545749356977943,
+      "hiladas": 3,
+      "piezas": 88
+    },
+    {
+      "cara": "c087",
+      "orbita": "c018",
+      "radio_medio": 0.634824530941361,
+      "hiladas": 0,
+      "piezas": 0
+    },
+    {
+      "cara": "c088",
+      "orbita": "c000",
+      "radio_medio": 2.4985724715518045,
+      "hiladas": 5,
+      "piezas": 168
+    },
+    {
+      "cara": "c089",
+      "orbita": "c000",
+      "radio_medio": 2.5073063403195364,
+      "hiladas": 5,
+      "piezas": 168
+    },
+    {
+      "cara": "c090",
+      "orbita": "c018",
+      "radio_medio": 0.6382192694667286,
+      "hiladas": 0,
+      "piezas": 0
+    },
+    {
+      "cara": "c091",
+      "orbita": "c004",
+      "radio_medio": 1.5355444751248009,
+      "hiladas": 2,
+      "piezas": 64
+    },
+    {
+      "cara": "c092",
+      "orbita": "c017",
+      "radio_medio": 0.6417086028786799,
+      "hiladas": 0,
+      "piezas": 0
+    },
+    {
+      "cara": "c093",
+      "orbita": "c003",
+      "radio_medio": 1.1356535317908791,
+      "hiladas": 2,
+      "piezas": 32
+    },
+    {
+      "cara": "c094",
+      "orbita": "c005",
+      "radio_medio": 1.135631939157648,
+      "hiladas": 2,
+      "piezas": 32
+    },
+    {
+      "cara": "c095",
+      "orbita": "c009",
+      "radio_medio": 1.254422712091234,
+      "hiladas": 2,
+      "piezas": 32
+    },
+    {
+      "cara": "c096",
+      "orbita": "c005",
+      "radio_medio": 1.1337483077802775,
+      "hiladas": 2,
+      "piezas": 32
+    },
+    {
+      "cara": "c097",
+      "orbita": "c003",
+      "radio_medio": 1.15488436954704,
+      "hiladas": 2,
+      "piezas": 32
+    },
+    {
+      "cara": "c098",
+      "orbita": "c012",
+      "radio_medio": 0.3491478266961945,
+      "hiladas": 0,
+      "piezas": 0
+    },
+    {
+      "cara": "c099",
+      "orbita": "c013",
+      "radio_medio": 0.34285389878666644,
+      "hiladas": 0,
+      "piezas": 0
+    },
+    {
+      "cara": "c100",
+      "orbita": "c012",
+      "radio_medio": 0.3472466463667116,
+      "hiladas": 0,
+      "piezas": 0
+    },
+    {
+      "cara": "c101",
+      "orbita": "c013",
+      "radio_medio": 0.33724186520656696,
+      "hiladas": 0,
+      "piezas": 0
+    },
+    {
+      "cara": "c102",
+      "orbita": "c001",
+      "radio_medio": 2.4792564358522653,
+      "hiladas": 5,
+      "piezas": 168
+    },
+    {
+      "cara": "c103",
+      "orbita": "c001",
+      "radio_medio": 2.475555461818094,
+      "hiladas": 5,
+      "piezas": 164
+    },
+    {
+      "cara": "c104",
+      "orbita": "c000",
+      "radio_medio": 2.5306233033318404,
+      "hiladas": 5,
+      "piezas": 168
+    }
+  ]
+}

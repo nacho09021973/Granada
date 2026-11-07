@@ -7,7 +7,9 @@ Uso (Blender 4.5 LTS, sin ventana; probado con 4.5.15):
 
 `ortogonal` imita la ortoimagen de AA-415_23: proyeccion ortogonal desde abajo,
 la cupula entera, y un panel de luz pareja bajo la camara (LUZ_LEVANTAMIENTO_W)
-en vez de solo la luz de las ventanas.
+en vez de solo la luz de las ventanas; el sol rasante se apaga. Ojo: con varias
+vistas en una ejecucion, la ortogonal debe ir la ultima, porque deja el panel
+puesto y el sol apagado.
 
 Entrada: `renders/cupula_piezas.obj` y `.mtl`, que escribe
 `scripts/render_cupula_piezas.py` (el .obj esta en .gitignore: regenerarlo
@@ -77,7 +79,7 @@ VISTAS = {
     "ortogonal": ((0.0, 0.0, -20.0), (0.0, 0.001, 10.0), 35.0),
 }
 ORTOGONALES = {"ortogonal"}
-LUZ_LEVANTAMIENTO_W = 4000.0
+LUZ_LEVANTAMIENTO_W = 12000.0
 """Solo en las vistas ortogonales: un panel de luz bajo la camara, que da la
 luz pareja de un levantamiento fotogrametrico en vez de la de las ventanas.
 Escena para comparar con la ortoimagen, no dato."""
@@ -497,9 +499,13 @@ def sol(contorno: np.ndarray):
 
 
 def luz_levantamiento(posicion, ancho: float):
-    """Panel cuadrado justo detras de la camara, mirando hacia arriba."""
+    """Panel cuadrado justo detras de la camara, mirando hacia arriba. Apaga el
+    sol rasante: un levantamiento no tiene esa mancha de luz."""
     if "levantamiento" in bpy.data.objects:
         return
+    for o in bpy.data.objects:
+        if o.name.startswith("sol_"):
+            o.data.energy = 0.0
     luz = bpy.data.lights.new("levantamiento", "AREA")
     luz.shape = "SQUARE"
     luz.size = ancho * 1.2

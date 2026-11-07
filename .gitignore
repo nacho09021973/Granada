@@ -111,3 +111,8 @@ renders/cupula de color gemini.jpg
 # Render de 8192 px (~94 MB) para el visor de zoom: se regenera con
 # scripts/render_cycles.py (ver su docstring). Copia en Drive, Granada-docs.
 renders/cupula_cycles_cenital_8k.png
+
+# Malla de la cupula por piezas sobre la red (~150 MB): se regenera con
+# scripts/render_cupula_piezas.py --modelo red.
+renders/cupula_red.obj
+renders/cupula_red.mtl

@@ -45,11 +45,23 @@ def main() -> int:
     ap.add_argument("--informe", type=Path, default=RAIZ / "datos" / "cupula_piezas.json")
     ap.add_argument("--reparto", default="disperso", choices=("disperso", "anillos"),
                     help="color: yeso con policromia suelta (defecto) o anillos (2026-11-05)")
+    ap.add_argument("--modelo", default="anillos", choices=("anillos", "red"),
+                    help="anillos sobre el cono (granada/cupula.py) o celdas sobre la red de medinas (granada/celdas.py)")
     ap.add_argument("--solo-obj", action="store_true", help="escribe solo el .obj (para Cycles), sin renders ni informe")
     args = ap.parse_args()
+    if args.modelo == "red":
+        # Salidas propias, para no pisar las del modelo de anillos.
+        for campo, nuevo in (("obj", "cupula_red.obj"), ("png", "cupula_red.png"), ("png_color", "cupula_red_color.png")):
+            if getattr(args, campo) == ap.get_default(campo):
+                setattr(args, campo, getattr(args, campo).with_name(nuevo))
 
     t0 = time.time()
-    hiladas, grupos = cupula(args.subdivision, color=True, reparto=args.reparto)
+    if args.modelo == "red":
+        from granada.celdas import cupula_red
+
+        resumen, grupos = cupula_red(args.subdivision, color=True)
+    else:
+        hiladas, grupos = cupula(args.subdivision, color=True, reparto=args.reparto)
     escribir_obj(
         args.obj,
         [(n, Vg, Fg, [material(c, s) for c, s in zip(Cg, Sg)]) for n, Vg, Fg, Cg, Sg in grupos],
@@ -85,6 +97,34 @@ def main() -> int:
     lienzo.paste(a, (0, 0))
     lienzo.paste(b, (L, 0))
     lienzo.save(args.png_color)
+
+    if args.modelo == "red":
+        from granada.celdas import ESCALA_CELDA
+
+        destino = args.informe.with_name("cupula_red.json") if args.informe == ap.get_default("informe") else args.informe
+        informe = {
+            "version": 1,
+            "estado": "APPROXIMATE_PIECE_DOME_ON_RED",
+            "advertencia": (
+                "Red de medinas de la tesis de Ferrer (figura 128), registrada en "
+                "datos/registro_red.json. El relleno de cada celda es eleccion, no leido de "
+                "Dos Hermanas. Pendiente y radio de arranque, medidos."
+            ),
+            "modelo": {"modulo": "granada/celdas.py", "subdivision": args.subdivision, "escala_celda": ESCALA_CELDA,
+                       "pendiente_medida": PENDIENTE, "cateto_m": CATETO_M},
+            "controles": {
+                "celdas": len(resumen),
+                "piezas": sum(r["piezas"] for r in resumen),
+                "piezas_jones_goury": 5416,
+                "celdas_sin_hiladas": sum(r["hiladas"] == 0 for r in resumen),
+                "vertices": len(V),
+                "triangulos": len(F),
+            },
+            "celdas": resumen,
+        }
+        destino.write_text(json.dumps(informe, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+        print(f"{informe['controles']['piezas']} piezas, {len(F)} triangulos, {time.time() - t0:.0f} s")
+        return 0
 
     informe = {
         "version": 1,
