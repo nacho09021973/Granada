@@ -15,6 +15,10 @@ Que es dato y que es eleccion
   alejado de sus bordes, como los cupulines de granada/cupula.py.
 - **La altura** es la del cono medido (PENDIENTE, RADIO_BASE): cada celda se
   posa sobre el cono y sus hiladas suben desde el.
+- **Las cuatro esquinas** entre el octogono y el cuadrado de la sala (las
+  trompas, que en la ortoimagen llevan tambien mocarabes) se rellenan como
+  cuatro celdas mas, a la cota del arranque. Imitacion: su forma real no esta
+  leida.
 
 Cada cara es estrellada respecto a ese punto (comprobado: las 105 tienen
 nucleo), asi que su contorno se describe como r(phi) desde el y las hiladas
@@ -31,15 +35,18 @@ from pathlib import Path
 import numpy as np
 
 from granada.cupula import (
+    _MEDIA_OCT,
     CATETO_M,
-    MARCO_CUPULIN,
     PENDIENTE,
+    PlantaPoligono,
+    radios_desde,
     RADIO_BASE,
     _cupulilla,
     _montar,
     _tambor_friso,
     cupulin,
     cupulines_medidos,
+    detector_de_marcos,
     plan_de_hiladas,
     planta_por_defecto,
 )
@@ -55,42 +62,12 @@ ESCALA_CELDA = 0.475
 Eleccion calibrada por recuento: Jones y Goury cuentan 5416 piezas en la
 cupula (docs/fuentes.md, entrada 18). Con el registro de
 datos/registro_red.json: 0,47 da 5604, 0,475 da 5392 y 0,48 da 5296 (sin
-contar las de los cupulines). Ver tests/test_celdas.py."""
+contar las de los cupulines ni las de las esquinas). Ver tests/test_celdas.py."""
 MULTIPLO_CELDA = 4
 CIERRE_CELDA = 0.9
 """Radio medio (en unidades de pieza) por debajo del cual una celda se cierra
 con su cupulilla en vez de con otra hilada."""
 MUESTRAS = 720
-
-
-@dataclass(frozen=True)
-class PlantaPoligono:
-    """Contorno de una cara como r(phi) desde un punto de su nucleo.
-
-    Misma interfaz que granada.cupula.Planta (forma, punto, arco), con las
-    hiladas interiores homoteticas: r = F * rho(phi) / radio_base.
-    """
-
-    rho: tuple[float, ...]
-    radio_base: float
-    radio_cierre: float
-    estrella: bool = False
-
-    def forma(self, phi, F):
-        phi = np.mod(np.asarray(phi, dtype=float), 2 * math.pi)
-        tabla = np.asarray(self.rho)
-        malla = np.linspace(0, 2 * math.pi, len(tabla), endpoint=False)
-        return np.interp(phi, malla, tabla, period=2 * math.pi) / self.radio_base
-
-    def punto(self, phi, F):
-        r = np.asarray(F) * self.forma(phi, F)
-        return r * np.cos(phi), r * np.sin(phi)
-
-    def arco(self, F):
-        phi = np.linspace(0, 2 * math.pi, MUESTRAS + 1)
-        x, y = self.punto(phi, np.full_like(phi, F))
-        s = np.concatenate([[0.0], np.cumsum(np.hypot(np.diff(x), np.diff(y)))])
-        return s, phi, float(s[-1])
 
 
 def _area(P: np.ndarray) -> float:
@@ -112,23 +89,6 @@ def centro_del_nucleo(P: np.ndarray, rejilla: int = 48, rondas: int = 3) -> np.n
         paso = (hi - lo) / rejilla
         lo, hi = mejor - 2 * paso, mejor + 2 * paso
     return mejor
-
-
-def radios_desde(P: np.ndarray, c: np.ndarray, n: int = MUESTRAS) -> np.ndarray:
-    """r(phi) del contorno P visto desde c, en n angulos (cara estrellada en c)."""
-    phi = np.linspace(0, 2 * math.pi, n, endpoint=False)
-    u = np.stack([np.cos(phi), np.sin(phi)], axis=1)
-    A, B = P - c, np.roll(P, -1, axis=0) - c
-    D = B - A
-    r = np.full(n, np.inf)
-    for a, dd in zip(A, D):
-        den = u[:, 0] * dd[1] - u[:, 1] * dd[0]
-        ok = np.abs(den) > 1e-12
-        t = np.where(ok, (a[0] * dd[1] - a[1] * dd[0]) / np.where(ok, den, 1), np.inf)
-        s = np.where(ok, (a[0] * u[:, 1] - a[1] * u[:, 0]) / np.where(ok, den, 1), -1)
-        valido = ok & (t > 1e-9) & (s >= -1e-9) & (s <= 1 + 1e-9)
-        r = np.where(valido & (t < r), t, r)
-    return r
 
 
 @dataclass(frozen=True)
@@ -172,6 +132,185 @@ def celdas_de_la_red() -> list[Celda]:
     return fuera
 
 
+ALTO_PIRAMIDE = 0.45
+"""Altura de la piramide de cada celda de esquina respecto a su lado."""
+PASO_ESQUINA_M = 0.21
+"""Lado de las celdas de la reticula de las esquinas. En la ortoimagen las
+trompas son una reticula de flores pequenas en filas paralelas a los muros,
+separadas unos 100 px (~0,21 m a 472 px/m)."""
+
+
+def _recortar(P: list, a: float, t: float) -> list:
+    """Sutherland-Hodgman: parte de P con x + y >= a + t."""
+    def dentro(p):
+        return p[0] + p[1] >= a + t - 1e-9
+
+    fuera = []
+    for p, q in zip(P, P[1:] + P[:1]):
+        if dentro(p):
+            fuera.append(p)
+        if dentro(p) != dentro(q):
+            u = (a + t - p[0] - p[1]) / ((q[0] - p[0]) + (q[1] - p[1]))
+            fuera.append((p[0] + u * (q[0] - p[0]), p[1] + u * (q[1] - p[1])))
+    return fuera
+
+
+def reticula_de_las_esquinas(radio_base: float = RADIO_BASE):
+    """Celdas, nudos y aristas de la reticula de las cuatro esquinas entre el
+    octogono de arranque y el cuadrado que lo circunscribe (lados del octogono
+    a 0, 45, 90... grados). Unidades del cateto, marco de la cupula."""
+    a = radio_base / _MEDIA_OCT
+    t = a * math.tan(math.pi / 8)
+    s = PASO_ESQUINA_M / CATETO_M
+    n = int(math.ceil((a - t) / s))
+    celdas: list[Celda] = []
+    nudos: list[tuple[float, float]] = []
+    aristas: set[tuple[tuple[float, float], tuple[float, float]]] = set()
+    for k in range(4):
+        cg, sg = math.cos(k * math.pi / 2), math.sin(k * math.pi / 2)
+
+        def girar(p):
+            return (round(p[0] * cg - p[1] * sg, 6), round(p[0] * sg + p[1] * cg, 6))
+
+        for i in range(n):
+            for j in range(n):
+                x1, y1 = a - i * s, a - j * s
+                x0, y0 = x1 - s, y1 - s
+                P = _recortar([(x0, y0), (x1, y0), (x1, y1), (x0, y1)], a, t)
+                if len(P) < 3:
+                    continue
+                Q = np.array([girar(p) for p in P])
+                if _area(Q) < 0.15 * s * s:
+                    continue
+                if _area(Q) < 0:
+                    Q = Q[::-1]
+                centro = centro_del_nucleo(Q)
+                celdas.append(Celda(f"esquina_{k}_{i:02d}_{j:02d}", (float(centro[0]), float(centro[1])),
+                                    math.atan2(centro[1], centro[0]), tuple(map(tuple, Q.tolist())), "esquina"))
+                for p, q in zip(Q.tolist(), np.roll(Q, -1, axis=0).tolist()):
+                    aristas.add(tuple(sorted((tuple(p), tuple(q)))))
+                for p in Q.tolist():
+                    if (p[0] * cg + p[1] * sg) + (-p[0] * sg + p[1] * cg) > a + t + 1e-6:
+                        nudos.append(tuple(p))
+    return celdas, sorted(set(nudos)), sorted(aristas)
+
+
+def celdas_de_las_esquinas(radio_base: float = RADIO_BASE) -> list[Celda]:
+    return reticula_de_las_esquinas(radio_base)[0]
+
+
+ALTURA_FONDO = 4.0
+"""Altura, en unidades del cateto, del fondo de yeso sobre el cono."""
+NUDO_M = 0.04
+"""Radio de las rosetas en los nudos de la red. En la ortoimagen cada cruce de
+la red lleva una roseta blanca en relieve de unos 40 px (~8 cm a 472 px/m)."""
+CABALLETE_M = 0.018
+"""Medio ancho del caballete de yeso sobre cada arista de la red: en la
+ortoimagen las lineas de la red son aristas claras y finas."""
+
+
+def _dentro_del_contorno(x: np.ndarray, y: np.ndarray) -> np.ndarray:
+    """Paridad de cruces contra el contorno de la red registrada."""
+    caras = json.loads(CARAS.read_text(encoding="utf-8"))
+    red = json.loads(RED.read_text(encoding="utf-8"))
+    N = _transformar(np.array(red["nodos"], dtype=float), json.loads(REGISTRO.read_text(encoding="utf-8"))) / CATETO_M
+    P = N[caras["contorno"]["vertices"]]
+    dentro = np.zeros(len(x), dtype=bool)
+    for (x1, y1), (x2, y2) in zip(P, np.roll(P, -1, axis=0)):
+        cruza = (y1 > y) != (y2 > y)
+        with np.errstate(divide="ignore", invalid="ignore"):
+            xc = x1 + (y - y1) * (x2 - x1) / (y2 - y1)
+        dentro ^= cruza & (x < xc)
+    return dentro
+
+
+def _cota_cono(x, y, radio_base: float):
+    return np.maximum(0.0, (radio_base - np.hypot(x, y)) * PENDIENTE)
+
+
+def nudos_y_caballetes(radio_base: float = RADIO_BASE, esquinas: bool = True):
+    """(V, F, colores, sombras): caballetes sobre las aristas y rosetas en los
+    nudos de la red registrada, justo por delante (debajo) de las piezas."""
+    red = json.loads(RED.read_text(encoding="utf-8"))
+    N = _transformar(np.array(red["nodos"], dtype=float), json.loads(REGISTRO.read_text(encoding="utf-8"))) / CATETO_M
+    segmentos = [(N[int(a)], N[int(b)]) for a, b, *_ in red["aristas"]]
+    puntos = [tuple(p) for p in N]
+    if esquinas:
+        _, nudos_e, aristas_e = reticula_de_las_esquinas(radio_base)
+        segmentos += [(np.array(p), np.array(q)) for p, q in aristas_e]
+        puntos += nudos_e
+    V: list[tuple[float, float, float]] = []
+    F: list[tuple[int, int, int]] = []
+    C: list[str] = []
+    S: list[float] = []
+    w = CABALLETE_M / CATETO_M
+    for pa, pb in segmentos:
+        d = pb - pa
+        largo = float(np.hypot(*d))
+        if largo < 1e-9:
+            continue
+        nrm = np.array([-d[1], d[0]]) / largo * w
+        q = [pa + nrm, pb + nrm, pb - nrm, pa - nrm]
+        k = len(V)
+        for x, y in q:
+            V.append((float(x), float(y), float(_cota_cono(x, y, radio_base)) - 0.04))
+        F.extend([(k, k + 2, k + 1), (k, k + 3, k + 2)])
+        C.extend(["yeso"] * 2)
+        S.extend([1.0] * 2)
+    r = NUDO_M / CATETO_M
+    lobulos, n = 8, 48
+    for x0, y0 in puntos:
+        z0 = float(_cota_cono(x0, y0, radio_base)) - 0.05
+        k = len(V)
+        V.append((float(x0), float(y0), z0 - 0.35 * r))
+        for i in range(n):
+            phi = 2 * math.pi * i / n
+            rr = r * (0.78 + 0.22 * math.cos(lobulos * phi))
+            V.append((float(x0 + rr * math.cos(phi)), float(y0 + rr * math.sin(phi)), z0))
+        for i in range(n):
+            F.append((k, k + 1 + (i + 1) % n, k + 1 + i))
+        C.extend(["yeso"] * n)
+        S.extend([1.0] * n)
+    return V, F, C, S
+
+
+ROSETA_M = 0.15
+"""Radio de la roseta del centro. En la ortoimagen el centro de la estrella
+lleva una roseta de unos 16 lobulos con el corazon pardo, de ~140 px (~0,3 m)
+de diametro."""
+
+
+def caras_del_centro() -> tuple[str, set[str]]:
+    """La cara central (octogono) y los ocho medios cuadrados que la rodean,
+    que en la ortoimagen estan pintados de azul (color de la foto, eleccion)."""
+    caras = json.loads(CARAS.read_text(encoding="utf-8"))["caras"]
+    centro = min(caras, key=lambda f: math.hypot(*f["centroide_m"]))["id"]
+    azules = {f["id"] for f in caras if f.get("figura") == "medio_cuadrado" and math.hypot(*f["centroide_m"]) < 0.8}
+    return centro, azules
+
+
+def _roseta(z: float, e: float, lobulos: int = 16, n: int = 96):
+    """Roseta de `lobulos` lobulos en el marco local escalado de una celda,
+    abombada hacia abajo, con el corazon pardo. Devuelve (V, F, colores, sombras)."""
+    r = ROSETA_M / CATETO_M / e
+    V = [(0.0, 0.0, z - 0.25 * r)]
+    F, C = [], []
+    anillos = (0.35, 1.0)
+    for j, f in enumerate(anillos):
+        for i in range(n):
+            phi = 2 * math.pi * i / n
+            rr = r * f * ((0.8 + 0.2 * math.cos(lobulos * phi)) if j else 1.0)
+            V.append((rr * math.cos(phi), rr * math.sin(phi), z - 0.25 * r * (1 - f)))
+    for i in range(n):
+        F.append((0, 1 + (i + 1) % n, 1 + i))
+        C.append("almagra")
+    for i in range(n):
+        a, b = 1 + i, 1 + (i + 1) % n
+        F.extend([(a, b, b + n), (a, b + n, a + n)])
+        C.extend(["yeso", "yeso"])
+    return V, F, C, [1.0] * len(F)
+
+
 def _colocar(local, celda: Celda, e: float, radio_base: float) -> list[tuple[float, float, float]]:
     """Del marco local escalado de la celda al de la cupula, posado en el cono."""
     L = np.asarray(local, dtype=float)
@@ -190,19 +329,28 @@ def cupula_red(subdivision: int = 6, color: bool = False, radio_base: float = RA
 
     e = ESCALA_CELDA
     huecos = cupulines_medidos() if con_cupulines else []
-    marcos = [(c.marco(radio_base), c.radio * MARCO_CUPULIN) for c in huecos]
+    en_marco = detector_de_marcos(huecos, radio_base)
 
     def en_hueco_mundo(V) -> bool:
-        P = np.asarray(V, dtype=float).mean(axis=0)
-        for (o, e1, e2, n), r in marcos:
-            d = P - o
-            if math.hypot(d @ e1, d @ e2) < r and -4.0 < d @ n < 7.0:
-                return True
-        return False
+        return en_marco(np.asarray(V, dtype=float).mean(axis=0))
 
     plantillas: dict = {}
     grupos = []
     resumen = []
+    for celda in celdas_de_las_esquinas(radio_base):
+        # Piramide hueca de cuatro caras hacia el centro del nucleo: sus aristas,
+        # con los caballetes, dan los ocho rayos de cada flor de la reticula.
+        P = np.asarray(celda.poligono)
+        cx, cy = celda.centro
+        lado = math.sqrt(abs(_area(P)))
+        Vp = [(float(x), float(y), float(_cota_cono(x, y, radio_base))) for x, y in P]
+        Vp.append((cx, cy, float(_cota_cono(cx, cy, radio_base)) + ALTO_PIRAMIDE * lado))
+        k = len(P)
+        Fp = [(i, k, (i + 1) % k) for i in range(k)]
+        grupos.append((f"{celda.id}_piramide", Vp, Fp, ["yeso"] * k, [0.9] * k) if color else (f"{celda.id}_piramide", Vp, Fp))
+        resumen.append({"cara": celda.id, "orbita": celda.orbita, "radio_medio": lado / 2, "hiladas": 0, "piezas": 0,
+                        "esquina": True})
+    centro, azules = caras_del_centro()
     for celda in celdas_de_la_red():
         cx, cy = celda.centro
         cg, sg = math.cos(-celda.giro), math.sin(-celda.giro)
@@ -219,14 +367,23 @@ def cupula_red(subdivision: int = 6, color: bool = False, radio_base: float = RA
         def pintar(tipo, etiqueta, hilada, indice, celda=celda):
             return _celdilla(tipo, etiqueta, hilada, indice, f"celda_{celda.orbita}")
 
+        if celda.id in azules:
+            def pintar(tipo, etiqueta, hilada, indice):
+                return "azul" if etiqueta == "fondo" else "yeso"
+
         locales, _ = _montar(planta, hiladas, subdivision, plantillas, descartar if huecos else None, pintar if color else None)
         if hiladas:
             u = hiladas[-1]
             Vc, Fc = _cupulilla(planta, u.radio_frente, u.cota, u.paso, n=48, m=6)
+            clave = u.cota + u.paso * 0.875 + 0.9 * u.radio_frente
         else:
             Vc, Fc = _cupulilla(planta, F0, -0.5, 0.5, n=48, m=6)
+            clave = -0.5 + 0.5 * 0.875 + 0.9 * F0
+        tono = "azul" if celda.id in azules else "yeso"
         if not (huecos and descartar(Vc)):
-            locales.append(("cupulilla", Vc, Fc, ["yeso"] * len(Fc), [0.9] * len(Fc)) if color else ("cupulilla", Vc, Fc))
+            locales.append(("cupulilla", Vc, Fc, [tono] * len(Fc), [0.9] * len(Fc)) if color else ("cupulilla", Vc, Fc))
+        if celda.id == centro:
+            locales.append(("roseta", *_roseta(clave - 0.05 / e, e)) if color else ("roseta", *_roseta(clave - 0.05 / e, e)[:2]))
         for g in locales:
             nombre, Vg, Fg = g[:3]
             if not Fg:
@@ -234,7 +391,7 @@ def cupula_red(subdivision: int = 6, color: bool = False, radio_base: float = RA
             V = _colocar(Vg, celda, e, radio_base)
             grupos.append((f"{celda.id}_{nombre}", V, Fg, *g[3:]))
         resumen.append({"cara": celda.id, "orbita": celda.orbita, "radio_medio": F0 * e, "hiladas": len(hiladas),
-                        "piezas": sum(h.piezas for h in hiladas)})
+                        "piezas": sum(h.piezas for h in hiladas), "esquina": celda.orbita == "esquina"})
 
     if huecos:
         prof = 2 * plan_de_hiladas(radio_base, planta=planta_por_defecto(radio_base, True))[0].paso * math.cos(math.atan(PENDIENTE))
@@ -242,6 +399,35 @@ def cupula_red(subdivision: int = 6, color: bool = False, radio_base: float = RA
         for k, c in enumerate(huecos):
             grupos.append((f"cupulin_{k:02d}", *cupulin(c, prof, plantillas=mini, radio_base=radio_base,
                                                          colorear=colorear_cupulin_disperso if color else None)))
+    Vn, Fn, Cn, Sn = nudos_y_caballetes(radio_base)
+    grupos.append(("red_nudos", Vn, Fn, Cn, Sn) if color else ("red_nudos", Vn, Fn))
+    # Fondo plano de yeso por encima de la clave: solo se ve por los huecos que
+    # dejan las celdas, los marcos y las esquinas (si no, se ve el vacio).
+    # Sigue el cono: ALTURA_FONDO por encima dentro de la red (detras de las
+    # celdas; un plano alto quedaba tan lejos de la luz que se veia negro) y a
+    # ras del cono fuera de ella, donde no hay celdas que lo tapen. Sin fondo
+    # en los marcos de los cupulines, que suben mas que el.
+    a = radio_base / _MEDIA_OCT
+    m = 192
+    xs = np.linspace(-a, a, m + 1)
+    X, Y = np.meshgrid(xs, xs)
+    dentro_red = _dentro_del_contorno(X.ravel(), Y.ravel()).reshape(X.shape)
+    t_oct = a * math.tan(math.pi / 8)
+    dentro_oct = np.abs(X) + np.abs(Y) <= a + t_oct
+    a_ras = dentro_oct & ~dentro_red
+    Z = _cota_cono(X, Y, radio_base) + np.where(a_ras, 0.01, ALTURA_FONDO)
+    Vf = [(float(x), float(y), float(z)) for x, y, z in zip(X.ravel(), Y.ravel(), Z.ravel())]
+    Ff = []
+    for j in range(m):
+        for i in range(m):
+            p = j * (m + 1) + i
+            for tri in ((p, p + m + 2, p + 1), (p, p + m + 1, p + m + 2)):
+                cx = sum(Vf[v][0] for v in tri) / 3
+                cy = sum(Vf[v][1] for v in tri) / 3
+                cz = sum(Vf[v][2] for v in tri) / 3
+                if not (huecos and en_marco(np.array([cx, cy, cz]))):
+                    Ff.append(tri)
+    grupos.append(("fondo", Vf, Ff, ["yeso"] * len(Ff), [0.9] * len(Ff)) if color else ("fondo", Vf, Ff))
     if color:
         grupos.append(("tambor", *_tambor_friso(planta_por_defecto(radio_base, True), radio_base, 0.0)))
     return resumen, grupos

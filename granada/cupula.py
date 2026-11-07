@@ -47,7 +47,8 @@ Modelo, declarado:
   normal al cono, 52 grados: eleccion, no medida). Se quitan las piezas de la trama cuyo
   centroide cae en su cilindro, se pone un pocillo poco profundo que tapa el
   corte y encima una cupula pequena con piezas a escala 0,4. Un marco de yeso
-  con filete de oro (`MARCO_CUPULIN`) tapa el borde del corte. Su interior no esta leido; la forma real es una cupulita de
+  (`MARCO_CUPULIN`) tapa el borde del corte; la boca es un octogono con pico
+  hacia el centro (`PICO_CUPULIN`). Su interior no esta leido; la forma real es una cupulita de
   mocarabes que aqui solo se imita.
 """
 
@@ -330,16 +331,89 @@ def _corona(radio_in: float, radio_out: float, z: float, n: int = 64):
     return V, F
 
 
-MARCO_CUPULIN = 1.45
-"""Radio exterior del marco de yeso de cada cupulin, respecto al hueco."""
-FILETE_CUPULIN = 0.08
-"""Ancho del filete de oro en el borde del hueco, en unidades del cateto."""
+MARCO_CUPULIN = 1.18
+"""Radio exterior del marco de yeso de cada cupulin, respecto al hueco. Era 1,45;
+bajado el 2026-11-07 porque en la ortoimagen el marco es una moldura fina."""
+PICO_CUPULIN = 1.55
+"""Largo del pico de la boca, respecto al radio del octogono. En la
+ortoimagen la boca de cada cupulin es un octogono con un vertice estirado en
+pico hacia el centro de la cupula, como una gota (lo mismo en el render
+Ferrer_3, sin asignar). Medida a ojo sobre la ortoimagen: eleccion."""
 EJE_CUPULIN_GRADOS = 0.0
 """Inclinacion del eje de cada cupulin desde la vertical. Hasta el 2026-11-06
 era la normal al cono (52 grados), eleccion no medida: desde abajo el pozo
 ensenaba su pared y la cupulita apenas asomaba. En la ortoimagen las bocas se
 ven redondas, y con 52 grados se verian como elipses de razon cos 52 = 0,62:
 eso apunta a un eje casi vertical. Sigue siendo eleccion, no medida."""
+
+
+MUESTRAS_POLIGONO = 720
+
+
+def radios_desde(P: np.ndarray, c: np.ndarray, n: int = MUESTRAS_POLIGONO) -> np.ndarray:
+    """r(phi) del contorno P visto desde c, en n angulos (P estrellado en c)."""
+    phi = np.linspace(0, 2 * math.pi, n, endpoint=False)
+    u = np.stack([np.cos(phi), np.sin(phi)], axis=1)
+    A, B = P - c, np.roll(P, -1, axis=0) - c
+    D = B - A
+    r = np.full(n, np.inf)
+    for a, dd in zip(A, D):
+        den = u[:, 0] * dd[1] - u[:, 1] * dd[0]
+        ok = np.abs(den) > 1e-12
+        t = np.where(ok, (a[0] * dd[1] - a[1] * dd[0]) / np.where(ok, den, 1), np.inf)
+        s = np.where(ok, (a[0] * u[:, 1] - a[1] * u[:, 0]) / np.where(ok, den, 1), -1)
+        valido = ok & (t > 1e-9) & (s >= -1e-9) & (s <= 1 + 1e-9)
+        r = np.where(valido & (t < r), t, r)
+    return r
+
+
+@dataclass(frozen=True)
+class PlantaPoligono:
+    """Contorno estrellado como r(phi) desde un punto de su nucleo.
+
+    Misma interfaz que Planta (forma, punto, arco), con los contornos
+    interiores homoteticos: r = F * rho(phi) / radio_base.
+    """
+
+    rho: tuple[float, ...]
+    radio_base: float
+    radio_cierre: float
+    estrella: bool = False
+
+    def forma(self, phi, F):
+        phi = np.mod(np.asarray(phi, dtype=float), 2 * math.pi)
+        tabla = np.asarray(self.rho)
+        malla = np.linspace(0, 2 * math.pi, len(tabla), endpoint=False)
+        return np.interp(phi, malla, tabla, period=2 * math.pi) / self.radio_base
+
+    def punto(self, phi, F):
+        r = np.asarray(F) * self.forma(phi, F)
+        return r * np.cos(phi), r * np.sin(phi)
+
+    def arco(self, F):
+        phi = np.linspace(0, 2 * math.pi, MUESTRAS_POLIGONO + 1)
+        x, y = self.punto(phi, np.full_like(phi, F))
+        s = np.concatenate([[0.0], np.cumsum(np.hypot(np.diff(x), np.diff(y)))])
+        return s, phi, float(s[-1])
+
+
+def _forma_cupulin() -> np.ndarray:
+    """r(phi) de la boca, en radios del octogono: octogono con un vertice a 90
+    grados (hacia el centro de la cupula en el marco del cupulin) estirado en pico."""
+    a = np.radians(90 + 45 * np.arange(8))
+    P = np.stack([np.cos(a), np.sin(a)], axis=1)
+    P[0] *= PICO_CUPULIN
+    return radios_desde(P, np.zeros(2))
+
+
+FORMA_CUPULIN = _forma_cupulin()
+
+
+def _contorno_cupulin(escala: float, n: int = 96) -> list[tuple[float, float]]:
+    phi = np.linspace(0, 2 * math.pi, n, endpoint=False)
+    r = escala * np.interp(phi, np.linspace(0, 2 * math.pi, len(FORMA_CUPULIN), endpoint=False), FORMA_CUPULIN,
+                           period=2 * math.pi)
+    return list(zip((r * np.cos(phi)).tolist(), (r * np.sin(phi)).tolist()))
 
 
 @dataclass(frozen=True)
@@ -366,12 +440,40 @@ class Cupulin:
         return origen, t, e2, n
 
     def contiene(self, punto, radio_base: float = RADIO_BASE, radio: float | None = None) -> bool:
-        """El punto cae dentro del cilindro del cupulin, medido en su plano.
-        `radio` amplia el cilindro (por defecto, el del pocillo)."""
+        """El punto cae dentro del prisma del cupulin (boca en gota), medido en
+        su plano. `radio` escala la boca (por defecto, la del pocillo)."""
         o, e1, e2, n = self.marco(radio_base)
         d = np.asarray(punto, dtype=float) - o
         r = self.radio if radio is None else radio
-        return math.hypot(d @ e1, d @ e2) < r and -4.0 < d @ n < 7.0
+        x, y = d @ e1, d @ e2
+        phi = math.atan2(y, x) % (2 * math.pi)
+        borde = r * float(np.interp(phi, np.linspace(0, 2 * math.pi, len(FORMA_CUPULIN), endpoint=False),
+                                    FORMA_CUPULIN, period=2 * math.pi))
+        return math.hypot(x, y) < borde and -4.0 < d @ n < 7.0
+
+
+def detector_de_marcos(huecos, radio_base: float = RADIO_BASE):
+    """Funcion punto -> bool: cae en el marco de algun cupulin. Precalcula los
+    marcos, que `Cupulin.contiene` recalcula en cada llamada."""
+    malla = np.linspace(0, 2 * math.pi, len(FORMA_CUPULIN), endpoint=False)
+    marcos = [(*c.marco(radio_base), c.radio * MARCO_CUPULIN) for c in huecos]
+
+    def dentro(P) -> bool:
+        P = np.asarray(P, dtype=float)
+        for o, e1, e2, n, r in marcos:
+            d = P - o
+            dn = d @ n
+            if not -4.0 < dn < 7.0:
+                continue
+            x, y = d @ e1, d @ e2
+            if math.hypot(x, y) > r * PICO_CUPULIN:
+                continue
+            phi = math.atan2(y, x) % (2 * math.pi)
+            if math.hypot(x, y) < r * float(np.interp(phi, malla, FORMA_CUPULIN, period=2 * math.pi)):
+                return True
+        return False
+
+    return dentro
 
 
 CUPULINES = RAIZ / "datos" / "cupulines.json"
@@ -455,20 +557,52 @@ def _tubo(cx: float, cy: float, radio: float, abajo, arriba: float, n: int = 48)
     return V, F
 
 
-def cupulin(c: Cupulin, profundidad: float, subdivision: int = 5, plantillas=None, radio_base: float = RADIO_BASE, colorear=None, oro: str = "oro"):
-    """Pocillo cilindrico de `profundidad` con eje normal al cono y, encima,
-    una cupula pequena de piezas a escala `ESCALA_CUPULIN` con su cupulilla."""
+def _tubo_contorno(contorno, abajo, arriba: float):
+    """Pocillo vertical sobre un contorno cerrado; `abajo(x, y)` da su borde inferior."""
+    V: list[Punto3] = []
+    F = []
+    n = len(contorno)
+    for x, y in contorno:
+        V.extend([(x, y, abajo(x, y)), (x, y, arriba)])
+    for i in range(n):
+        a, b = 2 * i, 2 * ((i + 1) % n)
+        F.append((a, b, b + 1))
+        F.append((a, b + 1, a + 1))
+    return V, F
+
+
+def _corona_contorno(dentro, fuera, z):
+    """Banda entre dos contornos cerrados con el mismo numero de puntos."""
+    V: list[Punto3] = []
+    F = []
+    n = len(dentro)
+    for (xi, yi), (xo, yo) in zip(dentro, fuera):
+        V.extend([(xi, yi, z), (xo, yo, z)])
+    for i in range(n):
+        a, b = 2 * i, 2 * ((i + 1) % n)
+        F.append((a, b, b + 1))
+        F.append((a, b + 1, a + 1))
+    return V, F
+
+
+def cupulin(c: Cupulin, profundidad: float, subdivision: int = 5, plantillas=None, radio_base: float = RADIO_BASE, colorear=None):
+    """Pocillo de `profundidad` con boca en gota (FORMA_CUPULIN) y, encima, una
+    cupula pequena de piezas a escala `ESCALA_CUPULIN`, con la misma planta,
+    cerrada con su cupulilla. Marco de yeso alrededor de la boca."""
     if plantillas is None:
         plantillas = {}
     e = ESCALA_CUPULIN
     base = c.radio / e
-    planta = Planta(base, CIERRE_CUPULIN, False)
-    hiladas = plan_de_hiladas(base, planta=planta, cierre=CIERRE_CUPULIN, multiplo=8)
+    rho = FORMA_CUPULIN * base
+    planta = PlantaPoligono(tuple(rho.tolist()), float(rho.mean()), CIERRE_CUPULIN)
+    hiladas = plan_de_hiladas(planta.radio_base, planta=planta, cierre=CIERRE_CUPULIN, multiplo=8)
     grupos, _ = _montar(planta, hiladas, subdivision, plantillas, colorear=colorear)
     if hiladas:
         u = hiladas[-1]
         Vc, Fc = _cupulilla(planta, u.radio_frente, u.cota, u.paso, n=48, m=8)
-        grupos.append(("cupulilla", Vc, Fc, [oro] * len(Fc), [0.8] * len(Fc)))
+        # Yeso, no oro: en la ortoimagen el centro de los cupulines es gris
+        # (cambio pedido el 2026-11-07).
+        grupos.append(("cupulilla", Vc, Fc, ["yeso"] * len(Fc), [0.8] * len(Fc)))
     o, e1, e2, n = c.marco(radio_base)
 
     def superficie(x: float, y: float) -> float:
@@ -476,10 +610,10 @@ def cupulin(c: Cupulin, profundidad: float, subdivision: int = 5, plantillas=Non
         q = o + x * e1 + y * e2
         return (cota_del_cono(q[0], q[1], radio_base) - q[2]) / n[2]
 
-    borde = [superficie(c.radio * math.cos(a), c.radio * math.sin(a)) for a in np.linspace(0, 2 * math.pi, 48, endpoint=False)]
+    boca = _contorno_cupulin(c.radio)
     # La cupulita arranca por encima del punto mas alto de la boca: asi, vista
     # a lo largo del eje, se ve entera.
-    fondo = max(borde) + profundidad
+    fondo = max(superficie(x, y) for x, y in boca) + profundidad
     local: list[Punto3] = []
     F = []
     C: list[str] = []
@@ -491,25 +625,21 @@ def cupulin(c: Cupulin, profundidad: float, subdivision: int = 5, plantillas=Non
         F.extend((p + b, q + b, r + b) for p, q, r in Fg)
         C.extend(g[3] if len(g) > 3 else ["yeso"] * len(Fg))
         S.extend(g[4] if len(g) > 4 else [1.0] * len(Fg))
-    Vt, Ft = _tubo(0.0, 0.0, c.radio, superficie, fondo + 2 * e * hiladas[0].paso)
+    Vt, Ft = _tubo_contorno(boca, superficie, fondo + 2 * e * hiladas[0].paso)
     b = len(local)
     local.extend(Vt)
     F.extend((p + b, q + b, r + b) for p, q, r in Ft)
     C.extend(["yeso"] * len(Ft))
     S.extend([0.55] * len(Ft))
-    # Marco: corona de yeso justo por debajo de las patas de las piezas
-    # vecinas, que tapa el corte de la trama, con un filete de oro en el borde.
-    bajo = -0.03
-    for r0, r1, color, luz in (
-        (c.radio, c.radio + FILETE_CUPULIN, oro, 1.0),
-        (c.radio + FILETE_CUPULIN, c.radio * MARCO_CUPULIN, "yeso", 0.95),
-    ):
-        Vr, Fr = _corona(r0, r1, bajo)
-        b = len(local)
-        local.extend((x, y, z + superficie(x, y)) for x, y, z in Vr)
-        F.extend((p + b, q + b, r + b) for p, q, r in Fr)
-        C.extend([color] * len(Fr))
-        S.extend([luz] * len(Fr))
+    # Marco de yeso con la forma de la boca, justo por debajo de las patas de
+    # las piezas vecinas: tapa el corte de la trama. Sin filete de oro: en la
+    # ortoimagen el marco es yeso (cambio del 2026-11-07).
+    Vr, Fr = _corona_contorno(boca, _contorno_cupulin(c.radio * MARCO_CUPULIN), -0.03)
+    b = len(local)
+    local.extend((x, y, z + superficie(x, y)) for x, y, z in Vr)
+    F.extend((p + b, q + b, r + b) for p, q, r in Fr)
+    C.extend(["yeso"] * len(Fr))
+    S.extend([0.95] * len(Fr))
     L = np.asarray(local)
     G = o + L[:, :1] * e1 + L[:, 1:2] * e2 + L[:, 2:3] * n
     V = [tuple(v) for v in G.tolist()]
@@ -545,18 +675,13 @@ def cupula(
     plantillas: dict[tuple[str, float], tuple] = {}
     huecos = cupulines_medidos() if con_cupulines else []
 
-    marcos = [(c.marco(radio_base), c.radio * MARCO_CUPULIN) for c in huecos]
+    en_marco = detector_de_marcos(huecos, radio_base)
 
     def en_hueco(vertices) -> bool:
         # Fuera las piezas con el centroide sobre el marco, no solo sobre el
         # pocillo: si no, sus patas tapan el marco y el cupulin se ve a medio
         # hacer. Quitar toda pieza que lo toque deja huecos fuera del marco.
-        P = np.asarray(vertices, dtype=float).mean(axis=0)
-        for (o, e1, e2, n), r in marcos:
-            d = P - o
-            if math.hypot(d @ e1, d @ e2) < r and -4.0 < d @ n < 7.0:
-                return True
-        return False
+        return en_marco(np.asarray(vertices, dtype=float).mean(axis=0))
 
     grupos, quitadas = _montar(planta, hiladas, subdivision, plantillas, en_hueco if huecos else None, pintar)
     mini: dict = {}

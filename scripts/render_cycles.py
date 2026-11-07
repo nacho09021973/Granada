@@ -75,8 +75,8 @@ VISTAS = {
     "cenital": ((0.0, 0.0, -13.0), (0.0, 0.001, 10.0), 90.0),
     # Como la ortoimagen de AA-415_23: proyeccion ortogonal desde abajo, con la
     # cupula entera en el encuadre. El tercer valor es el ancho abarcado
-    # (ortho_scale), no un angulo: el radio de arranque es 16,3.
-    "ortogonal": ((0.0, 0.0, -20.0), (0.0, 0.001, 10.0), 35.0),
+    # (ortho_scale), no un angulo: el cuadrado de la sala mide 2 x 15,84.
+    "ortogonal": ((0.0, 0.0, -20.0), (0.0, 0.001, 10.0), 32.0),
 }
 ORTOGONALES = {"ortogonal"}
 LUZ_LEVANTAMIENTO_W = 12000.0
@@ -506,6 +506,10 @@ def luz_levantamiento(posicion, ancho: float):
     for o in bpy.data.objects:
         if o.name.startswith("sol_"):
             o.data.energy = 0.0
+        # Muros de la sala y ventanas: desde abajo y en ortogonal se ven de
+        # canto, y solo quitarian luz a las esquinas de fuera del octogono.
+        if o.name == "sala" or o.name.startswith(("marco_", "ventana_", "tambor")):
+            o.hide_render = True
     luz = bpy.data.lights.new("levantamiento", "AREA")
     luz.shape = "SQUARE"
     luz.size = ancho * 1.2

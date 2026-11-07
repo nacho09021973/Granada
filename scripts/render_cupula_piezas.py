@@ -114,7 +114,8 @@ def main() -> int:
                        "pendiente_medida": PENDIENTE, "cateto_m": CATETO_M},
             "controles": {
                 "celdas": len(resumen),
-                "piezas": sum(r["piezas"] for r in resumen),
+                "piezas": sum(r["piezas"] for r in resumen if not r["esquina"]),
+                "piezas_esquinas": sum(r["piezas"] for r in resumen if r["esquina"]),
                 "piezas_jones_goury": 5416,
                 "celdas_sin_hiladas": sum(r["hiladas"] == 0 for r in resumen),
                 "vertices": len(V),
