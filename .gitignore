@@ -120,3 +120,4 @@ renders/cupula_red.mtl
 # Renders de 8192 px del modelo sobre la red (~100 MB): se regeneran con
 # scripts/render_cycles.py --lado 8192. Copia en Drive.
 renders/cupula_cycles_*_8k.png
+renders/cupula_cycles_*_16k.png
