@@ -75,8 +75,9 @@ VISTAS = {
     "cenital": ((0.0, 0.0, -13.0), (0.0, 0.001, 10.0), 90.0),
     # Como la ortoimagen de AA-415_23: proyeccion ortogonal desde abajo, con la
     # cupula entera en el encuadre. El tercer valor es el ancho abarcado
-    # (ortho_scale), no un angulo: el cuadrado de la sala mide 2 x 15,84.
-    "ortogonal": ((0.0, 0.0, -20.0), (0.0, 0.001, 10.0), 32.0),
+    # (ortho_scale), no un angulo: el cuadrado de la sala mide 2 x 15,84
+    # (2 RADIO_BASE / media del octogono); con mas se ve vacio fuera de los muros.
+    "ortogonal": ((0.0, 0.0, -20.0), (0.0, 0.001, 10.0), 31.68),
 }
 ORTOGONALES = {"ortogonal"}
 LUZ_LEVANTAMIENTO_W = 12000.0

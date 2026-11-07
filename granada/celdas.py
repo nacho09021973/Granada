@@ -408,25 +408,40 @@ def cupula_red(subdivision: int = 6, color: bool = False, radio_base: float = RA
     # ras del cono fuera de ella, donde no hay celdas que lo tapen. Sin fondo
     # en los marcos de los cupulines, que suben mas que el.
     a = radio_base / _MEDIA_OCT
+    # Se quita el fondo que toca la boca (cualquier vertice dentro), no el del
+    # marco: el marco, mas ancho que una celda de la rejilla, queda por delante
+    # y tapa los dientes. Quitarlo en todo el marco dejaba dientes negros fuera;
+    # quitarlo solo por el centroide dejaba dientes grises dentro.
+    en_boca = detector_de_marcos(huecos, radio_base, escala=1.0)
     m = 192
     xs = np.linspace(-a, a, m + 1)
-    X, Y = np.meshgrid(xs, xs)
-    dentro_red = _dentro_del_contorno(X.ravel(), Y.ravel()).reshape(X.shape)
     t_oct = a * math.tan(math.pi / 8)
-    dentro_oct = np.abs(X) + np.abs(Y) <= a + t_oct
-    a_ras = dentro_oct & ~dentro_red
-    Z = _cota_cono(X, Y, radio_base) + np.where(a_ras, 0.01, ALTURA_FONDO)
-    Vf = [(float(x), float(y), float(z)) for x, y, z in zip(X.ravel(), Y.ravel(), Z.ravel())]
-    Ff = []
+    # Cada triangulo toma la altura de la zona de su centroide, con vertices
+    # propios: si compartieran vertices entre zonas, los de la frontera
+    # quedarian inclinados y se verian como una linea oscura en escalera.
+    centros_x, centros_y, tris = [], [], []
     for j in range(m):
         for i in range(m):
-            p = j * (m + 1) + i
-            for tri in ((p, p + m + 2, p + 1), (p, p + m + 1, p + m + 2)):
-                cx = sum(Vf[v][0] for v in tri) / 3
-                cy = sum(Vf[v][1] for v in tri) / 3
-                cz = sum(Vf[v][2] for v in tri) / 3
-                if not (huecos and en_marco(np.array([cx, cy, cz]))):
-                    Ff.append(tri)
+            p00 = (xs[i], xs[j])
+            p10 = (xs[i + 1], xs[j])
+            p01 = (xs[i], xs[j + 1])
+            p11 = (xs[i + 1], xs[j + 1])
+            for tri in ((p00, p11, p10), (p00, p01, p11)):
+                tris.append(tri)
+                centros_x.append(sum(p[0] for p in tri) / 3)
+                centros_y.append(sum(p[1] for p in tri) / 3)
+    cx = np.array(centros_x)
+    cy = np.array(centros_y)
+    a_ras = (np.abs(cx) + np.abs(cy) <= a + t_oct) & ~_dentro_del_contorno(cx, cy)
+    Vf, Ff = [], []
+    for tri, ras, x0, y0 in zip(tris, a_ras, cx, cy):
+        alto = 0.01 if ras else ALTURA_FONDO
+        P = [(float(x), float(y), float(_cota_cono(x, y, radio_base)) + alto) for x, y in tri]
+        if huecos and any(en_boca(np.array(v)) for v in P):
+            continue
+        k = len(Vf)
+        Vf.extend(P)
+        Ff.append((k, k + 1, k + 2))
     grupos.append(("fondo", Vf, Ff, ["yeso"] * len(Ff), [0.9] * len(Ff)) if color else ("fondo", Vf, Ff))
     if color:
         grupos.append(("tambor", *_tambor_friso(planta_por_defecto(radio_base, True), radio_base, 0.0)))

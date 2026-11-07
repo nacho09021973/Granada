@@ -452,11 +452,12 @@ class Cupulin:
         return math.hypot(x, y) < borde and -4.0 < d @ n < 7.0
 
 
-def detector_de_marcos(huecos, radio_base: float = RADIO_BASE):
-    """Funcion punto -> bool: cae en el marco de algun cupulin. Precalcula los
-    marcos, que `Cupulin.contiene` recalcula en cada llamada."""
+def detector_de_marcos(huecos, radio_base: float = RADIO_BASE, escala: float = MARCO_CUPULIN):
+    """Funcion punto -> bool: cae en el marco de algun cupulin (con escala=1,
+    en su boca). Precalcula los marcos, que `Cupulin.contiene` recalcula en
+    cada llamada."""
     malla = np.linspace(0, 2 * math.pi, len(FORMA_CUPULIN), endpoint=False)
-    marcos = [(*c.marco(radio_base), c.radio * MARCO_CUPULIN) for c in huecos]
+    marcos = [(*c.marco(radio_base), c.radio * escala) for c in huecos]
 
     def dentro(P) -> bool:
         P = np.asarray(P, dtype=float)
