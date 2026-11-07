@@ -116,3 +116,7 @@ renders/cupula_cycles_cenital_8k.png
 # scripts/render_cupula_piezas.py --modelo red.
 renders/cupula_red.obj
 renders/cupula_red.mtl
+
+# Renders de 8192 px del modelo sobre la red (~100 MB): se regeneran con
+# scripts/render_cycles.py --lado 8192. Copia en Drive.
+renders/cupula_cycles_*_8k.png
