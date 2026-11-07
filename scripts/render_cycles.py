@@ -57,6 +57,7 @@ descarta: aqui la sombra la calcula la luz.
 from __future__ import annotations
 
 import argparse
+import json
 import math
 import sys
 from pathlib import Path
@@ -75,18 +76,23 @@ VISTAS = {
     "cenital": ((0.0, 0.0, -13.0), (0.0, 0.001, 10.0), 90.0),
     # Como la ortoimagen de AA-415_23: proyeccion ortogonal desde abajo, con la
     # cupula entera en el encuadre. El tercer valor es el ancho abarcado
-    # (ortho_scale), no un angulo: el cuadrado de la sala mide 2 x 15,84
-    # (2 RADIO_BASE / media del octogono); con mas se ve vacio fuera de los muros.
-    "ortogonal": ((0.0, 0.0, -20.0), (0.0, 0.001, 10.0), 31.68),
+    # (ortho_scale), no un angulo: la sala mide 8,08 m = 36,12 de lado
+    # (datos/alzado_sala.json); con mas se ve vacio fuera de los muros.
+    "ortogonal": ((0.0, 0.0, -49.0), (0.0, 0.001, 10.0), 36.12),
+    # Como Ferrer_5: desde el centro del suelo, mirando arriba. Campo de 70
+    # grados: el borde del encuadre corta los muros hacia los 6 m, a la altura
+    # de las ventanas altas, como en Ferrer_5.
+    "sala": ((0.0, 0.0, -49.9), (0.0, 0.001, 10.0), 70.0),
 }
 ORTOGONALES = {"ortogonal"}
-LUZ_LEVANTAMIENTO_W = 12000.0
+LUZ_LEVANTAMIENTO_W = 48000.0
 """Solo en las vistas ortogonales: un panel de luz bajo la camara, que da la
 luz pareja de un levantamiento fotogrametrico en vez de la de las ventanas.
 Escena para comparar con la ortoimagen, no dato."""
 
-SUELO = -24.0
-"""Cota del suelo de la sala (el tambor baja hasta -6)."""
+SUELO = json.loads((RAIZ / "datos" / "alzado_sala.json").read_text(encoding="utf-8"))["niveles"]["suelo"]["z_cateto"]
+"""Cota del suelo de la sala, medida en la seccion (scripts/leer_alzado_sala.py)."""
+MEDIO_LADO_SALA = json.loads((RAIZ / "datos" / "alzado_sala.json").read_text(encoding="utf-8"))["anchos"]["sala"]["cateto"] / 2
 
 VENTANA_ANCHO = 1.7
 VENTANA_ALTO = 3.2
@@ -499,6 +505,22 @@ def sol(contorno: np.ndarray):
         o.rotation_quaternion = direccion.to_track_quat("-Z", "Y")
 
 
+LUZ_SALA_W = 12000.0
+"""Vista `sala`: panel en el suelo mirando arriba, que hace de la luz que
+entra por las puertas y las ventanas altas, que no se modelan como huecos."""
+
+
+def luz_sala():
+    luz = bpy.data.lights.new("luz_sala", "AREA")
+    luz.shape = "SQUARE"
+    luz.size = 2 * MEDIO_LADO_SALA * 0.9
+    luz.energy = LUZ_SALA_W
+    o = bpy.data.objects.new("luz_sala", luz)
+    bpy.context.collection.objects.link(o)
+    o.location = (0.0, 0.0, SUELO + 0.2)
+    o.rotation_euler = (math.pi, 0.0, 0.0)
+
+
 def luz_levantamiento(posicion, ancho: float):
     """Panel cuadrado justo detras de la camara, mirando hacia arriba. Apaga el
     sol rasante: un levantamiento no tiene esa mancha de luz."""
@@ -509,7 +531,7 @@ def luz_levantamiento(posicion, ancho: float):
             o.data.energy = 0.0
         # Muros de la sala y ventanas: desde abajo y en ortogonal se ven de
         # canto, y solo quitarian luz a las esquinas de fuera del octogono.
-        if o.name == "sala" or o.name.startswith(("marco_", "ventana_", "tambor")):
+        if o.name == "sala" or o.name.startswith(("marco_", "ventana_", "tambor", "sala_muros")):
             o.hide_render = True
     luz = bpy.data.lights.new("levantamiento", "AREA")
     luz.shape = "SQUARE"
@@ -590,7 +612,9 @@ def main() -> int:
     colores = colores_del_mtl(args.obj.with_suffix(".mtl"))
     objetos, propios = importar(args.obj, colores)
     contorno, cota = contorno_del_tambor(objetos)
-    sala(contorno, cota, material_yeso("yeso_sala", colores["yeso"], grano=0.3, variacion=0.1))
+    if not any(o.name.startswith("sala_") for o in objetos):
+        # Malla sin sala propia (modelo de anillos): muros que prolongan el tambor.
+        sala(contorno, cota, material_yeso("yeso_sala", colores["yeso"], grano=0.3, variacion=0.1))
     ventanas(contorno, material_ventana(), propios["yeso"])
     sol(contorno)
     ajustes(args.muestras, args.lado)
@@ -610,6 +634,8 @@ def main() -> int:
         bpy.context.scene.camera = camara(nombre, pos, obj, fov)
         if nombre in ORTOGONALES:
             luz_levantamiento(pos, fov)
+        elif nombre == "sala":
+            luz_sala()
         ruta = args.salida / f"cupula_cycles_{nombre}{args.sufijo}.png"
         bpy.context.scene.render.filepath = str(ruta)
         bpy.ops.render.render(write_still=True)

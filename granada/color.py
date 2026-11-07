@@ -88,6 +88,8 @@ def _paleta_foto() -> tuple[dict[str, str], dict[str, float]]:
 
 PALETA_FOTO, PESOS_FOTO = _paleta_foto()
 PALETA = PALETA_FOTO
+# Huecos de la sala (arco de entrada, ventana alta), vistos desde dentro.
+PALETA["hueco"] = "#16130F"
 
 # Ciclo de anillos para las celdillas arqueadas de las hiladas A, con yeso
 # entre medias para que el color respire.

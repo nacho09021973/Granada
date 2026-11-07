@@ -1,0 +1,98 @@
+{
+  "version": 1,
+  "fuente": "docs/AA-415_23_seccion.jpg, lectura a ojo (ver docstring de scripts/leer_alzado_sala.py)",
+  "px_por_m": 472.488,
+  "z": "0 en el arranque de la cupula, positivo hacia arriba",
+  "niveles": {
+    "arranque_cupula": {
+      "fila_px": 2140,
+      "borde": "remate de la arqueria del tambor, donde empiezan los mocarabes",
+      "sobre_suelo_m": 11.272,
+      "z_m": 0.0,
+      "z_cateto": 0.0
+    },
+    "pie_ventanas_tambor": {
+      "fila_px": 2776,
+      "borde": "alfeizar de las ventanas del tambor, techo de la banda de friso",
+      "sobre_suelo_m": 9.926,
+      "z_m": -1.346,
+      "z_cateto": -6.014
+    },
+    "pie_friso_tambor": {
+      "fila_px": 3582,
+      "borde": "pie de la banda de friso del tambor octogonal, techo de las trompas",
+      "sobre_suelo_m": 8.22,
+      "z_m": -3.052,
+      "z_cateto": -13.636
+    },
+    "pie_trompas": {
+      "fila_px": 4396,
+      "borde": "pie de los arcos de mocarabes de las esquinas, techo de los muros del cuadrado",
+      "sobre_suelo_m": 6.498,
+      "z_m": -4.775,
+      "z_cateto": -21.333
+    },
+    "remate_ventana_alta": {
+      "fila_px": 4273,
+      "borde": "clave de la ventana alta de cada muro",
+      "sobre_suelo_m": 6.758,
+      "z_m": -4.514,
+      "z_cateto": -20.17
+    },
+    "pie_ventana_alta": {
+      "fila_px": 5080,
+      "borde": "alfeizar de la ventana alta",
+      "sobre_suelo_m": 5.05,
+      "z_m": -6.222,
+      "z_cateto": -27.801
+    },
+    "remate_alfiz_arco": {
+      "fila_px": 5447,
+      "borde": "remate del alfiz (recuadro) del arco de entrada",
+      "sobre_suelo_m": 4.273,
+      "z_m": -6.999,
+      "z_cateto": -31.272
+    },
+    "clave_arco_grande": {
+      "fila_px": 5618,
+      "borde": "clave interior del arco de entrada de cada muro",
+      "sobre_suelo_m": 3.911,
+      "z_m": -7.361,
+      "z_cateto": -32.889
+    },
+    "remate_zocalo": {
+      "fila_px": 6767,
+      "borde": "remate del zocalo de azulejo",
+      "sobre_suelo_m": 1.479,
+      "z_m": -9.793,
+      "z_cateto": -43.754
+    },
+    "suelo": {
+      "fila_px": 7466,
+      "borde": "suelo",
+      "sobre_suelo_m": 0.0,
+      "z_m": -11.272,
+      "z_cateto": -50.364
+    }
+  },
+  "anchos": {
+    "arco_grande": {
+      "px": 1152,
+      "m": 2.438,
+      "cateto": 10.894,
+      "donde": "luz interior del arco de entrada, en la fila 5911"
+    },
+    "ventana_alta": {
+      "px": 611,
+      "m": 1.293,
+      "cateto": 5.778,
+      "donde": "luz de la ventana alta, en la fila 4689"
+    },
+    "sala": {
+      "px": 3820,
+      "m": 8.085,
+      "cateto": 36.123,
+      "donde": "ancho interior de la sala: muro del fondo entre los cortes de los laterales, filas 5000-7400"
+    }
+  }
+}

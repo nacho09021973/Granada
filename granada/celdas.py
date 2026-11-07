@@ -15,10 +15,8 @@ Que es dato y que es eleccion
   alejado de sus bordes, como los cupulines de granada/cupula.py.
 - **La altura** es la del cono medido (PENDIENTE, RADIO_BASE): cada celda se
   posa sobre el cono y sus hiladas suben desde el.
-- **Las cuatro esquinas** entre el octogono y el cuadrado de la sala (las
-  trompas, que en la ortoimagen llevan tambien mocarabes) se rellenan como
-  cuatro celdas mas, a la cota del arranque. Imitacion: su forma real no esta
-  leida.
+- **La sala** (tambor, trompas y muros del cuadrado) sale de granada/sala.py,
+  con las medidas de la seccion; las trompas son imitacion.
 
 Cada cara es estrellada respecto a ese punto (comprobado: las 105 tienen
 nucleo), asi que su contorno se describe como r(phi) desde el y las hiladas
@@ -43,7 +41,6 @@ from granada.cupula import (
     RADIO_BASE,
     _cupulilla,
     _montar,
-    _tambor_friso,
     cupulin,
     cupulines_medidos,
     detector_de_marcos,
@@ -337,19 +334,6 @@ def cupula_red(subdivision: int = 6, color: bool = False, radio_base: float = RA
     plantillas: dict = {}
     grupos = []
     resumen = []
-    for celda in celdas_de_las_esquinas(radio_base):
-        # Piramide hueca de cuatro caras hacia el centro del nucleo: sus aristas,
-        # con los caballetes, dan los ocho rayos de cada flor de la reticula.
-        P = np.asarray(celda.poligono)
-        cx, cy = celda.centro
-        lado = math.sqrt(abs(_area(P)))
-        Vp = [(float(x), float(y), float(_cota_cono(x, y, radio_base))) for x, y in P]
-        Vp.append((cx, cy, float(_cota_cono(cx, cy, radio_base)) + ALTO_PIRAMIDE * lado))
-        k = len(P)
-        Fp = [(i, k, (i + 1) % k) for i in range(k)]
-        grupos.append((f"{celda.id}_piramide", Vp, Fp, ["yeso"] * k, [0.9] * k) if color else (f"{celda.id}_piramide", Vp, Fp))
-        resumen.append({"cara": celda.id, "orbita": celda.orbita, "radio_medio": lado / 2, "hiladas": 0, "piezas": 0,
-                        "esquina": True})
     centro, azules = caras_del_centro()
     for celda in celdas_de_la_red():
         cx, cy = celda.centro
@@ -399,7 +383,7 @@ def cupula_red(subdivision: int = 6, color: bool = False, radio_base: float = RA
         for k, c in enumerate(huecos):
             grupos.append((f"cupulin_{k:02d}", *cupulin(c, prof, plantillas=mini, radio_base=radio_base,
                                                          colorear=colorear_cupulin_disperso if color else None)))
-    Vn, Fn, Cn, Sn = nudos_y_caballetes(radio_base)
+    Vn, Fn, Cn, Sn = nudos_y_caballetes(radio_base, esquinas=False)
     grupos.append(("red_nudos", Vn, Fn, Cn, Sn) if color else ("red_nudos", Vn, Fn))
     # Fondo plano de yeso por encima de la clave: solo se ve por los huecos que
     # dejan las celdas, los marcos y las esquinas (si no, se ve el vacio).
@@ -443,6 +427,10 @@ def cupula_red(subdivision: int = 6, color: bool = False, radio_base: float = RA
         Vf.extend(P)
         Ff.append((k, k + 1, k + 2))
     grupos.append(("fondo", Vf, Ff, ["yeso"] * len(Ff), [0.9] * len(Ff)) if color else ("fondo", Vf, Ff))
-    if color:
-        grupos.append(("tambor", *_tambor_friso(planta_por_defecto(radio_base, True), radio_base, 0.0)))
+    # La sala: tambor medido, trompas y muros del cuadrado (granada/sala.py).
+    # Sustituye a la reticula plana de las esquinas a la cota del arranque.
+    from granada.sala import sala
+
+    for nombre, V, F, C, S in sala(radio_base):
+        grupos.append((nombre, V, F, C, S) if color else (nombre, V, F))
     return resumen, grupos

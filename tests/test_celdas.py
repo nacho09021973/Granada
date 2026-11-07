@@ -51,18 +51,22 @@ def test_el_recuento_de_piezas_es_el_de_jones_y_goury(red):
     assert abs(sum(r["piezas"] for r in resumen if not r["esquina"]) - 5416) / 5416 < 0.03
 
 
-def test_las_esquinas_cubren_el_cuadrado(red):
-    resumen, grupos = red
-    from granada.celdas import PASO_ESQUINA_M, reticula_de_las_esquinas
-    from granada.cupula import CATETO_M
+def test_la_sala_lleva_tambor_trompas_y_muros(red):
+    _, grupos = red
+    nombres = {g[0] for g in grupos}
+    assert {"tambor", "sala_trompas", "sala_muros"} <= nombres
 
-    celdas, nudos, aristas = reticula_de_las_esquinas()
-    # Cuatro triangulos de 43 unidades^2 en celdas de lado 0,21 m: unas 45 por esquina.
-    lado = PASO_ESQUINA_M / CATETO_M
-    assert 4 * 43.05 / lado**2 * 0.8 < len(celdas) < 4 * 43.05 / lado**2 * 1.2
-    assert len([r for r in resumen if r["esquina"]]) == len(celdas)
-    assert nudos and aristas
-    assert sum(g[0].startswith("esquina_") for g in grupos) > 0
+
+def test_las_medidas_de_la_sala_son_las_de_la_seccion():
+    from granada.cupula import CATETO_M
+    from granada.sala import medidas
+
+    m = medidas()
+    # Sala de 8,08 m, tambor de 3,865 m, suelo 11,27 m bajo el arranque.
+    assert abs(2 * m["medio_lado"] * CATETO_M - 8.08) < 0.05
+    assert abs(m["apotema_tambor"] * CATETO_M - 3.866) < 0.01
+    assert abs(m["suelo"] * CATETO_M + 11.27) < 0.05
+    assert m["suelo"] < m["pie_trompas"] < m["pie_friso"] < 0
 
 
 def test_las_cupulillas_de_los_cupulines_son_de_yeso():
