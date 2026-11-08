@@ -1,0 +1,160 @@
+{
+  "fuente": "docs/Cúpula_de_la_sala_de_las_Dos_Hermanas_(Alhambra,_Granada).jpg, recorte 20-80 %, 1400 px",
+  "yeso": {
+    "fraccion_de_pixeles": 0.0064,
+    "mediana_cuartil_claro": "#FEFEFD"
+  },
+  "por_umbral": {
+    "S>=0.20 V>=0.28": {
+      "fraccion_de_pixeles": 0.9167,
+      "bandas": {
+        "granate": {
+          "peso": 0.0019,
+          "mediana": "#624440"
+        },
+        "tierra": {
+          "peso": 0.3773,
+          "mediana": "#8B7557"
+        },
+        "ocre": {
+          "peso": 0.6048,
+          "mediana": "#A4936D"
+        },
+        "verde": {
+          "peso": 0.0156,
+          "mediana": "#4B5F3E"
+        },
+        "azul": {
+          "peso": 0.0003,
+          "mediana": "#395059"
+        }
+      }
+    },
+    "S>=0.20 V>=0.45": {
+      "fraccion_de_pixeles": 0.7814,
+      "bandas": {
+        "granate": {
+          "peso": 0.0007,
+          "mediana": "#8A6966"
+        },
+        "tierra": {
+          "peso": 0.3443,
+          "mediana": "#947E61"
+        },
+        "ocre": {
+          "peso": 0.6516,
+          "mediana": "#A89770"
+        },
+        "verde": {
+          "peso": 0.0032,
+          "mediana": "#717D55"
+        },
+        "azul": {
+          "peso": 0.0002,
+          "mediana": "#6C91CC"
+        }
+      }
+    },
+    "S>=0.30 V>=0.28": {
+      "fraccion_de_pixeles": 0.6611,
+      "bandas": {
+        "granate": {
+          "peso": 0.0017,
+          "mediana": "#5A3A35"
+        },
+        "tierra": {
+          "peso": 0.3937,
+          "mediana": "#836B4B"
+        },
+        "ocre": {
+          "peso": 0.5882,
+          "mediana": "#9C8961"
+        },
+        "verde": {
+          "peso": 0.016,
+          "mediana": "#485E3B"
+        },
+        "azul": {
+          "peso": 0.0003,
+          "mediana": "#324C54"
+        }
+      }
+    },
+    "S>=0.30 V>=0.45": {
+      "fraccion_de_pixeles": 0.5333,
+      "bandas": {
+        "granate": {
+          "peso": 0.0003,
+          "mediana": "#805A53"
+        },
+        "tierra": {
+          "peso": 0.3477,
+          "mediana": "#8D7556"
+        },
+        "ocre": {
+          "peso": 0.6489,
+          "mediana": "#A18E65"
+        },
+        "verde": {
+          "peso": 0.0029,
+          "mediana": "#6E7C4E"
+        },
+        "azul": {
+          "peso": 0.0002,
+          "mediana": "#5A7EC2"
+        }
+      }
+    },
+    "S>=0.40 V>=0.28": {
+      "fraccion_de_pixeles": 0.2985,
+      "bandas": {
+        "granate": {
+          "peso": 0.002,
+          "mediana": "#54312C"
+        },
+        "tierra": {
+          "peso": 0.4827,
+          "mediana": "#755B3A"
+        },
+        "ocre": {
+          "peso": 0.4977,
+          "mediana": "#897449"
+        },
+        "verde": {
+          "peso": 0.0171,
+          "mediana": "#415C33"
+        },
+        "azul": {
+          "peso": 0.0005,
+          "mediana": "#2B4A54"
+        }
+      }
+    },
+    "S>=0.40 V>=0.45": {
+      "fraccion_de_pixeles": 0.1917,
+      "bandas": {
+        "granate": {
+          "peso": 0.0002,
+          "mediana": "#7D4D45"
+        },
+        "tierra": {
+          "peso": 0.4061,
+          "mediana": "#846946"
+        },
+        "ocre": {
+          "peso": 0.5902,
+          "mediana": "#927D4F"
+        },
+        "verde": {
+          "peso": 0.0032,
+          "mediana": "#657B43"
+        },
+        "azul": {
+          "peso": 0.0003,
+          "mediana": "#507ED0"
+        }
+      }
+    }
+  },
+  "nota": "foto de Commons (Filpo Cabana, 2017), luz natural sin controlar; no es el color original"
+}

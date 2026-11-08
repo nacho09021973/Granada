@@ -9,13 +9,18 @@ Mismo recorte que paleta.md (20-80 % del lado). Para cada umbral de
 saturacion da el peso de cada banda de tono y su color mediano (RGB), y el
 color mediano del yeso (S < 0,12) en su cuartil claro, que es el yeso con luz.
 
-Uso:  python3 scripts/medir_acentos_ortoimagen.py
+Uso:  python3 scripts/medir_acentos_ortoimagen.py [--entrada img] [--salida json] [--nota texto]
 Entrada: docs/AA-415_23_orto_techo.jpg (excluida por derechos; copia en Drive).
 Salida: datos/acentos_ortoimagen.json
+
+Con --entrada se mide otra imagen con el mismo metodo; el 2026-11-08 se
+midio asi la foto de Commons (docs/fuentes.md, entrada 19) como segunda
+fuente, en datos/acentos_foto_commons.json.
 """
 
 from __future__ import annotations
 
+import argparse
 import colorsys
 import json
 import statistics
@@ -53,7 +58,12 @@ def mediana_rgb(px: list[tuple[int, int, int]]) -> str:
 
 
 def main() -> int:
-    im = Image.open(ORTO).convert("RGB")
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--entrada", type=Path, default=ORTO)
+    ap.add_argument("--salida", type=Path, default=SALIDA)
+    ap.add_argument("--nota", default="color del estado de 2021 bajo la luz del levantamiento; no es el color original")
+    a = ap.parse_args()
+    im = Image.open(a.entrada).convert("RGB")
     w, h = im.size
     im = im.crop((int(0.2 * w), int(0.2 * h), int(0.8 * w), int(0.8 * h))).resize((1400, 1400), Image.LANCZOS)
     pixeles = list(im.get_flattened_data()) if hasattr(im, "get_flattened_data") else list(im.getdata())
@@ -82,12 +92,12 @@ def main() -> int:
             }
 
     salida = {
-        "fuente": "docs/AA-415_23_orto_techo.jpg, recorte 20-80 %, 1400 px",
+        "fuente": f"{a.entrada.resolve().relative_to(RAIZ)}, recorte 20-80 %, 1400 px",
         "yeso": {"fraccion_de_pixeles": round(len(yeso) / len(pixeles), 4), "mediana_cuartil_claro": mediana_rgb(claro)},
         "por_umbral": por_umbral,
-        "nota": "color del estado de 2021 bajo la luz del levantamiento; no es el color original",
+        "nota": a.nota,
     }
-    SALIDA.write_text(json.dumps(salida, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    a.salida.write_text(json.dumps(salida, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(json.dumps(salida, indent=2, ensure_ascii=False))
     return 0
 
