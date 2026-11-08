@@ -5,42 +5,42 @@
   "modelo": {
     "modulo": "granada/celdas.py",
     "subdivision": 8,
-    "escala_celda": 0.475,
+    "escala_celda": 0.5,
     "pendiente_medida": 1.282967032967033,
     "cateto_m": 0.22381466813208983
   },
   "controles": {
     "celdas": 105,
-    "piezas": 5392,
+    "piezas": 5408,
     "piezas_esquinas": 0,
     "piezas_jones_goury": 5416,
-    "celdas_sin_hiladas": 40,
-    "vertices": 1001772,
-    "triangulos": 1490318
+    "celdas_sin_hiladas": 16,
+    "vertices": 1010054,
+    "triangulos": 1506598
   },
   "celdas": [
     {
       "cara": "c000",
       "orbita": "c000",
-      "radio_medio": 2.5259720103480165,
-      "hiladas": 5,
-      "piezas": 168,
+      "radio_medio": 2.525972010348016,
+      "hiladas": 6,
+      "piezas": 164,
       "esquina": false
     },
     {
       "cara": "c001",
       "orbita": "c001",
-      "radio_medio": 2.455860916096011,
+      "radio_medio": 2.4558609160960105,
       "hiladas": 5,
-      "piezas": 164,
+      "piezas": 152,
       "esquina": false
     },
     {
       "cara": "c002",
       "orbita": "c001",
-      "radio_medio": 2.466704871655184,
+      "radio_medio": 2.4667048716551845,
       "hiladas": 5,
-      "piezas": 164,
+      "piezas": 156,
       "esquina": false
     },
     {
@@ -56,7 +56,7 @@
       "orbita": "c004",
       "radio_medio": 1.566102967755274,
       "hiladas": 3,
-      "piezas": 88,
+      "piezas": 80,
       "esquina": false
     },
     {
@@ -64,7 +64,7 @@
       "orbita": "c005",
       "radio_medio": 1.1723672740464242,
       "hiladas": 2,
-      "piezas": 36,
+      "piezas": 32,
       "esquina": false
     },
     {
@@ -72,23 +72,23 @@
       "orbita": "c004",
       "radio_medio": 1.54404296849101,
       "hiladas": 3,
-      "piezas": 88,
+      "piezas": 80,
       "esquina": false
     },
     {
       "cara": "c007",
       "orbita": "c000",
       "radio_medio": 2.504334381348793,
-      "hiladas": 5,
-      "piezas": 168,
+      "hiladas": 6,
+      "piezas": 160,
       "esquina": false
     },
     {
       "cara": "c008",
       "orbita": "c000",
       "radio_medio": 2.50243490204507,
-      "hiladas": 5,
-      "piezas": 168,
+      "hiladas": 6,
+      "piezas": 160,
       "esquina": false
     },
     {
@@ -102,7 +102,7 @@
     {
       "cara": "c010",
       "orbita": "c005",
-      "radio_medio": 1.1443707788159891,
+      "radio_medio": 1.1443707788159896,
       "hiladas": 2,
       "piezas": 32,
       "esquina": false
@@ -126,7 +126,7 @@
     {
       "cara": "c013",
       "orbita": "c013",
-      "radio_medio": 0.3423984202536173,
+      "radio_medio": 0.3423984202536172,
       "hiladas": 0,
       "piezas": 0,
       "esquina": false
@@ -134,7 +134,7 @@
     {
       "cara": "c014",
       "orbita": "c013",
-      "radio_medio": 0.34914650724639046,
+      "radio_medio": 0.3491465072463904,
       "hiladas": 0,
       "piezas": 0,
       "esquina": false
@@ -142,7 +142,7 @@
     {
       "cara": "c015",
       "orbita": "c012",
-      "radio_medio": 0.3422498142683656,
+      "radio_medio": 0.34224981426836565,
       "hiladas": 0,
       "piezas": 0,
       "esquina": false
@@ -151,24 +151,24 @@
       "cara": "c016",
       "orbita": "c016",
       "radio_medio": 1.820074423430278,
-      "hiladas": 3,
-      "piezas": 96,
+      "hiladas": 4,
+      "piezas": 92,
       "esquina": false
     },
     {
       "cara": "c017",
       "orbita": "c017",
       "radio_medio": 0.6428144376377954,
-      "hiladas": 0,
-      "piezas": 0,
+      "hiladas": 1,
+      "piezas": 4,
       "esquina": false
     },
     {
       "cara": "c018",
       "orbita": "c018",
-      "radio_medio": 0.6397899754575926,
-      "hiladas": 0,
-      "piezas": 0,
+      "radio_medio": 0.6397899754575925,
+      "hiladas": 1,
+      "piezas": 4,
       "esquina": false
     },
     {
@@ -182,7 +182,7 @@
     {
       "cara": "c020",
       "orbita": "c009",
-      "radio_medio": 1.2709423677845084,
+      "radio_medio": 1.2709423677845086,
       "hiladas": 2,
       "piezas": 32,
       "esquina": false
@@ -192,7 +192,7 @@
       "orbita": "c001",
       "radio_medio": 2.4610151594089866,
       "hiladas": 5,
-      "piezas": 164,
+      "piezas": 152,
       "esquina": false
     },
     {
@@ -200,55 +200,55 @@
       "orbita": "c001",
       "radio_medio": 2.4772181577976546,
       "hiladas": 5,
-      "piezas": 168,
+      "piezas": 152,
       "esquina": false
     },
     {
       "cara": "c023",
       "orbita": "c018",
-      "radio_medio": 0.6334820783633566,
-      "hiladas": 0,
-      "piezas": 0,
+      "radio_medio": 0.6334820783633567,
+      "hiladas": 1,
+      "piezas": 4,
       "esquina": false
     },
     {
       "cara": "c024",
       "orbita": "c017",
-      "radio_medio": 0.6538106423907202,
-      "hiladas": 0,
-      "piezas": 0,
+      "radio_medio": 0.6538106423907201,
+      "hiladas": 1,
+      "piezas": 8,
       "esquina": false
     },
     {
       "cara": "c025",
       "orbita": "c016",
-      "radio_medio": 1.8536929493304997,
-      "hiladas": 3,
-      "piezas": 96,
+      "radio_medio": 1.8536929493304992,
+      "hiladas": 4,
+      "piezas": 92,
       "esquina": false
     },
     {
       "cara": "c026",
       "orbita": "c026",
-      "radio_medio": 1.3637711343075496,
-      "hiladas": 2,
-      "piezas": 40,
+      "radio_medio": 1.3637711343075498,
+      "hiladas": 3,
+      "piezas": 48,
       "esquina": false
     },
     {
       "cara": "c027",
       "orbita": "c016",
-      "radio_medio": 1.8444195473412714,
-      "hiladas": 3,
-      "piezas": 96,
+      "radio_medio": 1.8444195473412712,
+      "hiladas": 4,
+      "piezas": 92,
       "esquina": false
     },
     {
       "cara": "c028",
       "orbita": "c026",
-      "radio_medio": 1.382208182998376,
-      "hiladas": 2,
-      "piezas": 40,
+      "radio_medio": 1.3822081829983757,
+      "hiladas": 3,
+      "piezas": 48,
       "esquina": false
     },
     {
@@ -256,13 +256,13 @@
       "orbita": "c003",
       "radio_medio": 1.174181521446065,
       "hiladas": 2,
-      "piezas": 36,
+      "piezas": 32,
       "esquina": false
     },
     {
       "cara": "c030",
       "orbita": "c005",
-      "radio_medio": 1.1755599839004074,
+      "radio_medio": 1.1755599839004076,
       "hiladas": 2,
       "piezas": 32,
       "esquina": false
@@ -270,23 +270,23 @@
     {
       "cara": "c031",
       "orbita": "c004",
-      "radio_medio": 1.5570031071439179,
+      "radio_medio": 1.5570031071439177,
       "hiladas": 3,
-      "piezas": 88,
+      "piezas": 80,
       "esquina": false
     },
     {
       "cara": "c032",
       "orbita": "c004",
-      "radio_medio": 1.536267996075304,
-      "hiladas": 2,
-      "piezas": 64,
+      "radio_medio": 1.5362679960753045,
+      "hiladas": 3,
+      "piezas": 80,
       "esquina": false
     },
     {
       "cara": "c033",
       "orbita": "c012",
-      "radio_medio": 0.34889069715728094,
+      "radio_medio": 0.3488906971572808,
       "hiladas": 0,
       "piezas": 0,
       "esquina": false
@@ -294,7 +294,7 @@
     {
       "cara": "c034",
       "orbita": "c013",
-      "radio_medio": 0.3491485204039822,
+      "radio_medio": 0.34914852040398214,
       "hiladas": 0,
       "piezas": 0,
       "esquina": false
@@ -303,112 +303,112 @@
       "cara": "c035",
       "orbita": "c017",
       "radio_medio": 0.5986676203149854,
-      "hiladas": 0,
-      "piezas": 0,
+      "hiladas": 1,
+      "piezas": 4,
       "esquina": false
     },
     {
       "cara": "c036",
       "orbita": "c018",
       "radio_medio": 0.598529631023014,
-      "hiladas": 0,
-      "piezas": 0,
+      "hiladas": 1,
+      "piezas": 4,
       "esquina": false
     },
     {
       "cara": "c037",
       "orbita": "c037",
-      "radio_medio": 0.6637032802794846,
-      "hiladas": 0,
-      "piezas": 0,
+      "radio_medio": 0.6637032802794848,
+      "hiladas": 1,
+      "piezas": 8,
       "esquina": false
     },
     {
       "cara": "c038",
       "orbita": "c037",
-      "radio_medio": 0.6435273011986204,
-      "hiladas": 0,
-      "piezas": 0,
+      "radio_medio": 0.6435273011986206,
+      "hiladas": 1,
+      "piezas": 8,
       "esquina": false
     },
     {
       "cara": "c039",
       "orbita": "c026",
       "radio_medio": 1.371248118063369,
-      "hiladas": 2,
-      "piezas": 40,
+      "hiladas": 3,
+      "piezas": 48,
       "esquina": false
     },
     {
       "cara": "c040",
       "orbita": "c037",
       "radio_medio": 0.6369845802685405,
-      "hiladas": 0,
-      "piezas": 0,
+      "hiladas": 1,
+      "piezas": 8,
       "esquina": false
     },
     {
       "cara": "c041",
       "orbita": "c026",
-      "radio_medio": 1.3811896698429862,
-      "hiladas": 2,
-      "piezas": 40,
+      "radio_medio": 1.3811896698429864,
+      "hiladas": 3,
+      "piezas": 48,
       "esquina": false
     },
     {
       "cara": "c042",
       "orbita": "c042",
       "radio_medio": 2.9523335352139912,
-      "hiladas": 6,
-      "piezas": 236,
+      "hiladas": 7,
+      "piezas": 220,
       "esquina": false
     },
     {
       "cara": "c043",
       "orbita": "c018",
       "radio_medio": 0.6270350840289112,
-      "hiladas": 0,
-      "piezas": 0,
+      "hiladas": 1,
+      "piezas": 4,
       "esquina": false
     },
     {
       "cara": "c044",
       "orbita": "c016",
-      "radio_medio": 1.8529350210955375,
-      "hiladas": 3,
-      "piezas": 96,
+      "radio_medio": 1.8529350210955373,
+      "hiladas": 4,
+      "piezas": 92,
       "esquina": false
     },
     {
       "cara": "c045",
       "orbita": "c017",
-      "radio_medio": 0.6273014273870977,
-      "hiladas": 0,
-      "piezas": 0,
+      "radio_medio": 0.6273014273870976,
+      "hiladas": 1,
+      "piezas": 4,
       "esquina": false
     },
     {
       "cara": "c046",
       "orbita": "c016",
       "radio_medio": 1.8510712419424777,
-      "hiladas": 3,
-      "piezas": 96,
+      "hiladas": 4,
+      "piezas": 92,
       "esquina": false
     },
     {
       "cara": "c047",
       "orbita": "c000",
-      "radio_medio": 2.54832456210175,
-      "hiladas": 5,
-      "piezas": 168,
+      "radio_medio": 2.5483245621017496,
+      "hiladas": 6,
+      "piezas": 164,
       "esquina": false
     },
     {
       "cara": "c048",
       "orbita": "c005",
-      "radio_medio": 1.1646576297330624,
+      "radio_medio": 1.1646576297330626,
       "hiladas": 2,
-      "piezas": 36,
+      "piezas": 32,
       "esquina": false
     },
     {
@@ -416,15 +416,15 @@
       "orbita": "c003",
       "radio_medio": 1.1621541970258282,
       "hiladas": 2,
-      "piezas": 36,
+      "piezas": 32,
       "esquina": false
     },
     {
       "cara": "c050",
       "orbita": "c000",
       "radio_medio": 2.523736819738574,
-      "hiladas": 5,
-      "piezas": 168,
+      "hiladas": 6,
+      "piezas": 164,
       "esquina": false
     },
     {
@@ -454,7 +454,7 @@
     {
       "cara": "c054",
       "orbita": "c009",
-      "radio_medio": 1.2354812305851672,
+      "radio_medio": 1.2354812305851675,
       "hiladas": 2,
       "piezas": 32,
       "esquina": false
@@ -463,32 +463,32 @@
       "cara": "c055",
       "orbita": "c037",
       "radio_medio": 0.641826256615387,
-      "hiladas": 0,
-      "piezas": 0,
+      "hiladas": 1,
+      "piezas": 8,
       "esquina": false
     },
     {
       "cara": "c056",
       "orbita": "c037",
       "radio_medio": 0.6530398349288684,
-      "hiladas": 0,
-      "piezas": 0,
+      "hiladas": 1,
+      "piezas": 8,
       "esquina": false
     },
     {
       "cara": "c057",
       "orbita": "c026",
       "radio_medio": 1.3721411080243817,
-      "hiladas": 2,
-      "piezas": 40,
+      "hiladas": 3,
+      "piezas": 48,
       "esquina": false
     },
     {
       "cara": "c058",
       "orbita": "c026",
-      "radio_medio": 1.3831960429777794,
-      "hiladas": 2,
-      "piezas": 40,
+      "radio_medio": 1.3831960429777796,
+      "hiladas": 3,
+      "piezas": 48,
       "esquina": false
     },
     {
@@ -503,14 +503,14 @@
       "cara": "c060",
       "orbita": "c017",
       "radio_medio": 0.6221374373062378,
-      "hiladas": 0,
-      "piezas": 0,
+      "hiladas": 1,
+      "piezas": 4,
       "esquina": false
     },
     {
       "cara": "c061",
       "orbita": "c005",
-      "radio_medio": 1.1456637396624354,
+      "radio_medio": 1.1456637396624352,
       "hiladas": 2,
       "piezas": 32,
       "esquina": false
@@ -518,95 +518,95 @@
     {
       "cara": "c062",
       "orbita": "c018",
-      "radio_medio": 0.6251504772441424,
-      "hiladas": 0,
-      "piezas": 0,
+      "radio_medio": 0.6251504772441423,
+      "hiladas": 1,
+      "piezas": 4,
       "esquina": false
     },
     {
       "cara": "c063",
       "orbita": "c037",
       "radio_medio": 0.6516460506999274,
-      "hiladas": 0,
-      "piezas": 0,
+      "hiladas": 1,
+      "piezas": 8,
       "esquina": false
     },
     {
       "cara": "c064",
       "orbita": "c037",
-      "radio_medio": 0.6490337409501776,
-      "hiladas": 0,
-      "piezas": 0,
+      "radio_medio": 0.6490337409501775,
+      "hiladas": 1,
+      "piezas": 8,
       "esquina": false
     },
     {
       "cara": "c065",
       "orbita": "c004",
-      "radio_medio": 1.5364435404167693,
-      "hiladas": 2,
-      "piezas": 68,
+      "radio_medio": 1.5364435404167696,
+      "hiladas": 3,
+      "piezas": 80,
       "esquina": false
     },
     {
       "cara": "c066",
       "orbita": "c004",
       "radio_medio": 1.5348583848977284,
-      "hiladas": 2,
-      "piezas": 64,
+      "hiladas": 3,
+      "piezas": 80,
       "esquina": false
     },
     {
       "cara": "c067",
       "orbita": "c016",
-      "radio_medio": 1.856330751582004,
-      "hiladas": 3,
-      "piezas": 96,
+      "radio_medio": 1.8563307515820036,
+      "hiladas": 4,
+      "piezas": 100,
       "esquina": false
     },
     {
       "cara": "c068",
       "orbita": "c018",
       "radio_medio": 0.5406321727867368,
-      "hiladas": 0,
-      "piezas": 0,
+      "hiladas": 1,
+      "piezas": 4,
       "esquina": false
     },
     {
       "cara": "c069",
       "orbita": "c016",
       "radio_medio": 1.855439008939111,
-      "hiladas": 3,
-      "piezas": 96,
+      "hiladas": 4,
+      "piezas": 92,
       "esquina": false
     },
     {
       "cara": "c070",
       "orbita": "c017",
       "radio_medio": 0.6023241741852595,
-      "hiladas": 0,
-      "piezas": 0,
+      "hiladas": 1,
+      "piezas": 4,
       "esquina": false
     },
     {
       "cara": "c071",
       "orbita": "c001",
-      "radio_medio": 2.475703768928885,
+      "radio_medio": 2.4757037689288848,
       "hiladas": 5,
-      "piezas": 168,
+      "piezas": 152,
       "esquina": false
     },
     {
       "cara": "c072",
       "orbita": "c001",
-      "radio_medio": 2.473808218170284,
+      "radio_medio": 2.4738082181702836,
       "hiladas": 5,
-      "piezas": 164,
+      "piezas": 152,
       "esquina": false
     },
     {
       "cara": "c073",
       "orbita": "c012",
-      "radio_medio": 0.34721824990349726,
+      "radio_medio": 0.34721824990349714,
       "hiladas": 0,
       "piezas": 0,
       "esquina": false
@@ -623,30 +623,30 @@
       "cara": "c075",
       "orbita": "c026",
       "radio_medio": 1.3613297036604097,
-      "hiladas": 2,
-      "piezas": 40,
+      "hiladas": 3,
+      "piezas": 48,
       "esquina": false
     },
     {
       "cara": "c076",
       "orbita": "c026",
-      "radio_medio": 1.3822503687311998,
-      "hiladas": 2,
-      "piezas": 40,
+      "radio_medio": 1.3822503687311996,
+      "hiladas": 3,
+      "piezas": 48,
       "esquina": false
     },
     {
       "cara": "c077",
       "orbita": "c037",
-      "radio_medio": 0.6523410526012529,
-      "hiladas": 0,
-      "piezas": 0,
+      "radio_medio": 0.6523410526012527,
+      "hiladas": 1,
+      "piezas": 8,
       "esquina": false
     },
     {
       "cara": "c078",
       "orbita": "c005",
-      "radio_medio": 1.173829103555188,
+      "radio_medio": 1.1738291035551878,
       "hiladas": 2,
       "piezas": 32,
       "esquina": false
@@ -656,15 +656,15 @@
       "orbita": "c003",
       "radio_medio": 1.1875676757579356,
       "hiladas": 2,
-      "piezas": 36,
+      "piezas": 32,
       "esquina": false
     },
     {
       "cara": "c080",
       "orbita": "c016",
       "radio_medio": 1.8494888760382275,
-      "hiladas": 3,
-      "piezas": 96,
+      "hiladas": 4,
+      "piezas": 92,
       "esquina": false
     },
     {
@@ -678,7 +678,7 @@
     {
       "cara": "c082",
       "orbita": "c012",
-      "radio_medio": 0.3491470306751988,
+      "radio_medio": 0.34914703067519876,
       "hiladas": 0,
       "piezas": 0,
       "esquina": false
@@ -686,7 +686,7 @@
     {
       "cara": "c083",
       "orbita": "c009",
-      "radio_medio": 1.2419028844263515,
+      "radio_medio": 1.2419028844263518,
       "hiladas": 2,
       "piezas": 32,
       "esquina": false
@@ -702,65 +702,65 @@
     {
       "cara": "c085",
       "orbita": "c017",
-      "radio_medio": 0.6302625396308822,
-      "hiladas": 0,
-      "piezas": 0,
+      "radio_medio": 0.6302625396308821,
+      "hiladas": 1,
+      "piezas": 4,
       "esquina": false
     },
     {
       "cara": "c086",
       "orbita": "c004",
-      "radio_medio": 1.5545749356977943,
+      "radio_medio": 1.5545749356977945,
       "hiladas": 3,
-      "piezas": 88,
+      "piezas": 80,
       "esquina": false
     },
     {
       "cara": "c087",
       "orbita": "c018",
       "radio_medio": 0.634824530941361,
-      "hiladas": 0,
-      "piezas": 0,
+      "hiladas": 1,
+      "piezas": 4,
       "esquina": false
     },
     {
       "cara": "c088",
       "orbita": "c000",
-      "radio_medio": 2.4985724715518045,
-      "hiladas": 5,
-      "piezas": 168,
+      "radio_medio": 2.498572471551804,
+      "hiladas": 6,
+      "piezas": 160,
       "esquina": false
     },
     {
       "cara": "c089",
       "orbita": "c000",
       "radio_medio": 2.5073063403195364,
-      "hiladas": 5,
-      "piezas": 168,
+      "hiladas": 6,
+      "piezas": 160,
       "esquina": false
     },
     {
       "cara": "c090",
       "orbita": "c018",
-      "radio_medio": 0.6382192694667286,
-      "hiladas": 0,
-      "piezas": 0,
+      "radio_medio": 0.6382192694667287,
+      "hiladas": 1,
+      "piezas": 4,
       "esquina": false
     },
     {
       "cara": "c091",
       "orbita": "c004",
-      "radio_medio": 1.5355444751248009,
-      "hiladas": 2,
-      "piezas": 64,
+      "radio_medio": 1.535544475124801,
+      "hiladas": 3,
+      "piezas": 80,
       "esquina": false
     },
     {
       "cara": "c092",
       "orbita": "c017",
       "radio_medio": 0.6417086028786799,
-      "hiladas": 0,
-      "piezas": 0,
+      "hiladas": 1,
+      "piezas": 4,
       "esquina": false
     },
     {
@@ -774,7 +774,7 @@
     {
       "cara": "c094",
       "orbita": "c005",
-      "radio_medio": 1.135631939157648,
+      "radio_medio": 1.1356319391576482,
       "hiladas": 2,
       "piezas": 32,
       "esquina": false
@@ -782,7 +782,7 @@
     {
       "cara": "c095",
       "orbita": "c009",
-      "radio_medio": 1.254422712091234,
+      "radio_medio": 1.2544227120912337,
       "hiladas": 2,
       "piezas": 32,
       "esquina": false
@@ -790,7 +790,7 @@
     {
       "cara": "c096",
       "orbita": "c005",
-      "radio_medio": 1.1337483077802775,
+      "radio_medio": 1.1337483077802777,
       "hiladas": 2,
       "piezas": 32,
       "esquina": false
@@ -822,7 +822,7 @@
     {
       "cara": "c100",
       "orbita": "c012",
-      "radio_medio": 0.3472466463667116,
+      "radio_medio": 0.34724664636671165,
       "hiladas": 0,
       "piezas": 0,
       "esquina": false
@@ -830,7 +830,7 @@
     {
       "cara": "c101",
       "orbita": "c013",
-      "radio_medio": 0.33724186520656696,
+      "radio_medio": 0.33724186520656685,
       "hiladas": 0,
       "piezas": 0,
       "esquina": false
@@ -838,9 +838,9 @@
     {
       "cara": "c102",
       "orbita": "c001",
-      "radio_medio": 2.4792564358522653,
+      "radio_medio": 2.479256435852265,
       "hiladas": 5,
-      "piezas": 168,
+      "piezas": 156,
       "esquina": false
     },
     {
@@ -848,15 +848,15 @@
       "orbita": "c001",
       "radio_medio": 2.475555461818094,
       "hiladas": 5,
-      "piezas": 164,
+      "piezas": 152,
       "esquina": false
     },
     {
       "cara": "c104",
       "orbita": "c000",
-      "radio_medio": 2.5306233033318404,
-      "hiladas": 5,
-      "piezas": 168,
+      "radio_medio": 2.530623303331841,
+      "hiladas": 6,
+      "piezas": 164,
       "esquina": false
     }
   ]

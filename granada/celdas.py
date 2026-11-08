@@ -54,16 +54,22 @@ CARAS = RAIZ / "datos" / "caras_red.json"
 REGISTRO = RAIZ / "datos" / "registro_red.json"
 ORBITAS = RAIZ / "datos" / "orbitas_c8.json"
 
-ESCALA_CELDA = 0.475
+ESCALA_CELDA = 0.5
 """Tamano de las piezas de las celdas respecto a las de la cupula por anillos.
-Eleccion calibrada por recuento: Jones y Goury cuentan 5416 piezas en la
-cupula (docs/fuentes.md, entrada 18). Con el registro de
-datos/registro_red.json: 0,47 da 5604, 0,475 da 5392 y 0,48 da 5296 (sin
-contar las de los cupulines ni las de las esquinas). Ver tests/test_celdas.py."""
+Eleccion calibrada por recuento junto con CIERRE_CELDA: Jones y Goury cuentan
+5416 piezas en la cupula (docs/fuentes.md, entrada 18). Con CIERRE_CELDA = 0,3,
+0,475 da 6020, 0,5 da 5408 y 0,525 da 4784 (sin contar las de los cupulines ni
+las de las esquinas). Tabla completa: scripts/calibrar_escala_celda.py. Ver
+tests/test_celdas.py."""
 MULTIPLO_CELDA = 4
-CIERRE_CELDA = 0.9
+CIERRE_CELDA = 0.3
 """Radio medio (en unidades de pieza) por debajo del cual una celda se cierra
-con su cupulilla en vez de con otra hilada."""
+con su cupulilla en vez de con otra hilada. Era 0,9 hasta el 2026-11-08: con
+ese valor 40 de las 105 celdas no recibian ninguna hilada y se tapaban enteras
+con un casquete liso, y el cierre ocupaba de media el 63 % del radio de la
+celda. La foto de la cupula (docs/fuentes.md, entrada 19) muestra la
+superficie cubierta de piezas, sin esas mesetas. Con 0,3 quedan 16 celdas sin
+hiladas -las que no tienen sitio ni para una- y el cierre baja al 41 %."""
 MUESTRAS = 720
 
 
@@ -201,9 +207,12 @@ ALTURA_FONDO = 4.0
 NUDO_M = 0.04
 """Radio de las rosetas en los nudos de la red. En la ortoimagen cada cruce de
 la red lleva una roseta blanca en relieve de unos 40 px (~8 cm a 472 px/m)."""
-CABALLETE_M = 0.018
+CABALLETE_M = 0.01
 """Medio ancho del caballete de yeso sobre cada arista de la red: en la
-ortoimagen las lineas de la red son aristas claras y finas."""
+ortoimagen las lineas de la red son aristas claras y finas. Parametro, no
+medida. Era 0,018 hasta el 2026-11-08; se estrecha porque en la foto de la
+cupula (docs/fuentes.md, entrada 19) las lineas de la red se leen pero no
+dominan, y en el render dominaban."""
 
 
 def _dentro_del_contorno(x: np.ndarray, y: np.ndarray) -> np.ndarray:
