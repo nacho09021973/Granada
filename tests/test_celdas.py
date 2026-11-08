@@ -108,7 +108,8 @@ def test_hay_un_caballete_por_arista_y_una_roseta_por_nudo():
 
     red = json.loads(RED.read_text(encoding="utf-8"))
     V, F, C, S = nudos_y_caballetes(esquinas=False)
-    assert len(F) == 2 * len(red["aristas"]) + 48 * len(red["nodos"])
+    # Cuatro triangulos por arista (los dos costados de la cuna).
+    assert len(F) == 4 * len(red["aristas"]) + 48 * len(red["nodos"])
     assert set(C) == {"yeso"} and len(C) == len(F) == len(S)
 
 

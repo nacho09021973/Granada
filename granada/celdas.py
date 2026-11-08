@@ -213,6 +213,15 @@ ortoimagen las lineas de la red son aristas claras y finas. Parametro, no
 medida. Era 0,018 hasta el 2026-11-08; se estrecha porque en la foto de la
 cupula (docs/fuentes.md, entrada 19) las lineas de la red se leen pero no
 dominan, y en el render dominaban."""
+CABALLETE_ALTO_M = 0.02
+"""Cuanto suben los costados del caballete por encima del cono, metiendose
+entre las piezas de las dos celdas que separa. Parametro, no medida. Hasta el
+2026-11-08 el caballete era una tira plana 4 centesimas de cateto por delante
+de todas las piezas, mirando hacia abajo: en Cycles recibia luz plena, nunca
+quedaba en sombra y las lineas de la red dominaban la imagen
+(scripts/diagnosticar_lineas_red.py). Ahora es una cuna: la arista viva sigue
+a esa cota y los costados, inclinados, suben a CABALLETE_ALTO_M y quedan
+sombreados y en parte tapados por las piezas, como el resto del relieve."""
 
 
 def _dentro_del_contorno(x: np.ndarray, y: np.ndarray) -> np.ndarray:
@@ -250,19 +259,21 @@ def nudos_y_caballetes(radio_base: float = RADIO_BASE, esquinas: bool = True):
     C: list[str] = []
     S: list[float] = []
     w = CABALLETE_M / CATETO_M
+    alto = CABALLETE_ALTO_M / CATETO_M
     for pa, pb in segmentos:
         d = pb - pa
         largo = float(np.hypot(*d))
         if largo < 1e-9:
             continue
         nrm = np.array([-d[1], d[0]]) / largo * w
-        q = [pa + nrm, pb + nrm, pb - nrm, pa - nrm]
+        # Cuna: arista viva abajo (pa, pb) y costados que suben entre las piezas.
+        q = [(pa, -0.04), (pb, -0.04), (pb + nrm, alto), (pa + nrm, alto), (pb - nrm, alto), (pa - nrm, alto)]
         k = len(V)
-        for x, y in q:
-            V.append((float(x), float(y), float(_cota_cono(x, y, radio_base)) - 0.04))
-        F.extend([(k, k + 2, k + 1), (k, k + 3, k + 2)])
-        C.extend(["yeso"] * 2)
-        S.extend([1.0] * 2)
+        for (x, y), dz in q:
+            V.append((float(x), float(y), float(_cota_cono(x, y, radio_base)) + dz))
+        F.extend([(k, k + 2, k + 1), (k, k + 3, k + 2), (k, k + 1, k + 4), (k, k + 4, k + 5)])
+        C.extend(["yeso"] * 4)
+        S.extend([1.0] * 4)
     r = NUDO_M / CATETO_M
     lobulos, n = 8, 48
     for x0, y0 in puntos:
