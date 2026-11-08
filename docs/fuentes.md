@@ -1364,3 +1364,44 @@ no el escáner**. Un `_jp2.zip` del tomo I tendría esta misma calidad de trazo
 
 El fichero **no se versiona**: excluido en `.gitignore` por tamaño y por ser
 fuente de consulta, no dato. Los derechos no son el motivo.
+
+---
+
+## 19. Fotografía de la cúpula, Wikimedia Commons (registrada el 2026-11-08)
+
+`docs/Cúpula_de_la_sala_de_las_Dos_Hermanas_(Alhambra,_Granada).jpg`, aportada
+el 2026-08-25 y excluida en `.gitignore` hasta registrar su origen.
+
+- **Origen:** Wikimedia Commons,
+  <https://commons.wikimedia.org/wiki/File:Cúpula_de_la_sala_de_las_Dos_Hermanas_(Alhambra,_Granada).jpg>.
+- **Autor:** José Luis Filpo Cabana (usuario `Jl FilpoC`), «Own work».
+  Tomada en febrero de 2017; subida el 2017-10-02.
+- **Licencia:** CC BY-SA 4.0 (y GFDL 1.2+). Redistribuible con atribución y
+  misma licencia; por eso se versiona.
+- **VERIFICADO el 2026-11-08** contra la API de Commons: SHA-1
+  `8abdc6d3100c65d7e1b390c239ec4d361001db4a` y 9 307 719 bytes, idénticos al
+  fichero del repositorio. 3964 × 2973 px.
+
+### Qué es
+
+Es la **única imagen del repositorio que muestra la cúpula construida**; las de
+la entrada 12 son maquetas o renders. Vista desde abajo, casi cenital,
+con el octógono del tambor y sus 16 ventanas.
+
+### Qué se lee en ella (inspección visual, 2026-11-08)
+
+- **Hay concavidades:** casquetes curvos con sombreado gradual y piezas
+  prismáticas colgantes en toda la superficie, de tamaño parecido entre sí.
+- **También hay caras planas:** triángulos verdes y azules y cuadrados con
+  motivo floral, pintados, entre las concavidades. La pieza real combina las
+  dos cosas.
+- Los cupulines del anillo exterior se ven como huecos oscuros profundos.
+- La superficie está **cubierta de piezas sin mesetas**: no hay zonas lisas
+  grandes dentro de las celdas de la red.
+- Las líneas de la red de medinas se leen, pero finas; no dominan la imagen.
+- **No resuelve el escalonado de las hiladas**: desde abajo no se ven los
+  saltos verticales. Para eso sirve la sección (`AA-415_23_seccion.jpg`), no
+  esta foto.
+
+Es una foto con perspectiva y sin escala: sirve para contrastar el aspecto del
+modelo, no para medir.

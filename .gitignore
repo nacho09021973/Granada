@@ -75,10 +75,6 @@ renders/cupula_piezas_n24.mtl
 # y se publican en la rama gh-pages con scripts/publicar_web.sh.
 web/zoom/
 
-# Fotografia de la cupula aportada el 2026-08-25. Excluida hasta que su
-# origen y licencia esten registrados en docs/fuentes.md. Si resulta ser
-# libre y redistribuible, quitar esta linea.
-docs/Cúpula_de_la_sala_de_las_Dos_Hermanas_(Alhambra,_Granada).jpg
 # Articulo de Gamiz Gordo y Ferrer Perez-Blanco, VLC arquitectura 6(2) 2019,
 # aportado completo el 2026-08-26. Su licencia NO consta en el PDF: leidas las
 # 31 paginas, no hay mencion de Creative Commons ni condiciones de
