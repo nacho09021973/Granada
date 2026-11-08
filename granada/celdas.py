@@ -221,7 +221,9 @@ de todas las piezas, mirando hacia abajo: en Cycles recibia luz plena, nunca
 quedaba en sombra y las lineas de la red dominaban la imagen
 (scripts/diagnosticar_lineas_red.py). Ahora es una cuna: la arista viva sigue
 a esa cota y los costados, inclinados, suben a CABALLETE_ALTO_M y quedan
-sombreados y en parte tapados por las piezas, como el resto del relieve."""
+sombreados y en parte tapados por las piezas, como el resto del relieve.
+Las rosetas de los nudos siguen la misma regla desde el 2026-11-08: la punta
+queda a su cota y el borde lobulado sube a CABALLETE_ALTO_M."""
 
 
 def _dentro_del_contorno(x: np.ndarray, y: np.ndarray) -> np.ndarray:
@@ -279,11 +281,15 @@ def nudos_y_caballetes(radio_base: float = RADIO_BASE, esquinas: bool = True):
     for x0, y0 in puntos:
         z0 = float(_cota_cono(x0, y0, radio_base)) - 0.05
         k = len(V)
+        # La punta sigue donde estaba; el borde lobulado sube entre las piezas
+        # como los costados del caballete, para que la roseta quede en relieve
+        # sombreado y no como un disco plano por delante de todo.
         V.append((float(x0), float(y0), z0 - 0.35 * r))
         for i in range(n):
             phi = 2 * math.pi * i / n
             rr = r * (0.78 + 0.22 * math.cos(lobulos * phi))
-            V.append((float(x0 + rr * math.cos(phi)), float(y0 + rr * math.sin(phi)), z0))
+            x, y = x0 + rr * math.cos(phi), y0 + rr * math.sin(phi)
+            V.append((float(x), float(y), float(_cota_cono(x, y, radio_base)) + alto))
         for i in range(n):
             F.append((k, k + 1 + (i + 1) % n, k + 1 + i))
         C.extend(["yeso"] * n)
