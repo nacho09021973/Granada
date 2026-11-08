@@ -56,8 +56,13 @@ ALTURA_PRISMA = 2 * PASO_NIVEL
 """Todas las piezas miden lo mismo en el grabado; las de dos niveles usan la
 parte alta para el nicho."""
 
-MEDIA_PATA = 0.05
-"""Medio ancho de la pata, en unidades del cateto. Parametro."""
+MEDIA_PATA = 0.02
+"""Medio ancho de la pata, en unidades del cateto. Parametro: la tesis dice
+que la pata tiene grosor, no cuanto. Era 0,05 hasta el 2026-11-08: la pata es
+una franja plana en el punto mas bajo de la pieza, mira hacia abajo y nada la
+tapa, y en Cycles salia como una rayita blanca en cada pieza
+(scripts/diagnosticar_lineas_red.py --media-pata). Con 0,005 desaparecen; 0,02
+conserva un grosor visible."""
 
 SUBDIVISION = 40
 
