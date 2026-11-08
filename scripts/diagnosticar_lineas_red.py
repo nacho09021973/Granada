@@ -27,6 +27,11 @@ Segunda prueba, para Cycles: `--sin-grupo red_nudos --obj-salida ruta.obj`
 copia renders/cupula_red.obj quitando las caras de ese grupo (los vertices se
 dejan, para no renumerar) y no renderiza. Despues:
     blender -b -P scripts/render_cycles.py -- --obj ruta.obj --vistas visitante
+
+Tercera prueba, para las rayitas blancas cortas: `--media-pata X --obj-salida
+ruta.obj` escribe el .obj en color del modelo por celdas con
+granada.piezas.MEDIA_PATA = X (la pata de cada pieza es una franja plana en su
+punto mas bajo) y no renderiza.
 """
 
 from __future__ import annotations
@@ -81,7 +86,22 @@ def main() -> int:
     ap.add_argument("--png", type=Path, default=RAIZ / "renders" / "diagnostico_lineas_red.png")
     ap.add_argument("--sin-grupo", help="grupo del .obj cuyas caras se quitan")
     ap.add_argument("--obj-salida", type=Path)
+    ap.add_argument("--media-pata", type=float, help="MEDIA_PATA de prueba, en unidades del cateto")
     a = ap.parse_args()
+
+    if a.media_pata is not None:
+        import granada.piezas as piezas
+        from granada.color import material, paleta_materiales
+
+        piezas.MEDIA_PATA = a.media_pata
+        _, grupos = cupula_red(8, color=True)
+        piezas.escribir_obj(
+            a.obj_salida,
+            [(n, Vg, Fg, [material(c, t) for c, t in zip(Cg, Sg)]) for n, Vg, Fg, Cg, Sg in grupos],
+            paleta=paleta_materiales(),
+        )
+        print(f"MEDIA_PATA = {a.media_pata} -> {a.obj_salida}")
+        return 0
 
     if a.sin_grupo:
         fuente = RAIZ / "renders" / "cupula_red.obj"
