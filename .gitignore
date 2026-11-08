@@ -117,3 +117,4 @@ renders/cupula_red.mtl
 # scripts/render_cycles.py --lado 8192. Copia en Drive.
 renders/cupula_cycles_*_8k.png
 renders/cupula_cycles_*_16k.png
+renders/partes_16k/
