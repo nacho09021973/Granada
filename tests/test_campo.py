@@ -53,3 +53,29 @@ def test_por_encima_de_la_pendiente_las_hiladas_se_parten_en_lazos():
     assert lazos[0] == 1
     assert max(lazos) > 8
     assert all(es_cerrada(P) for z in cotas_de_hilada() for P in curvas(c, z))
+
+
+def test_con_a_cero_la_pieza_llena_la_banda_hasta_la_hilada_anterior(plano):
+    """Paso 3: con A = 0 el fondo de cada pieza cae sobre la curva de la cota
+    anterior (radio RADIO_BASE - (j - 1) * paso horizontal), como en el modelo
+    de anillos."""
+    from granada.cupula import FAMILIAS
+    from granada.hiladas_campo import _gradiente, colocar, frentes, hilada_de
+
+    g = _gradiente(plano)
+    for f in frentes(plano)[2:20:5]:
+        h = hilada_de(f)
+        fondo = FAMILIAS[h.familia].fondo
+        V = colocar([(0.0, -fondo, 0.0), (0.0, 0.0, 0.0)], f, g, 1.234, h.estiramiento, fondo)
+        r_atras, r_frente = (float(np.hypot(v[0], v[1])) for v in V)
+        assert abs(r_frente - (RADIO_BASE - f.indice * PASO_VERTICAL / PENDIENTE)) < 2 * plano.paso
+        assert abs(r_atras - (RADIO_BASE - (f.indice - 1) * PASO_VERTICAL / PENDIENTE)) < 3 * plano.paso
+
+
+def test_con_a_cero_el_numero_de_piezas_es_el_del_modelo_de_anillos(plano):
+    from granada.hiladas_campo import resumen
+
+    filas = resumen(plano)
+    assert len(filas) == 22 and all(r["anillo"] for r in filas)
+    # Redondear a un numero par de piezas estira como mucho una pieza entre n.
+    assert all(abs(r["estiramiento"] - 1) <= 1 / r["piezas"] for r in filas)

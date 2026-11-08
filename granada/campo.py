@@ -21,7 +21,7 @@ import math
 from dataclasses import dataclass
 
 import numpy as np
-from scipy.ndimage import distance_transform_edt
+from scipy.ndimage import distance_transform_edt, gaussian_filter
 from skimage.measure import find_contours, points_in_poly
 
 from granada.celdas import CARAS, RED, REGISTRO, _transformar
@@ -33,6 +33,14 @@ HILADAS = int(_M["hiladas_seccion"])
 
 RESOLUCION = 0.03
 """Lado de la celda de la rejilla del campo, en unidades del cateto (~7 mm)."""
+
+SUAVIZADO = 0.25
+"""Desviacion del filtro gaussiano aplicado al termino de la red, en unidades
+del cateto (un tercio del fondo de una pieza). La distancia a la red tiene
+aristas vivas en las crestas a medio camino entre aristas; sin suavizar, las
+curvas de nivel hacen zigzag a escala de rejilla y las piezas se arrugan al
+seguirlas (comprobado el 2026-11-08, scripts/render_hilada_campo.py). Ninguna
+pieza representa detalle menor que ella. Eleccion."""
 
 
 def _nodos() -> np.ndarray:
@@ -94,7 +102,8 @@ def distancia_a_la_red(x: np.ndarray, y: np.ndarray) -> np.ndarray:
     return distance_transform_edt(~marca) * paso
 
 
-def campo(A: float = 0.0, forma: str = "lineal", signo: int = 1, resolucion: float = RESOLUCION) -> Campo:
+def campo(A: float = 0.0, forma: str = "lineal", signo: int = 1, resolucion: float = RESOLUCION,
+          suavizado: float = SUAVIZADO) -> Campo:
     """El campo H sobre una rejilla que cubre el circulo de arranque."""
     if signo not in (1, -1):
         raise ValueError("signo ha de ser 1 o -1")
@@ -108,7 +117,10 @@ def campo(A: float = 0.0, forma: str = "lineal", signo: int = 1, resolucion: flo
     if A:
         d = distancia_a_la_red(x, y)
         dentro = points_in_poly(np.column_stack([X.ravel(), Y.ravel()]), contorno_de_la_red()).reshape(X.shape)
-        H = H + np.where(dentro, signo * A * FORMAS[forma](d), 0.0)
+        termino = np.where(dentro, signo * A * FORMAS[forma](d), 0.0)
+        if suavizado:
+            termino = gaussian_filter(termino, suavizado / resolucion)
+        H = H + termino
     return Campo(x, y, H, A, forma, signo)
 
 
