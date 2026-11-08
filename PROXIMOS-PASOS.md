@@ -1,7 +1,67 @@
 # Próximos pasos
 
-Estado a 2026-08-30. Documento de trabajo: se actualiza, no se conserva como
+Estado a 2026-11-08. Documento de trabajo: se actualiza, no se conserva como
 histórico. El registro de decisiones va en `docs/decisiones/`.
+
+---
+
+## Para mañana — hiladas continuas por campo de alturas (2026-11-08)
+
+**Por qué.** El modelo por celdas (`granada/celdas.py`) no se parece a las
+maquetas de Ferrer ni a la foto de Commons (entrada 19 de `docs/fuentes.md`):
+rellena cada una de las 105 caras como una cupulita propia y ninguna hilada
+cruza de una celda a otra. Los arreglos del 2026-11-08 (mesetas, caballetes y
+rosetas en cuña, pata más estrecha) eran acabado, no estructura. El usuario
+acepta suponer las cotas siguiendo un orden lógico: no habrá medición por
+puntos.
+
+**Hecho hoy** (decisión 0017, en estado *propuesta*):
+
+- Pasos 1 y 2 — `granada/campo.py`: H = cono medido + signo·A·f(distancia a
+  la red), suavizado a escala de pieza, cortado a las 22 cotas de hilada.
+  Controles: con A = 0, anillos circulares; con A < PENDIENTE (1,28), ningún
+  lazo; por encima, las hiladas altas cierran en lazos por celda.
+  `scripts/curvas_de_nivel.py` barre A.
+- Paso 3, en parte — `granada/hiladas_campo.py`: piezas a lo largo de cada
+  curva, estiradas por el gradiente hasta la curva anterior. Con A = 2 salen
+  por primera vez **filas continuas de arquillos** que dan la vuelta a la
+  cúpula (`renders/previas/cupula_campo_A2.png`, no versionado; se regenera
+  con `scripts/render_hilada_campo.py --A 2 --hiladas todas`).
+
+**Pendiente, en este orden:**
+
+1. **Decidir el tamaño de pieza.** Con el paso de hilada medido salen **2730
+   piezas** (A = 2) frente a las **5416** de Jones y Goury: las dos fuentes no
+   encajan a la vez. Opciones: (a) manda la sección y se acepta el recuento
+   bajo; (b) manda el recuento y cada hilada medida se parte en dos filas de
+   piezas de la mitad de tamaño. La (b) seguramente arregla también el punto 2.
+   **Decide el usuario.**
+2. **Zona media e interior arrugada.** Allí las celdas de la red (8-15 cm de
+   radio) son menores que el fondo de una hilada (16 cm); las piezas no pueden
+   seguir ese detalle. No se arregla suavizando más. Revisar tras el punto 1.
+3. **Paso 4, cierres.** Tapar con cupulilla de tamaño de pieza los lazos de
+   menos de `PIEZAS_MINIMAS` = 6 piezas (hoy salen huecos negros) y la clave
+   (solo hay 22 cotas). Conservar los 16 cupulines del anillo exterior.
+4. **La estrella de la red apenas se lee** en el conjunto. Revisar `A`, la
+   forma de `f` (lineal o raíz) y el signo en el paso 5 de la decisión 0017,
+   contra ortoimagen y foto.
+5. **Pasos 5 y 6 de la 0017**: calibrar `A` y validar el alzado (sección
+   cortada frente a 24 ± 1 hiladas; vista oblicua comparable a `Ferrer_4`).
+
+**Cautelas:**
+
+- Iterar con renders de 1400 px en GPU (`--dispositivo cuda`, con
+  `LD_LIBRARY_PATH=/usr/lib/wsl/lib`): las cuatro vistas tardan ~4 min. **El
+  8k (~40 min) y el 16k (horas) solo al final**, con el modelo cerrado.
+  `scripts/render_sala_alta.sh` los encadena.
+- Los renders de 8k y 16k que hay ahora son del modelo por celdas; el 16k del
+  2026-11-08 se paró sin terminar.
+- `Ferrer_0` probablemente no es esta cúpula (leyenda de trompas sin asignar):
+  vale para la gramática de hiladas, no como alzado de Dos Hermanas.
+- El color no se toca (decidido el 2026-11-08): la foto de Commons tiene
+  dominante cálida y no sirve para medir color.
+- Las vistas previas para el usuario van en `renders/previas/` (ruta Windows
+  `\\wsl.localhost\Ubuntu\home\adnac\Granada\renders\previas`).
 
 ---
 
