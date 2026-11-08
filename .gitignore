@@ -118,3 +118,5 @@ renders/cupula_red.mtl
 renders/cupula_cycles_*_8k.png
 renders/cupula_cycles_*_16k.png
 renders/partes_16k/
+# Vistas previas reducidas y comparaciones para mirar, no versionadas.
+renders/previas/
