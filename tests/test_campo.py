@@ -58,10 +58,10 @@ def test_opcion_b_sigue_el_cono_con_medio_paso(plano):
         assert h.paso == PASO_VERTICAL / 2
         assert abs(delante - (RADIO_BASE - f.indice * h.paso / PENDIENTE)) < 2 * plano.paso
         assert abs(atras - (RADIO_BASE - f.cota / PENDIENTE)) < 3 * plano.paso
-        assert abs(h.piezas * FAMILIAS[h.familia].paso_tangencial / 2 - f.largo) <= FAMILIAS[h.familia].paso_tangencial / 2
+        assert abs(h.piezas * FAMILIAS[h.familia].paso_tangencial - f.largo) <= FAMILIAS[h.familia].paso_tangencial
 
 
-def test_malla_a_media_escala_es_finita_y_respeta_su_paso(plano):
+def test_malla_con_medio_fondo_y_altura_es_finita_y_respeta_su_paso(plano):
     from granada.hiladas_campo import frentes, montar
 
     f = frentes(plano, filas_por_hilada=2)[12]
@@ -73,6 +73,19 @@ def test_malla_a_media_escala_es_finita_y_respeta_su_paso(plano):
     assert len(F) == len(E) == len(S)
     assert V[:, 2].min() >= f.cota - 1e-9
     assert V[:, 2].max() <= f.cota + 2 * f.paso + 1e-9
+
+
+def test_dividir_una_hilada_conserva_familia_y_piezas_por_contorno(plano):
+    from granada.hiladas_campo import frente, frentes, hilada_de
+
+    for original in frentes(plano):
+        h = hilada_de(original)
+        for j in (2 * original.indice - 1, 2 * original.indice):
+            dividida = hilada_de(frente(j, original.puntos, filas_por_hilada=2))
+            assert dividida.familia == h.familia
+            assert dividida.piezas == h.piezas
+            assert dividida.estiramiento == h.estiramiento
+            assert dividida.paso == h.paso / 2
 
 
 def test_fuera_de_la_red_el_campo_es_el_cono(plano):

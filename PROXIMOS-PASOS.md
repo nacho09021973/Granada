@@ -31,19 +31,21 @@ puntos.
 **Pendiente, en este orden:**
 
 1. **Tamaño decidido: B (2026-11-09, decisión 0018).** Dos filas por hilada,
-   piezas a media escala uniforme, implementadas tras la elección del usuario.
-   Comparación reproducida: **2730 → 11304 piezas** a A=2, sin cierres.
-   La previsión de acercarse a 5416 era incorrecta: reducir también el ancho
-   duplica aproximadamente las piezas por fila además del número de filas.
+   mitad de altura y fondo, **mismo ancho**, conservando la familia en cada
+   par de filas. Corregida la interpretación errónea de Codex en `9cf2289`,
+   que reducía también el ancho y producía 11304 piezas.
+   Comparación corregida: **2730 → 5540 piezas** a A=2, sin cierres:
+   2730 en cotas originales y 2810 en las nuevas. Dividir literalmente cada
+   pieza daría 5460; la diferencia de 80 procede de recalcular contornos.
    Informe: `datos/comparacion_filas_campo.json`. Se conserva A con
    `--filas-por-hilada 1`; B es el defecto del script experimental, sin
    sustituir la malla del visor. **La elección no valida el recuento histórico.**
 2. **Zona media e interior arrugada.** Allí las celdas de la red (8-15 cm de
    radio) son menores que el fondo de una hilada (16 cm); las piezas no pueden
-   seguir ese detalle. No se arregla suavizando más. **Revisado con B el
-   2026-11-09:** las filas son más finas y continuas, pero persisten
-   irregularidades; no se declara resuelto. Comparativas miradas a 650 px
-   por vista: `renders/previas/cupula_campo_A.png` y `cupula_campo_B.png`.
+   seguir ese detalle. No se arregla suavizando más. El render anterior
+   `cupula_campo_B.png` usaba la interpretación errónea con ancho reducido.
+   La comparación vigente es con `cupula_campo_B_corregida.png`.
+   No se declara resuelto este punto.
    Falta medir solapes o inversiones antes de considerar válida la colocación.
 3. **Paso 4, cierres.** Tapar con cupulilla de tamaño de pieza los lazos de
    menos de `PIEZAS_MINIMAS` = 6 piezas (hoy salen huecos negros) y la clave

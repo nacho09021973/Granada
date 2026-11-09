@@ -15,10 +15,10 @@
   },
   "sha256": {
     "granada/campo.py": "b8d37b209205b51508b36f9492413819b469e0b105e944a27680bf0d77d29635",
-    "granada/hiladas_campo.py": "821981664a0be49b4393ea6578c7f06f9b78b967283638482b121e54e8caa9eb",
+    "granada/hiladas_campo.py": "dd59f68a31233eceafd43a90bc569435ce66449eae61320170da8ef4dceca178",
     "granada/cupula.py": "2af80b3d88cc6a57c975047eec04f8f6508db2d801ed1fc2b36524a1287d3625",
     "granada/piezas.py": "7d28b519053574d2ced91f7377f72604afbf3a89e3ab375af7d7ffa84ac68ddc",
-    "scripts/render_hilada_campo.py": "5751ffcdc8248882cfddf002ce7417ced3e5e1048d151588d7c06abdfe7c19aa",
+    "scripts/render_hilada_campo.py": "ad7c4bfbc43df797f5ffa6c51508f03156140cf84be179536a62751a0ef6ae4c",
     "datos/red_medinas.json": "212acafaca12946e6a0b6e725da52f9ea0b6f750354932e4662c631a133713e8",
     "datos/registro_red.json": "b5b6cddc865a7776e2a23f662cb342f2838894c7266c8345b6c03fa35972f7da",
     "datos/caras_red.json": "c01ebdbea5e7ef3b9a1ca29f3b60beacbaaae0f17ecbafe5f8c9f69a2dbe3e78",
@@ -27,7 +27,11 @@
   "variantes": {
     "1": {
       "filas_por_hilada": 1,
-      "escala_lineal_pieza": 1.0,
+      "escala_pieza_xyz": [
+        1,
+        1.0,
+        1.0
+      ],
       "piezas": 2730,
       "frentes": [
         {
@@ -402,12 +406,18 @@
           "anillo": true,
           "estiramiento": 1.0134560058470394
         }
-      ]
+      ],
+      "piezas_en_cotas_originales": 2730,
+      "piezas_en_cotas_intermedias": 0
     },
     "2": {
       "filas_por_hilada": 2,
-      "escala_lineal_pieza": 0.5,
-      "piezas": 11304,
+      "escala_pieza_xyz": [
+        1,
+        0.5,
+        0.5
+      ],
+      "piezas": 5540,
       "frentes": [
         {
           "hilada": 1,
@@ -416,7 +426,7 @@
           "cota_frente_catetos": 0.4535973445248869,
           "procedencia": "cota de modelo; subdividida",
           "largo": 101.50649460602787,
-          "piezas": 288,
+          "piezas": 144,
           "familia": "A",
           "anillo": true,
           "estiramiento": 0.9968879259777501
@@ -428,7 +438,7 @@
           "cota_frente_catetos": 0.9071946890497739,
           "procedencia": "cota de modelo; subdividida",
           "largo": 100.59963476724108,
-          "piezas": 284,
+          "piezas": 142,
           "familia": "A",
           "anillo": true,
           "estiramiento": 1.0018969567437483
@@ -440,10 +450,10 @@
           "cota_frente_catetos": 1.3607920335746608,
           "procedencia": "cota de modelo; subdividida",
           "largo": 100.1690551385396,
-          "piezas": 524,
-          "familia": "C",
+          "piezas": 142,
+          "familia": "A",
           "anillo": true,
-          "estiramiento": 0.9990624249669889
+          "estiramiento": 0.9976087063874723
         },
         {
           "hilada": 4,
@@ -452,10 +462,10 @@
           "cota_frente_catetos": 1.8143893780995477,
           "procedencia": "cota de modelo; subdividida",
           "largo": 100.04862362756131,
-          "piezas": 282,
+          "piezas": 142,
           "familia": "A",
           "anillo": true,
-          "estiramiento": 1.0034760314245281
+          "estiramiento": 0.9964092988088626
         },
         {
           "hilada": 5,
@@ -464,10 +474,10 @@
           "cota_frente_catetos": 2.2679867226244346,
           "procedencia": "cota de modelo; subdividida",
           "largo": 100.12469389693857,
-          "piezas": 284,
-          "familia": "A",
+          "piezas": 262,
+          "familia": "C",
           "anillo": true,
-          "estiramiento": 0.9971669016725717
+          "estiramiento": 0.9986199764528526
         },
         {
           "hilada": 6,
@@ -476,7 +486,7 @@
           "cota_frente_catetos": 2.7215840671493217,
           "procedencia": "cota de modelo; subdividida",
           "largo": 100.32321359660124,
-          "piezas": 524,
+          "piezas": 262,
           "familia": "C",
           "anillo": true,
           "estiramiento": 1.000599964906117
@@ -488,7 +498,7 @@
           "cota_frente_catetos": 3.1751814116742083,
           "procedencia": "cota de modelo; subdividida",
           "largo": 100.47437954547328,
-          "piezas": 284,
+          "piezas": 142,
           "familia": "A",
           "anillo": true,
           "estiramiento": 1.0006495086213394
@@ -500,7 +510,7 @@
           "cota_frente_catetos": 3.6287787561990954,
           "procedencia": "cota de modelo; subdividida",
           "largo": 100.44596641366495,
-          "piezas": 284,
+          "piezas": 142,
           "familia": "A",
           "anillo": true,
           "estiramiento": 1.000366535125897
@@ -512,10 +522,10 @@
           "cota_frente_catetos": 4.082376100723982,
           "procedencia": "cota de modelo; subdividida",
           "largo": 100.71610974029856,
-          "piezas": 526,
-          "familia": "C",
+          "piezas": 142,
+          "familia": "A",
           "anillo": true,
-          "estiramiento": 1.0006991555368745
+          "estiramiento": 1.0030569601703325
         },
         {
           "hilada": 10,
@@ -524,10 +534,10 @@
           "cota_frente_catetos": 4.535973445248869,
           "procedencia": "cota de modelo; subdividida",
           "largo": 102.27169706726576,
-          "piezas": 290,
+          "piezas": 144,
           "familia": "A",
           "anillo": true,
-          "estiramiento": 0.9974760071685512
+          "estiramiento": 1.0044029238849994
         },
         {
           "hilada": 11,
@@ -536,10 +546,10 @@
           "cota_frente_catetos": 4.989570789773756,
           "procedencia": "cota de modelo; subdividida",
           "largo": 105.26453902308747,
-          "piezas": 298,
-          "familia": "A",
+          "piezas": 276,
+          "familia": "C",
           "anillo": true,
-          "estiramiento": 0.9991042867342429
+          "estiramiento": 0.9966286101619579
         },
         {
           "hilada": 12,
@@ -548,10 +558,10 @@
           "cota_frente_catetos": 5.443168134298643,
           "procedencia": "cota de modelo; subdividida",
           "largo": 110.56153931789768,
-          "piezas": 578,
+          "piezas": 288,
           "familia": "C",
           "anillo": true,
-          "estiramiento": 0.9996928208476711
+          "estiramiento": 1.0031639764756144
         },
         {
           "hilada": 13,
@@ -560,7 +570,7 @@
           "cota_frente_catetos": 5.89676547882353,
           "procedencia": "cota de modelo; subdividida",
           "largo": 120.08363440855291,
-          "piezas": 340,
+          "piezas": 170,
           "familia": "A",
           "anillo": true,
           "estiramiento": 0.9989641435272234
@@ -572,10 +582,10 @@
           "cota_frente_catetos": 6.350362823348417,
           "procedencia": "cota de modelo; subdividida",
           "largo": 136.36921875824973,
-          "piezas": 386,
+          "piezas": 192,
           "familia": "A",
           "anillo": true,
-          "estiramiento": 0.9992497339800012
+          "estiramiento": 1.0044541596778136
         },
         {
           "hilada": 15,
@@ -584,10 +594,10 @@
           "cota_frente_catetos": 6.803960167873304,
           "procedencia": "cota de modelo; subdividida",
           "largo": 96.57660769750856,
-          "piezas": 504,
-          "familia": "C",
+          "piezas": 136,
+          "familia": "A",
           "anillo": true,
-          "estiramiento": 1.0014557054838054
+          "estiramiento": 1.0042643265720768
         },
         {
           "hilada": 15,
@@ -596,10 +606,10 @@
           "cota_frente_catetos": 6.803960167873304,
           "procedencia": "cota de modelo; subdividida",
           "largo": 4.983608791734184,
-          "piezas": 26,
-          "familia": "C",
+          "piezas": 8,
+          "familia": "A",
           "anillo": false,
-          "estiramiento": 1.0017536428787988
+          "estiramiento": 0.8809858928540345
         },
         {
           "hilada": 15,
@@ -608,10 +618,10 @@
           "cota_frente_catetos": 6.803960167873304,
           "procedencia": "cota de modelo; subdividida",
           "largo": 4.7749589721924695,
-          "piezas": 24,
-          "familia": "C",
+          "piezas": 6,
+          "familia": "A",
           "anillo": false,
-          "estiramiento": 1.039797425311808
+          "estiramiento": 1.125468623041614
         },
         {
           "hilada": 15,
@@ -620,10 +630,10 @@
           "cota_frente_catetos": 6.803960167873304,
           "procedencia": "cota de modelo; subdividida",
           "largo": 5.233930113744467,
-          "piezas": 28,
-          "familia": "C",
+          "piezas": 8,
+          "familia": "A",
           "anillo": false,
-          "estiramiento": 0.9769227496242459
+          "estiramiento": 0.9252368689212976
         },
         {
           "hilada": 15,
@@ -632,10 +642,10 @@
           "cota_frente_catetos": 6.803960167873304,
           "procedencia": "cota de modelo; subdividida",
           "largo": 4.489885220751964,
-          "piezas": 24,
-          "familia": "C",
+          "piezas": 6,
+          "familia": "A",
           "anillo": false,
-          "estiramiento": 0.9777196243300519
+          "estiramiento": 1.0582760954476575
         },
         {
           "hilada": 15,
@@ -644,10 +654,10 @@
           "cota_frente_catetos": 6.803960167873304,
           "procedencia": "cota de modelo; subdividida",
           "largo": 5.0484806348766735,
-          "piezas": 26,
-          "familia": "C",
+          "piezas": 8,
+          "familia": "A",
           "anillo": false,
-          "estiramiento": 1.0147935117577598
+          "estiramiento": 0.8924537229025655
         },
         {
           "hilada": 15,
@@ -656,10 +666,10 @@
           "cota_frente_catetos": 6.803960167873304,
           "procedencia": "cota de modelo; subdividida",
           "largo": 4.515457378385228,
-          "piezas": 24,
-          "familia": "C",
+          "piezas": 6,
+          "familia": "A",
           "anillo": false,
-          "estiramiento": 0.9832882300126523
+          "estiramiento": 1.064303510805008
         },
         {
           "hilada": 15,
@@ -668,10 +678,10 @@
           "cota_frente_catetos": 6.803960167873304,
           "procedencia": "cota de modelo; subdividida",
           "largo": 4.764262466479647,
-          "piezas": 24,
-          "familia": "C",
+          "piezas": 6,
+          "familia": "A",
           "anillo": false,
-          "estiramiento": 1.0374681489421478
+          "estiramiento": 1.1229474324667683
         },
         {
           "hilada": 15,
@@ -680,10 +690,10 @@
           "cota_frente_catetos": 6.803960167873304,
           "procedencia": "cota de modelo; subdividida",
           "largo": 4.4626501173648006,
-          "piezas": 24,
-          "familia": "C",
+          "piezas": 6,
+          "familia": "A",
           "anillo": false,
-          "estiramiento": 0.971788894758344
+          "estiramiento": 1.0518567200171973
         },
         {
           "hilada": 16,
@@ -692,70 +702,10 @@
           "cota_frente_catetos": 7.257557512398191,
           "procedencia": "cota de modelo; subdividida",
           "largo": 101.72871183831275,
-          "piezas": 288,
+          "piezas": 144,
           "familia": "A",
           "anillo": true,
           "estiramiento": 0.9990703053089326
-        },
-        {
-          "hilada": 16,
-          "fila": 16,
-          "hilada_de_referencia": 8.0,
-          "cota_frente_catetos": 7.257557512398191,
-          "procedencia": "cota de modelo; subdividida",
-          "largo": 2.085506623955261,
-          "piezas": 6,
-          "familia": "A",
-          "anillo": false,
-          "estiramiento": 0.9831172506721519
-        },
-        {
-          "hilada": 16,
-          "fila": 16,
-          "hilada_de_referencia": 8.0,
-          "cota_frente_catetos": 7.257557512398191,
-          "procedencia": "cota de modelo; subdividida",
-          "largo": 1.8053903786587149,
-          "piezas": 6,
-          "familia": "A",
-          "anillo": false,
-          "estiramiento": 0.8510691862923506
-        },
-        {
-          "hilada": 16,
-          "fila": 16,
-          "hilada_de_referencia": 8.0,
-          "cota_frente_catetos": 7.257557512398191,
-          "procedencia": "cota de modelo; subdividida",
-          "largo": 2.416465910711616,
-          "piezas": 6,
-          "familia": "A",
-          "anillo": false,
-          "estiramiento": 1.1391329546468731
-        },
-        {
-          "hilada": 16,
-          "fila": 16,
-          "hilada_de_referencia": 8.0,
-          "cota_frente_catetos": 7.257557512398191,
-          "procedencia": "cota de modelo; subdividida",
-          "largo": 2.177184514336432,
-          "piezas": 6,
-          "familia": "A",
-          "anillo": false,
-          "estiramiento": 1.0263346226544208
-        },
-        {
-          "hilada": 16,
-          "fila": 16,
-          "hilada_de_referencia": 8.0,
-          "cota_frente_catetos": 7.257557512398191,
-          "procedencia": "cota de modelo; subdividida",
-          "largo": 1.7926651640768105,
-          "piezas": 6,
-          "familia": "A",
-          "anillo": false,
-          "estiramiento": 0.845070462610405
         },
         {
           "hilada": 17,
@@ -764,10 +714,10 @@
           "cota_frente_catetos": 7.711154856923078,
           "procedencia": "cota de modelo; subdividida",
           "largo": 107.91838682292479,
-          "piezas": 306,
-          "familia": "A",
+          "piezas": 282,
+          "familia": "C",
           "anillo": true,
-          "estiramiento": 0.997514027937295
+          "estiramiento": 1.0000153720002574
         },
         {
           "hilada": 17,
@@ -776,10 +726,10 @@
           "cota_frente_catetos": 7.711154856923078,
           "procedencia": "cota de modelo; subdividida",
           "largo": 7.173893951497846,
-          "piezas": 20,
-          "familia": "A",
+          "piezas": 18,
+          "familia": "C",
           "anillo": false,
-          "estiramiento": 1.0145418121234568
+          "estiramiento": 1.0414604612197478
         },
         {
           "hilada": 18,
@@ -788,7 +738,7 @@
           "cota_frente_catetos": 8.164752201447964,
           "procedencia": "cota de modelo; subdividida",
           "largo": 5.365759830485051,
-          "piezas": 28,
+          "piezas": 14,
           "familia": "C",
           "anillo": false,
           "estiramiento": 1.001529010419016
@@ -800,10 +750,10 @@
           "cota_frente_catetos": 8.164752201447964,
           "procedencia": "cota de modelo; subdividida",
           "largo": 75.19967460969173,
-          "piezas": 394,
+          "piezas": 196,
           "familia": "C",
           "anillo": true,
-          "estiramiento": 0.9974935006677929
+          "estiramiento": 1.0025827532222202
         },
         {
           "hilada": 18,
@@ -812,7 +762,7 @@
           "cota_frente_catetos": 8.164752201447964,
           "procedencia": "cota de modelo; subdividida",
           "largo": 5.395025011087561,
-          "piezas": 28,
+          "piezas": 14,
           "familia": "C",
           "anillo": false,
           "estiramiento": 1.0069914105812527
@@ -824,10 +774,10 @@
           "cota_frente_catetos": 8.164752201447964,
           "procedencia": "cota de modelo; subdividida",
           "largo": 4.991270930734568,
-          "piezas": 26,
+          "piezas": 14,
           "familia": "C",
           "anillo": false,
-          "estiramiento": 1.0032938070402813
+          "estiramiento": 0.9316299636802611
         },
         {
           "hilada": 18,
@@ -836,7 +786,7 @@
           "cota_frente_catetos": 8.164752201447964,
           "procedencia": "cota de modelo; subdividida",
           "largo": 5.477104626507154,
-          "piezas": 28,
+          "piezas": 14,
           "familia": "C",
           "anillo": false,
           "estiramiento": 1.0223117228210437
@@ -848,10 +798,10 @@
           "cota_frente_catetos": 8.164752201447964,
           "procedencia": "cota de modelo; subdividida",
           "largo": 5.152869662693162,
-          "piezas": 26,
+          "piezas": 14,
           "familia": "C",
           "anillo": false,
-          "estiramiento": 1.0357767175553712
+          "estiramiento": 0.9617926663014158
         },
         {
           "hilada": 18,
@@ -860,10 +810,10 @@
           "cota_frente_catetos": 8.164752201447964,
           "procedencia": "cota de modelo; subdividida",
           "largo": 4.9935454863570845,
-          "piezas": 26,
+          "piezas": 14,
           "familia": "C",
           "anillo": false,
-          "estiramiento": 1.0037510147538093
+          "estiramiento": 0.9320545136999656
         },
         {
           "hilada": 18,
@@ -872,7 +822,7 @@
           "cota_frente_catetos": 8.164752201447964,
           "procedencia": "cota de modelo; subdividida",
           "largo": 4.639658966630762,
-          "piezas": 24,
+          "piezas": 12,
           "familia": "C",
           "anillo": false,
           "estiramiento": 1.0103344292427257
@@ -884,22 +834,10 @@
           "cota_frente_catetos": 8.164752201447964,
           "procedencia": "cota de modelo; subdividida",
           "largo": 4.930814356870097,
-          "piezas": 26,
+          "piezas": 12,
           "familia": "C",
           "anillo": false,
-          "estiramiento": 0.991141450056492
-        },
-        {
-          "hilada": 19,
-          "fila": 19,
-          "hilada_de_referencia": 9.5,
-          "cota_frente_catetos": 8.618349545972851,
-          "procedencia": "cota de modelo; subdividida",
-          "largo": 2.7223155452477648,
-          "piezas": 8,
-          "familia": "A",
-          "anillo": false,
-          "estiramiento": 0.962483891287124
+          "estiramiento": 1.073736570894533
         },
         {
           "hilada": 19,
@@ -908,94 +846,10 @@
           "cota_frente_catetos": 8.618349545972851,
           "procedencia": "cota de modelo; subdividida",
           "largo": 79.58851861780198,
-          "piezas": 226,
+          "piezas": 112,
           "familia": "A",
           "anillo": true,
-          "estiramiento": 0.9960633844113197
-        },
-        {
-          "hilada": 19,
-          "fila": 19,
-          "hilada_de_referencia": 9.5,
-          "cota_frente_catetos": 8.618349545972851,
-          "procedencia": "cota de modelo; subdividida",
-          "largo": 2.7612928732649027,
-          "piezas": 8,
-          "familia": "A",
-          "anillo": false,
-          "estiramiento": 0.9762644577638493
-        },
-        {
-          "hilada": 19,
-          "fila": 19,
-          "hilada_de_referencia": 9.5,
-          "cota_frente_catetos": 8.618349545972851,
-          "procedencia": "cota de modelo; subdividida",
-          "largo": 2.2752047896379746,
-          "piezas": 6,
-          "familia": "A",
-          "anillo": false,
-          "estiramiento": 1.0725418235607493
-        },
-        {
-          "hilada": 19,
-          "fila": 19,
-          "hilada_de_referencia": 9.5,
-          "cota_frente_catetos": 8.618349545972851,
-          "procedencia": "cota de modelo; subdividida",
-          "largo": 2.8590527352245454,
-          "piezas": 8,
-          "familia": "A",
-          "anillo": false,
-          "estiramiento": 1.0108277884236114
-        },
-        {
-          "hilada": 19,
-          "fila": 19,
-          "hilada_de_referencia": 9.5,
-          "cota_frente_catetos": 8.618349545972851,
-          "procedencia": "cota de modelo; subdividida",
-          "largo": 2.4754948038535556,
-          "piezas": 8,
-          "familia": "A",
-          "anillo": false,
-          "estiramiento": 0.8752195812984557
-        },
-        {
-          "hilada": 19,
-          "fila": 19,
-          "hilada_de_referencia": 9.5,
-          "cota_frente_catetos": 8.618349545972851,
-          "procedencia": "cota de modelo; subdividida",
-          "largo": 2.241728368511791,
-          "piezas": 6,
-          "familia": "A",
-          "anillo": false,
-          "estiramiento": 1.056760887301962
-        },
-        {
-          "hilada": 19,
-          "fila": 19,
-          "hilada_de_referencia": 9.5,
-          "cota_frente_catetos": 8.618349545972851,
-          "procedencia": "cota de modelo; subdividida",
-          "largo": 1.8013036158048925,
-          "piezas": 6,
-          "familia": "A",
-          "anillo": false,
-          "estiramiento": 0.8491426678076579
-        },
-        {
-          "hilada": 19,
-          "fila": 19,
-          "hilada_de_referencia": 9.5,
-          "cota_frente_catetos": 8.618349545972851,
-          "procedencia": "cota de modelo; subdividida",
-          "largo": 2.154739154593676,
-          "piezas": 6,
-          "familia": "A",
-          "anillo": false,
-          "estiramiento": 1.0157537786009043
+          "estiramiento": 1.0049568074864208
         },
         {
           "hilada": 20,
@@ -1004,10 +858,10 @@
           "cota_frente_catetos": 9.071946890497738,
           "procedencia": "cota de modelo; subdividida",
           "largo": 75.85685796059653,
-          "piezas": 214,
+          "piezas": 108,
           "familia": "A",
           "anillo": true,
-          "estiramiento": 1.0025962366998606
+          "estiramiento": 0.9933129382118989
         },
         {
           "hilada": 21,
@@ -1016,10 +870,10 @@
           "cota_frente_catetos": 9.525544235022625,
           "procedencia": "cota de modelo; subdividida",
           "largo": 68.48916475794056,
-          "piezas": 358,
-          "familia": "C",
+          "piezas": 96,
+          "familia": "A",
           "anillo": true,
-          "estiramiento": 0.9998369404250442
+          "estiramiento": 1.0089406841279682
         },
         {
           "hilada": 22,
@@ -1028,7 +882,7 @@
           "cota_frente_catetos": 9.979141579547512,
           "procedencia": "cota de modelo; subdividida",
           "largo": 68.9630045551943,
-          "piezas": 196,
+          "piezas": 98,
           "familia": "A",
           "anillo": true,
           "estiramiento": 0.9951879218770746
@@ -1040,10 +894,10 @@
           "cota_frente_catetos": 10.4327389240724,
           "procedencia": "cota de modelo; subdividida",
           "largo": 72.31660948599841,
-          "piezas": 204,
-          "familia": "A",
+          "piezas": 188,
+          "familia": "C",
           "anillo": true,
-          "estiramiento": 1.0026581364699783
+          "estiramiento": 1.0051723797854593
         },
         {
           "hilada": 24,
@@ -1052,10 +906,10 @@
           "cota_frente_catetos": 10.886336268597287,
           "procedencia": "cota de modelo; subdividida",
           "largo": 1.9296713506214058,
-          "piezas": 10,
+          "piezas": 6,
           "familia": "C",
           "anillo": false,
-          "estiramiento": 1.0084948484419622
+          "estiramiento": 0.8404123737016354
         },
         {
           "hilada": 24,
@@ -1064,22 +918,10 @@
           "cota_frente_catetos": 10.886336268597287,
           "procedencia": "cota de modelo; subdividida",
           "largo": 54.365118084919914,
-          "piezas": 284,
+          "piezas": 142,
           "familia": "C",
           "anillo": true,
           "estiramiento": 1.0004429559279897
-        },
-        {
-          "hilada": 24,
-          "fila": 24,
-          "hilada_de_referencia": 12.0,
-          "cota_frente_catetos": 10.886336268597287,
-          "procedencia": "cota de modelo; subdividida",
-          "largo": 1.6398133875227283,
-          "piezas": 8,
-          "familia": "C",
-          "anillo": false,
-          "estiramiento": 1.0712597207228352
         },
         {
           "hilada": 25,
@@ -1088,7 +930,7 @@
           "cota_frente_catetos": 11.339933613122174,
           "procedencia": "cota de modelo; subdividida",
           "largo": 49.642856671369444,
-          "piezas": 140,
+          "piezas": 70,
           "familia": "A",
           "anillo": true,
           "estiramiento": 1.0029371597084906
@@ -1100,7 +942,7 @@
           "cota_frente_catetos": 11.79353095764706,
           "procedencia": "cota de modelo; subdividida",
           "largo": 49.65237715061992,
-          "piezas": 140,
+          "piezas": 70,
           "familia": "A",
           "anillo": true,
           "estiramiento": 1.003129502435295
@@ -1112,10 +954,10 @@
           "cota_frente_catetos": 12.247128302171946,
           "procedencia": "cota de modelo; subdividida",
           "largo": 47.585687104125704,
-          "piezas": 248,
-          "familia": "C",
+          "piezas": 68,
+          "familia": "A",
           "anillo": true,
-          "estiramiento": 1.0028015552975167
+          "estiramiento": 0.9896518246690743
         },
         {
           "hilada": 28,
@@ -1124,7 +966,7 @@
           "cota_frente_catetos": 12.700725646696833,
           "procedencia": "cota de modelo; subdividida",
           "largo": 46.91523684675245,
-          "piezas": 132,
+          "piezas": 66,
           "familia": "A",
           "anillo": true,
           "estiramiento": 1.005275215615504
@@ -1136,10 +978,10 @@
           "cota_frente_catetos": 13.15432299122172,
           "procedencia": "cota de modelo; subdividida",
           "largo": 46.71521242139456,
-          "piezas": 132,
-          "familia": "A",
+          "piezas": 122,
+          "familia": "C",
           "anillo": true,
-          "estiramiento": 1.0009891965981252
+          "estiramiento": 1.0005961712479838
         },
         {
           "hilada": 30,
@@ -1148,10 +990,10 @@
           "cota_frente_catetos": 13.607920335746607,
           "procedencia": "cota de modelo; subdividida",
           "largo": 47.837422040156376,
-          "piezas": 250,
+          "piezas": 126,
           "familia": "C",
           "anillo": true,
-          "estiramiento": 1.0000416635652678
+          "estiramiento": 0.9921048249655434
         },
         {
           "hilada": 31,
@@ -1160,10 +1002,10 @@
           "cota_frente_catetos": 14.061517680271495,
           "procedencia": "cota de modelo; subdividida",
           "largo": 50.372623127004815,
-          "piezas": 142,
+          "piezas": 72,
           "familia": "A",
           "anillo": true,
-          "estiramiento": 1.0033471380073076
+          "estiramiento": 0.9894117610905392
         },
         {
           "hilada": 32,
@@ -1172,7 +1014,7 @@
           "cota_frente_catetos": 14.515115024796382,
           "procedencia": "cota de modelo; subdividida",
           "largo": 53.59108539901435,
-          "piezas": 152,
+          "piezas": 76,
           "familia": "A",
           "anillo": true,
           "estiramiento": 0.9972268393892215
@@ -1184,10 +1026,10 @@
           "cota_frente_catetos": 14.968712369321269,
           "procedencia": "cota de modelo; subdividida",
           "largo": 57.113986059316396,
-          "piezas": 298,
-          "familia": "C",
+          "piezas": 80,
+          "familia": "A",
           "anillo": true,
-          "estiramiento": 1.0016512612291069
+          "estiramiento": 1.009642171078414
         },
         {
           "hilada": 34,
@@ -1196,10 +1038,10 @@
           "cota_frente_catetos": 15.422309713846156,
           "procedencia": "cota de modelo; subdividida",
           "largo": 61.48247701498231,
-          "piezas": 174,
+          "piezas": 86,
           "familia": "A",
           "anillo": true,
-          "estiramiento": 0.9994178487687363
+          "estiramiento": 1.011038986545117
         },
         {
           "hilada": 35,
@@ -1208,10 +1050,10 @@
           "cota_frente_catetos": 15.875907058371043,
           "procedencia": "cota de modelo; subdividida",
           "largo": 32.2491747457883,
-          "piezas": 92,
-          "familia": "A",
+          "piezas": 84,
+          "familia": "C",
           "anillo": true,
-          "estiramiento": 0.9914613108876897
+          "estiramiento": 1.003228032635084
         },
         {
           "hilada": 36,
@@ -1220,7 +1062,7 @@
           "cota_frente_catetos": 16.329504402895928,
           "procedencia": "cota de modelo; subdividida",
           "largo": 32.22048310745293,
-          "piezas": 168,
+          "piezas": 84,
           "familia": "C",
           "anillo": true,
           "estiramiento": 1.0023354747291167
@@ -1232,10 +1074,10 @@
           "cota_frente_catetos": 16.783101747420815,
           "procedencia": "cota de modelo; subdividida",
           "largo": 35.85908014502038,
-          "piezas": 102,
+          "piezas": 50,
           "familia": "A",
           "anillo": true,
-          "estiramiento": 0.9943607348100312
+          "estiramiento": 1.0142479495062318
         },
         {
           "hilada": 38,
@@ -1244,7 +1086,7 @@
           "cota_frente_catetos": 17.236699091945702,
           "procedencia": "cota de modelo; subdividida",
           "largo": 19.663564047355642,
-          "piezas": 56,
+          "piezas": 28,
           "familia": "A",
           "anillo": true,
           "estiramiento": 0.9931599628700835
@@ -1256,10 +1098,10 @@
           "cota_frente_catetos": 17.69029643647059,
           "procedencia": "cota de modelo; subdividida",
           "largo": 17.6446377113974,
-          "piezas": 92,
-          "familia": "C",
+          "piezas": 24,
+          "familia": "A",
           "anillo": true,
-          "estiramiento": 1.0023404418423005
+          "estiramiento": 1.0397202481090821
         },
         {
           "hilada": 40,
@@ -1268,10 +1110,10 @@
           "cota_frente_catetos": 18.143893780995477,
           "procedencia": "cota de modelo; subdividida",
           "largo": 16.54756254033398,
-          "piezas": 46,
+          "piezas": 24,
           "familia": "A",
           "anillo": true,
-          "estiramiento": 1.0174690160329263
+          "estiramiento": 0.9750744736982208
         },
         {
           "hilada": 41,
@@ -1280,10 +1122,10 @@
           "cota_frente_catetos": 18.597491125520364,
           "procedencia": "cota de modelo; subdividida",
           "largo": 15.595749292140328,
-          "piezas": 44,
-          "familia": "A",
+          "piezas": 40,
+          "familia": "C",
           "anillo": true,
-          "estiramiento": 1.002532734741611
+          "estiramiento": 1.0188414217303758
         },
         {
           "hilada": 42,
@@ -1292,7 +1134,7 @@
           "cota_frente_catetos": 19.05108847004525,
           "procedencia": "cota de modelo; subdividida",
           "largo": 14.687316931472624,
-          "piezas": 76,
+          "piezas": 38,
           "familia": "C",
           "anillo": true,
           "estiramiento": 1.009994966108625
@@ -1304,7 +1146,7 @@
           "cota_frente_catetos": 19.504685814570138,
           "procedencia": "cota de modelo; subdividida",
           "largo": 13.791706651114334,
-          "piezas": 40,
+          "piezas": 20,
           "familia": "A",
           "anillo": true,
           "estiramiento": 0.9752209297138554
@@ -1316,7 +1158,7 @@
           "cota_frente_catetos": 19.958283159095025,
           "procedencia": "cota de modelo; subdividida",
           "largo": 12.89918905503615,
-          "piezas": 36,
+          "piezas": 18,
           "familia": "A",
           "anillo": true,
           "estiramiento": 1.0134560058470394
@@ -1328,12 +1170,14 @@
           "cota_frente_catetos": 20.411880503619912,
           "procedencia": "cota de modelo; subdividida",
           "largo": 12.007122963413538,
-          "piezas": 62,
-          "familia": "C",
+          "piezas": 16,
+          "familia": "A",
           "anillo": true,
-          "estiramiento": 1.0121330437879237
+          "estiramiento": 1.0612897587463033
         }
-      ]
+      ],
+      "piezas_en_cotas_originales": 2730,
+      "piezas_en_cotas_intermedias": 2810
     }
   },
   "limites": "Solo piezas en frentes admitidos; faltan cierres, clave y cupulines. No valida el total historico."

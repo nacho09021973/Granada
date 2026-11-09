@@ -37,7 +37,7 @@ def main() -> int:
     ap.add_argument("--forma", default="lineal")
     ap.add_argument("--signo", type=int, default=1)
     ap.add_argument("--filas-por-hilada", type=int, choices=(1, 2), default=2,
-                    help="2: opcion B, piezas a media escala; 1: modelo anterior")
+                    help="2: opcion B, mitad de altura y fondo, mismo ancho; 1: modelo anterior")
     ap.add_argument("--informe", type=Path, help="guarda el recuento sin renderizar")
     ap.add_argument("--hiladas", default="6,10", help="indices de FILA j, o 'todas'; B tiene dos por hilada")
     ap.add_argument("--lado", type=int, default=1000)
@@ -67,8 +67,10 @@ def main() -> int:
         for filas in (1, 2):
             rs = resumen(c, filas_por_hilada=filas)
             informe["variantes"][str(filas)] = {
-                "filas_por_hilada": filas, "escala_lineal_pieza": 1 / filas,
+                "filas_por_hilada": filas, "escala_pieza_xyz": [1, 1 / filas, 1 / filas],
                 "piezas": sum(r["piezas"] for r in rs), "frentes": rs,
+                "piezas_en_cotas_originales": sum(r["piezas"] for r in rs if r["fila"] % filas == 0),
+                "piezas_en_cotas_intermedias": sum(r["piezas"] for r in rs if r["fila"] % filas != 0),
             }
         a.informe.parent.mkdir(parents=True, exist_ok=True)
         a.informe.write_text(json.dumps(informe, ensure_ascii=False, indent=2) + "\n")

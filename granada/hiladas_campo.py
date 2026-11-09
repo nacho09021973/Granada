@@ -20,10 +20,11 @@ campo es mas suave que su curva: en las esquinas de la estrella la normal
 salta y el gradiente no tanto. Aun asi, en las esquinas concavas las piezas
 vecinas se solapan o se separan: es el riesgo declarado del paso 3.
 
-Con filas_por_hilada=2 (opcion B, decision 0018), cada pieza se reduce a
-media escala en las tres coordenadas y el paso entre frentes se divide por
-dos. Se conserva el campo, su rejilla y su suavizado; las nuevas cotas son
-supuestas. El recuento puede crecer aproximadamente por cuatro, no por dos.
+Con filas_por_hilada=2 (opcion B, decision 0018), se dividen por dos altura
+y fondo de la pieza, conservando su ancho tangencial. Cada par de filas
+conserva la familia de la hilada original. El campo no cambia; las nuevas
+cotas son supuestas. No se reduce el ancho: eso duplicaria tambien el numero
+de piezas por fila, y no corresponde a dividir cada hilada en dos filas.
 """
 
 from __future__ import annotations
@@ -128,8 +129,8 @@ def colocar(V, f: Frente, gradiente, inicio: float, estiramiento: float, fondo: 
 def hilada_de(f: Frente) -> Hilada:
     """Plan de la hilada: familia por la secuencia A, A, C del modelo de anillos
     y numero par de piezas para que alternen frente y vertice."""
-    familia = SECUENCIA[(f.indice - 1) % len(SECUENCIA)]
-    paso_t = FAMILIAS[familia].paso_tangencial * f.escala
+    familia = SECUENCIA[((f.indice - 1) // f.filas_por_hilada) % len(SECUENCIA)]
+    paso_t = FAMILIAS[familia].paso_tangencial
     n = max(2, 2 * round(f.largo / (2 * paso_t)))
     return Hilada(f.indice - 1, familia, float("nan"), f.cota, f.paso, n, f.largo / (n * paso_t))
 
@@ -150,10 +151,10 @@ def montar(c: Campo, seleccion: list[Frente] | None = None, subdivision: int = 6
                 pz = pieza(tipo, PASO_VERTICAL)
                 Vm, Fm = malla(pz, subdivision)
                 Em = etiquetas(pz, Vm, Fm)
-                plantillas[clave] = (np.asarray(Vm) * f.escala, Fm, Em, oclusion(pz, Vm, Fm, Em))
+                plantillas[clave] = (np.asarray(Vm) * (1, f.escala, f.escala), Fm, Em, oclusion(pz, Vm, Fm, Em))
             Vp, Fp, Ep, Sp = plantillas[clave]
             base = len(V)
-            V.extend(colocar(Vp, f, gradiente, i * fam.paso_tangencial * f.escala * h.estiramiento, h.estiramiento, fam.fondo * f.escala))
+            V.extend(colocar(Vp, f, gradiente, i * fam.paso_tangencial * h.estiramiento, h.estiramiento, fam.fondo * f.escala))
             F.extend((a + base, b + base, cc + base) for a, b, cc in Fp)
             E.extend(Ep)
             S.extend(Sp)
