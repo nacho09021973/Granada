@@ -45,8 +45,17 @@ puntos.
    seguir ese detalle. No se arregla suavizando más. El render anterior
    `cupula_campo_B.png` usaba la interpretación errónea con ancho reducido.
    La comparación vigente es con `cupula_campo_B_corregida.png`.
-   No se declara resuelto este punto.
-   Falta medir solapes o inversiones antes de considerar válida la colocación.
+   **Diagnóstico hecho (0019):** el cono A=0 no invierte; con A=2 sí hay
+   inversiones locales de la banda. En el anillo de la fila 24, el fondo queda
+   hasta ~16 cm del contorno anterior, confirmado al refinar el muestreo.
+   Seguir el campo corrige una ventana local (33/33 y 65/65 trayectorias,
+   sin inversiones), pero el ensayo repartido por todos los frentes deja
+   7 trayectorias interiores sin llegada, además del problema de borde H=0.
+   **Siguiente:** tratar arranque y conexiones cerca de gradiente nulo antes
+   de sustituir la colocación. No se declara resuelto ni se han contado
+   intersecciones 3D entre sólidos. Informes y SVG:
+   `datos/diagnostico_colocacion_campo*.json`,
+   `renders/diagnostico_colocacion_campo*.svg`.
 3. **Paso 4, cierres.** Tapar con cupulilla de tamaño de pieza los lazos de
    menos de `PIEZAS_MINIMAS` = 6 piezas (hoy salen huecos negros) y la clave
    (solo hay 22 cotas). Conservar los 16 cupulines del anillo exterior.
