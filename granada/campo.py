@@ -124,10 +124,15 @@ def campo(A: float = 0.0, forma: str = "lineal", signo: int = 1, resolucion: flo
     return Campo(x, y, H, A, forma, signo)
 
 
-def cotas_de_hilada(hiladas: int = HILADAS) -> list[float]:
+def cotas_de_hilada(hiladas: int = HILADAS, filas_por_hilada: int = 1) -> list[float]:
     """Cotas de las juntas entre hiladas: k * PASO_VERTICAL, k = 1 .. hiladas - 1.
-    Se dejan fuera el arranque (z = 0, donde el cono se aplana) y la clave."""
-    return [k * PASO_VERTICAL for k in range(1, hiladas)]
+    Se dejan fuera el arranque (z = 0, donde el cono se aplana) y la clave.
+    Las filas intermedias son eleccion de modelo, no nuevas cotas medidas.
+    """
+    if type(filas_por_hilada) is not int or filas_por_hilada < 1:
+        raise ValueError("filas_por_hilada debe ser un entero positivo")
+    return [k * PASO_VERTICAL / filas_por_hilada
+            for k in range(1, hiladas * filas_por_hilada)]
 
 
 LAZO_MINIMO = 2

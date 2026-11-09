@@ -1,6 +1,6 @@
 # Próximos pasos
 
-Estado a 2026-11-08. Documento de trabajo: se actualiza, no se conserva como
+Estado a 2026-11-09. Documento de trabajo: se actualiza, no se conserva como
 histórico. El registro de decisiones va en `docs/decisiones/`.
 
 ---
@@ -30,15 +30,21 @@ puntos.
 
 **Pendiente, en este orden:**
 
-1. **Decidir el tamaño de pieza.** Con el paso de hilada medido salen **2730
-   piezas** (A = 2) frente a las **5416** de Jones y Goury: las dos fuentes no
-   encajan a la vez. Opciones: (a) manda la sección y se acepta el recuento
-   bajo; (b) manda el recuento y cada hilada medida se parte en dos filas de
-   piezas de la mitad de tamaño. La (b) seguramente arregla también el punto 2.
-   **Decide el usuario.**
+1. **Tamaño decidido: B (2026-11-09, decisión 0018).** Dos filas por hilada,
+   piezas a media escala uniforme, implementadas tras la elección del usuario.
+   Comparación reproducida: **2730 → 11304 piezas** a A=2, sin cierres.
+   La previsión de acercarse a 5416 era incorrecta: reducir también el ancho
+   duplica aproximadamente las piezas por fila además del número de filas.
+   Informe: `datos/comparacion_filas_campo.json`. Se conserva A con
+   `--filas-por-hilada 1`; B es el defecto del script experimental, sin
+   sustituir la malla del visor. **La elección no valida el recuento histórico.**
 2. **Zona media e interior arrugada.** Allí las celdas de la red (8-15 cm de
    radio) son menores que el fondo de una hilada (16 cm); las piezas no pueden
-   seguir ese detalle. No se arregla suavizando más. Revisar tras el punto 1.
+   seguir ese detalle. No se arregla suavizando más. **Revisado con B el
+   2026-11-09:** las filas son más finas y continuas, pero persisten
+   irregularidades; no se declara resuelto. Comparativas miradas a 650 px
+   por vista: `renders/previas/cupula_campo_A.png` y `cupula_campo_B.png`.
+   Falta medir solapes o inversiones antes de considerar válida la colocación.
 3. **Paso 4, cierres.** Tapar con cupulilla de tamaño de pieza los lazos de
    menos de `PIEZAS_MINIMAS` = 6 piezas (hoy salen huecos negros) y la clave
    (solo hay 22 cotas). Conservar los 16 cupulines del anillo exterior.
