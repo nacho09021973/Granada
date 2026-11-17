@@ -58,9 +58,51 @@ puntos.
    garantiza descenso monótono ni prueba una obstrucción continua. El borde
    termina hasta 21,1 cm fuera del radio base: H≈0 no fija el arranque.
    Informe: `datos/diagnostico_paradas_campo.json`.
-   **Siguiente:** definir dominio y condición de borde; ensayar transporte
-   interior con derivada compatible con H interpolada y contrastar con
-   rejilla más fina antes de sustituir la colocación.
+   **Arranque ensayado, 0021 (2026-11-17):** candidato opcional
+   `campo(borde="circular")`: dominio r≤RADIO_BASE y atenuación del relieve
+   en un paso horizontal de hilada junto al borde. La primera fila B, A=2,
+   conecta radialmente sin subidas H ni inversiones en 129 y 257 trayectorias
+   con rejillas 0,03 y 0,015. El error de radio del contorno H=0 baja de
+   0,063 a 0,016 mm. La fórmula impone el borde; eso no es evidencia histórica.
+   El transporte radial del campo libre al círculo falla al refinar.
+   Informe: `datos/diagnostico_arranque_campo.json`. El defecto sigue libre;
+   no se aplica al visor ni resuelve encuentros con cupulines.
+   **Transporte interior ensayado, 0022 (2026-11-17):** descenso con derivada
+   bilineal compatible con H, retroceso y comprobación por tramos de celda.
+   No resuelve ninguna de las siete paradas, ni con rejilla 0,03 ni 0,015;
+   se rechaza como sustitución. En la rejilla fina el control con dirección
+   interpolada llega en 1/7 o 2/7 según umbral: no hay obstrucción estable
+   demostrada. Se conservan 48 recorridos y contrastes en
+   `datos/ensayo_transporte_interior.json`; 769 tests pasan.
+   **Direcciones en los extremos, 0023 (2026-11-17):** los 42 extremos
+   fallidos tienen dirección descendente con paso aceptable; ninguno es
+   mínimo local. Las 16 semillas (7 paradas + control, dos rejillas) tienen
+   camino monótono certificado por aristas hasta la cota previa. **Falla el
+   método; no hay encierro geométrico desde la semilla** en esta superficie
+   discreta. Causa dominante: valle sobre arista de celda (25/42 extremos;
+   en 35/42 la dirección del método sube). Informe:
+   `datos/direcciones_extremos.json`; 771 tests pasan.
+   **Colocación por flujo, 0024 (2026-11-17):** opción
+   `colocacion="flujo"` (spline cúbico + RK4 por niveles de H). Inversiones
+   de banda 27 390 → 2 556 y fondo en su cota (~1e-3 pasos), salvo en los
+   cambios de topología (filas 15, 17, 18, 24). **El render apenas mejora.**
+   El desorden visible coincide con frentes que giran 20–60° (mediana) dentro
+   de una sola pieza en las filas 13–24 y 30–37: las piezas se doblan.
+   **Piezas rígidas, 0025 (2026-11-17): rechazado.** Sin doblarse, las
+   piezas quedan desorientadas: 721 de 5540 lados giran >45° respecto al
+   siguiente, en las mismas filas. El problema es el frente, no la
+   colocación.
+   **Frentes suavizados, 0026 (2026-11-17, aceptada; es el defecto):**
+   `colocacion="suavizada"`, σ=1,0 catetos (22 cm), gaussiana compensada.
+   Cumple el criterio previo por poco (23,9° < 25°). Inversiones 48 947 →
+   2 540; las filas se leen continuas
+   (`renders/previas/cupula_campo_suavizada_s1.0.png`). Costes: desvío de
+   hasta 8 cm de la curva real y 5538 → 5018 piezas. Quedan zonas ásperas
+   junto a la estrella de la clave y en los lazos.
+   Render Cycles (CPU, ~18 min): `renders/previas/cupula_cycles_{visitante,cenital}_campo_suavizada.png`,
+   con `render_hilada_campo.py --obj` y `render_cycles.py --dispositivo cpu`.
+   Se ven rendijas oscuras sueltas entre piezas (sin medir).
+   **Siguiente:** cierres (paso 4) o rendijas, a elegir por el usuario.
    No se declara resuelto ni se han contado
    intersecciones 3D entre sólidos. Informes y SVG:
    `datos/diagnostico_colocacion_campo*.json`,

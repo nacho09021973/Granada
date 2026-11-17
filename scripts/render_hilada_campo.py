@@ -42,6 +42,11 @@ def main() -> int:
     ap.add_argument("--hiladas", default="6,10", help="indices de FILA j, o 'todas'; B tiene dos por hilada")
     ap.add_argument("--lado", type=int, default=1000)
     ap.add_argument("--subdivision", type=int, default=6)
+    ap.add_argument("--colocacion", choices=("rayo", "flujo", "rigida", "suavizada"), default="suavizada",
+                    help="rayo: desplazamiento recto; flujo: lineas de maxima pendiente (0024); rigida: piezas sin doblar (0025); suavizada: frente suavizado (0026)")
+    ap.add_argument("--sigma", type=float, default=1.0, help="suavizado del frente en catetos (solo suavizada)")
+    ap.add_argument("--obj", type=Path,
+                    help="escribe .obj/.mtl para scripts/render_cycles.py (piezas en yeso + sala medida) y termina")
     ap.add_argument("--png", type=Path, default=RAIZ / "renders" / "previas" / "hilada_campo.png")
     a = ap.parse_args()
 
@@ -84,12 +89,24 @@ def main() -> int:
     for j in sorted({f.indice for f in sel}):
         fs = [f for f in sel if f.indice == j]
         print(f"fila {j:2d}: {len(fs):3d} frentes, {sum(hilada_de(f).piezas for f in fs):5d} piezas")
-    grupos = montar(c, sel, subdivision=a.subdivision)
+    grupos = montar(c, sel, subdivision=a.subdivision, colocacion=a.colocacion, sigma=a.sigma)
     V, F = [], []
     for _, Vg, Fg, *_ in grupos:
         base = len(V)
         V.extend(Vg)
         F.extend((p + base, q + base, r + base) for p, q, r in Fg)
+
+    if a.obj:
+        from granada.color import material, paleta_materiales
+        from granada.piezas import escribir_obj
+        from granada.sala import sala
+        # Piezas en yeso (sin color, decidido); la sala es la medida de granada/sala.py.
+        salida = [(f"hilada_{n}", Vg, Fg, [material("yeso", x) for x in Sg]) for n, Vg, Fg, _, Sg in grupos]
+        salida += [(n, Vg, Fg, [material(cc, x) for cc, x in zip(Cg, Sg)]) for n, Vg, Fg, Cg, Sg in sala()]
+        a.obj.parent.mkdir(parents=True, exist_ok=True)
+        escribir_obj(a.obj, salida, paleta=paleta_materiales())
+        print(f"-> {a.obj}")
+        return 0
 
     luces = [((0.55, 0.35, -0.75), 0.75), ((-0.6, -0.45, -0.65), 0.3)]
     L = a.lado
@@ -100,7 +117,7 @@ def main() -> int:
     lienzo.paste(oblicua, (L, 0))
     dibujo = ImageDraw.Draw(lienzo)
     dibujo.rectangle((0, 0, 2 * L, 38), fill=(20, 19, 20))
-    dibujo.text((8, 4), f"Modelo supuesto: {a.filas_por_hilada} filas/hilada; A={a.A}; filas {a.hiladas}", fill="white")
+    dibujo.text((8, 4), f"Modelo supuesto: {a.filas_por_hilada} filas/hilada; A={a.A}; filas {a.hiladas}; colocacion {a.colocacion}" + (f" sigma={a.sigma}" if a.colocacion == "suavizada" else ""), fill="white")
     dibujo.text((8, 20), "Sin cierres, clave ni cupulines; no es una restitucion validada", fill="white")
     a.png.parent.mkdir(parents=True, exist_ok=True)
     lienzo.save(a.png)

@@ -1,0 +1,3765 @@
+{
+  "alcance": "A=2, B, borde libre; todos los frentes admitidos. Banda en planta; sin solidos 3D.",
+  "metodo": {
+    "rayo": "banda() de 0019: ds 0,06, 20 capas, desplazamiento recto",
+    "flujo": "banda_de_flujo(): spline cubico, dX/dh=-g/|g|^2, RK4, ds = paso de rejilla, 16 capas",
+    "rigida": "poligono_de(): un lado por pieza, fondo por biseccion en la normal, recorte 0,35-1,6"
+  },
+  "tolerancias": {
+    "inversion_area": 1e-10
+  },
+  "entorno": {
+    "python": "3.12.3",
+    "numpy": "2.5.4",
+    "scipy": "1.17.1"
+  },
+  "sha256": {
+    "scripts/comparar_colocacion_flujo.py": "255df113878bed76262b37b639aa7d6d88925dcccd93d7b9711ac1e6e6a05ea1",
+    "scripts/diagnosticar_colocacion_campo.py": "8c5ddc7a8f70379969addf8f813520003107b2e4effcb2e5b8042fef74dcc1ed",
+    "granada/campo.py": "db9829d9be7ca517aff8484af68eaacdb7ba5757367cc2b2abb6962052541876",
+    "granada/hiladas_campo.py": "f73a1fa3b1fe3d8e5020e885170c5c172f3ca834b85d700a5656e0838ea8245c",
+    "granada/cupula.py": "2af80b3d88cc6a57c975047eec04f8f6508db2d801ed1fc2b36524a1287d3625"
+  },
+  "cateto_m": 0.22381466813208983,
+  "total": {
+    "rayo": {
+      "invertidos": 27390,
+      "triangulos": 2069560,
+      "frentes_con_inversion": 24,
+      "frentes_error_cota_mayor_1e-3_pasos": 63
+    },
+    "flujo": {
+      "invertidos": 2556,
+      "triangulos": 3310176,
+      "frentes_con_inversion": 22,
+      "frentes_error_cota_mayor_1e-3_pasos": 56
+    },
+    "rigida": {
+      "lados": 5540,
+      "lados_con_giro_mayor_45": 721,
+      "fondos_sin_cruce": 407,
+      "fondos_recortados": 892
+    },
+    "giro_p50_mediana_anillos_grados": 14.21249722311378,
+    "giro_p50_mediana_lazos_grados": 36.43793689511077
+  },
+  "frentes": [
+    {
+      "indice_frente": 0,
+      "fila": 1,
+      "familia": "A",
+      "anillo": true,
+      "piezas": 144,
+      "rayo": {
+        "triangulos": 67680,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.4836754179136784,
+        "error_cota_p95_pasos": 0.44781807212575014,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.4906927604801047,
+          0.9932232568174018,
+          1.000001163637952,
+          1.0279776859815009
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.8482882377758544,
+          1.0221937071839449,
+          1.1989070982438021,
+          1.861787942785995
+        ]
+      },
+      "flujo": {
+        "triangulos": 108288,
+        "invertidos": 73,
+        "error_cota_max_pasos": 0.05886422790460139,
+        "error_cota_p95_pasos": 0.014155964348209357,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.9619612793519716,
+          1.027076147631818,
+          1.9916095353499335,
+          2.194827604454506
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.40663047938887714,
+          1.0383017943427042,
+          2.3503065460671952,
+          5.092283597458375
+        ]
+      },
+      "rigida": {
+        "giro_entre_lados_p50_p95_max_grados": [
+          2.5383003885798905,
+          22.815333240515276,
+          30.428020486918616
+        ],
+        "lados_con_giro_mayor_45": 0,
+        "lados": 144,
+        "fondos_sin_cruce": 97,
+        "fondos_recortados": 124
+      },
+      "giro_frente_por_paso_tangencial_p50_p95_max_grados": [
+        2.539295187984553,
+        30.59620968496718,
+        41.803537742829704
+      ]
+    },
+    {
+      "indice_frente": 1,
+      "fila": 2,
+      "familia": "A",
+      "anillo": true,
+      "piezas": 142,
+      "rayo": {
+        "triangulos": 67080,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.12530735459963793,
+        "error_cota_p95_pasos": 0.11791051568411788,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.43669552258009575,
+          0.9338155980187812,
+          1.0000011594202685,
+          1.0000013302756257
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.8433856624386293,
+          1.0213850840282472,
+          1.1932130272457588,
+          1.262810875172196
+        ]
+      },
+      "flujo": {
+        "triangulos": 107328,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.008493856376342092,
+        "error_cota_p95_pasos": 0.0011978358866236002,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.4575662796800226,
+          0.9710330845679217,
+          1.000021669522057,
+          1.0000355177425941
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.8355060217264804,
+          1.02176494628834,
+          1.1859707731710891,
+          1.6566219466710443
+        ]
+      },
+      "rigida": {
+        "giro_entre_lados_p50_p95_max_grados": [
+          4.484373785172189,
+          28.811186142770076,
+          33.73201513412577
+        ],
+        "lados_con_giro_mayor_45": 0,
+        "lados": 142,
+        "fondos_sin_cruce": 0,
+        "fondos_recortados": 0
+      },
+      "giro_frente_por_paso_tangencial_p50_p95_max_grados": [
+        4.835077342177511,
+        35.919541912812555,
+        41.56792186934799
+      ]
+    },
+    {
+      "indice_frente": 2,
+      "fila": 3,
+      "familia": "A",
+      "anillo": true,
+      "piezas": 142,
+      "rayo": {
+        "triangulos": 66800,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.13129104945445108,
+        "error_cota_p95_pasos": 0.12372880820808484,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.41530115897352404,
+          0.7660446771058353,
+          1.0000001427951546,
+          1.000001347906184
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.8501097028651238,
+          1.0103120042348042,
+          1.2168856986154815,
+          1.2740380488287257
+        ]
+      },
+      "flujo": {
+        "triangulos": 106848,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.0008841250352501837,
+        "error_cota_p95_pasos": 0.000605139095108377,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.4241268169928889,
+          0.8629965214017723,
+          1.00001717996809,
+          1.000035027897386
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.8389520788448865,
+          1.0139382463531723,
+          1.2202833164012874,
+          1.3117944214436177
+        ]
+      },
+      "rigida": {
+        "giro_entre_lados_p50_p95_max_grados": [
+          7.172654419669961,
+          31.269117858667528,
+          35.66536530078326
+        ],
+        "lados_con_giro_mayor_45": 0,
+        "lados": 142,
+        "fondos_sin_cruce": 0,
+        "fondos_recortados": 1
+      },
+      "giro_frente_por_paso_tangencial_p50_p95_max_grados": [
+        8.341076743768383,
+        38.32987641681905,
+        43.81731678971411
+      ]
+    },
+    {
+      "indice_frente": 3,
+      "fila": 4,
+      "familia": "A",
+      "anillo": true,
+      "piezas": 142,
+      "rayo": {
+        "triangulos": 66720,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.13297730878825542,
+        "error_cota_p95_pasos": 0.12645972002990186,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.4099975632307146,
+          0.6088849422035004,
+          0.9996441604407317,
+          0.9999840597933474
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.8517916965427275,
+          0.9904024121272621,
+          1.2263992720669725,
+          1.2731202129867076
+        ]
+      },
+      "flujo": {
+        "triangulos": 106720,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.000989756006447561,
+        "error_cota_p95_pasos": 0.0006626023095827713,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.410990226544566,
+          0.6995214041817421,
+          0.9999378810258112,
+          1.0000322801392632
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.8406813581714329,
+          0.992228131807152,
+          1.2423706077076382,
+          1.3205096028694978
+        ]
+      },
+      "rigida": {
+        "giro_entre_lados_p50_p95_max_grados": [
+          8.321435875690124,
+          34.02412157288378,
+          36.13157391438951
+        ],
+        "lados_con_giro_mayor_45": 0,
+        "lados": 142,
+        "fondos_sin_cruce": 0,
+        "fondos_recortados": 2
+      },
+      "giro_frente_por_paso_tangencial_p50_p95_max_grados": [
+        8.929807534581759,
+        40.33542925765158,
+        44.36913821576459
+      ]
+    },
+    {
+      "indice_frente": 4,
+      "fila": 5,
+      "familia": "C",
+      "anillo": true,
+      "piezas": 262,
+      "rayo": {
+        "triangulos": 66760,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.14382376104801883,
+        "error_cota_p95_pasos": 0.13168759817676703,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.3499999999999996,
+          0.3955209510782533,
+          0.7568435407438253,
+          0.762942183397459
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.8576436887007431,
+          0.9864723496943771,
+          1.2289582700234272,
+          1.272938007624552
+        ]
+      },
+      "flujo": {
+        "triangulos": 106816,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.0010489450042975245,
+        "error_cota_p95_pasos": 0.0007084765313068375,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.3141365720509968,
+          0.43696153296324003,
+          0.7627787021435487,
+          0.7647150670197015
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.8459174185884024,
+          0.9832250697647993,
+          1.249271369954272,
+          1.3156325244123348
+        ]
+      },
+      "rigida": {
+        "giro_entre_lados_p50_p95_max_grados": [
+          4.508065201303403,
+          25.14181591658331,
+          28.07430444632192
+        ],
+        "lados_con_giro_mayor_45": 0,
+        "lados": 262,
+        "fondos_sin_cruce": 0,
+        "fondos_recortados": 19
+      },
+      "giro_frente_por_paso_tangencial_p50_p95_max_grados": [
+        4.529692859218249,
+        27.469580717915676,
+        31.032109726264164
+      ]
+    },
+    {
+      "indice_frente": 5,
+      "fila": 6,
+      "familia": "C",
+      "anillo": true,
+      "piezas": 262,
+      "rayo": {
+        "triangulos": 66920,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.14577603365158626,
+        "error_cota_p95_pasos": 0.13276770717498235,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.3499999999999989,
+          0.36564598852635644,
+          0.689344523640195,
+          0.7278234616170421
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.8445732064886451,
+          0.9898623956716689,
+          1.2296950798281319,
+          1.2778374577212488
+        ]
+      },
+      "flujo": {
+        "triangulos": 107040,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.0010731282276221024,
+        "error_cota_p95_pasos": 0.0007190537547569179,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.31743524658760214,
+          0.38134108698033214,
+          0.7317234380113663,
+          0.7513001004209517
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.8515242880848828,
+          0.9807763086610763,
+          1.2476393495609812,
+          1.3181767229900199
+        ]
+      },
+      "rigida": {
+        "giro_entre_lados_p50_p95_max_grados": [
+          4.554617975041559,
+          25.1551025324235,
+          28.962951119864236
+        ],
+        "lados_con_giro_mayor_45": 0,
+        "lados": 262,
+        "fondos_sin_cruce": 0,
+        "fondos_recortados": 28
+      },
+      "giro_frente_por_paso_tangencial_p50_p95_max_grados": [
+        4.475158344850346,
+        27.4335986390093,
+        32.07982013854724
+      ]
+    },
+    {
+      "indice_frente": 6,
+      "fila": 7,
+      "familia": "A",
+      "anillo": true,
+      "piezas": 142,
+      "rayo": {
+        "triangulos": 67000,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.13340414880343915,
+        "error_cota_p95_pasos": 0.12534065072251502,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.42245067627551036,
+          0.463883150228966,
+          0.7370280351372596,
+          0.8022597640973814
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.7810173523835301,
+          0.9970858307660624,
+          1.2254602421721186,
+          1.2821808014073903
+        ]
+      },
+      "flujo": {
+        "triangulos": 107200,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.0010675437144251874,
+        "error_cota_p95_pasos": 0.0007237013095729387,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.4228607408292741,
+          0.47275534745875514,
+          0.8204509842210629,
+          0.8813161740355001
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.8076457454729049,
+          0.9923594336959838,
+          1.2422748316920298,
+          1.3250943442872647
+        ]
+      },
+      "rigida": {
+        "giro_entre_lados_p50_p95_max_grados": [
+          10.519894787608056,
+          33.53674387827796,
+          39.47082905623271
+        ],
+        "lados_con_giro_mayor_45": 0,
+        "lados": 142,
+        "fondos_sin_cruce": 0,
+        "fondos_recortados": 0
+      },
+      "giro_frente_por_paso_tangencial_p50_p95_max_grados": [
+        6.820943233959411,
+        39.538157132629664,
+        47.79071662985263
+      ]
+    },
+    {
+      "indice_frente": 7,
+      "fila": 8,
+      "familia": "A",
+      "anillo": true,
+      "piezas": 142,
+      "rayo": {
+        "triangulos": 67000,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.10621221939915537,
+        "error_cota_p95_pasos": 0.08818968902353529,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.4187708486550448,
+          0.4549898947253386,
+          0.6518205009911846,
+          0.7256103885806381
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.7337149992448221,
+          1.0024870579094822,
+          1.2183203178696669,
+          1.2816721544778502
+        ]
+      },
+      "flujo": {
+        "triangulos": 107168,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.001126048699180971,
+        "error_cota_p95_pasos": 0.0007239287977358606,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.42045572107837903,
+          0.45920951552327055,
+          0.6966508536780923,
+          0.7428627951560289
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.7395544061443217,
+          0.9990637583220691,
+          1.2379745461432865,
+          1.3285126543190944
+        ]
+      },
+      "rigida": {
+        "giro_entre_lados_p50_p95_max_grados": [
+          8.346210185543134,
+          38.09744893124822,
+          41.038194343499065
+        ],
+        "lados_con_giro_mayor_45": 0,
+        "lados": 142,
+        "fondos_sin_cruce": 0,
+        "fondos_recortados": 0
+      },
+      "giro_frente_por_paso_tangencial_p50_p95_max_grados": [
+        4.381576698580853,
+        44.71417204196783,
+        49.98155579144171
+      ]
+    },
+    {
+      "indice_frente": 8,
+      "fila": 9,
+      "familia": "A",
+      "anillo": true,
+      "piezas": 142,
+      "rayo": {
+        "triangulos": 67160,
+        "invertidos": 9,
+        "error_cota_max_pasos": 0.10413100137108167,
+        "error_cota_p95_pasos": 0.055886619783321045,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.41639440522768606,
+          0.4528742983663405,
+          0.699664219100996,
+          0.8565774588504363
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.7120508807707694,
+          1.010113762346663,
+          1.2095510802476017,
+          1.2820791839092303
+        ]
+      },
+      "flujo": {
+        "triangulos": 107456,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.0011224793162294315,
+        "error_cota_p95_pasos": 0.0007486319328359,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.41757515620258673,
+          0.45369750556496136,
+          0.6921264397414955,
+          0.779737408552215
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.6387007562038143,
+          1.0054438026876535,
+          1.2270084534604722,
+          1.329262147296246
+        ]
+      },
+      "rigida": {
+        "giro_entre_lados_p50_p95_max_grados": [
+          5.811778108670046,
+          44.020137930481276,
+          55.369361734662306
+        ],
+        "lados_con_giro_mayor_45": 7,
+        "lados": 142,
+        "fondos_sin_cruce": 0,
+        "fondos_recortados": 0
+      },
+      "giro_frente_por_paso_tangencial_p50_p95_max_grados": [
+        4.900415557163501,
+        55.576881409861876,
+        67.15116546028904
+      ]
+    },
+    {
+      "indice_frente": 9,
+      "fila": 10,
+      "familia": "A",
+      "anillo": true,
+      "piezas": 144,
+      "rayo": {
+        "triangulos": 68200,
+        "invertidos": 521,
+        "error_cota_max_pasos": 0.15904473894790008,
+        "error_cota_p95_pasos": 0.09120532865707114,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.41444427143048734,
+          0.45428881231488716,
+          0.806732576229471,
+          1.0038074003737494
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.6387114628630708,
+          1.016335232515828,
+          1.2026108062036471,
+          1.2844815474487337
+        ]
+      },
+      "flujo": {
+        "triangulos": 109120,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.0012471164162047288,
+        "error_cota_p95_pasos": 0.0008166464532044017,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.4155280336630906,
+          0.45363097874540803,
+          0.82091952290512,
+          0.9440774691093355
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.4362880659126541,
+          1.0110625945905412,
+          1.2201780819690056,
+          1.3302954178754862
+        ]
+      },
+      "rigida": {
+        "giro_entre_lados_p50_p95_max_grados": [
+          11.304330903049765,
+          54.5094136563458,
+          68.13790675402372
+        ],
+        "lados_con_giro_mayor_45": 15,
+        "lados": 144,
+        "fondos_sin_cruce": 0,
+        "fondos_recortados": 0
+      },
+      "giro_frente_por_paso_tangencial_p50_p95_max_grados": [
+        10.460913192480485,
+        75.06694267278341,
+        89.04450716719282
+      ]
+    },
+    {
+      "indice_frente": 10,
+      "fila": 11,
+      "familia": "C",
+      "anillo": true,
+      "piezas": 276,
+      "rayo": {
+        "triangulos": 70200,
+        "invertidos": 821,
+        "error_cota_max_pasos": 0.20607809316338158,
+        "error_cota_p95_pasos": 0.1427376290797183,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.3499999999999986,
+          0.35121608231623913,
+          0.6667300442737295,
+          0.8509566638551309
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.7245840209819417,
+          1.0217879658392823,
+          1.2079601416662673,
+          1.2841047367706695
+        ]
+      },
+      "flujo": {
+        "triangulos": 112288,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.0014840029474874016,
+        "error_cota_p95_pasos": 0.0010572125357285092,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.31674628343117067,
+          0.3496532718587857,
+          0.7208766367587657,
+          0.8013808712911042
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.28902539514093745,
+          1.0139506521500161,
+          1.2177433997135567,
+          1.3316789596606007
+        ]
+      },
+      "rigida": {
+        "giro_entre_lados_p50_p95_max_grados": [
+          7.51397477325342,
+          55.70354761873709,
+          67.99253444649104
+        ],
+        "lados_con_giro_mayor_45": 17,
+        "lados": 276,
+        "fondos_sin_cruce": 0,
+        "fondos_recortados": 98
+      },
+      "giro_frente_por_paso_tangencial_p50_p95_max_grados": [
+        7.31981260257173,
+        56.321642092151855,
+        77.97118340647428
+      ]
+    },
+    {
+      "indice_frente": 11,
+      "fila": 12,
+      "familia": "C",
+      "anillo": true,
+      "piezas": 288,
+      "rayo": {
+        "triangulos": 73720,
+        "invertidos": 1687,
+        "error_cota_max_pasos": 0.28746058527093415,
+        "error_cota_p95_pasos": 0.17806251273322007,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.3499999999999988,
+          0.363666527467703,
+          0.9533167887277574,
+          1.1865591364679853
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.840263470065971,
+          1.0370434182425352,
+          1.2470307308257258,
+          1.5183424520272253
+        ]
+      },
+      "flujo": {
+        "triangulos": 117952,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.0014925475290505353,
+        "error_cota_p95_pasos": 0.0010896690523722503,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.3168074099409976,
+          0.3590216228624187,
+          0.8873950387898968,
+          1.0067717499587887
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.17740941964650897,
+          1.0154253242679254,
+          1.2421702367594571,
+          1.3306213957577608
+        ]
+      },
+      "rigida": {
+        "giro_entre_lados_p50_p95_max_grados": [
+          9.008627860438612,
+          55.81294549097814,
+          73.46379366097844
+        ],
+        "lados_con_giro_mayor_45": 20,
+        "lados": 288,
+        "fondos_sin_cruce": 27,
+        "fondos_recortados": 100
+      },
+      "giro_frente_por_paso_tangencial_p50_p95_max_grados": [
+        8.271627598029662,
+        59.3678991956563,
+        84.38420834788468
+      ]
+    },
+    {
+      "indice_frente": 12,
+      "fila": 13,
+      "familia": "A",
+      "anillo": true,
+      "piezas": 170,
+      "rayo": {
+        "triangulos": 80080,
+        "invertidos": 1733,
+        "error_cota_max_pasos": 0.5007328208543051,
+        "error_cota_p95_pasos": 0.2755657676529609,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.4156387285458899,
+          0.524477664197545,
+          1.4706754808798828,
+          1.6000000000000023
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.5193728581623536,
+          1.0693380981222904,
+          1.4088206591882833,
+          3.060053118864267
+        ]
+      },
+      "flujo": {
+        "triangulos": 128096,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.0014033425109964818,
+        "error_cota_p95_pasos": 0.000862307784838263,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.41500315600201976,
+          0.5074341435105547,
+          1.4965994454569087,
+          1.822201415982828
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.1732015033570034,
+          1.0283501276591265,
+          1.2714945902652903,
+          1.4243405257708366
+        ]
+      },
+      "rigida": {
+        "giro_entre_lados_p50_p95_max_grados": [
+          24.351990677804398,
+          69.39696467870017,
+          81.33961964381093
+        ],
+        "lados_con_giro_mayor_45": 37,
+        "lados": 170,
+        "fondos_sin_cruce": 15,
+        "fondos_recortados": 15
+      },
+      "giro_frente_por_paso_tangencial_p50_p95_max_grados": [
+        25.961917677597825,
+        80.64125795757771,
+        97.39427927011779
+      ]
+    },
+    {
+      "indice_frente": 13,
+      "fila": 14,
+      "familia": "A",
+      "anillo": true,
+      "piezas": 192,
+      "rayo": {
+        "triangulos": 90920,
+        "invertidos": 2700,
+        "error_cota_max_pasos": 1.0594484191299391,
+        "error_cota_p95_pasos": 0.6938731410293019,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.418140731430276,
+          0.7303113299170944,
+          1.599999999999999,
+          1.6000000000000023
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.6487082124981753,
+          1.0791032476540834,
+          1.600029692555519,
+          4.961514233838382
+        ]
+      },
+      "flujo": {
+        "triangulos": 145472,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.0015636221861880346,
+        "error_cota_p95_pasos": 0.0008393824828799767,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.4168375420544858,
+          0.7172515824530171,
+          2.142105941329247,
+          2.767102336792781
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.0052915579534112125,
+          1.021907237729875,
+          1.471770704758114,
+          1.9059577098452278
+        ]
+      },
+      "rigida": {
+        "giro_entre_lados_p50_p95_max_grados": [
+          28.888728228341044,
+          73.23108216594012,
+          112.78638754209858
+        ],
+        "lados_con_giro_mayor_45": 50,
+        "lados": 192,
+        "fondos_sin_cruce": 28,
+        "fondos_recortados": 38
+      },
+      "giro_frente_por_paso_tangencial_p50_p95_max_grados": [
+        27.62081260644592,
+        108.6307813420636,
+        125.48159304558177
+      ]
+    },
+    {
+      "indice_frente": 14,
+      "fila": 15,
+      "familia": "A",
+      "anillo": true,
+      "piezas": 136,
+      "rayo": {
+        "triangulos": 64400,
+        "invertidos": 1095,
+        "error_cota_max_pasos": 0.48618004925560093,
+        "error_cota_p95_pasos": 0.3112075199914204,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.42196867980219693,
+          0.6625807446487866,
+          1.0512308984034575,
+          1.3287479462014988
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.5962912540107351,
+          1.0525264706501383,
+          1.3185498907816322,
+          1.486847545938011
+        ]
+      },
+      "flujo": {
+        "triangulos": 103040,
+        "invertidos": 21,
+        "error_cota_max_pasos": 0.001448704003101163,
+        "error_cota_p95_pasos": 0.00105786096415052,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.41936829071617,
+          0.7336673819108999,
+          1.3207445970249754,
+          2.2468448254267366
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.10779888123898594,
+          1.01898943477415,
+          1.2911618534118632,
+          44.74268002848495
+        ]
+      },
+      "rigida": {
+        "giro_entre_lados_p50_p95_max_grados": [
+          14.479303287933678,
+          74.15023254266927,
+          79.32447015828507
+        ],
+        "lados_con_giro_mayor_45": 16,
+        "lados": 136,
+        "fondos_sin_cruce": 17,
+        "fondos_recortados": 17
+      },
+      "giro_frente_por_paso_tangencial_p50_p95_max_grados": [
+        20.680490406098695,
+        84.11703526375706,
+        95.37916135141135
+      ]
+    },
+    {
+      "indice_frente": 15,
+      "fila": 15,
+      "familia": "A",
+      "anillo": false,
+      "piezas": 8,
+      "rayo": {
+        "triangulos": 3360,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.41932591795051816,
+        "error_cota_p95_pasos": 0.2968846345285603,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.5766400333373936,
+          1.2333575593749155,
+          1.6000000000000003,
+          1.6000000000000023
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          1.0884276867101497,
+          1.332804431365308,
+          2.482742262251861,
+          3.1928829719576024
+        ]
+      },
+      "flujo": {
+        "triangulos": 5344,
+        "invertidos": 10,
+        "error_cota_max_pasos": 0.001499210376292087,
+        "error_cota_p95_pasos": 0.0009884594333600945,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.5239561046182303,
+          1.0118124788111953,
+          1.7953600494642794,
+          2.1114147116014665
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          1.0348770290383458,
+          1.1281621061678109,
+          2.1417992626292888,
+          39.52667888803869
+        ]
+      },
+      "rigida": {
+        "giro_entre_lados_p50_p95_max_grados": [
+          41.066369512458095,
+          60.24251609809211,
+          60.29178040374529
+        ],
+        "lados_con_giro_mayor_45": 3,
+        "lados": 8,
+        "fondos_sin_cruce": 1,
+        "fondos_recortados": 1
+      },
+      "giro_frente_por_paso_tangencial_p50_p95_max_grados": [
+        44.31648918279468,
+        79.92943366041689,
+        85.34832260629094
+      ]
+    },
+    {
+      "indice_frente": 16,
+      "fila": 15,
+      "familia": "A",
+      "anillo": false,
+      "piezas": 6,
+      "rayo": {
+        "triangulos": 3200,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.370737735256671,
+        "error_cota_p95_pasos": 0.29041695073466506,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.590239446603799,
+          1.2227562096140303,
+          1.6,
+          1.6000000000000023
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          1.1059165030003002,
+          1.3688858266492896,
+          2.4300875590218847,
+          3.1768076094067905
+        ]
+      },
+      "flujo": {
+        "triangulos": 5120,
+        "invertidos": 8,
+        "error_cota_max_pasos": 0.001536822268519124,
+        "error_cota_p95_pasos": 0.0010487093464593474,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.5311620163101821,
+          0.9874886466919975,
+          1.7692421585408582,
+          2.138188723882147
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          1.0491543569868635,
+          1.1726760753225276,
+          2.173837218977672,
+          35.77210704089685
+        ]
+      },
+      "rigida": {
+        "giro_entre_lados_p50_p95_max_grados": [
+          61.21125891479538,
+          66.18615329542149,
+          66.50962903218351
+        ],
+        "lados_con_giro_mayor_45": 6,
+        "lados": 6,
+        "fondos_sin_cruce": 1,
+        "fondos_recortados": 1
+      },
+      "giro_frente_por_paso_tangencial_p50_p95_max_grados": [
+        62.51999852481073,
+        104.0859975183161,
+        109.51907869428483
+      ]
+    },
+    {
+      "indice_frente": 17,
+      "fila": 15,
+      "familia": "A",
+      "anillo": false,
+      "piezas": 8,
+      "rayo": {
+        "triangulos": 3520,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.47908906986692856,
+        "error_cota_p95_pasos": 0.29484904008801266,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.5666747040034881,
+          1.1816589408402118,
+          1.6000000000000003,
+          1.600000000000002
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          1.0920291154528432,
+          1.316709355617557,
+          2.353121265500476,
+          3.014217383737654
+        ]
+      },
+      "flujo": {
+        "triangulos": 5600,
+        "invertidos": 13,
+        "error_cota_max_pasos": 0.0014835634326684647,
+        "error_cota_p95_pasos": 0.0009734873867262388,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.5181638482496502,
+          0.9344794473111356,
+          1.8971592997762752,
+          2.170183175597086
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.5247140962795649,
+          1.1041608610175868,
+          1.9698761778809575,
+          44.86934519590438
+        ]
+      },
+      "rigida": {
+        "giro_entre_lados_p50_p95_max_grados": [
+          46.01724866209453,
+          56.286525889935284,
+          57.11487599282385
+        ],
+        "lados_con_giro_mayor_45": 4,
+        "lados": 8,
+        "fondos_sin_cruce": 1,
+        "fondos_recortados": 1
+      },
+      "giro_frente_por_paso_tangencial_p50_p95_max_grados": [
+        43.22783324241706,
+        75.19198773453759,
+        79.95038519045562
+      ]
+    },
+    {
+      "indice_frente": 18,
+      "fila": 15,
+      "familia": "A",
+      "anillo": false,
+      "piezas": 6,
+      "rayo": {
+        "triangulos": 3000,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.35244925510866826,
+        "error_cota_p95_pasos": 0.30864507589484946,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.6126056094617447,
+          1.246771959912782,
+          1.5999999999999999,
+          1.6000000000000019
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          1.138468460205629,
+          1.392755487581932,
+          2.5283069459921403,
+          3.189474293993302
+        ]
+      },
+      "flujo": {
+        "triangulos": 4800,
+        "invertidos": 4,
+        "error_cota_max_pasos": 0.0012894380586097212,
+        "error_cota_p95_pasos": 0.000868888133677714,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.5434995921247953,
+          1.0173060368059987,
+          1.6736353153413135,
+          2.172052945219286
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          1.060865012322896,
+          1.2071886052924763,
+          2.419846821635264,
+          28.51070629576551
+        ]
+      },
+      "rigida": {
+        "giro_entre_lados_p50_p95_max_grados": [
+          59.726178789791774,
+          73.19955869365171,
+          75.00270477705408
+        ],
+        "lados_con_giro_mayor_45": 5,
+        "lados": 6,
+        "fondos_sin_cruce": 1,
+        "fondos_recortados": 2
+      },
+      "giro_frente_por_paso_tangencial_p50_p95_max_grados": [
+        62.35417548726091,
+        85.2982181983214,
+        89.06573508463417
+      ]
+    },
+    {
+      "indice_frente": 19,
+      "fila": 15,
+      "familia": "A",
+      "anillo": false,
+      "piezas": 8,
+      "rayo": {
+        "triangulos": 3400,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.408244960626669,
+        "error_cota_p95_pasos": 0.30306916426203134,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.574296285317518,
+          1.151566225124191,
+          1.6,
+          1.6000000000000008
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          1.0955354895886416,
+          1.359970846807093,
+          2.350625092454201,
+          2.9878575818199193
+        ]
+      },
+      "flujo": {
+        "triangulos": 5408,
+        "invertidos": 10,
+        "error_cota_max_pasos": 0.0013868904164411606,
+        "error_cota_p95_pasos": 0.0009801374160945866,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.5232443219691666,
+          0.9146200646980671,
+          1.8435216385355466,
+          2.15875273356839
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.9550022772208459,
+          1.113241621171448,
+          2.0141548828644056,
+          40.87002556182903
+        ]
+      },
+      "rigida": {
+        "giro_entre_lados_p50_p95_max_grados": [
+          44.25140415048567,
+          66.51505566878832,
+          67.80191809258548
+        ],
+        "lados_con_giro_mayor_45": 4,
+        "lados": 8,
+        "fondos_sin_cruce": 2,
+        "fondos_recortados": 2
+      },
+      "giro_frente_por_paso_tangencial_p50_p95_max_grados": [
+        46.720152337042705,
+        73.11086674575144,
+        78.32080699244405
+      ]
+    },
+    {
+      "indice_frente": 20,
+      "fila": 15,
+      "familia": "A",
+      "anillo": false,
+      "piezas": 6,
+      "rayo": {
+        "triangulos": 3040,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.3423480352770618,
+        "error_cota_p95_pasos": 0.30729857832340685,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.6077939847093294,
+          1.1959523562274224,
+          1.6000000000000012,
+          1.600000000000002
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          1.1314538973280728,
+          1.4280072157110981,
+          2.4343905255805125,
+          2.905152881048754
+        ]
+      },
+      "flujo": {
+        "triangulos": 4832,
+        "invertidos": 3,
+        "error_cota_max_pasos": 0.001666420154781869,
+        "error_cota_p95_pasos": 0.0010070147667813804,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.541037956059207,
+          0.9139749395816359,
+          1.7246426953445315,
+          2.2214822433185204
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          1.068884189283001,
+          1.2322838413608552,
+          2.5165688045875227,
+          26.446809236175145
+        ]
+      },
+      "rigida": {
+        "giro_entre_lados_p50_p95_max_grados": [
+          58.34183389717562,
+          72.91056046565599,
+          73.11161373356042
+        ],
+        "lados_con_giro_mayor_45": 6,
+        "lados": 6,
+        "fondos_sin_cruce": 0,
+        "fondos_recortados": 2
+      },
+      "giro_frente_por_paso_tangencial_p50_p95_max_grados": [
+        62.8336286906258,
+        81.00567853222901,
+        82.19566485756866
+      ]
+    },
+    {
+      "indice_frente": 21,
+      "fila": 15,
+      "familia": "A",
+      "anillo": false,
+      "piezas": 6,
+      "rayo": {
+        "triangulos": 3200,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.3255110057228963,
+        "error_cota_p95_pasos": 0.30307049941740455,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.5893646679933973,
+          1.188855160861621,
+          1.6,
+          1.6000000000000023
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          1.109548053404012,
+          1.3941368278837922,
+          2.407182811887378,
+          2.9754069572318973
+        ]
+      },
+      "flujo": {
+        "triangulos": 5088,
+        "invertidos": 7,
+        "error_cota_max_pasos": 0.0015607336039941363,
+        "error_cota_p95_pasos": 0.001049179478277498,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.5311724594572813,
+          0.9274707198741337,
+          1.7386480946913825,
+          2.1551691671121564
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          1.0562492096441645,
+          1.1982397384882464,
+          2.1266786926006094,
+          33.067424427832336
+        ]
+      },
+      "rigida": {
+        "giro_entre_lados_p50_p95_max_grados": [
+          58.97391826951604,
+          66.58556264955183,
+          66.99687077341771
+        ],
+        "lados_con_giro_mayor_45": 6,
+        "lados": 6,
+        "fondos_sin_cruce": 1,
+        "fondos_recortados": 1
+      },
+      "giro_frente_por_paso_tangencial_p50_p95_max_grados": [
+        61.16870188765901,
+        81.38132095810101,
+        84.84961936729479
+      ]
+    },
+    {
+      "indice_frente": 22,
+      "fila": 15,
+      "familia": "A",
+      "anillo": false,
+      "piezas": 6,
+      "rayo": {
+        "triangulos": 3000,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.33477834256968664,
+        "error_cota_p95_pasos": 0.3066728116686802,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.6142411650968047,
+          1.1793085473906402,
+          1.6000000000000008,
+          1.6000000000000012
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          1.1356303432475725,
+          1.440483691982967,
+          2.409535076962028,
+          2.9444528732298982
+        ]
+      },
+      "flujo": {
+        "triangulos": 4768,
+        "invertidos": 2,
+        "error_cota_max_pasos": 0.0015452743082435122,
+        "error_cota_p95_pasos": 0.0009598143277409909,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.5439816868076063,
+          0.9118631790804348,
+          1.7105334552869407,
+          2.2497031483423435
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          1.069503316939826,
+          1.2424524148659895,
+          2.4928149101585206,
+          24.49934989624039
+        ]
+      },
+      "rigida": {
+        "giro_entre_lados_p50_p95_max_grados": [
+          57.33310305875968,
+          69.54772512601531,
+          70.09218689758808
+        ],
+        "lados_con_giro_mayor_45": 6,
+        "lados": 6,
+        "fondos_sin_cruce": 0,
+        "fondos_recortados": 1
+      },
+      "giro_frente_por_paso_tangencial_p50_p95_max_grados": [
+        63.10838288581166,
+        86.92892376543904,
+        94.30428199710607
+      ]
+    },
+    {
+      "indice_frente": 23,
+      "fila": 16,
+      "familia": "A",
+      "anillo": true,
+      "piezas": 144,
+      "rayo": {
+        "triangulos": 67840,
+        "invertidos": 1653,
+        "error_cota_max_pasos": 0.378563672464036,
+        "error_cota_p95_pasos": 0.21940736129465405,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.4342791003002755,
+          0.6590784458718241,
+          1.0923145426707197,
+          1.4713035657591325
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.6120913364898055,
+          1.0559356379968396,
+          1.46687137037308,
+          1.9683847285858718
+        ]
+      },
+      "flujo": {
+        "triangulos": 108512,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.0014863613229342614,
+        "error_cota_p95_pasos": 0.0011846067169550766,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.42729518037415776,
+          0.6774983713465463,
+          1.2082796378026077,
+          1.3712896893722597
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.15433940392357495,
+          1.023734100528439,
+          1.4367628774512058,
+          1.6978719458086067
+        ]
+      },
+      "rigida": {
+        "giro_entre_lados_p50_p95_max_grados": [
+          24.369216881460524,
+          70.08659811266594,
+          88.10247210459072
+        ],
+        "lados_con_giro_mayor_45": 18,
+        "lados": 144,
+        "fondos_sin_cruce": 2,
+        "fondos_recortados": 2
+      },
+      "giro_frente_por_paso_tangencial_p50_p95_max_grados": [
+        30.459886196792183,
+        93.5695677020016,
+        102.89445791237402
+      ]
+    },
+    {
+      "indice_frente": 24,
+      "fila": 17,
+      "familia": "C",
+      "anillo": true,
+      "piezas": 282,
+      "rayo": {
+        "triangulos": 71960,
+        "invertidos": 2560,
+        "error_cota_max_pasos": 2.071781657905877,
+        "error_cota_p95_pasos": 0.6807437922361146,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.35000000000000064,
+          0.5561097091938194,
+          1.5999999999999988,
+          1.600000000000002
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.6399883501434074,
+          1.0973688311608332,
+          1.713407644747232,
+          18.829327506078368
+        ]
+      },
+      "flujo": {
+        "triangulos": 115136,
+        "invertidos": 644,
+        "error_cota_max_pasos": 0.0014490935799468755,
+        "error_cota_p95_pasos": 0.0011365795945398511,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.3425819881752828,
+          0.584579114384952,
+          1.3649868562343717,
+          2.829586160928259
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.03447643313105138,
+          1.0086967350880878,
+          1.5836882577292661,
+          83.70236791045235
+        ]
+      },
+      "rigida": {
+        "giro_entre_lados_p50_p95_max_grados": [
+          18.05735132723422,
+          62.404319315302644,
+          88.89476794659481
+        ],
+        "lados_con_giro_mayor_45": 30,
+        "lados": 282,
+        "fondos_sin_cruce": 62,
+        "fondos_recortados": 81
+      },
+      "giro_frente_por_paso_tangencial_p50_p95_max_grados": [
+        17.88195756879906,
+        70.99840739393571,
+        127.07248566778021
+      ]
+    },
+    {
+      "indice_frente": 25,
+      "fila": 17,
+      "familia": "C",
+      "anillo": false,
+      "piezas": 18,
+      "rayo": {
+        "triangulos": 4800,
+        "invertidos": 0,
+        "error_cota_max_pasos": 3.680299049683395,
+        "error_cota_p95_pasos": 3.4660239217461055,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.3596775190634859,
+          0.6928229303220876,
+          1.6000000000000008,
+          1.6000000000000012
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          1.0314494556934186,
+          1.2410656280107566,
+          2.2834208231151942,
+          2.557173064023659
+        ]
+      },
+      "flujo": {
+        "triangulos": 7680,
+        "invertidos": 119,
+        "error_cota_max_pasos": 0.0011991418216620072,
+        "error_cota_p95_pasos": 0.0010470792709910545,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.3446945556794016,
+          0.6612718847485729,
+          2.324046659474831,
+          2.835811662073486
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.00021736682340865837,
+          1.0367333250642063,
+          1.5586583694973746,
+          83.99233329118839
+        ]
+      },
+      "rigida": {
+        "giro_entre_lados_p50_p95_max_grados": [
+          18.110300501602335,
+          35.1452290083955,
+          36.29143833858231
+        ],
+        "lados_con_giro_mayor_45": 0,
+        "lados": 18,
+        "fondos_sin_cruce": 6,
+        "fondos_recortados": 6
+      },
+      "giro_frente_por_paso_tangencial_p50_p95_max_grados": [
+        17.880844826130936,
+        38.09029872133919,
+        39.56565533220652
+      ]
+    },
+    {
+      "indice_frente": 26,
+      "fila": 18,
+      "familia": "C",
+      "anillo": false,
+      "piezas": 14,
+      "rayo": {
+        "triangulos": 3600,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.24137423180248135,
+        "error_cota_p95_pasos": 0.22151477466892283,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.4001180755722821,
+          0.7305987214864972,
+          1.4133838873810851,
+          1.4260609745202424
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          1.1377173834017216,
+          1.322774914100489,
+          2.4924066633191972,
+          2.6249202475266578
+        ]
+      },
+      "flujo": {
+        "triangulos": 5728,
+        "invertidos": 54,
+        "error_cota_max_pasos": 0.22056827100066398,
+        "error_cota_p95_pasos": 0.04570846051656465,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.36785349950423735,
+          0.6898043640861584,
+          1.847328534599254,
+          1.935749591196401
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.013829273359419135,
+          1.1941581252314075,
+          3.435107917902852,
+          10.229927534804077
+        ]
+      },
+      "rigida": {
+        "giro_entre_lados_p50_p95_max_grados": [
+          25.984298437107242,
+          38.51326211963822,
+          38.98299310757973
+        ],
+        "lados_con_giro_mayor_45": 0,
+        "lados": 14,
+        "fondos_sin_cruce": 4,
+        "fondos_recortados": 4
+      },
+      "giro_frente_por_paso_tangencial_p50_p95_max_grados": [
+        23.990136523913726,
+        44.31846379171513,
+        46.872731767075564
+      ]
+    },
+    {
+      "indice_frente": 27,
+      "fila": 18,
+      "familia": "C",
+      "anillo": true,
+      "piezas": 196,
+      "rayo": {
+        "triangulos": 50160,
+        "invertidos": 1414,
+        "error_cota_max_pasos": 0.3597130710782896,
+        "error_cota_p95_pasos": 0.2853288124249086,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.3772467694100679,
+          0.49838895350516876,
+          0.9413137697149854,
+          1.165920713932829
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.5600453180201643,
+          1.083311997383624,
+          1.6732403553805522,
+          2.050351243278372
+        ]
+      },
+      "flujo": {
+        "triangulos": 80224,
+        "invertidos": 386,
+        "error_cota_max_pasos": 0.2990984474617117,
+        "error_cota_p95_pasos": 0.00135372536176722,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.3538269785282169,
+          0.6051777665640554,
+          1.1054398060406494,
+          1.9191583662006617
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.12344365212781769,
+          0.9649610211926246,
+          1.832082879969097,
+          46.318754412550106
+        ]
+      },
+      "rigida": {
+        "giro_entre_lados_p50_p95_max_grados": [
+          20.374722009048973,
+          62.428041846138484,
+          70.2465567816314
+        ],
+        "lados_con_giro_mayor_45": 28,
+        "lados": 196,
+        "fondos_sin_cruce": 53,
+        "fondos_recortados": 62
+      },
+      "giro_frente_por_paso_tangencial_p50_p95_max_grados": [
+        19.874496290254267,
+        68.22205817163832,
+        81.0754696362511
+      ]
+    },
+    {
+      "indice_frente": 28,
+      "fila": 18,
+      "familia": "C",
+      "anillo": false,
+      "piezas": 14,
+      "rayo": {
+        "triangulos": 3600,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.30074427838574475,
+        "error_cota_p95_pasos": 0.28319891600104696,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.4009369931734065,
+          0.7217051012903706,
+          1.4084720646626738,
+          1.4522272914575982
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          1.1038063186451055,
+          1.3379018777985725,
+          2.4002887547521414,
+          2.7939075756021117
+        ]
+      },
+      "flujo": {
+        "triangulos": 5760,
+        "invertidos": 52,
+        "error_cota_max_pasos": 0.19063759480846387,
+        "error_cota_p95_pasos": 0.0009328756589176033,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.3695463268255815,
+          0.6821104208200073,
+          1.943932845432532,
+          2.195326043845606
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.0019359767285086842,
+          1.171038376745297,
+          2.4961521315858914,
+          43.798367223662865
+        ]
+      },
+      "rigida": {
+        "giro_entre_lados_p50_p95_max_grados": [
+          24.039739742747535,
+          39.98149820209997,
+          43.37425411247363
+        ],
+        "lados_con_giro_mayor_45": 0,
+        "lados": 14,
+        "fondos_sin_cruce": 3,
+        "fondos_recortados": 3
+      },
+      "giro_frente_por_paso_tangencial_p50_p95_max_grados": [
+        24.34866463434654,
+        43.091587402538124,
+        50.42771502545666
+      ]
+    },
+    {
+      "indice_frente": 29,
+      "fila": 18,
+      "familia": "C",
+      "anillo": false,
+      "piezas": 14,
+      "rayo": {
+        "triangulos": 3360,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.2440078800564048,
+        "error_cota_p95_pasos": 0.2244809053202122,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.41616024733357193,
+          0.7404651801044928,
+          1.4209746830809276,
+          1.4519605953023254
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          1.1605970599569113,
+          1.367065630876941,
+          2.5239834859576535,
+          2.751902613651972
+        ]
+      },
+      "flujo": {
+        "triangulos": 5344,
+        "invertidos": 18,
+        "error_cota_max_pasos": 0.10954850533472629,
+        "error_cota_p95_pasos": 0.06895903111098287,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.3783688280483029,
+          0.6948622568683624,
+          1.7124551955691483,
+          1.7544949382581732
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          1.081201282340712,
+          1.2538976131704376,
+          3.4257654526280925,
+          4.784886751527876
+        ]
+      },
+      "rigida": {
+        "giro_entre_lados_p50_p95_max_grados": [
+          27.886132779620674,
+          36.93937237310474,
+          40.98977832228899
+        ],
+        "lados_con_giro_mayor_45": 0,
+        "lados": 14,
+        "fondos_sin_cruce": 3,
+        "fondos_recortados": 3
+      },
+      "giro_frente_por_paso_tangencial_p50_p95_max_grados": [
+        25.060737497078225,
+        41.51367356962993,
+        46.0889740810101
+      ]
+    },
+    {
+      "indice_frente": 30,
+      "fila": 18,
+      "familia": "C",
+      "anillo": false,
+      "piezas": 14,
+      "rayo": {
+        "triangulos": 3680,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.31551703293025085,
+        "error_cota_p95_pasos": 0.3091636755499964,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.3975531943698944,
+          0.7157693921541711,
+          1.41922812221493,
+          1.4331456214273621
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          1.1207130693569545,
+          1.3142648089690092,
+          2.5194456896586637,
+          2.6931011909186733
+        ]
+      },
+      "flujo": {
+        "triangulos": 5856,
+        "invertidos": 67,
+        "error_cota_max_pasos": 0.29744029673604333,
+        "error_cota_p95_pasos": 0.0012011599443279143,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.3670101988828349,
+          0.684556032320857,
+          1.9100356090306663,
+          2.0525862051034993
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.003531656268687706,
+          1.1641963955733656,
+          3.078485344596191,
+          17.46970266261074
+        ]
+      },
+      "rigida": {
+        "giro_entre_lados_p50_p95_max_grados": [
+          25.74901878367911,
+          39.03827240642349,
+          41.713674080962484
+        ],
+        "lados_con_giro_mayor_45": 0,
+        "lados": 14,
+        "fondos_sin_cruce": 4,
+        "fondos_recortados": 4
+      },
+      "giro_frente_por_paso_tangencial_p50_p95_max_grados": [
+        25.14547200937813,
+        47.09414452604058,
+        52.82609674637497
+      ]
+    },
+    {
+      "indice_frente": 31,
+      "fila": 18,
+      "familia": "C",
+      "anillo": false,
+      "piezas": 14,
+      "rayo": {
+        "triangulos": 3440,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.23985669949840502,
+        "error_cota_p95_pasos": 0.2216757032887734,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.40897349989895937,
+          0.7277931233520634,
+          1.4223920780347554,
+          1.4354067956576357
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          1.1501757261824188,
+          1.3422362783326014,
+          2.5112347525589263,
+          2.6587628430485295
+        ]
+      },
+      "flujo": {
+        "triangulos": 5504,
+        "invertidos": 24,
+        "error_cota_max_pasos": 0.1356362243708839,
+        "error_cota_p95_pasos": 0.07087693902030344,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.3739474426405528,
+          0.6924297367433675,
+          1.7420453523144863,
+          1.7788790748600147
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          1.0011671661239192,
+          1.2091269799212172,
+          3.811994098432843,
+          5.34900896803218
+        ]
+      },
+      "rigida": {
+        "giro_entre_lados_p50_p95_max_grados": [
+          29.283194938227403,
+          35.64384660595904,
+          36.55896919124221
+        ],
+        "lados_con_giro_mayor_45": 0,
+        "lados": 14,
+        "fondos_sin_cruce": 4,
+        "fondos_recortados": 4
+      },
+      "giro_frente_por_paso_tangencial_p50_p95_max_grados": [
+        24.85366870753269,
+        43.64999209319596,
+        46.22726738932415
+      ]
+    },
+    {
+      "indice_frente": 32,
+      "fila": 18,
+      "familia": "C",
+      "anillo": false,
+      "piezas": 14,
+      "rayo": {
+        "triangulos": 3360,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.26521641671418505,
+        "error_cota_p95_pasos": 0.24446849036953303,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.41856391568133267,
+          0.73592285144063,
+          1.4420451614887368,
+          1.4820410780335993
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          1.1498128960298282,
+          1.3446039466273931,
+          2.6668514753567663,
+          2.8998586038760243
+        ]
+      },
+      "flujo": {
+        "triangulos": 5344,
+        "invertidos": 17,
+        "error_cota_max_pasos": 0.12265271255618576,
+        "error_cota_p95_pasos": 0.08580355238175533,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.3796394306336521,
+          0.691973592420295,
+          1.712568312604447,
+          1.768406001025667
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          1.063336005162696,
+          1.2146457393480588,
+          3.09174732710485,
+          16.793329905829122
+        ]
+      },
+      "rigida": {
+        "giro_entre_lados_p50_p95_max_grados": [
+          23.354362494094495,
+          39.898711647910346,
+          43.34146603985816
+        ],
+        "lados_con_giro_mayor_45": 0,
+        "lados": 14,
+        "fondos_sin_cruce": 3,
+        "fondos_recortados": 3
+      },
+      "giro_frente_por_paso_tangencial_p50_p95_max_grados": [
+        27.93468669839841,
+        151.05563662118576,
+        154.36095983777665
+      ]
+    },
+    {
+      "indice_frente": 33,
+      "fila": 18,
+      "familia": "C",
+      "anillo": false,
+      "piezas": 12,
+      "rayo": {
+        "triangulos": 3120,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.2697953096467171,
+        "error_cota_p95_pasos": 0.22217325812678046,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.43365802311229934,
+          0.7537173909037516,
+          1.428633018253313,
+          1.4510825958213092
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          1.1843457665555248,
+          1.4043817621534873,
+          2.60027138252576,
+          2.817888463305531
+        ]
+      },
+      "flujo": {
+        "triangulos": 4960,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.0013492376923787016,
+        "error_cota_p95_pasos": 0.0010118439570147755,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.38918017466410376,
+          0.6986745534940801,
+          1.5711394316205691,
+          1.5792163679759414
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          1.0909455910771253,
+          1.298684648706077,
+          3.2818316871670383,
+          4.930014775118566
+        ]
+      },
+      "rigida": {
+        "giro_entre_lados_p50_p95_max_grados": [
+          30.45673639599557,
+          39.08847291522852,
+          41.553051892126824
+        ],
+        "lados_con_giro_mayor_45": 0,
+        "lados": 12,
+        "fondos_sin_cruce": 3,
+        "fondos_recortados": 3
+      },
+      "giro_frente_por_paso_tangencial_p50_p95_max_grados": [
+        29.648040547804463,
+        46.41504463175108,
+        50.71906212499021
+      ]
+    },
+    {
+      "indice_frente": 34,
+      "fila": 18,
+      "familia": "C",
+      "anillo": false,
+      "piezas": 12,
+      "rayo": {
+        "triangulos": 3320,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.25526783503792216,
+        "error_cota_p95_pasos": 0.2323352657730784,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.41791795496572465,
+          0.7515090923972269,
+          1.4220718545677622,
+          1.4339571053296916
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          1.1693401125609237,
+          1.3591634223146183,
+          2.556806160710727,
+          2.6995105620209343
+        ]
+      },
+      "flujo": {
+        "triangulos": 5280,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.04424872977992026,
+        "error_cota_p95_pasos": 0.03370911307737665,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.37810890326080215,
+          0.7039609714887096,
+          1.6446988726163299,
+          1.7052188485385977
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          1.0836367210737234,
+          1.281727796817895,
+          3.1626027585911696,
+          4.526320229253552
+        ]
+      },
+      "rigida": {
+        "giro_entre_lados_p50_p95_max_grados": [
+          31.024289673494792,
+          41.73115257533231,
+          44.07041172128495
+        ],
+        "lados_con_giro_mayor_45": 0,
+        "lados": 12,
+        "fondos_sin_cruce": 2,
+        "fondos_recortados": 2
+      },
+      "giro_frente_por_paso_tangencial_p50_p95_max_grados": [
+        29.537365152127187,
+        48.08968909422542,
+        50.260637817336885
+      ]
+    },
+    {
+      "indice_frente": 35,
+      "fila": 19,
+      "familia": "A",
+      "anillo": true,
+      "piezas": 112,
+      "rayo": {
+        "triangulos": 53080,
+        "invertidos": 915,
+        "error_cota_max_pasos": 0.5067289098898237,
+        "error_cota_p95_pasos": 0.327031954920772,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.469468719483281,
+          0.7603510392698785,
+          1.2991035435589007,
+          1.5376615803328844
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.22897296659403443,
+          1.0738266483605452,
+          2.167472187719753,
+          3.7072522036979976
+        ]
+      },
+      "flujo": {
+        "triangulos": 84896,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.001637061972934964,
+        "error_cota_p95_pasos": 0.0010958770530481385,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.5193414711474966,
+          0.7248895086565939,
+          1.3773619720327475,
+          1.521960252587294
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.18311096925501394,
+          1.013868362219562,
+          1.9887376664386223,
+          5.675397890598878
+        ]
+      },
+      "rigida": {
+        "giro_entre_lados_p50_p95_max_grados": [
+          50.20705405855916,
+          67.67672796812532,
+          78.8440892911433
+        ],
+        "lados_con_giro_mayor_45": 62,
+        "lados": 112,
+        "fondos_sin_cruce": 0,
+        "fondos_recortados": 1
+      },
+      "giro_frente_por_paso_tangencial_p50_p95_max_grados": [
+        54.38535916958346,
+        87.80941853763537,
+        97.9787955224226
+      ]
+    },
+    {
+      "indice_frente": 36,
+      "fila": 20,
+      "familia": "A",
+      "anillo": true,
+      "piezas": 108,
+      "rayo": {
+        "triangulos": 50600,
+        "invertidos": 574,
+        "error_cota_max_pasos": 1.1664480683123877,
+        "error_cota_p95_pasos": 0.49168144949364606,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.44976886171786823,
+          0.8244199209037949,
+          1.5042552286896562,
+          1.6000000000000028
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.5024960227794639,
+          0.9314542088349509,
+          3.2212175333408797,
+          6.613470609715825
+        ]
+      },
+      "flujo": {
+        "triangulos": 80928,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.0018820508173008601,
+        "error_cota_p95_pasos": 0.001145991819609467,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.45446610128590437,
+          0.8797897332177215,
+          1.1986132648960988,
+          1.6883446798396209
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.28030976214491266,
+          0.7305329891495876,
+          2.62973944258232,
+          17.090585847718767
+        ]
+      },
+      "rigida": {
+        "giro_entre_lados_p50_p95_max_grados": [
+          40.32115902758929,
+          91.86919996640022,
+          108.52178184782723
+        ],
+        "lados_con_giro_mayor_45": 42,
+        "lados": 108,
+        "fondos_sin_cruce": 0,
+        "fondos_recortados": 6
+      },
+      "giro_frente_por_paso_tangencial_p50_p95_max_grados": [
+        44.08255498540966,
+        109.85665260585718,
+        143.6908778054765
+      ]
+    },
+    {
+      "indice_frente": 37,
+      "fila": 21,
+      "familia": "A",
+      "anillo": true,
+      "piezas": 96,
+      "rayo": {
+        "triangulos": 45680,
+        "invertidos": 571,
+        "error_cota_max_pasos": 0.3495296547490168,
+        "error_cota_p95_pasos": 0.18050613656562567,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.47519986022227334,
+          0.672711213655575,
+          1.0642184441296345,
+          1.5027894352363873
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.3964583625062345,
+          1.0114162135241886,
+          2.333612821271929,
+          4.082788475561615
+        ]
+      },
+      "flujo": {
+        "triangulos": 73056,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.001502456377619686,
+        "error_cota_p95_pasos": 0.0011961853505236442,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.4599996700130735,
+          0.7359397155363727,
+          1.0180531901529317,
+          1.5264397548247461
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.253173910451719,
+          0.8826995612346663,
+          1.800091153323043,
+          19.20587017030347
+        ]
+      },
+      "rigida": {
+        "giro_entre_lados_p50_p95_max_grados": [
+          40.26799966941746,
+          54.599561477676055,
+          68.00426451339796
+        ],
+        "lados_con_giro_mayor_45": 31,
+        "lados": 96,
+        "fondos_sin_cruce": 0,
+        "fondos_recortados": 19
+      },
+      "giro_frente_por_paso_tangencial_p50_p95_max_grados": [
+        47.60546850989061,
+        83.909031466583,
+        91.43727343094677
+      ]
+    },
+    {
+      "indice_frente": 38,
+      "fila": 22,
+      "familia": "A",
+      "anillo": true,
+      "piezas": 98,
+      "rayo": {
+        "triangulos": 46000,
+        "invertidos": 1110,
+        "error_cota_max_pasos": 0.17980620058190896,
+        "error_cota_p95_pasos": 0.1312700134711886,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.5370288109544125,
+          0.7060845910966757,
+          1.0160753140855205,
+          1.167092031883245
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.4151165724688268,
+          1.0876889127828864,
+          1.9501951942149496,
+          2.413736554659582
+        ]
+      },
+      "flujo": {
+        "triangulos": 73568,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.0014825984566699166,
+        "error_cota_p95_pasos": 0.0011718186257223,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.5137399450501694,
+          0.6918536293518143,
+          1.0169666634943184,
+          1.1376955857321773
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.24051481054313004,
+          0.9971339435288852,
+          1.9861365024470836,
+          6.8294176713322825
+        ]
+      },
+      "rigida": {
+        "giro_entre_lados_p50_p95_max_grados": [
+          46.1938972277403,
+          72.4285836761317,
+          80.78242865003718
+        ],
+        "lados_con_giro_mayor_45": 50,
+        "lados": 98,
+        "fondos_sin_cruce": 0,
+        "fondos_recortados": 0
+      },
+      "giro_frente_por_paso_tangencial_p50_p95_max_grados": [
+        54.71173967684177,
+        89.2560081834324,
+        96.89318365624679
+      ]
+    },
+    {
+      "indice_frente": 39,
+      "fila": 23,
+      "familia": "C",
+      "anillo": true,
+      "piezas": 188,
+      "rayo": {
+        "triangulos": 48240,
+        "invertidos": 1831,
+        "error_cota_max_pasos": 0.5938271286970332,
+        "error_cota_p95_pasos": 0.35025935532807767,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.5150646360255665,
+          0.7349124342454778,
+          1.0387810752398543,
+          1.3266205350147817
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.29454618812391187,
+          1.0824680692657167,
+          2.339612020995804,
+          3.7347076693616934
+        ]
+      },
+      "flujo": {
+        "triangulos": 77152,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.0017381009331947825,
+        "error_cota_p95_pasos": 0.001169890769709704,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.4571289662001642,
+          0.6388666510470014,
+          0.9184657476656926,
+          0.985080006151224
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.20483565499545903,
+          0.9233021277373605,
+          2.0877895909983755,
+          6.4959258896487215
+        ]
+      },
+      "rigida": {
+        "giro_entre_lados_p50_p95_max_grados": [
+          35.18103999780154,
+          63.313704952013424,
+          74.35247776102575
+        ],
+        "lados_con_giro_mayor_45": 68,
+        "lados": 188,
+        "fondos_sin_cruce": 3,
+        "fondos_recortados": 3
+      },
+      "giro_frente_por_paso_tangencial_p50_p95_max_grados": [
+        35.55096428308364,
+        70.52704525551856,
+        124.67352351904606
+      ]
+    },
+    {
+      "indice_frente": 40,
+      "fila": 24,
+      "familia": "C",
+      "anillo": false,
+      "piezas": 6,
+      "rayo": {
+        "triangulos": 1320,
+        "invertidos": 0,
+        "error_cota_max_pasos": 2.7562173673534707,
+        "error_cota_p95_pasos": 2.633033486542347,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.9952193184317072,
+          1.3564594000086132,
+          1.6000000000000005,
+          1.6000000000000008
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          1.773172969227615,
+          2.836891286249584,
+          5.311972057577918,
+          6.216202840825152
+        ]
+      },
+      "flujo": {
+        "triangulos": 2080,
+        "invertidos": 38,
+        "error_cota_max_pasos": 0.0014719558420393073,
+        "error_cota_p95_pasos": 0.001176224950994871,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.6219862516614482,
+          0.7309076782164523,
+          2.001897589616518,
+          2.145168907761826
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.0009548344372711039,
+          1.3499795559306398,
+          3.2789917691867387,
+          55.07732813024728
+        ]
+      },
+      "rigida": {
+        "giro_entre_lados_p50_p95_max_grados": [
+          57.950819402654886,
+          79.23490553944505,
+          79.60773057544992
+        ],
+        "lados_con_giro_mayor_45": 5,
+        "lados": 6,
+        "fondos_sin_cruce": 2,
+        "fondos_recortados": 2
+      },
+      "giro_frente_por_paso_tangencial_p50_p95_max_grados": [
+        58.58512548494316,
+        87.04727708876553,
+        88.41355907260305
+      ]
+    },
+    {
+      "indice_frente": 41,
+      "fila": 24,
+      "familia": "C",
+      "anillo": true,
+      "piezas": 142,
+      "rayo": {
+        "triangulos": 36280,
+        "invertidos": 306,
+        "error_cota_max_pasos": 1.7584639841948801,
+        "error_cota_p95_pasos": 0.645185300997535,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.4979611687456566,
+          0.7202629856006773,
+          1.269268824721828,
+          1.6000000000000014
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.45115532076361303,
+          1.0600349166109195,
+          2.467500038194986,
+          11.025885231623135
+        ]
+      },
+      "flujo": {
+        "triangulos": 58016,
+        "invertidos": 985,
+        "error_cota_max_pasos": 0.0016954385913955147,
+        "error_cota_p95_pasos": 0.0008480450920912768,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.6465778575420155,
+          0.8648358595525045,
+          1.5277268883968023,
+          2.3973892824617837
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.011815049021425994,
+          0.49742986237621856,
+          1.6585563409815927,
+          54.7407632379227
+        ]
+      },
+      "rigida": {
+        "giro_entre_lados_p50_p95_max_grados": [
+          8.187683649854328,
+          54.863948821637045,
+          99.74284192174635
+        ],
+        "lados_con_giro_mayor_45": 12,
+        "lados": 142,
+        "fondos_sin_cruce": 1,
+        "fondos_recortados": 37
+      },
+      "giro_frente_por_paso_tangencial_p50_p95_max_grados": [
+        9.562731975061988,
+        69.157119459282,
+        168.47508762746872
+      ]
+    },
+    {
+      "indice_frente": 42,
+      "fila": 25,
+      "familia": "A",
+      "anillo": true,
+      "piezas": 70,
+      "rayo": {
+        "triangulos": 33120,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.4785616355422346,
+        "error_cota_p95_pasos": 0.3972713151362312,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.4710899121354365,
+          0.6726418587281295,
+          1.276807190520555,
+          1.6000000000000014
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.5583119583678454,
+          1.0730532755260707,
+          1.2648881820938325,
+          1.3330259722537479
+        ]
+      },
+      "flujo": {
+        "triangulos": 52960,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.0018890517918795013,
+        "error_cota_p95_pasos": 0.0012302139831294118,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.5422985839231927,
+          0.750654277343779,
+          1.5244392270816804,
+          2.2384158082595698
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.4605464733159617,
+          1.0326504238672116,
+          1.2724588510064931,
+          23.732054179102597
+        ]
+      },
+      "rigida": {
+        "giro_entre_lados_p50_p95_max_grados": [
+          13.015304189267187,
+          22.286545950295586,
+          27.0637179777589
+        ],
+        "lados_con_giro_mayor_45": 0,
+        "lados": 70,
+        "fondos_sin_cruce": 0,
+        "fondos_recortados": 9
+      },
+      "giro_frente_por_paso_tangencial_p50_p95_max_grados": [
+        16.62258397470749,
+        32.75131096164279,
+        38.87747341103859
+      ]
+    },
+    {
+      "indice_frente": 43,
+      "fila": 26,
+      "familia": "A",
+      "anillo": true,
+      "piezas": 70,
+      "rayo": {
+        "triangulos": 33120,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.7633101126820252,
+        "error_cota_p95_pasos": 0.43586397799883164,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.4183239479694487,
+          0.7381849650832822,
+          1.219464354630438,
+          1.4773361181890428
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.41619382513607284,
+          1.0414133190180654,
+          1.825907134558613,
+          2.3810592852961987
+        ]
+      },
+      "flujo": {
+        "triangulos": 52992,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.0011326950407968333,
+        "error_cota_p95_pasos": 0.0007784392894021568,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.4398459661418303,
+          0.7530457716773633,
+          1.1716169414820452,
+          1.2589286628998553
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.5230305849618223,
+          1.0293762701510523,
+          1.539141890080482,
+          1.8985085184695853
+        ]
+      },
+      "rigida": {
+        "giro_entre_lados_p50_p95_max_grados": [
+          19.626455356051157,
+          36.36175741214446,
+          37.78548324785072
+        ],
+        "lados_con_giro_mayor_45": 0,
+        "lados": 70,
+        "fondos_sin_cruce": 0,
+        "fondos_recortados": 0
+      },
+      "giro_frente_por_paso_tangencial_p50_p95_max_grados": [
+        26.75151884557279,
+        54.78534753137128,
+        62.99714555083506
+      ]
+    },
+    {
+      "indice_frente": 44,
+      "fila": 27,
+      "familia": "A",
+      "anillo": true,
+      "piezas": 68,
+      "rayo": {
+        "triangulos": 31760,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.3678826176807286,
+        "error_cota_p95_pasos": 0.33378417817955636,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.4022260279910342,
+          0.5572341772312186,
+          1.0326755315482616,
+          1.2747754489448393
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.8095877076856796,
+          1.026795293380047,
+          1.234623342203002,
+          1.4201690615846754
+        ]
+      },
+      "flujo": {
+        "triangulos": 50784,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.001486517141819133,
+        "error_cota_p95_pasos": 0.0010064962168686703,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.40860695829146076,
+          0.6484662018647892,
+          1.349925502511136,
+          1.4987403525991148
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.6381435262504168,
+          1.0156330452145237,
+          1.9222531424067395,
+          4.045759293095221
+        ]
+      },
+      "rigida": {
+        "giro_entre_lados_p50_p95_max_grados": [
+          12.029081886195911,
+          30.952831372848994,
+          33.52623461929726
+        ],
+        "lados_con_giro_mayor_45": 0,
+        "lados": 68,
+        "fondos_sin_cruce": 0,
+        "fondos_recortados": 0
+      },
+      "giro_frente_por_paso_tangencial_p50_p95_max_grados": [
+        13.62188429578707,
+        35.35095221568356,
+        46.60484243098792
+      ]
+    },
+    {
+      "indice_frente": 45,
+      "fila": 28,
+      "familia": "A",
+      "anillo": true,
+      "piezas": 66,
+      "rayo": {
+        "triangulos": 31280,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.16533677811708236,
+        "error_cota_p95_pasos": 0.12787485777764027,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.40015815569116236,
+          0.48712553482048576,
+          0.8324686306197191,
+          0.8542158942365786
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.7770061076648359,
+          1.023409487839637,
+          1.2012444516273972,
+          1.3313363660634159
+        ]
+      },
+      "flujo": {
+        "triangulos": 50048,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.0013178075436993872,
+        "error_cota_p95_pasos": 0.001049779994321351,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.4002788795130309,
+          0.5205068301494234,
+          0.8577582186154422,
+          0.880581906959391
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.8448165404756625,
+          1.016852119366046,
+          1.216286012768659,
+          1.4091476885656726
+        ]
+      },
+      "rigida": {
+        "giro_entre_lados_p50_p95_max_grados": [
+          10.43631069717286,
+          32.14169149569949,
+          36.883003295961814
+        ],
+        "lados_con_giro_mayor_45": 0,
+        "lados": 66,
+        "fondos_sin_cruce": 0,
+        "fondos_recortados": 0
+      },
+      "giro_frente_por_paso_tangencial_p50_p95_max_grados": [
+        12.676248198095886,
+        37.38042456105593,
+        46.2545901163595
+      ]
+    },
+    {
+      "indice_frente": 46,
+      "fila": 29,
+      "familia": "C",
+      "anillo": true,
+      "piezas": 122,
+      "rayo": {
+        "triangulos": 31160,
+        "invertidos": 7,
+        "error_cota_max_pasos": 0.15071678752647244,
+        "error_cota_p95_pasos": 0.1365303258342878,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.3499999999999993,
+          0.36357752463488957,
+          0.7154438838014432,
+          0.7655853955360881
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.4302875520314502,
+          1.0592378531451163,
+          1.245957225203262,
+          1.2982343909851206
+        ]
+      },
+      "flujo": {
+        "triangulos": 49856,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.001064944862765065,
+        "error_cota_p95_pasos": 0.0006877622410505751,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.30822919252595105,
+          0.36541949413489966,
+          0.6720968874052,
+          0.703620369254897
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.6233543840952281,
+          1.0301038771290512,
+          1.22143229361228,
+          1.3594738267675577
+        ]
+      },
+      "rigida": {
+        "giro_entre_lados_p50_p95_max_grados": [
+          10.195876584389179,
+          27.74202134939162,
+          33.58442562921098
+        ],
+        "lados_con_giro_mayor_45": 0,
+        "lados": 122,
+        "fondos_sin_cruce": 0,
+        "fondos_recortados": 33
+      },
+      "giro_frente_por_paso_tangencial_p50_p95_max_grados": [
+        11.069752609585656,
+        34.26152152262988,
+        45.88222559459039
+      ]
+    },
+    {
+      "indice_frente": 47,
+      "fila": 30,
+      "familia": "C",
+      "anillo": true,
+      "piezas": 126,
+      "rayo": {
+        "triangulos": 31920,
+        "invertidos": 682,
+        "error_cota_max_pasos": 0.21390328481592738,
+        "error_cota_p95_pasos": 0.16260277186672434,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.3499999999999996,
+          0.3879885328631584,
+          0.8144267470179746,
+          0.8769061557259741
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.6489945308596944,
+          1.089372589517757,
+          1.3952224509983906,
+          1.4568407762679088
+        ]
+      },
+      "flujo": {
+        "triangulos": 51040,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.0010467189402735735,
+        "error_cota_p95_pasos": 0.0007651565901945243,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.31651855108750276,
+          0.3813192971035603,
+          0.7871876677713328,
+          0.8296979961859919
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.2925720341030451,
+          1.048957767165169,
+          1.342014327881914,
+          1.439784673329349
+        ]
+      },
+      "rigida": {
+        "giro_entre_lados_p50_p95_max_grados": [
+          16.4852624549739,
+          50.883117198404086,
+          56.897277094602174
+        ],
+        "lados_con_giro_mayor_45": 10,
+        "lados": 126,
+        "fondos_sin_cruce": 0,
+        "fondos_recortados": 23
+      },
+      "giro_frente_por_paso_tangencial_p50_p95_max_grados": [
+        17.728273953539283,
+        60.14088630515572,
+        70.04423751309724
+      ]
+    },
+    {
+      "indice_frente": 48,
+      "fila": 31,
+      "familia": "A",
+      "anillo": true,
+      "piezas": 72,
+      "rayo": {
+        "triangulos": 33600,
+        "invertidos": 1014,
+        "error_cota_max_pasos": 0.28929943632191035,
+        "error_cota_p95_pasos": 0.24685810813146453,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.4462811345569637,
+          0.5974567202094285,
+          1.1142875475657688,
+          1.212113275189769
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.7028022561136933,
+          1.1088979847981646,
+          1.4784664792456819,
+          1.5269643934036348
+        ]
+      },
+      "flujo": {
+        "triangulos": 53760,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.0013819750061889273,
+        "error_cota_p95_pasos": 0.0011284769778311752,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.4334392127228059,
+          0.622470023940809,
+          1.1417256493375003,
+          1.186892759173833
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.1560225852167756,
+          1.048075834917085,
+          1.5167388151499384,
+          1.6215940386676213
+        ]
+      },
+      "rigida": {
+        "giro_entre_lados_p50_p95_max_grados": [
+          31.295576015383045,
+          75.32481457348688,
+          77.93393381434824
+        ],
+        "lados_con_giro_mayor_45": 13,
+        "lados": 72,
+        "fondos_sin_cruce": 0,
+        "fondos_recortados": 0
+      },
+      "giro_frente_por_paso_tangencial_p50_p95_max_grados": [
+        38.36165044674154,
+        92.18772007073203,
+        96.25652510011699
+      ]
+    },
+    {
+      "indice_frente": 49,
+      "fila": 32,
+      "familia": "A",
+      "anillo": true,
+      "piezas": 76,
+      "rayo": {
+        "triangulos": 35760,
+        "invertidos": 1117,
+        "error_cota_max_pasos": 0.32077382142219446,
+        "error_cota_p95_pasos": 0.27578752870495743,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.4804161469510016,
+          0.605473280307298,
+          1.155517977428342,
+          1.257753437233228
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.7107711182854407,
+          1.1102114125978737,
+          1.5019039264592697,
+          1.5591142677399232
+        ]
+      },
+      "flujo": {
+        "triangulos": 57184,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.001487685527452797,
+        "error_cota_p95_pasos": 0.0012593838381449005,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.46584415460453643,
+          0.6287079850223032,
+          1.1892043778130421,
+          1.2400655552492161
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.1290088545569731,
+          1.0460361729836187,
+          1.5937872052714563,
+          1.7194112269957742
+        ]
+      },
+      "rigida": {
+        "giro_entre_lados_p50_p95_max_grados": [
+          38.88238745798617,
+          84.77410121586264,
+          87.23764771596201
+        ],
+        "lados_con_giro_mayor_45": 26,
+        "lados": 76,
+        "fondos_sin_cruce": 0,
+        "fondos_recortados": 0
+      },
+      "giro_frente_por_paso_tangencial_p50_p95_max_grados": [
+        43.828128337696995,
+        98.449823356863,
+        100.85720653212807
+      ]
+    },
+    {
+      "indice_frente": 50,
+      "fila": 33,
+      "familia": "A",
+      "anillo": true,
+      "piezas": 80,
+      "rayo": {
+        "triangulos": 38080,
+        "invertidos": 1211,
+        "error_cota_max_pasos": 0.34320158952264385,
+        "error_cota_p95_pasos": 0.2874236893801618,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.5038742525828803,
+          0.6771662952606023,
+          1.195924916760346,
+          1.3343135024841968
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.7292085059576006,
+          1.0972931398782637,
+          1.4964866911119663,
+          1.5810909646373361
+        ]
+      },
+      "flujo": {
+        "triangulos": 60928,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.0014933230988407752,
+        "error_cota_p95_pasos": 0.001283440455462639,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.5112405307023602,
+          0.7231000324844118,
+          1.235952613712989,
+          1.2948420994445593
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.1154558706642431,
+          1.020414260969553,
+          1.5982979897560419,
+          1.780153418774016
+        ]
+      },
+      "rigida": {
+        "giro_entre_lados_p50_p95_max_grados": [
+          47.434842940589206,
+          80.25884673037854,
+          87.11647391878526
+        ],
+        "lados_con_giro_mayor_45": 43,
+        "lados": 80,
+        "fondos_sin_cruce": 3,
+        "fondos_recortados": 3
+      },
+      "giro_frente_por_paso_tangencial_p50_p95_max_grados": [
+        49.90300604627425,
+        100.19633911913644,
+        102.48824336581184
+      ]
+    },
+    {
+      "indice_frente": 51,
+      "fila": 34,
+      "familia": "A",
+      "anillo": true,
+      "piezas": 86,
+      "rayo": {
+        "triangulos": 41000,
+        "invertidos": 1898,
+        "error_cota_max_pasos": 0.5491365527795101,
+        "error_cota_p95_pasos": 0.39463436484749476,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.4800848571580346,
+          0.963691565202886,
+          1.6,
+          1.6000000000000014
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.7632753612797292,
+          1.0559607174334937,
+          1.853143384428506,
+          2.5523871501714672
+        ]
+      },
+      "flujo": {
+        "triangulos": 65600,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.0018784066878519163,
+        "error_cota_p95_pasos": 0.0013091012612181597,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.49274969847671823,
+          0.8889408462547469,
+          1.4372532182495439,
+          1.6422742731756232
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.08416166440616366,
+          0.9792045790578017,
+          1.7160025796306098,
+          2.2716727823120295
+        ]
+      },
+      "rigida": {
+        "giro_entre_lados_p50_p95_max_grados": [
+          47.006719470846335,
+          99.85024826935955,
+          104.3440404879866
+        ],
+        "lados_con_giro_mayor_45": 45,
+        "lados": 86,
+        "fondos_sin_cruce": 11,
+        "fondos_recortados": 12
+      },
+      "giro_frente_por_paso_tangencial_p50_p95_max_grados": [
+        42.4790050575283,
+        108.48488960646911,
+        130.41627552939408
+      ]
+    },
+    {
+      "indice_frente": 52,
+      "fila": 35,
+      "familia": "C",
+      "anillo": true,
+      "piezas": 84,
+      "rayo": {
+        "triangulos": 21520,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.36984547656274475,
+        "error_cota_p95_pasos": 0.3012149674954451,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.36199352494517745,
+          0.4288869943435715,
+          0.7699896234806285,
+          0.843746107338867
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.5855973058614721,
+          1.0297927286412132,
+          1.4865035581251358,
+          1.5975028001941824
+        ]
+      },
+      "flujo": {
+        "triangulos": 34400,
+        "invertidos": 1,
+        "error_cota_max_pasos": 0.0014330352480629973,
+        "error_cota_p95_pasos": 0.0010874693559130716,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.36273396123572405,
+          0.4359562190892664,
+          1.2182684926286378,
+          1.4547634757750703
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.3990334195696657,
+          0.993454042676084,
+          1.5766298841344029,
+          21.34811778734718
+        ]
+      },
+      "rigida": {
+        "giro_entre_lados_p50_p95_max_grados": [
+          9.501583277867143,
+          43.03085688331178,
+          45.02997556197178
+        ],
+        "lados_con_giro_mayor_45": 1,
+        "lados": 84,
+        "fondos_sin_cruce": 37,
+        "fondos_recortados": 37
+      },
+      "giro_frente_por_paso_tangencial_p50_p95_max_grados": [
+        6.717260449910611,
+        46.69877867772638,
+        51.3263183609562
+      ]
+    },
+    {
+      "indice_frente": 53,
+      "fila": 36,
+      "familia": "C",
+      "anillo": true,
+      "piezas": 84,
+      "rayo": {
+        "triangulos": 21520,
+        "invertidos": 122,
+        "error_cota_max_pasos": 0.25250832103354803,
+        "error_cota_p95_pasos": 0.14676512178968615,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.39138068617800587,
+          0.49997842144816734,
+          0.8510687922110453,
+          0.961455671395994
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.3698591615688739,
+          1.0883436177506376,
+          1.524612803533254,
+          1.6564743072910466
+        ]
+      },
+      "flujo": {
+        "triangulos": 34400,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.0015126056726873054,
+        "error_cota_p95_pasos": 0.0008206112561670524,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.3726443763161029,
+          0.4665571185862486,
+          0.7402343640671722,
+          0.7776085100788382
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.566797828736182,
+          1.0473082338401574,
+          1.5256526136330655,
+          1.8640692809973791
+        ]
+      },
+      "rigida": {
+        "giro_entre_lados_p50_p95_max_grados": [
+          14.217100626866092,
+          39.38543768930052,
+          48.840071772262455
+        ],
+        "lados_con_giro_mayor_45": 4,
+        "lados": 84,
+        "fondos_sin_cruce": 0,
+        "fondos_recortados": 0
+      },
+      "giro_frente_por_paso_tangencial_p50_p95_max_grados": [
+        14.21249722311378,
+        49.184110065934036,
+        120.67753762820223
+      ]
+    },
+    {
+      "indice_frente": 54,
+      "fila": 37,
+      "familia": "A",
+      "anillo": true,
+      "piezas": 50,
+      "rayo": {
+        "triangulos": 23920,
+        "invertidos": 1839,
+        "error_cota_max_pasos": 0.6164826200555243,
+        "error_cota_p95_pasos": 0.44882142406635267,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.675691933761278,
+          0.9177219597255802,
+          1.6,
+          1.6000000000000012
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.7151827162709288,
+          1.3151320696438158,
+          2.0735919454742016,
+          2.9996028990404824
+        ]
+      },
+      "flujo": {
+        "triangulos": 38272,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.0015590801537906452,
+        "error_cota_p95_pasos": 0.0009591720948126842,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.5772052315791658,
+          0.8647983415867383,
+          1.6569119358813287,
+          1.8365237472299154
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.07072567330016033,
+          1.1156679557388323,
+          1.7463918652126496,
+          2.2490710429755674
+        ]
+      },
+      "rigida": {
+        "giro_entre_lados_p50_p95_max_grados": [
+          60.32137988505395,
+          82.94685707312208,
+          93.56783797410405
+        ],
+        "lados_con_giro_mayor_45": 31,
+        "lados": 50,
+        "fondos_sin_cruce": 0,
+        "fondos_recortados": 2
+      },
+      "giro_frente_por_paso_tangencial_p50_p95_max_grados": [
+        60.68533717768922,
+        97.86432757244891,
+        109.30232932954195
+      ]
+    },
+    {
+      "indice_frente": 55,
+      "fila": 38,
+      "familia": "A",
+      "anillo": true,
+      "piezas": 28,
+      "rayo": {
+        "triangulos": 13120,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.7924130889822499,
+        "error_cota_p95_pasos": 0.6071598247332658,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.7116911555699906,
+          0.9187486421097307,
+          1.4637148796054302,
+          1.6000000000000008
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.8818044472159648,
+          1.057418353836462,
+          1.950325322443023,
+          2.2147555453766885
+        ]
+      },
+      "flujo": {
+        "triangulos": 20992,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.001109769860857667,
+        "error_cota_p95_pasos": 0.0008345489257540669,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.8869711528498925,
+          1.0877764400544565,
+          1.7904131680202955,
+          2.075771479977015
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.06017990570987105,
+          0.7821465374842493,
+          1.7881293085631373,
+          39.81071265148265
+        ]
+      },
+      "rigida": {
+        "giro_entre_lados_p50_p95_max_grados": [
+          8.71003286091113,
+          34.38745709484256,
+          37.19434667669004
+        ],
+        "lados_con_giro_mayor_45": 0,
+        "lados": 28,
+        "fondos_sin_cruce": 10,
+        "fondos_recortados": 10
+      },
+      "giro_frente_por_paso_tangencial_p50_p95_max_grados": [
+        9.57924978080569,
+        45.83566295513961,
+        54.81575669746832
+      ]
+    },
+    {
+      "indice_frente": 56,
+      "fila": 39,
+      "familia": "A",
+      "anillo": true,
+      "piezas": 24,
+      "rayo": {
+        "triangulos": 11800,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.3430150355045608,
+        "error_cota_p95_pasos": 0.3069053881175807,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.49797770895620536,
+          0.5658537685061786,
+          0.7237055763487706,
+          0.7722463610380702
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          1.042899353046416,
+          1.0655893101154017,
+          1.1259618129955318,
+          1.131790753294336
+        ]
+      },
+      "flujo": {
+        "triangulos": 18848,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.0010747776918607584,
+        "error_cota_p95_pasos": 0.0008990916687495011,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.5788109230200187,
+          0.7086102966568419,
+          1.1435408778860832,
+          1.2833560867362983
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          0.9759716361487469,
+          1.0591974600050145,
+          1.4889519261866273,
+          2.0784110126668387
+        ]
+      },
+      "rigida": {
+        "giro_entre_lados_p50_p95_max_grados": [
+          14.259624887060287,
+          19.451492426617026,
+          20.12695000488714
+        ],
+        "lados_con_giro_mayor_45": 0,
+        "lados": 24,
+        "fondos_sin_cruce": 0,
+        "fondos_recortados": 0
+      },
+      "giro_frente_por_paso_tangencial_p50_p95_max_grados": [
+        13.455017128858334,
+        22.569103557435287,
+        24.07241394019072
+      ]
+    },
+    {
+      "indice_frente": 57,
+      "fila": 40,
+      "familia": "A",
+      "anillo": true,
+      "piezas": 24,
+      "rayo": {
+        "triangulos": 11040,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.14180569790241795,
+        "error_cota_p95_pasos": 0.13142859390364892,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.43615599598031923,
+          0.44945041925419577,
+          0.47885720387133257,
+          0.483792818102988
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          1.029013194190782,
+          1.0403655282682625,
+          1.1279611632459172,
+          1.1324582864961092
+        ]
+      },
+      "flujo": {
+        "triangulos": 17664,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.0012549484175722059,
+        "error_cota_p95_pasos": 0.0010931319211370265,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.4619748947152038,
+          0.49638262145897233,
+          0.5697029848674927,
+          0.5865297531275662
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          1.0368753227901593,
+          1.0523128414472382,
+          1.134883109199831,
+          1.1402704007255533
+        ]
+      },
+      "rigida": {
+        "giro_entre_lados_p50_p95_max_grados": [
+          14.879277867335281,
+          22.29225708493402,
+          22.44084627661424
+        ],
+        "lados_con_giro_mayor_45": 0,
+        "lados": 24,
+        "fondos_sin_cruce": 0,
+        "fondos_recortados": 0
+      },
+      "giro_frente_por_paso_tangencial_p50_p95_max_grados": [
+        12.82950970995677,
+        25.966371281767408,
+        26.82765971453638
+      ]
+    },
+    {
+      "indice_frente": 58,
+      "fila": 41,
+      "familia": "C",
+      "anillo": true,
+      "piezas": 40,
+      "rayo": {
+        "triangulos": 10400,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.08653286772981404,
+        "error_cota_p95_pasos": 0.08171054074280003,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.3499999999999996,
+          0.35,
+          0.35000000000000037,
+          0.3500000000000005
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          1.0277384143979142,
+          1.0450772602861091,
+          1.1420956611059356,
+          1.147037008624814
+        ]
+      },
+      "flujo": {
+        "triangulos": 16640,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.0008141235285720378,
+        "error_cota_p95_pasos": 0.0006860301824648403,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.32239610257247847,
+          0.3285840258760139,
+          0.3378871311166103,
+          0.3394635930814102
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          1.0267348826800442,
+          1.039529156824797,
+          1.1386426674780663,
+          1.1438411584252501
+        ]
+      },
+      "rigida": {
+        "giro_entre_lados_p50_p95_max_grados": [
+          6.180507364943688,
+          15.352531948259081,
+          16.068718848134388
+        ],
+        "lados_con_giro_mayor_45": 0,
+        "lados": 40,
+        "fondos_sin_cruce": 0,
+        "fondos_recortados": 32
+      },
+      "giro_frente_por_paso_tangencial_p50_p95_max_grados": [
+        6.701290114462974,
+        18.176638549904155,
+        18.67411657121688
+      ]
+    },
+    {
+      "indice_frente": 59,
+      "fila": 42,
+      "familia": "C",
+      "anillo": true,
+      "piezas": 38,
+      "rayo": {
+        "triangulos": 9800,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.14001653186043966,
+        "error_cota_p95_pasos": 0.13938925022932158,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.3499999999999996,
+          0.3499999999999999,
+          0.3500000000000003,
+          0.3500000000000004
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          1.0286241675544996,
+          1.0483561394980059,
+          1.1484985021716705,
+          1.1522215443050676
+        ]
+      },
+      "flujo": {
+        "triangulos": 15680,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.0005509129747948508,
+        "error_cota_p95_pasos": 0.0004624212335300944,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.3062910511281105,
+          0.31022183247918267,
+          0.3175479008041191,
+          0.3185979405650993
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          1.02481801368377,
+          1.0408602006325365,
+          1.1416258877426992,
+          1.1466967679935776
+        ]
+      },
+      "rigida": {
+        "giro_entre_lados_p50_p95_max_grados": [
+          7.713714011715651,
+          17.409948344870482,
+          17.838293962107144
+        ],
+        "lados_con_giro_mayor_45": 0,
+        "lados": 38,
+        "fondos_sin_cruce": 0,
+        "fondos_recortados": 33
+      },
+      "giro_frente_por_paso_tangencial_p50_p95_max_grados": [
+        7.942245463048673,
+        18.7320951721117,
+        19.200576019678845
+      ]
+    },
+    {
+      "indice_frente": 60,
+      "fila": 43,
+      "familia": "A",
+      "anillo": true,
+      "piezas": 20,
+      "rayo": {
+        "triangulos": 9200,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.005232972459003669,
+        "error_cota_p95_pasos": 0.004974479443862315,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.39201085906796795,
+          0.39603110568813,
+          0.4096176646831339,
+          0.41037553309691166
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          1.0262354116371402,
+          1.0483206097214905,
+          1.1354110383553873,
+          1.139350777611219
+        ]
+      },
+      "flujo": {
+        "triangulos": 14720,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.0006644857241494811,
+        "error_cota_p95_pasos": 0.0005581192579945299,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.3933334444996325,
+          0.3970305721374048,
+          0.4107602530107107,
+          0.41152162104366885
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          1.025725488177476,
+          1.045082912518783,
+          1.1447090160773918,
+          1.1491688174457138
+        ]
+      },
+      "rigida": {
+        "giro_entre_lados_p50_p95_max_grados": [
+          16.42835284686271,
+          25.64695026871683,
+          25.78299586666922
+        ],
+        "lados_con_giro_mayor_45": 0,
+        "lados": 20,
+        "fondos_sin_cruce": 0,
+        "fondos_recortados": 0
+      },
+      "giro_frente_por_paso_tangencial_p50_p95_max_grados": [
+        17.05882619725474,
+        29.341421385632145,
+        29.8367389726264
+      ]
+    },
+    {
+      "indice_frente": 61,
+      "fila": 44,
+      "familia": "A",
+      "anillo": true,
+      "piezas": 18,
+      "rayo": {
+        "triangulos": 8600,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.001260461595061293,
+        "error_cota_p95_pasos": 0.0010573116691332848,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.39122642313502903,
+          0.39587210740418477,
+          0.4094305583622819,
+          0.4099989730205184
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          1.0286025266202112,
+          1.0550381553084727,
+          1.1376826446596509,
+          1.1411305861972316
+        ]
+      },
+      "flujo": {
+        "triangulos": 13760,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.000733083120571172,
+        "error_cota_p95_pasos": 0.0006254045132404985,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.39155340026458285,
+          0.39582508124853283,
+          0.4098796102771324,
+          0.41046618869957213
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          1.0276555606121196,
+          1.0512116658979012,
+          1.1463808472189396,
+          1.1514927713443723
+        ]
+      },
+      "rigida": {
+        "giro_entre_lados_p50_p95_max_grados": [
+          20.43537644824815,
+          27.315264104303456,
+          27.580992103678888
+        ],
+        "lados_con_giro_mayor_45": 0,
+        "lados": 18,
+        "fondos_sin_cruce": 0,
+        "fondos_recortados": 0
+      },
+      "giro_frente_por_paso_tangencial_p50_p95_max_grados": [
+        19.589126065745138,
+        30.676635502192088,
+        31.08823679555855
+      ]
+    },
+    {
+      "indice_frente": 62,
+      "fila": 45,
+      "familia": "A",
+      "anillo": true,
+      "piezas": 16,
+      "rayo": {
+        "triangulos": 8040,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.0019114343831986781,
+        "error_cota_p95_pasos": 0.0015405544620639498,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.391227439338123,
+          0.39629190727224706,
+          0.4093820417594564,
+          0.40982347936377495
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          1.032022802892258,
+          1.0619146961727632,
+          1.1400347826419983,
+          1.1436442155200695
+        ]
+      },
+      "flujo": {
+        "triangulos": 12832,
+        "invertidos": 0,
+        "error_cota_max_pasos": 0.0007445539268775669,
+        "error_cota_p95_pasos": 0.0006410928142269819,
+        "profundidad_relativa_p05_p50_p95_max": [
+          0.3912193099267846,
+          0.3959970353619734,
+          0.4096303883846816,
+          0.41023821786207915
+        ],
+        "razon_anchos_p05_p50_p95_max": [
+          1.0306070411924222,
+          1.0581009852226704,
+          1.148845637341564,
+          1.153936413544473
+        ]
+      },
+      "rigida": {
+        "giro_entre_lados_p50_p95_max_grados": [
+          22.419287469606946,
+          28.84886373399571,
+          29.005094686832162
+        ],
+        "lados_con_giro_mayor_45": 0,
+        "lados": 16,
+        "fondos_sin_cruce": 0,
+        "fondos_recortados": 0
+      },
+      "giro_frente_por_paso_tangencial_p50_p95_max_grados": [
+        22.52729685335508,
+        32.09083704901268,
+        32.618577830174594
+      ]
+    }
+  ]
+}
