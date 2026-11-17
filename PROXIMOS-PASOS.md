@@ -5,7 +5,87 @@ histórico. El registro de decisiones va en `docs/decisiones/`.
 
 ---
 
-## Para mañana — hiladas continuas por campo de alturas (2026-11-08)
+## Plan para el 2026-11-18 — cierres y color de la inauguración
+
+**Punto de partida.** Rama `colocacion-suavizada` (3 commits, sin push ni merge).
+Colocación suavizada σ=1 por defecto (0026). El usuario aprobó el render
+Cycles `renders/previas/cupula_cycles_{visitante,cenital}_campo_suavizada.png`.
+Esta máquina no tiene GPU: Cycles en CPU, ~9 min por vista a 1400 px y 48
+muestras.
+
+### Decisiones del usuario al empezar
+
+1. **Merge** de `colocacion-suavizada` a `main`.
+2. **Criterio de color.** El 2026-11-05 se pidió «reluciente como el día de
+   la inauguración, colores apagados y artísticos, estética por delante»
+   (`granada/color.py`). Hoy se pide «según los historiadores, que luzca igual
+   que cuando se inauguró». ¿Manda la evidencia aunque el resultado sea más
+   vivo o más pobre de lo que guste? ¿O se mantiene la estética por delante,
+   declarando lo supuesto?
+3. **El rojo.** Jones (lámina XXXIX) y la maqueta de Contreras lo traen. La
+   ortoimagen no lo sostiene (`docs/policromia.md`). ¿Se pinta como hipótesis
+   de Jones o se deja fuera?
+4. **Permiso para buscar fuera.** ¿Encargo a `investigacion-gemini` sobre la
+   policromía nazarí de mocárabes? Envía texto a terceros: solo con permiso.
+
+### Bloque 1 — cierres (mañana temprano, acotado a medio día)
+
+Paso 4 de la 0017, antes del color, porque las cupulillas también se pintan.
+
+- Tapar con cupulilla los lazos de menos de `PIEZAS_MINIMAS`, los 16 huecos
+  del anillo exterior y los 8 brazos de la estrella junto a la clave.
+- Hacer la clave.
+- **Criterio de cierre:** no queda ningún hueco negro en las vistas cenital y
+  visitante de Cycles.
+- No tocar la colocación.
+- Las rendijas sueltas solo se miden: cuántas hay y en qué filas. Arreglarlas
+  queda para otro día.
+
+### Bloque 2 — color según las fuentes (lo principal)
+
+**Paso 2.1 — Tabla de evidencia**, en `docs/policromia.md` o en una
+decisión 0027. Una fila por fuente: qué dice, de qué parte de la sala, y si
+es registro o restitución. Nada se usa sin comprobarlo en el original.
+
+| Fuente | Qué aporta | Naturaleza | Estado |
+|---|---|---|---|
+| Patronato de la Alhambra | azul, rojo, negro, verde, oro, plata | texto general, no de esta cúpula | cita textual en `policromia.md`; falta la referencia exacta `[UNVERIFIED]` |
+| Análisis por microscopía de luz polarizada | lapislázuli, bermellón, negro carbón; azul sintético del XIX | yeserías de la Alhambra, no esta cúpula | sin referencia en el repo `[UNVERIFIED]` |
+| Ortoimagen AA-415_23 (`policromia.md`) | yeso 68 %, verde sostenido, azul débil, rojo no; oro y negro no medibles | medida del estado de 2021 | hecho |
+| Jones, tomo II, lámina XXXIX | color celda a celda en mocárabes de la propia sala (cornisa de la Ventana), oro de fondo | restitución hacia 1845 | fichero en `docs/gri_33125008608388_jp2.zip`; sin medir |
+| Jones, tomo I, lámina 38, «Estado actual de los colores» | cuánto se separa la restitución de lo que tenía delante | registro | sin localizar el fichero |
+| Maqueta de Contreras (`Ferrer_5`, `Ferrer_6`) | rojo, dorado, nervios azul grisáceo | restitución del XIX | hipótesis fechada, no medida |
+| Foto de Commons (entrada 19) | triángulos verdes y azules y cuadrados florales en las caras planas | estado actual, con dominante cálida | solo aspecto, no sirve para medir color |
+
+**Paso 2.2 — Medir la lámina XXXIX.** Es la única fuente que reparte el
+color por celda en esta sala. Medir la paleta y la proporción por tipo de
+cara (fondo cóncavo, pared, tapa, caras planas) con un script permanente.
+Salida en `datos/` con hash del fichero de origen.
+
+**Paso 2.3 — Reglas de color** (decisión 0027): qué color lleva cada tipo de
+cara y en qué posición (fila, familia A o C, cupulines, cupulillas, clave).
+Cada regla lleva su fuente y su fuerza: *medido*, *restituido por Jones*,
+*Contreras* o *supuesto*. Revisar los tonos de `granada/color.py` contra la
+lámina; hoy salen de la ortoimagen limpiada.
+
+**Paso 2.4 — Implementar.** `montar` ya devuelve la etiqueta de cada cara
+(pared, tapa o fondo). Hay que conectarla a `colorear` en la exportación
+`--obj` de `render_hilada_campo.py`. `render_cycles.py` ya lee los colores
+del `.mtl` y trata el oro como metálico. Al hacerlo, revisar la sombra de los
+cupulines (memoria del 2026-11-05: se quedaron claros a la espera del color).
+
+**Paso 2.5 — Render Cycles** en CPU, vistas visitante y cenital (~18 min).
+Comparar el aspecto con la foto de Commons y con la lámina XXXIX, sin
+presentarlo como medida.
+
+### Fuera de mañana
+
+Las rendijas, la estrella de la red (punto 4) y la calibración de A y del
+alzado (puntos 5 y 6). Los renders de 8k, en el otro ordenador.
+
+---
+
+## Hiladas continuas por campo de alturas (2026-11-08)
 
 **Por qué.** El modelo por celdas (`granada/celdas.py`) no se parece a las
 maquetas de Ferrer ni a la foto de Commons (entrada 19 de `docs/fuentes.md`):
