@@ -75,7 +75,7 @@ def diagnosticar(c, ds=0.06, capas=20):
     return filas, detalles
 
 
-def probar_flujo(c, detalle, muestras=33, ventana=True):
+def probar_flujo(c, detalle, muestras=33, ventana=True, posiciones_s=None):
     """Ensayo local: seguir -grad H normalizado hasta H=cota previa.
 
     Se conserva cada fallo; el limite de recorrido es cuatro veces el fondo
@@ -92,6 +92,8 @@ def probar_flujo(c, detalle, muestras=33, ventana=True):
     # Ventana contigua alrededor del peor extremo, separacion <= ds.
     objetivos_s = ((s[centro] + np.linspace(-.96, .96, muestras)) % f.largo
                    if ventana else np.linspace(0, f.largo, muestras, endpoint=False))
+    if posiciones_s is not None:
+        objetivos_s = np.asarray(posiciones_s)
     indices = np.minimum(np.searchsorted(s, objetivos_s), len(s)-2)
     bandas = []
     for i in indices:
@@ -114,6 +116,7 @@ def probar_flujo(c, detalle, muestras=33, ventana=True):
         exito = bool(len(sol.t_events[0]))
         hs = alturas(c, sol.y.T)
         registros.append({"s": float(s[i]), "alcanza_cota": exito,
+                          "inicio_xy": xy[0, i].tolist(), "fin_xy": fin.tolist(),
                           "error_cota_en_pasos": float(llegada(0, fin) / f.paso),
                           "distancia_contorno_m": None if arbol is None else float(arbol.query(fin)[0] * CATETO_M),
                           "H_decrece": bool(np.all(np.diff(hs) <= 1e-8)),

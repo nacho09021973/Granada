@@ -1,6 +1,6 @@
 # Próximos pasos
 
-Estado a 2026-11-09. Documento de trabajo: se actualiza, no se conserva como
+Estado a 2026-11-17. Documento de trabajo: se actualiza, no se conserva como
 histórico. El registro de decisiones va en `docs/decisiones/`.
 
 ---
@@ -51,8 +51,17 @@ puntos.
    Seguir el campo corrige una ventana local (33/33 y 65/65 trayectorias,
    sin inversiones), pero el ensayo repartido por todos los frentes deja
    7 trayectorias interiores sin llegada, además del problema de borde H=0.
-   **Siguiente:** tratar arranque y conexiones cerca de gradiente nulo antes
-   de sustituir la colocación. No se declara resuelto ni se han contado
+   **Continuación 0020 (2026-11-17):** reproducidas las 30 paradas y la
+   llegada no monótona. En la rejilla, seis paradas interiores permiten
+   escapar sin superar H del nodo inicial; una requiere 0,000282055 catetos.
+   Comprobado por caminos minimax y conectividad de subniveles. Esto no
+   garantiza descenso monótono ni prueba una obstrucción continua. El borde
+   termina hasta 21,1 cm fuera del radio base: H≈0 no fija el arranque.
+   Informe: `datos/diagnostico_paradas_campo.json`.
+   **Siguiente:** definir dominio y condición de borde; ensayar transporte
+   interior con derivada compatible con H interpolada y contrastar con
+   rejilla más fina antes de sustituir la colocación.
+   No se declara resuelto ni se han contado
    intersecciones 3D entre sólidos. Informes y SVG:
    `datos/diagnostico_colocacion_campo*.json`,
    `renders/diagnostico_colocacion_campo*.svg`.
