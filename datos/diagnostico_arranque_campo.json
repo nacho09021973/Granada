@@ -1,0 +1,215 @@
+{
+  "alcance": "Primera fila B; banda radial auxiliar, no colocacion de solidos ni validacion historica",
+  "eleccion": "Dominio circular; relieve atenuado por smoothstep tras suavizar en un paso horizontal de hilada; cono firmado fuera solo como extension numerica",
+  "criterio": "Sin aumento H >1e-8 por segmento; sin triangulos invertidos; error H borde y radio H0 <= una celda (altura: PENDIENTE*resolucion)",
+  "parametros": {
+    "radio_base_catetos": 16.263455967290593,
+    "ancho_atenuacion_catetos": 0.7071067811865475,
+    "filas_por_hilada": 2
+  },
+  "entorno": {
+    "python": "3.12.3",
+    "numpy": "2.5.4",
+    "scipy": "1.17.1",
+    "skimage": "0.26.0"
+  },
+  "sha256": {
+    "scripts/diagnosticar_arranque_campo.py": "01b61d9b33b8c4d099d39d616af478562c99bfd876091fdeb460f6ff8e7ab249",
+    "scripts/diagnosticar_colocacion_campo.py": "8c5ddc7a8f70379969addf8f813520003107b2e4effcb2e5b8042fef74dcc1ed",
+    "granada/campo.py": "db9829d9be7ca517aff8484af68eaacdb7ba5757367cc2b2abb6962052541876",
+    "granada/hiladas_campo.py": "dd59f68a31233eceafd43a90bc569435ce66449eae61320170da8ef4dceca178",
+    "granada/cupula.py": "2af80b3d88cc6a57c975047eec04f8f6508db2d801ed1fc2b36524a1287d3625",
+    "granada/celdas.py": "97d25dbef2df7905a7ea6b7242e1d48c416744de5e4a075b29842b543606cc14",
+    "granada/piezas.py": "7d28b519053574d2ced91f7377f72604afbf3a89e3ab375af7d7ffa84ac68ddc",
+    "datos/red_medinas.json": "212acafaca12946e6a0b6e725da52f9ea0b6f750354932e4662c631a133713e8",
+    "datos/registro_red.json": "b5b6cddc865a7776e2a23f662cb342f2838894c7266c8345b6c03fa35972f7da",
+    "datos/caras_red.json": "c01ebdbea5e7ef3b9a1ca29f3b60beacbaaae0f17ecbafe5f8c9f69a2dbe3e78",
+    "datos/niveles_aproximados.json": "04cd6f4b93c92bdbba0da0bfb31fea07687d464dd881ce82e8445f3a2b4c04f5"
+  },
+  "casos": [
+    {
+      "frentes_primera_fila": 1,
+      "bandas": [
+        {
+          "trayectorias": 129,
+          "capas": 200,
+          "aumentan_H": 0,
+          "aumento_max_catetos": 0.0,
+          "H_borde_max_abs_catetos": 0.009508229159685468,
+          "error_cota_inicial_max_catetos": 6.939656929272342e-06,
+          "extremos_fuera_radio_tolerancia_1e_9": 0,
+          "frentes_fuera_dominio": 0,
+          "triangulos_invertidos": 0,
+          "fondo_max_m": 0.07913309812220626
+        }
+      ],
+      "contornos_H0": 1,
+      "error_radio_contorno_H0_max_m": 0.006707253440957625,
+      "A": 0,
+      "borde": "libre",
+      "resolucion": 0.03,
+      "pasa_criterio_muestreado": true
+    },
+    {
+      "frentes_primera_fila": 1,
+      "bandas": [
+        {
+          "trayectorias": 129,
+          "capas": 200,
+          "aumentan_H": 0,
+          "aumento_max_catetos": 0.0,
+          "H_borde_max_abs_catetos": 8.873531944393435e-06,
+          "error_cota_inicial_max_catetos": 6.939656929272342e-06,
+          "extremos_fuera_radio_tolerancia_1e_9": 0,
+          "frentes_fuera_dominio": 0,
+          "triangulos_invertidos": 0,
+          "fondo_max_m": 0.07913309812220626
+        }
+      ],
+      "contornos_H0": 1,
+      "error_radio_contorno_H0_max_m": 1.5255620969268554e-06,
+      "A": 0,
+      "borde": "circular",
+      "resolucion": 0.03,
+      "pasa_criterio_muestreado": true
+    },
+    {
+      "frentes_primera_fila": 1,
+      "bandas": [
+        {
+          "trayectorias": 129,
+          "capas": 200,
+          "aumentan_H": 0,
+          "aumento_max_catetos": 0.0,
+          "H_borde_max_abs_catetos": 0.44086152591407224,
+          "error_cota_inicial_max_catetos": 0.0010486388513975542,
+          "extremos_fuera_radio_tolerancia_1e_9": 0,
+          "frentes_fuera_dominio": 0,
+          "triangulos_invertidos": 0,
+          "fondo_max_m": 0.07913292210232951
+        }
+      ],
+      "contornos_H0": 12,
+      "error_radio_contorno_H0_max_m": 0.3998746206280692,
+      "A": 2,
+      "borde": "libre",
+      "resolucion": 0.03,
+      "pasa_criterio_muestreado": false
+    },
+    {
+      "frentes_primera_fila": 1,
+      "bandas": [
+        {
+          "trayectorias": 129,
+          "capas": 200,
+          "aumentan_H": 0,
+          "aumento_max_catetos": 0.0,
+          "H_borde_max_abs_catetos": 0.00030770981404952026,
+          "error_cota_inicial_max_catetos": 0.0004672408845809439,
+          "extremos_fuera_radio_tolerancia_1e_9": 0,
+          "frentes_fuera_dominio": 0,
+          "triangulos_invertidos": 0,
+          "fondo_max_m": 0.07913302987392412
+        }
+      ],
+      "contornos_H0": 1,
+      "error_radio_contorno_H0_max_m": 6.28246334038002e-05,
+      "A": 2,
+      "borde": "circular",
+      "resolucion": 0.03,
+      "pasa_criterio_muestreado": true
+    },
+    {
+      "frentes_primera_fila": 1,
+      "bandas": [
+        {
+          "trayectorias": 257,
+          "capas": 400,
+          "aumentan_H": 0,
+          "aumento_max_catetos": 0.0,
+          "H_borde_max_abs_catetos": 0.004797123546722239,
+          "error_cota_inicial_max_catetos": 1.977651422790938e-06,
+          "extremos_fuera_radio_tolerancia_1e_9": 0,
+          "frentes_fuera_dominio": 0,
+          "triangulos_invertidos": 0,
+          "fondo_max_m": 0.07913117394399516
+        }
+      ],
+      "contornos_H0": 1,
+      "error_radio_contorno_H0_max_m": 0.003351002481230128,
+      "A": 0,
+      "borde": "libre",
+      "resolucion": 0.015,
+      "pasa_criterio_muestreado": true
+    },
+    {
+      "frentes_primera_fila": 1,
+      "bandas": [
+        {
+          "trayectorias": 257,
+          "capas": 400,
+          "aumentan_H": 0,
+          "aumento_max_catetos": 0.0,
+          "H_borde_max_abs_catetos": 2.2109188139857183e-06,
+          "error_cota_inicial_max_catetos": 1.977651422790938e-06,
+          "extremos_fuera_radio_tolerancia_1e_9": 0,
+          "frentes_fuera_dominio": 0,
+          "triangulos_invertidos": 0,
+          "fondo_max_m": 0.07913117394399516
+        }
+      ],
+      "contornos_H0": 1,
+      "error_radio_contorno_H0_max_m": 3.850759899701177e-07,
+      "A": 0,
+      "borde": "circular",
+      "resolucion": 0.015,
+      "pasa_criterio_muestreado": true
+    },
+    {
+      "frentes_primera_fila": 1,
+      "bandas": [
+        {
+          "trayectorias": 257,
+          "capas": 400,
+          "aumentan_H": 5,
+          "aumento_max_catetos": 0.00022438694873405662,
+          "H_borde_max_abs_catetos": 0.5107723696574418,
+          "error_cota_inicial_max_catetos": 0.00018278210904554282,
+          "extremos_fuera_radio_tolerancia_1e_9": 0,
+          "frentes_fuera_dominio": 5,
+          "triangulos_invertidos": 4000,
+          "fondo_max_m": 0.0791311042616475
+        }
+      ],
+      "contornos_H0": 12,
+      "error_radio_contorno_H0_max_m": 0.40451471307783066,
+      "A": 2,
+      "borde": "libre",
+      "resolucion": 0.015,
+      "pasa_criterio_muestreado": false
+    },
+    {
+      "frentes_primera_fila": 1,
+      "bandas": [
+        {
+          "trayectorias": 257,
+          "capas": 400,
+          "aumentan_H": 0,
+          "aumento_max_catetos": 0.0,
+          "H_borde_max_abs_catetos": 8.533966979311792e-05,
+          "error_cota_inicial_max_catetos": 0.00014595937992195607,
+          "extremos_fuera_radio_tolerancia_1e_9": 0,
+          "frentes_fuera_dominio": 0,
+          "triangulos_invertidos": 0,
+          "fondo_max_m": 0.07913110976660181
+        }
+      ],
+      "contornos_H0": 1,
+      "error_radio_contorno_H0_max_m": 1.5847207640505436e-05,
+      "A": 2,
+      "borde": "circular",
+      "resolucion": 0.015,
+      "pasa_criterio_muestreado": true
+    }
+  ]
+}

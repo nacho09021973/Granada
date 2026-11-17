@@ -80,6 +80,8 @@ class Campo:
     A: float
     forma: str
     signo: int
+    borde: str = "libre"
+    """Condicion elegida: libre o circular experimental (decision 0021)."""
 
     @property
     def paso(self) -> float:
@@ -103,8 +105,16 @@ def distancia_a_la_red(x: np.ndarray, y: np.ndarray) -> np.ndarray:
 
 
 def campo(A: float = 0.0, forma: str = "lineal", signo: int = 1, resolucion: float = RESOLUCION,
-          suavizado: float = SUAVIZADO) -> Campo:
-    """El campo H sobre una rejilla que cubre el circulo de arranque."""
+          suavizado: float = SUAVIZADO, borde: str = "libre") -> Campo:
+    """Campo sobre la planta; borde circular es ensayo de la decision 0021.
+
+    En modo circular el dominio arquitectonico es r<=RADIO_BASE. Fuera se
+    prolonga el cono con signo solo para interpolar y localizar H=0. El
+    relieve se apaga con smoothstep en un paso horizontal de hilada junto
+    al borde. Esta condicion es una eleccion, no una medida nueva.
+    """
+    if borde not in ("libre", "circular"):
+        raise ValueError("borde debe ser libre o circular")
     if signo not in (1, -1):
         raise ValueError("signo ha de ser 1 o -1")
     if forma not in FORMAS:
@@ -113,15 +123,22 @@ def campo(A: float = 0.0, forma: str = "lineal", signo: int = 1, resolucion: flo
     x = np.arange(-lado, lado + resolucion / 2, resolucion)
     y = x.copy()
     X, Y = np.meshgrid(x, y)
-    H = np.maximum(0.0, (RADIO_BASE - np.hypot(X, Y)) * PENDIENTE)
+    r = np.hypot(X, Y)
+    H = (RADIO_BASE - r) * PENDIENTE
+    if borde == "libre":
+        H = np.maximum(0.0, H)
     if A:
         d = distancia_a_la_red(x, y)
         dentro = points_in_poly(np.column_stack([X.ravel(), Y.ravel()]), contorno_de_la_red()).reshape(X.shape)
         termino = np.where(dentro, signo * A * FORMAS[forma](d), 0.0)
         if suavizado:
             termino = gaussian_filter(termino, suavizado / resolucion)
+        if borde == "circular":
+            ancho = PASO_VERTICAL / PENDIENTE
+            t = np.clip((RADIO_BASE-r) / ancho, 0, 1)
+            termino = termino * t*t*(3-2*t)
         H = H + termino
-    return Campo(x, y, H, A, forma, signo)
+    return Campo(x, y, H, A, forma, signo, borde)
 
 
 def cotas_de_hilada(hiladas: int = HILADAS, filas_por_hilada: int = 1) -> list[float]:
