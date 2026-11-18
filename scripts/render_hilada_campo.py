@@ -59,7 +59,7 @@ def main() -> int:
                     help="estrellado: pozo liso con techo de estrella (ortoimagen, 2026-11-18); piezas: cupulita de piezas")
     ap.add_argument("--color", choices=("yeso", "inauguracion"), default="yeso",
                     help="inauguracion: reparto de granada/color.py (Jones lam. XXXIX, estetico; 2026-11-18)")
-    ap.add_argument("--variante", choices=("jones", "suave", "yeso", "ferrer"), default="ferrer",
+    ap.add_argument("--variante", choices=("jones", "suave", "yeso", "ferrer", "ferrer_red"), default="ferrer",
                     help="variante del reparto inauguracion (granada.color.VARIANTES_INAUGURACION)")
     ap.add_argument("--informe-cierres", type=Path,
                     help="guarda huecos tapados y rendijas por fila (JSON) y termina")
@@ -121,7 +121,11 @@ def main() -> int:
     pintar = None
     if a.color == "inauguracion":
         from granada.color import reparto_inauguracion
-        pintar = reparto_inauguracion(a.variante)
+        if a.variante == "ferrer_red":
+            from granada.color import ferrer_red
+            pintar = ferrer_red(c.x, c.y)
+        else:
+            pintar = reparto_inauguracion(a.variante)
     grupos = montar(c, sel, subdivision=a.subdivision, colocacion=a.colocacion, sigma=a.sigma,
                     descartar=descartar, colorear=pintar)
     if con_cupulines:

@@ -329,3 +329,62 @@ CUPULIN_POR_VARIANTE = {
 el pozo va oscuro, como los huecos de la maqueta. Supuesto."""
 CIERRE_POR_VARIANTE = {"ferrer": "tostado"}
 """Las cupulillas de cierre son las celdas hondas de la maqueta. Supuesto."""
+
+
+# --- Variante «ferrer_red» (2026-11-18) -------------------------------------
+#
+# En «ferrer» lo oscuro va a una familia de filas y dibuja anillos. En
+# Ferrer_5, ampliada, lo oscuro son manchas en el centro hondo de cada celda
+# de la red, y lo claro las caras junto a las aristas (las rectas del centro a
+# las esquinas cruzan los mocarabes sin desviarse: se toman por juntas de la
+# maqueta o de la foto, no por pintura; supuesto). Aqui el fondo de una pieza
+# va oscuro cuando su centroide esta lejos de la red respecto a lo mas lejos
+# que se llega dentro de su celda.
+
+UMBRAL_RED = 0.55
+"""Fondo oscuro si distancia a la red / distancia maxima en su celda >= esto.
+Eleccion estetica."""
+
+
+def distancia_relativa_a_la_red(x, y):
+    """d / max(d en su celda) en cada nudo de la rejilla (x, y): 0 sobre las
+    aristas de la red, 1 en el punto mas hondo de cada celda. Las celdas son
+    las componentes 4-conexas del complemento de las aristas rasterizadas."""
+    import numpy as np
+    from scipy.ndimage import label, maximum
+
+    from granada.campo import distancia_a_la_red
+
+    d = distancia_a_la_red(x, y)
+    etiqueta, n = label(d > 0)
+    tope = np.zeros(n + 1)
+    tope[1:] = maximum(d, etiqueta, index=np.arange(1, n + 1))
+    tope[tope == 0] = 1.0
+    return d / tope[etiqueta]
+
+
+def ferrer_red(x, y, umbral: float = UMBRAL_RED):
+    """Reparto «ferrer_red» sobre la rejilla (x, y) del campo. Devuelve
+    pintar(tipo, etiqueta, fila, indice, centro) con centro = (x, y) del
+    centroide de la pieza; paredes y tapas en crema, acentos como en
+    CICLO_FERRER_CLARO en los fondos claros."""
+    import numpy as np
+    from scipy.ndimage import map_coordinates
+
+    R = distancia_relativa_a_la_red(x, y)
+    paso = float(x[1] - x[0])
+
+    def pintar(tipo: str, etiqueta: str, fila: int, indice: int, centro) -> str:
+        if etiqueta != "fondo":
+            return "crema"
+        r = float(map_coordinates(R, [[(centro[1] - y[0]) / paso], [(centro[0] - x[0]) / paso]], order=1)[0])
+        if r >= umbral:
+            return "tostado"
+        return CICLO_FERRER_CLARO[(indice + fila) % len(CICLO_FERRER_CLARO)]
+
+    pintar.con_posicion = True
+    return pintar
+
+
+CUPULIN_POR_VARIANTE["ferrer_red"] = CUPULIN_POR_VARIANTE["ferrer"]
+CIERRE_POR_VARIANTE["ferrer_red"] = "tostado"

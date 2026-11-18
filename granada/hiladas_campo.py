@@ -411,7 +411,8 @@ def montar(c: Campo, seleccion: list[Frente] | None = None, subdivision: int = 6
     devuelve True (el marco de los cupulines, como en granada.cupula).
     Con `colorear(tipo, etiqueta, fila, indice)` (p. ej. granada.color.
     inauguracion) la cuarta posicion lleva el color de cada cara en vez de su
-    etiqueta."""
+    etiqueta. Si `colorear.con_posicion`, recibe ademas el centroide (x, y)
+    de la pieza puesta (granada.color.ferrer_red)."""
     if colocacion not in COLOCACIONES:
         raise ValueError(f"colocacion debe ser una de {COLOCACIONES}")
     gradiente = _gradiente(c)
@@ -459,7 +460,13 @@ def montar(c: Campo, seleccion: list[Frente] | None = None, subdivision: int = 6
             base = len(V)
             V.extend(puesta)
             F.extend((a + base, b + base, cc + base) for a, b, cc in Fp)
-            E.extend(Ep if colorear is None else [colorear(tipo, e, f.indice, i) for e in Ep])
+            if colorear is None:
+                E.extend(Ep)
+            elif getattr(colorear, "con_posicion", False):
+                centro = np.asarray(puesta, dtype=float)[:, :2].mean(axis=0)
+                E.extend(colorear(tipo, e, f.indice, i, centro) for e in Ep)
+            else:
+                E.extend(colorear(tipo, e, f.indice, i) for e in Ep)
             S.extend(Sp)
         grupos.append((f"frente_{f.indice:02d}_{k:03d}_{h.familia}", V, F, E, S))
     return grupos

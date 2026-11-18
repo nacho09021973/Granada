@@ -44,3 +44,21 @@ medidos por analogía (0028) ya no gobiernan la paleta por defecto.
 - En la maqueta, lo oscuro dibuja una estrella radial de ocho brazos; aquí,
   anillos concéntricos por familia.
 - Los cupulines se leen como pétalos alargados, no como huecos redondos.
+
+## Prueba «ferrer_red» (2026-11-18, pendiente del usuario)
+
+Al ampliar Ferrer_5, las rectas del centro a las esquinas cruzan los
+mocárabes sin desviarse: se toman por juntas de la maqueta o de la foto, no
+por pintura (supuesto). Lo oscuro de la maqueta son manchas en el centro hondo
+de cada celda de la red.
+
+- `granada.color.ferrer_red`: fondo en tostado cuando el centroide de la pieza
+  está a ≥ `UMBRAL_RED` (0,55) de la distancia máxima a la red dentro de su
+  celda; el resto como «ferrer». `montar` pasa el centroide a los repartos
+  con `con_posicion`.
+- `render_hilada_campo.py --variante ferrer_red`. No es el defecto.
+- Comparación: `scripts/comparar_con_ferrer.py` →
+  `renders/previas/comparativa_ferrer_red.png` (no versionada).
+- Resultado: desaparecen los anillos; el oscuro queda por celdas y en cuñas
+  entre cupulines. Las manchas salen como trazos finos, menos masa oscura que
+  en la maqueta.
