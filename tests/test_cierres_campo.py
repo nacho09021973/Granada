@@ -77,7 +77,8 @@ def test_la_cupulilla_arranca_en_h_y_sube():
     assert np.abs(V[borde, 2] - H[borde]).max() < 0.05
     # Cumbre sobre la media del borde (valor de la base armonica en el centro).
     centro = np.argmin(d)
-    assert 0.8 * d.max() < V[centro, 2] - H[borde].mean() < 1.0 * d.max()
+    from granada.cierres_campo import ALTURA_RELATIVA
+    assert 0.85 * ALTURA_RELATIVA * d.max() < V[centro, 2] - H[borde].mean() < 1.1 * ALTURA_RELATIVA * d.max()
 
 
 def test_el_lazo_que_colapsa_al_suavizar_no_se_monta(red):

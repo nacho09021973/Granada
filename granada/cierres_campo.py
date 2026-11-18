@@ -55,9 +55,11 @@ AREA_MINIMA = 0.02
 SOLAPE = 0.12
 """Ensanche del borde de la cupulilla bajo las piezas vecinas (catetos, ~2,7 cm)."""
 
-ALTURA_RELATIVA = 0.9
-"""Altura de la cupulilla respecto a la distancia maxima al borde, como en
-granada.cupula._cupulilla."""
+ALTURA_RELATIVA = 2.0
+"""Altura de la cupulilla respecto a la distancia maxima al borde. Era 0,9,
+como granada.cupula._cupulilla; con eso los 16 huecos interiores salian como
+bultos lisos y en Ferrer_5 son celdas hondas en penumbra (2026-11-18).
+Eleccion."""
 
 MARGEN_ARRANQUE = 0.5
 """Se ignora la corona r > RADIO_BASE - MARGEN_ARRANQUE: alli la banda de la

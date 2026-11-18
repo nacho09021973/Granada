@@ -33,8 +33,10 @@ from granada.render3d import rasterizar  # noqa: E402
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--A", type=float, default=2.0)
-    ap.add_argument("--forma", default="lineal")
+    # A=3 raiz desde el 2026-11-18 (decision 0029): 98 % de las 5416 piezas;
+    # A=2 lineal daba el 92 % (datos/barrido_estrella.json).
+    ap.add_argument("--A", type=float, default=3.0)
+    ap.add_argument("--forma", default="raiz")
     ap.add_argument("--signo", type=int, default=1)
     ap.add_argument("--filas-por-hilada", type=int, choices=(1, 2), default=2,
                     help="2: opcion B, mitad de altura y fondo, mismo ancho; 1: modelo anterior")
@@ -180,6 +182,14 @@ def main() -> int:
     return 0
 
 
+PROFUNDIDAD_CUPULIN = 5.0
+"""Profundidad del pozo del cupulin sobre la cota media de la boca, en pasos
+verticales por cos(atan PENDIENTE). Era 2 (como el modelo de anillos); con 2
+las ventanas de debajo iluminan el pozo y se lee como un petalo blanco, y en
+Ferrer_5 y la ortoimagen el interior se ve en penumbra (2026-11-18).
+Eleccion: la profundidad real no esta medida."""
+
+
 def cupulines_en_campo(c, forma: str = "estrellado", color: bool = False):
     """Los 16 cupulines de datos/cupulines.json sobre la superficie del campo.
 
@@ -202,7 +212,7 @@ def cupulines_en_campo(c, forma: str = "estrellado", color: bool = False):
     def descartar(vertices) -> bool:
         return en_marco(np.asarray(vertices, dtype=float).mean(axis=0))
 
-    profundidad = 2 * PASO_VERTICAL * math.cos(math.atan(PENDIENTE))
+    profundidad = PROFUNDIDAD_CUPULIN * PASO_VERTICAL * math.cos(math.atan(PENDIENTE))
     mini: dict = {}
     if forma == "estrellado":
         from granada.color import CUPULIN_INAUGURACION
