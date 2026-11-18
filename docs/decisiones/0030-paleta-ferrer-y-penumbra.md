@@ -84,4 +84,6 @@ Cupulines alargados («pétalos»):
   sin pico apenas cambia; con eje a 30° la boca sale casi redonda y se ve el
   techo azul con la estrella; con eje a 52° y sin pico salen huecos redondos
   oscuros, sin estrella visible, y en la ortogonal serían elipses de razón
-  ~0,62 (nota de `EJE_CUPULIN_GRADOS`). Pendiente de elegir.
+  ~0,62 (nota de `EJE_CUPULIN_GRADOS`).
+- Elegido por el usuario: eje a 30° (`EJE_CUPULIN_CAMPO` en
+  `render_hilada_campo.py`); el modelo de anillos sigue con 0°.

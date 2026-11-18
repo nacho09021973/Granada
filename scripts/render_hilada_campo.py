@@ -61,8 +61,9 @@ def main() -> int:
                     help="inauguracion: reparto de granada/color.py (Jones lam. XXXIX, estetico; 2026-11-18)")
     ap.add_argument("--profundidad-cupulin", type=float, default=None,
                     help="pasos verticales del pozo del cupulin (PROFUNDIDAD_CUPULIN)")
-    ap.add_argument("--eje-cupulin", type=float, default=None,
-                    help="grados del eje del cupulin desde la vertical (granada.cupula.EJE_CUPULIN_GRADOS)")
+    ap.add_argument("--eje-cupulin", type=float, default=EJE_CUPULIN_CAMPO,
+                    help="grados del eje del cupulin desde la vertical (EJE_CUPULIN_CAMPO; "
+                         "el modelo de anillos usa granada.cupula.EJE_CUPULIN_GRADOS)")
     ap.add_argument("--pico-cupulin", type=float, default=None,
                     help="estiramiento del vertice de la boca hacia el centro (granada.cupula.PICO_CUPULIN); 1 = octogono")
     ap.add_argument("--umbral-red", type=float, default=None,
@@ -215,6 +216,14 @@ verticales por cos(atan PENDIENTE). Era 2 (como el modelo de anillos); con 2
 las ventanas de debajo iluminan el pozo y se lee como un petalo blanco, y en
 Ferrer_5 y la ortoimagen el interior se ve en penumbra (2026-11-18).
 Eleccion: la profundidad real no esta medida."""
+
+
+EJE_CUPULIN_CAMPO = 30.0
+"""Grados del eje de los cupulines del campo desde la vertical. Con 0 (el de
+granada.cupula) el prisma vertical corta la superficie a 52 grados y desde
+abajo se ve un petalo alargado; con 30 la boca sale casi redonda y se ve la
+estrella, y en la ortogonal la elipse es de razon cos 30 = 0,87. Elegido por
+el usuario el 2026-11-18 (decision 0030). Eleccion estetica, no medida."""
 
 
 def cupulines_en_campo(c, forma: str = "estrellado", color: bool = False, variante: str = "yeso",
