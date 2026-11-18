@@ -88,3 +88,16 @@ lisas hasta el techo (cota media de la boca + profundidad) y estrella {8/2}
 de radio 0,8 rehundida 0,12 radios. Es el defecto de `render_hilada_campo.py`
 (`--forma-cupulin piezas` vuelve a la cupulita). La profundidad y el
 rehundido son supuestos. Render: `renders/previas/cupula_cycles_*_campo_estrellado.png`.
+
+## Añadido el mismo día: corona de arranque y vista «cúpula»
+
+La vista sala mostró rincones negros en las esquinas del octógono. La cornisa
+de la sala (`granada/sala.py: cornisa`) llega a un octógono de apotema
+`RADIO_BASE / _MEDIA_OCT`, pensado para el arranque octogonal del modelo de
+anillos, mientras que el campo arranca en un círculo de radio `RADIO_BASE`.
+`granada.cierres_campo.corona_arranque` tapa la corona que queda entre ambos
+con un plano de yeso a z = −0,01, que entra 0,4 catetos bajo la primera fila.
+
+`scripts/render_cycles.py` añade la vista «cupula»: desde el eje, 22 catetos
+por debajo del arranque y con 82°, encuadra la cúpula entera con el tambor.
+La cenital (13 catetos, 90°) recorta el anillo exterior.

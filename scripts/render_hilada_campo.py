@@ -151,6 +151,10 @@ def main() -> int:
             import numpy as np
             return CLAVE_INAUGURACION if np.hypot(*np.asarray(Vg)[:, :2].mean(axis=0)) < 1 else CIERRE_INAUGURACION
         salida += [(n, Vg, Fg, [material(tono_cierre(Vg), 0.8)] * len(Fg)) for n, Vg, Fg in cierres]
+        if a.hiladas == "todas":
+            from granada.cierres_campo import corona_arranque
+            Vk, Fk = corona_arranque()
+            salida.append(("corona_arranque", Vk, Fk, [material("yeso", 0.9)] * len(Fk)))
         salida += [(n, Vg, Fg, [material(cc, 0.8) for cc in Cg]) for n, Vg, Fg, Cg in cupulines]
         salida += [(n, Vg, Fg, [material(cc, x) for cc, x in zip(Cg, Sg)]) for n, Vg, Fg, Cg, Sg in sala()]
         a.obj.parent.mkdir(parents=True, exist_ok=True)

@@ -79,6 +79,11 @@ VISTAS = {
     # (ortho_scale), no un angulo: la sala mide 8,08 m = 36,12 de lado
     # (datos/alzado_sala.json); con mas se ve vacio fuera de los muros.
     "ortogonal": ((0.0, 0.0, -49.0), (0.0, 0.001, 10.0), 36.12),
+    # La cupula entera llenando el encuadre (2026-11-18): desde el eje, mas
+    # lejos que la cenital. 22 catetos por debajo del arranque con 82 grados
+    # abarcan un semiancho de 19,1 en z = 0, algo mas que el vertice del
+    # tambor (17,27 / cos 22,5 = 18,7).
+    "cupula": ((0.0, 0.0, -22.0), (0.0, 0.001, 10.0), 82.0),
     # Como Ferrer_5: desde el centro del suelo, mirando arriba. Campo de 70
     # grados: el borde del encuadre corta los muros hacia los 6 m, a la altura
     # de las ventanas altas, como en Ferrer_5.

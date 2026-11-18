@@ -241,3 +241,31 @@ def cierres(c: Campo, pares, paso: int = PASO_REJILLA):
         V, F = cupulilla(h.rejilla, h.etiquetas == k)
         grupos.append((f"cupulilla_{k:02d}", V, F))
     return grupos, h
+
+
+SOLAPE_ARRANQUE = 0.4
+"""Cuanto entra la corona de arranque bajo la primera fila (catetos, ~9 cm)."""
+
+
+def corona_arranque(radio_base: float = RADIO_BASE, n: int = 384, z: float = -0.01):
+    """Corona plana en el arranque, del circulo de la cupula por campo al
+    octogono interior de la cornisa de la sala (granada.sala.cornisa).
+
+    La cornisa se hizo para el modelo de anillos, que arranca en un octogono
+    de apotema radio_base / _MEDIA_OCT; el campo arranca en un circulo de
+    radio radio_base, y entre ambos quedaba una corona vacia, mas ancha en los
+    vertices (rincones negros en la vista sala, 2026-11-18). Va un pelo por
+    debajo de z = 0 para no coincidir con las patas de la primera fila.
+    Eleccion de acabado, no medida."""
+    from granada.cupula import _MEDIA_OCT, _octogono
+    phi = 2 * np.pi * np.arange(n) / n
+    r_in = radio_base - SOLAPE_ARRANQUE
+    r_out = radio_base / _MEDIA_OCT * _octogono(phi)
+    V = [(float(r * np.cos(p)), float(r * np.sin(p)), z) for p, r in zip(phi, np.full(n, r_in))]
+    V += [(float(r * np.cos(p)), float(r * np.sin(p)), z) for p, r in zip(phi, r_out)]
+    F = []
+    for i in range(n):
+        j = (i + 1) % n
+        F.append((i, j, n + j))
+        F.append((i, n + j, n + i))
+    return V, F

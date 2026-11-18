@@ -87,3 +87,15 @@ def test_el_lazo_que_colapsa_al_suavizar_no_se_monta(red):
     assert len(lazos) == 1 and hilada_de(lazos[0]).piezas >= 6
     assert not admitido_suavizado(lazos[0])
     assert not any(f.indice == 24 and np.hypot(*f.puntos.mean(axis=0) - (0, -8.73)) < 0.5 for f, _ in pares)
+
+
+def test_corona_de_arranque_cubre_del_circulo_al_octogono_de_la_cornisa():
+    from granada.cierres_campo import SOLAPE_ARRANQUE, corona_arranque
+    from granada.cupula import _MEDIA_OCT
+    V, F = corona_arranque(n=64)
+    V = np.asarray(V)
+    r = np.hypot(V[:, 0], V[:, 1])
+    assert len(F) == 128
+    assert np.allclose(r[:64], RADIO_BASE - SOLAPE_ARRANQUE)
+    apotema = RADIO_BASE / _MEDIA_OCT
+    assert apotema - 1e-9 <= r[64:].min() and r[64:].max() <= apotema / np.cos(np.pi / 8) + 1e-9
