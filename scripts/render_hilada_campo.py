@@ -38,6 +38,8 @@ def main() -> int:
     ap.add_argument("--A", type=float, default=3.0)
     ap.add_argument("--forma", default="raiz")
     ap.add_argument("--signo", type=int, default=1)
+    ap.add_argument("--borde", choices=("libre", "octogonal"), default="octogonal",
+                    help="octogonal: la trama llena el octogono del tambor (2026-11-18); libre: cono circular")
     ap.add_argument("--filas-por-hilada", type=int, choices=(1, 2), default=2,
                     help="2: opcion B, mitad de altura y fondo, mismo ancho; 1: modelo anterior")
     ap.add_argument("--informe", type=Path, help="guarda el recuento sin renderizar")
@@ -64,7 +66,7 @@ def main() -> int:
     ap.add_argument("--png", type=Path, default=RAIZ / "renders" / "previas" / "hilada_campo.png")
     a = ap.parse_args()
 
-    c = campo(A=a.A, forma=a.forma, signo=a.signo)
+    c = campo(A=a.A, forma=a.forma, signo=a.signo, borde=a.borde)
     todos = frentes(c, filas_por_hilada=a.filas_por_hilada)
     if a.informe:
         from granada.hiladas_campo import resumen
@@ -153,7 +155,7 @@ def main() -> int:
             import numpy as np
             return CLAVE_INAUGURACION if np.hypot(*np.asarray(Vg)[:, :2].mean(axis=0)) < 1 else CIERRE_INAUGURACION
         salida += [(n, Vg, Fg, [material(tono_cierre(Vg), 0.8)] * len(Fg)) for n, Vg, Fg in cierres]
-        if a.hiladas == "todas":
+        if a.hiladas == "todas" and a.borde != "octogonal":
             from granada.cierres_campo import corona_arranque
             Vk, Fk = corona_arranque()
             salida.append(("corona_arranque", Vk, Fk, [material("yeso", 0.9)] * len(Fk)))

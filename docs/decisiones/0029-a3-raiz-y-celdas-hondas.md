@@ -37,3 +37,13 @@ cupulines y los 16 frentes más altos de cada celda, tapados con cupulilla.
   paredes. Queda pendiente para el paso de la luz.
 
 Las dos alturas son elección, no medida.
+
+## Borde octogonal
+
+`campo(borde="octogonal")`, el nuevo defecto de `render_hilada_campo.py`: el
+cono se mide con una norma octogonal en el arranque que pasa a circular hacia
+la clave. Es `rho = r · (_MEDIA_OCT / oct(φ))^w`, con `w = (r / RADIO_BASE)²`.
+La curva H = 0 cae en el octógono interior de la cornisa y la trama llena las
+esquinas del tambor (`renders/previas/comparativa_borde_octogonal.png`). Ya no
+hace falta la corona de arranque, que queda solo para el borde libre. La forma
+de la transición es elección.

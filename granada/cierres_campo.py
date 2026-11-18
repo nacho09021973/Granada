@@ -132,7 +132,9 @@ class Huecos:
 def huecos(c: Campo, pares, paso: int = PASO_REJILLA) -> Huecos:
     g = rejilla(c, paso)
     X, Y = np.meshgrid(g.x, g.y)
-    dentro = np.hypot(X, Y) < RADIO_BASE - MARGEN_ARRANQUE
+    # Dentro de la cupula: lejos del arranque, sea circular u octogonal.
+    from granada.campo import PENDIENTE
+    dentro = (np.hypot(X, Y) < RADIO_BASE - MARGEN_ARRANQUE) | (g.H > MARGEN_ARRANQUE * PENDIENTE)
     libre = dentro & ~cobertura(g, pares)
     r = max(1, int(round(RADIO_RENDIJA / g.paso)))
     disco = np.hypot(*np.mgrid[-r:r + 1, -r:r + 1]) <= r

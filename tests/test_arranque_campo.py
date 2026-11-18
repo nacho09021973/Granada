@@ -34,3 +34,21 @@ def test_atenuacion_respeta_interior_y_cono_exterior():
 def test_borde_desconocido_falla():
     with pytest.raises(ValueError):
         campo(borde="otro")
+
+
+def test_borde_octogonal_arranca_en_el_octogono_de_la_cornisa():
+    import math
+    from granada.campo import RADIO_BASE, curvas
+    from granada.cupula import _MEDIA_OCT
+    c = campo(A=0, borde="octogonal")
+    (P,) = [Q for Q in curvas(c, 1e-6) if len(Q) > 100][:1]
+    r = np.hypot(P[:, 0], P[:, 1])
+    apotema = RADIO_BASE / _MEDIA_OCT
+    # La curva H = 0 recorre el octogono: entre la apotema y el vertice.
+    assert abs(r.min() - apotema) < 0.1
+    assert abs(r.max() - apotema / math.cos(math.pi / 8)) < 0.1
+    # Hacia la clave el campo vuelve al cono circular.
+    X, Y = np.meshgrid(c.x, c.y)
+    cerca = np.hypot(X, Y) < 2
+    cono = (RADIO_BASE - np.hypot(X, Y)) * PENDIENTE
+    assert np.abs(c.H[cerca] - cono[cerca]).max() < 0.1

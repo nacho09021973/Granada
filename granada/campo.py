@@ -112,19 +112,35 @@ def campo(A: float = 0.0, forma: str = "lineal", signo: int = 1, resolucion: flo
     prolonga el cono con signo solo para interpolar y localizar H=0. El
     relieve se apaga con smoothstep en un paso horizontal de hilada junto
     al borde. Esta condicion es una eleccion, no una medida nueva.
+
+    En modo octogonal (2026-11-18) el cono se mide con una norma que es la del
+    octogono en el arranque y la circular hacia la clave:
+    rho = r * (_MEDIA_OCT / oct(phi)) ** w, con w = (r / RADIO_BASE)^2 recortado
+    a [0, 1]. La curva H = 0 cae en el octogono de apotema
+    RADIO_BASE / _MEDIA_OCT, el interior de la cornisa de la sala, y la trama
+    llena las esquinas del tambor como en la ortoimagen y en Ferrer_5. La
+    transicion (el exponente w) es eleccion.
     """
-    if borde not in ("libre", "circular"):
-        raise ValueError("borde debe ser libre o circular")
+    if borde not in ("libre", "circular", "octogonal"):
+        raise ValueError("borde debe ser libre, circular u octogonal")
     if signo not in (1, -1):
         raise ValueError("signo ha de ser 1 o -1")
     if forma not in FORMAS:
         raise ValueError(f"forma desconocida: {forma!r}; hay {sorted(FORMAS)}")
+    from granada.cupula import _MEDIA_OCT, _octogono
     lado = RADIO_BASE * 1.02
+    if borde == "octogonal":
+        lado = RADIO_BASE / _MEDIA_OCT / math.cos(math.pi / 8) * 1.02
     x = np.arange(-lado, lado + resolucion / 2, resolucion)
     y = x.copy()
     X, Y = np.meshgrid(x, y)
     r = np.hypot(X, Y)
-    H = (RADIO_BASE - r) * PENDIENTE
+    if borde == "octogonal":
+        w = np.clip(r / RADIO_BASE, 0, 1) ** 2
+        rho = r * (_MEDIA_OCT / _octogono(np.arctan2(Y, X))) ** w
+        H = np.maximum(0.0, (RADIO_BASE - rho) * PENDIENTE)
+    else:
+        H = (RADIO_BASE - r) * PENDIENTE
     if borde == "libre":
         H = np.maximum(0.0, H)
     if A:
