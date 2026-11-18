@@ -1,0 +1,28 @@
+{
+  "fuente": {
+    "ruta": "docs/Ferrer_5.png",
+    "sha256": "87c894e7502fbe02b4ab54234669455444de7e4f11d85a52937a85a688bdc653"
+  },
+  "region": {
+    "radio_fraccion_semilado": 0.5
+  },
+  "naturaleza": "maqueta del XIX fotografiada en pantalla; describe la restitucion, no la obra",
+  "clases": {
+    "oscuro": {
+      "mediana": "#271813",
+      "fraccion": 0.24997761353382422
+    },
+    "claro": {
+      "mediana": "#988879",
+      "fraccion": 0.23292945852304428
+    },
+    "rojo": {
+      "mediana": "#6E4138",
+      "fraccion": 0.050338552250012054
+    },
+    "azul": {
+      "mediana": "#4E5162",
+      "fraccion": 0.0026243826501443066
+    }
+  }
+}

@@ -146,7 +146,7 @@ def argumentos():
     ap.add_argument("--sufijo", default="")
     ap.add_argument("--obj", type=Path, default=OBJ)
     ap.add_argument("--sin-limpieza", action="store_true", help="sin eliminador de ruido (diagnostico)")
-    ap.add_argument("--luz", choices=("sol", "penumbra"), default="sol",
+    ap.add_argument("--luz", choices=("sol", "penumbra"), default="penumbra",
                     help="sol: haces rasantes por las ventanas; penumbra: sin sol, luz pareja rebotada del "
                          "suelo (luz_sala) en todas las vistas, como la maqueta de Ferrer_5 (2026-11-18)")
     ap.add_argument("--dispositivo", choices=("cpu", "cuda", "optix"), default="cpu",

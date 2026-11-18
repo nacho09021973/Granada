@@ -245,6 +245,8 @@ ultimas son eleccion estetica para acercarse a «apagado y artistico»."""
 
 
 def reparto_inauguracion(variante: str = "yeso") -> Callable[[str, str, int, int], str]:
+    if variante == "ferrer":
+        return ferrer
     ciclo, pared = VARIANTES_INAUGURACION[variante]
 
     def pintar(tipo: str, etiqueta: str, fila: int, indice: int) -> str:
@@ -266,3 +268,64 @@ CLAVE_INAUGURACION = "oro"
 """Supuesto, como la cupulilla de la clave del modelo de anillos."""
 CIERRE_INAUGURACION = "cinabrio"
 """Supuesto: las cupulillas de cierre son lo mas hondo de cada celda (§13)."""
+
+
+# --- Variante «ferrer» (2026-11-18) -----------------------------------------
+#
+# Pedida por el usuario para acercar la cupula a Ferrer_5 (maqueta de
+# Contreras, siglo XIX): el contraste de la maqueta es de color, con fondos de
+# celda marron oscuro y caras crema, y el rojo y el azul solo como acentos.
+# Tono y saturacion: los medidos en Ferrer_5 por scripts/medir_paleta_ferrer.py
+# (datos/paleta_ferrer.json). El valor se fija aqui: la foto es de pantalla y
+# esta en penumbra, y el render pone su propia sombra. Restitucion del XIX
+# tomada como referencia estetica, no medida de la obra.
+
+PALETA_FERRER = Path(__file__).resolve().parents[1] / "datos" / "paleta_ferrer.json"
+VALOR_FERRER = {"oscuro": 0.30, "claro": 0.86, "rojo": 0.62, "azul": 0.55}
+"""Valor (V de HSV) de cada clase como albedo. Eleccion."""
+_NOMBRE_FERRER = {"oscuro": "tostado", "claro": "crema", "rojo": "bermejo", "azul": "pizarra"}
+
+
+def _paleta_ferrer() -> dict[str, str]:
+    d = json.loads(PALETA_FERRER.read_text(encoding="utf-8"))["clases"]
+    fuera = {}
+    for clase, nombre in _NOMBRE_FERRER.items():
+        r, g, b = (int(d[clase]["mediana"].lstrip("#")[i:i + 2], 16) / 255 for i in (0, 2, 4))
+        h, s, _ = colorsys.rgb_to_hsv(r, g, b)
+        fuera[nombre] = _hex(*colorsys.hsv_to_rgb(h, s, VALOR_FERRER[clase]))
+    return fuera
+
+
+PALETA.update(_paleta_ferrer())
+
+CICLO_FERRER = ("tostado",) * 5 + ("bermejo",) + ("tostado",) * 6 + ("bermejo",) + ("tostado",) * 5 + ("pizarra",) \
+    + ("tostado",) * 5
+"""24 celdas: 2 rojas y 1 azul, como acentos (en Ferrer_5, rojo 5 % y azul
+0,3 % de los pixeles de la cupula). El reparto exacto es eleccion."""
+
+VARIANTES_INAUGURACION["ferrer"] = (CICLO_FERRER, "crema")
+
+CICLO_FERRER_CLARO = ("crema",) * 5 + ("bermejo",) + ("crema",) * 6 + ("bermejo",) + ("crema",) * 5 + ("pizarra",) \
+    + ("crema",) * 5
+"""Fondos de la familia A: crema con los mismos acentos que CICLO_FERRER."""
+
+
+def ferrer(tipo: str, etiqueta: str, fila: int, indice: int) -> str:
+    """Variante «ferrer» (segunda prueba, 2026-11-18). Con todos los fondos en
+    tostado la cupula entera sale marron: el fondo concavo es casi toda la
+    superficie que se ve desde abajo. Aqui lo oscuro va solo a los fondos de la
+    familia C (una fila de cada tres, secuencia A, A, C), que marcan anillos;
+    los de la familia A van en crema con acentos; las paredes, en crema."""
+    if etiqueta != "fondo":
+        return "crema"
+    if tipo.startswith("C"):
+        return "tostado"
+    return CICLO_FERRER_CLARO[(indice + fila) % len(CICLO_FERRER_CLARO)]
+
+CUPULIN_POR_VARIANTE = {
+    "ferrer": {"pared": "tostado", "techo": "pizarra", "estrella": "oro", "marco": "crema"},
+}
+"""Cupulines por variante; las demas usan CUPULIN_INAUGURACION. En «ferrer»
+el pozo va oscuro, como los huecos de la maqueta. Supuesto."""
+CIERRE_POR_VARIANTE = {"ferrer": "tostado"}
+"""Las cupulillas de cierre son las celdas hondas de la maqueta. Supuesto."""

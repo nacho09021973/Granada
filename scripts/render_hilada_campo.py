@@ -59,7 +59,7 @@ def main() -> int:
                     help="estrellado: pozo liso con techo de estrella (ortoimagen, 2026-11-18); piezas: cupulita de piezas")
     ap.add_argument("--color", choices=("yeso", "inauguracion"), default="yeso",
                     help="inauguracion: reparto de granada/color.py (Jones lam. XXXIX, estetico; 2026-11-18)")
-    ap.add_argument("--variante", choices=("jones", "suave", "yeso"), default="yeso",
+    ap.add_argument("--variante", choices=("jones", "suave", "yeso", "ferrer"), default="ferrer",
                     help="variante del reparto inauguracion (granada.color.VARIANTES_INAUGURACION)")
     ap.add_argument("--informe-cierres", type=Path,
                     help="guarda huecos tapados y rendijas por fila (JSON) y termina")
@@ -117,7 +117,7 @@ def main() -> int:
     con_cupulines = a.hiladas == "todas" and not a.sin_cupulines
     descartar, cupulines = None, []
     if con_cupulines:
-        descartar, cupulines = cupulines_en_campo(c, a.forma_cupulin, a.color == "inauguracion")
+        descartar, cupulines = cupulines_en_campo(c, a.forma_cupulin, a.color == "inauguracion", a.variante)
     pintar = None
     if a.color == "inauguracion":
         from granada.color import reparto_inauguracion
@@ -142,7 +142,8 @@ def main() -> int:
         from granada.sala import sala
         # La sala es la medida de granada/sala.py.
         if a.color == "inauguracion":
-            from granada.color import CIERRE_INAUGURACION, CLAVE_INAUGURACION
+            from granada.color import CIERRE_INAUGURACION, CIERRE_POR_VARIANTE, CLAVE_INAUGURACION
+            CIERRE_INAUGURACION = CIERRE_POR_VARIANTE.get(a.variante, CIERRE_INAUGURACION)
             salida = [(f"hilada_{n}", Vg, Fg, [material(cc, x) for cc, x in zip(Cg, Sg)]) for n, Vg, Fg, Cg, Sg in grupos]
         else:
             # Piezas en yeso (sin color, decidido el 2026-11-17).
@@ -192,7 +193,7 @@ Ferrer_5 y la ortoimagen el interior se ve en penumbra (2026-11-18).
 Eleccion: la profundidad real no esta medida."""
 
 
-def cupulines_en_campo(c, forma: str = "estrellado", color: bool = False):
+def cupulines_en_campo(c, forma: str = "estrellado", color: bool = False, variante: str = "yeso"):
     """Los 16 cupulines de datos/cupulines.json sobre la superficie del campo.
 
     Igual que en granada.cupula.cupula: se quitan las piezas con el centroide
@@ -217,11 +218,12 @@ def cupulines_en_campo(c, forma: str = "estrellado", color: bool = False):
     profundidad = PROFUNDIDAD_CUPULIN * PASO_VERTICAL * math.cos(math.atan(PENDIENTE))
     mini: dict = {}
     if forma == "estrellado":
-        from granada.color import CUPULIN_INAUGURACION
+        from granada.color import CUPULIN_INAUGURACION, CUPULIN_POR_VARIANTE
+        tonos = CUPULIN_POR_VARIANTE.get(variante, CUPULIN_INAUGURACION)
         grupos = []
         for k, q in enumerate(huecos):
             V, F, partes = cupulin_estrellado(q, profundidad, cota=cota)
-            grupos.append((f"cupulin_{k:02d}", V, F, [CUPULIN_INAUGURACION[p] if color else "yeso" for p in partes]))
+            grupos.append((f"cupulin_{k:02d}", V, F, [tonos[p] if color else "yeso" for p in partes]))
     else:
         grupos = []
         for k, q in enumerate(huecos):
