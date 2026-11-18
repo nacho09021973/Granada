@@ -34,9 +34,17 @@ dispositivo"):
 
     export LD_LIBRARY_PATH=/usr/lib/wsl/lib
 
-Con eso, en la RTX 5060 local (driver 621.01, Blender 4.5.15) CUDA funciona:
-vista cenital de 600 px con 32 muestras en 13 s. OptiX falla al iniciarse
-(error 7805), asi que alli se usa `cuda`.
+Con eso, en el equipo con RTX 5060 (driver 621.01, Blender 4.5.15) CUDA
+funciona: vista cenital de 600 px con 32 muestras en 13 s. OptiX falla al
+iniciarse (error 7805), asi que alli se usa `cuda`.
+
+No todos los equipos donde se trabaja tienen NVIDIA. El HP Pavilion TP01-4xxx
+(i7-13700, 24 hilos, 16 GB) solo tiene la Intel UHD Graphics 770 integrada:
+`/usr/lib/wsl/lib` no trae `libcuda.so` y `--dispositivo cuda` acaba en
+«Cycles no ve ninguna GPU CUDA» (comprobado el 2026-11-18). Alli se renderiza
+en CPU: la vista «cupula» de 700 px con 32 muestras tardo 3 min con WSL
+limitado a 4 hilos; `processors=20` en `%USERPROFILE%\\.wslconfig` sube el
+limite (tras `wsl --shutdown`).
 
 Que es dato y que es escena
 ---------------------------
