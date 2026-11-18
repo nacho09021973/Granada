@@ -1,0 +1,149 @@
+{
+  "procedencia": "Diagnostico para elegir A, forma y signo a ojo (2026-11-18); no calibra",
+  "referencia_piezas": {
+    "total": 5416,
+    "fuente": "Jones y Goury, docs/fuentes.md entrada 18"
+  },
+  "filas_por_hilada": 2,
+  "entorno": {
+    "python": "3.12.3",
+    "numpy": "2.5.4"
+  },
+  "sha256": {
+    "granada/campo.py": "db9829d9be7ca517aff8484af68eaacdb7ba5757367cc2b2abb6962052541876",
+    "granada/hiladas_campo.py": "b5f1b03670ddfaf967ba21a1399dcbc8328a9f517be12bb87565699e166adf4a",
+    "scripts/barrer_estrella_campo.py": "0825d6940af64a6c9ee0fa1a5269139be4a1abe622a6b61e1c5bdf29d707a915",
+    "datos/red_medinas.json": "212acafaca12946e6a0b6e725da52f9ea0b6f750354932e4662c631a133713e8",
+    "datos/registro_red.json": "b5b6cddc865a7776e2a23f662cb342f2838894c7266c8345b6c03fa35972f7da"
+  },
+  "resultados": [
+    {
+      "A": 1.0,
+      "forma": "lineal",
+      "signo": 1,
+      "piezas": 4402,
+      "frentes": 45,
+      "desnivel_max_catetos": 2.566618919815369
+    },
+    {
+      "A": 2.0,
+      "forma": "lineal",
+      "signo": 1,
+      "piezas": 4988,
+      "frentes": 55,
+      "desnivel_max_catetos": 5.133237839630738
+    },
+    {
+      "A": 3.0,
+      "forma": "lineal",
+      "signo": 1,
+      "piezas": 5926,
+      "frentes": 115,
+      "desnivel_max_catetos": 7.6998567594461065
+    },
+    {
+      "A": 4.5,
+      "forma": "lineal",
+      "signo": 1,
+      "piezas": 7368,
+      "frentes": 187,
+      "desnivel_max_catetos": 11.54978513916916
+    },
+    {
+      "A": 1.0,
+      "forma": "lineal",
+      "signo": -1,
+      "piezas": 3968,
+      "frentes": 39,
+      "desnivel_max_catetos": 2.566618919815369
+    },
+    {
+      "A": 2.0,
+      "forma": "lineal",
+      "signo": -1,
+      "piezas": 4226,
+      "frentes": 39,
+      "desnivel_max_catetos": 5.133237839630738
+    },
+    {
+      "A": 3.0,
+      "forma": "lineal",
+      "signo": -1,
+      "piezas": 4606,
+      "frentes": 59,
+      "desnivel_max_catetos": 7.6998567594461065
+    },
+    {
+      "A": 4.5,
+      "forma": "lineal",
+      "signo": -1,
+      "piezas": 5120,
+      "frentes": 94,
+      "desnivel_max_catetos": 11.549785139169158
+    },
+    {
+      "A": 1.0,
+      "forma": "raiz",
+      "signo": 1,
+      "piezas": 4386,
+      "frentes": 45,
+      "desnivel_max_catetos": 1.6012744636656926
+    },
+    {
+      "A": 2.0,
+      "forma": "raiz",
+      "signo": 1,
+      "piezas": 4776,
+      "frentes": 45,
+      "desnivel_max_catetos": 3.202548927331385
+    },
+    {
+      "A": 3.0,
+      "forma": "raiz",
+      "signo": 1,
+      "piezas": 5326,
+      "frentes": 54,
+      "desnivel_max_catetos": 4.803823390997078
+    },
+    {
+      "A": 4.5,
+      "forma": "raiz",
+      "signo": 1,
+      "piezas": 6564,
+      "frentes": 111,
+      "desnivel_max_catetos": 7.205735086495615
+    },
+    {
+      "A": 1.0,
+      "forma": "raiz",
+      "signo": -1,
+      "piezas": 3872,
+      "frentes": 40,
+      "desnivel_max_catetos": 1.6012744636656926
+    },
+    {
+      "A": 2.0,
+      "forma": "raiz",
+      "signo": -1,
+      "piezas": 3890,
+      "frentes": 37,
+      "desnivel_max_catetos": 3.202548927331385
+    },
+    {
+      "A": 3.0,
+      "forma": "raiz",
+      "signo": -1,
+      "piezas": 4032,
+      "frentes": 37,
+      "desnivel_max_catetos": 4.803823390997078
+    },
+    {
+      "A": 4.5,
+      "forma": "raiz",
+      "signo": -1,
+      "piezas": 4218,
+      "frentes": 61,
+      "desnivel_max_catetos": 7.205735086495615
+    }
+  ]
+}
