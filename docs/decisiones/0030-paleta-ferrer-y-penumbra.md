@@ -67,3 +67,21 @@ de cada celda de la red.
   oscuro gana bastante; añadir paredes oscuras desde 0,70 apenas cambia la
   vista desde abajo. Las manchas siguen saliendo como trazos, no como
   masas.
+
+## Defecto «ferrer_red» con umbral 0,40 y prueba de forma de cupulines (2026-11-18)
+
+El usuario pidió pasar a los cupulines con la propuesta de dejar (a) como
+defecto: `--variante ferrer_red` y `UMBRAL_RED = 0.40` son ahora el defecto.
+
+Cupulines alargados («pétalos»):
+- La profundidad del pozo no es la causa: con 5, 2 y 1 pasos
+  (`--profundidad-cupulin`, `renders/previas/comparativa_profundidad_cupulin.png`)
+  el contorno apenas cambia.
+- La causa es el prisma vertical (eje a 0°) que corta la superficie a 52°: el
+  agujero en la superficie mide ~3,14 / cos 52° ≈ 5,1 por 2,46 catetos, más el
+  pico de 1,55, y la cámara central lo ve casi de frente.
+- `--eje-cupulin` y `--pico-cupulin` (`renders/previas/comparativa_forma_cupulin.png`):
+  sin pico apenas cambia; con eje a 30° la boca sale casi redonda y se ve el
+  techo azul con la estrella; con eje a 52° y sin pico salen huecos redondos
+  oscuros, sin estrella visible, y en la ortogonal serían elipses de razón
+  ~0,62 (nota de `EJE_CUPULIN_GRADOS`). Pendiente de elegir.

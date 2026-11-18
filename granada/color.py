@@ -341,7 +341,7 @@ CIERRE_POR_VARIANTE = {"ferrer": "tostado"}
 # va oscuro cuando su centroide esta lejos de la red respecto a lo mas lejos
 # que se llega dentro de su celda.
 
-UMBRAL_RED = 0.55
+UMBRAL_RED = 0.40
 """Fondo oscuro si distancia a la red / distancia maxima en su celda >= esto.
 Eleccion estetica."""
 

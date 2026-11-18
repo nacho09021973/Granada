@@ -59,11 +59,17 @@ def main() -> int:
                     help="estrellado: pozo liso con techo de estrella (ortoimagen, 2026-11-18); piezas: cupulita de piezas")
     ap.add_argument("--color", choices=("yeso", "inauguracion"), default="yeso",
                     help="inauguracion: reparto de granada/color.py (Jones lam. XXXIX, estetico; 2026-11-18)")
+    ap.add_argument("--profundidad-cupulin", type=float, default=None,
+                    help="pasos verticales del pozo del cupulin (PROFUNDIDAD_CUPULIN)")
+    ap.add_argument("--eje-cupulin", type=float, default=None,
+                    help="grados del eje del cupulin desde la vertical (granada.cupula.EJE_CUPULIN_GRADOS)")
+    ap.add_argument("--pico-cupulin", type=float, default=None,
+                    help="estiramiento del vertice de la boca hacia el centro (granada.cupula.PICO_CUPULIN); 1 = octogono")
     ap.add_argument("--umbral-red", type=float, default=None,
                     help="ferrer_red: fondo oscuro desde esta distancia relativa a la red (granada.color.UMBRAL_RED)")
     ap.add_argument("--umbral-pared-red", type=float, default=None,
                     help="ferrer_red: paredes oscuras desde esta distancia relativa; sin el, paredes en crema")
-    ap.add_argument("--variante", choices=("jones", "suave", "yeso", "ferrer", "ferrer_red"), default="ferrer",
+    ap.add_argument("--variante", choices=("jones", "suave", "yeso", "ferrer", "ferrer_red"), default="ferrer_red",
                     help="variante del reparto inauguracion (granada.color.VARIANTES_INAUGURACION)")
     ap.add_argument("--informe-cierres", type=Path,
                     help="guarda huecos tapados y rendijas por fila (JSON) y termina")
@@ -118,10 +124,19 @@ def main() -> int:
         print(f"{huecos.n} huecos tapados con cupulilla")
     if a.informe_cierres:
         return escribir_informe_cierres(a, c, huecos)
+    if a.eje_cupulin is not None or a.pico_cupulin is not None:
+        # Las funciones de granada.cupula leen estas constantes al llamarse.
+        import granada.cupula as gc
+        if a.eje_cupulin is not None:
+            gc.EJE_CUPULIN_GRADOS = a.eje_cupulin
+        if a.pico_cupulin is not None:
+            gc.PICO_CUPULIN = a.pico_cupulin
+            gc.FORMA_CUPULIN = gc._forma_cupulin()
     con_cupulines = a.hiladas == "todas" and not a.sin_cupulines
     descartar, cupulines = None, []
     if con_cupulines:
-        descartar, cupulines = cupulines_en_campo(c, a.forma_cupulin, a.color == "inauguracion", a.variante)
+        descartar, cupulines = cupulines_en_campo(c, a.forma_cupulin, a.color == "inauguracion", a.variante,
+                                                 a.profundidad_cupulin)
     pintar = None
     if a.color == "inauguracion":
         from granada.color import reparto_inauguracion
@@ -202,7 +217,8 @@ Ferrer_5 y la ortoimagen el interior se ve en penumbra (2026-11-18).
 Eleccion: la profundidad real no esta medida."""
 
 
-def cupulines_en_campo(c, forma: str = "estrellado", color: bool = False, variante: str = "yeso"):
+def cupulines_en_campo(c, forma: str = "estrellado", color: bool = False, variante: str = "yeso",
+                       pasos: float | None = None):
     """Los 16 cupulines de datos/cupulines.json sobre la superficie del campo.
 
     Igual que en granada.cupula.cupula: se quitan las piezas con el centroide
@@ -224,7 +240,7 @@ def cupulines_en_campo(c, forma: str = "estrellado", color: bool = False, varian
     def descartar(vertices) -> bool:
         return en_marco(np.asarray(vertices, dtype=float).mean(axis=0))
 
-    profundidad = PROFUNDIDAD_CUPULIN * PASO_VERTICAL * math.cos(math.atan(PENDIENTE))
+    profundidad = (PROFUNDIDAD_CUPULIN if pasos is None else pasos) * PASO_VERTICAL * math.cos(math.atan(PENDIENTE))
     mini: dict = {}
     if forma == "estrellado":
         from granada.color import CUPULIN_INAUGURACION, CUPULIN_POR_VARIANTE
