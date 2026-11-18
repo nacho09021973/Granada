@@ -403,12 +403,15 @@ def admitido_suavizado(f: Frente, sigma: float = SIGMA_FRENTE, minimo: int = PIE
 
 def montar(c: Campo, seleccion: list[Frente] | None = None, subdivision: int = 6,
            filas_por_hilada: int = 1, colocacion: str = "suavizada", sigma: float = SIGMA_FRENTE,
-           descartar=None):
+           descartar=None, colorear=None):
     """Grupos (nombre, V, F, etiquetas, sombras), uno por frente.
 
     En la colocacion suavizada se saltan los frentes que no pasan
     admitido_suavizado. `descartar(vertices)` quita las piezas para las que
-    devuelve True (el marco de los cupulines, como en granada.cupula)."""
+    devuelve True (el marco de los cupulines, como en granada.cupula).
+    Con `colorear(tipo, etiqueta, fila, indice)` (p. ej. granada.color.
+    inauguracion) la cuarta posicion lleva el color de cada cara en vez de su
+    etiqueta."""
     if colocacion not in COLOCACIONES:
         raise ValueError(f"colocacion debe ser una de {COLOCACIONES}")
     gradiente = _gradiente(c)
@@ -456,7 +459,7 @@ def montar(c: Campo, seleccion: list[Frente] | None = None, subdivision: int = 6
             base = len(V)
             V.extend(puesta)
             F.extend((a + base, b + base, cc + base) for a, b, cc in Fp)
-            E.extend(Ep)
+            E.extend(Ep if colorear is None else [colorear(tipo, e, f.indice, i) for e in Ep])
             S.extend(Sp)
         grupos.append((f"frente_{f.indice:02d}_{k:03d}_{h.familia}", V, F, E, S))
     return grupos

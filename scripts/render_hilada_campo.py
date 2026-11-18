@@ -51,6 +51,12 @@ def main() -> int:
                     help="no tapa los huecos con cupulillas (granada/cierres_campo.py); solo cuenta con --hiladas todas")
     ap.add_argument("--sin-cupulines", action="store_true",
                     help="no pone los 16 cupulines medidos (datos/cupulines.json); solo cuenta con --hiladas todas")
+    ap.add_argument("--forma-cupulin", choices=("estrellado", "piezas"), default="estrellado",
+                    help="estrellado: pozo liso con techo de estrella (ortoimagen, 2026-11-18); piezas: cupulita de piezas")
+    ap.add_argument("--color", choices=("yeso", "inauguracion"), default="yeso",
+                    help="inauguracion: reparto de granada/color.py (Jones lam. XXXIX, estetico; 2026-11-18)")
+    ap.add_argument("--variante", choices=("jones", "suave", "yeso"), default="jones",
+                    help="variante del reparto inauguracion (granada.color.VARIANTES_INAUGURACION)")
     ap.add_argument("--informe-cierres", type=Path,
                     help="guarda huecos tapados y rendijas por fila (JSON) y termina")
     ap.add_argument("--png", type=Path, default=RAIZ / "renders" / "previas" / "hilada_campo.png")
@@ -107,9 +113,13 @@ def main() -> int:
     con_cupulines = a.hiladas == "todas" and not a.sin_cupulines
     descartar, cupulines = None, []
     if con_cupulines:
-        descartar, cupulines = cupulines_en_campo(c)
+        descartar, cupulines = cupulines_en_campo(c, a.forma_cupulin, a.color == "inauguracion")
+    pintar = None
+    if a.color == "inauguracion":
+        from granada.color import reparto_inauguracion
+        pintar = reparto_inauguracion(a.variante)
     grupos = montar(c, sel, subdivision=a.subdivision, colocacion=a.colocacion, sigma=a.sigma,
-                    descartar=descartar)
+                    descartar=descartar, colorear=pintar)
     if con_cupulines:
         print(f"{len(cupulines)} cupulines")
     V, F = [], []
@@ -117,7 +127,7 @@ def main() -> int:
         base = len(V)
         V.extend(Vg)
         F.extend((p + base, q + base, r + base) for p, q, r in Fg)
-    for _, Vg, Fg in cierres + cupulines:
+    for _, Vg, Fg, *_ in cierres + cupulines:
         base = len(V)
         V.extend(Vg)
         F.extend((p + base, q + base, r + base) for p, q, r in Fg)
@@ -126,11 +136,22 @@ def main() -> int:
         from granada.color import material, paleta_materiales
         from granada.piezas import escribir_obj
         from granada.sala import sala
-        # Piezas en yeso (sin color, decidido); la sala es la medida de granada/sala.py.
-        salida = [(f"hilada_{n}", Vg, Fg, [material("yeso", x) for x in Sg]) for n, Vg, Fg, _, Sg in grupos]
-        # Cupulillas de cierre en yeso, como la de los cupulines (granada/cupula.py).
-        salida += [(n, Vg, Fg, [material("yeso", 0.8)] * len(Fg)) for n, Vg, Fg in cierres]
-        salida += [(n, Vg, Fg, [material("yeso", 0.8)] * len(Fg)) for n, Vg, Fg in cupulines]
+        # La sala es la medida de granada/sala.py.
+        if a.color == "inauguracion":
+            from granada.color import CIERRE_INAUGURACION, CLAVE_INAUGURACION
+            salida = [(f"hilada_{n}", Vg, Fg, [material(cc, x) for cc, x in zip(Cg, Sg)]) for n, Vg, Fg, Cg, Sg in grupos]
+        else:
+            # Piezas en yeso (sin color, decidido el 2026-11-17).
+            salida = [(f"hilada_{n}", Vg, Fg, [material("yeso", x) for x in Sg]) for n, Vg, Fg, _, Sg in grupos]
+
+        def tono_cierre(Vg):
+            # La clave es la cupulilla que contiene el eje.
+            if a.color != "inauguracion":
+                return "yeso"
+            import numpy as np
+            return CLAVE_INAUGURACION if np.hypot(*np.asarray(Vg)[:, :2].mean(axis=0)) < 1 else CIERRE_INAUGURACION
+        salida += [(n, Vg, Fg, [material(tono_cierre(Vg), 0.8)] * len(Fg)) for n, Vg, Fg in cierres]
+        salida += [(n, Vg, Fg, [material(cc, 0.8) for cc in Cg]) for n, Vg, Fg, Cg in cupulines]
         salida += [(n, Vg, Fg, [material(cc, x) for cc, x in zip(Cg, Sg)]) for n, Vg, Fg, Cg, Sg in sala()]
         a.obj.parent.mkdir(parents=True, exist_ok=True)
         escribir_obj(a.obj, salida, paleta=paleta_materiales())
@@ -155,7 +176,7 @@ def main() -> int:
     return 0
 
 
-def cupulines_en_campo(c):
+def cupulines_en_campo(c, forma: str = "estrellado", color: bool = False):
     """Los 16 cupulines de datos/cupulines.json sobre la superficie del campo.
 
     Igual que en granada.cupula.cupula: se quitan las piezas con el centroide
@@ -166,7 +187,7 @@ def cupulines_en_campo(c):
     import numpy as np
     from scipy.ndimage import map_coordinates
     from granada.campo import PASO_VERTICAL, PENDIENTE
-    from granada.cupula import cupulin, cupulines_medidos, detector_de_marcos
+    from granada.cupula import cupulin, cupulin_estrellado, cupulines_medidos, detector_de_marcos
 
     def cota(x, y):
         return float(map_coordinates(c.H, [[(y - c.y[0]) / c.paso], [(x - c.x[0]) / c.paso]], order=1)[0])
@@ -179,7 +200,17 @@ def cupulines_en_campo(c):
 
     profundidad = 2 * PASO_VERTICAL * math.cos(math.atan(PENDIENTE))
     mini: dict = {}
-    grupos = [(f"cupulin_{k:02d}", *cupulin(q, profundidad, plantillas=mini, cota=cota, arranque="medio")) for k, q in enumerate(huecos)]
+    if forma == "estrellado":
+        from granada.color import CUPULIN_INAUGURACION
+        grupos = []
+        for k, q in enumerate(huecos):
+            V, F, partes = cupulin_estrellado(q, profundidad, cota=cota)
+            grupos.append((f"cupulin_{k:02d}", V, F, [CUPULIN_INAUGURACION[p] if color else "yeso" for p in partes]))
+    else:
+        grupos = []
+        for k, q in enumerate(huecos):
+            V, F = cupulin(q, profundidad, plantillas=mini, cota=cota, arranque="medio")
+            grupos.append((f"cupulin_{k:02d}", V, F, ["yeso"] * len(F)))
     return descartar, grupos
 
 

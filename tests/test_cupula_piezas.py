@@ -103,3 +103,22 @@ def test_cupula_con_cupulines_quita_piezas_y_anade_16():
         return sum(len(g[2]) for g in gs if g[0].startswith("hilada_"))
 
     assert trama(grupos) < trama(grupos_sin)
+
+
+def test_cupulin_estrellado_techo_sobre_la_boca_y_estrella_dentro():
+    import numpy as np
+    from granada.cupula import ESTRELLA_CUPULIN, cupulin_estrellado, cupulines_medidos
+    c = cupulines_medidos()[0]
+    V, F, partes = cupulin_estrellado(c, 1.0)
+    V = np.asarray(V)
+    assert len(F) == len(partes) and set(partes) == {"pared", "techo", "estrella", "marco"}
+    caras = np.asarray(F)
+    zt = V[caras[[i for i, p in enumerate(partes) if p == "techo"]].ravel(), 2]
+    ze = V[caras[[i for i, p in enumerate(partes) if p == "estrella"]].ravel(), 2]
+    # Techo plano (eje vertical) y la estrella por encima de el.
+    assert np.ptp(zt) < 1e-9
+    assert ze.max() > zt.max()
+    # La estrella cabe en la boca: sus puntas, a ESTRELLA_CUPULIN radios del eje.
+    d = np.hypot(V[:, 0] - c.x, V[:, 1] - c.y)
+    i_e = caras[[i for i, p in enumerate(partes) if p == "estrella"]].ravel()
+    assert d[i_e].max() <= ESTRELLA_CUPULIN * c.radio + 1e-6

@@ -76,6 +76,15 @@ despiece de los cupulines (`reports/Cupulines y policromía de Dos Hermanas.md`)
 - Las cupulillas de los 16 huecos exteriores quedan en sombra y se siguen
   leyendo como manchas oscuras, con luminancia 18/255 frente a 2 cuando
   estaban vacías. Queda para el color.
-- El cupulín no reproduce la forma descrita por Pavón Maldonado («dos
-  registros de trompillas… arco mixtilíneo… cupulilla estrellada»), solo
-  pocillo y cupulita de piezas.
+- El cupulín no reproduce las trompillas ni el arco mixtilíneo que describe
+  Pavón Maldonado.
+
+## Añadido el mismo día: cupulín estrellado
+
+Visto de cerca en la ortoimagen, cada cupulín no es una cupulita de piezas:
+es un pozo de paredes lisas con techo plano y una estrella de ocho puntas.
+`granada.cupula.cupulin_estrellado` lo modela así: boca en gota, paredes
+lisas hasta el techo (cota media de la boca + profundidad) y estrella {8/2}
+de radio 0,8 rehundida 0,12 radios. Es el defecto de `render_hilada_campo.py`
+(`--forma-cupulin piezas` vuelve a la cupulita). La profundidad y el
+rehundido son supuestos. Render: `renders/previas/cupula_cycles_*_campo_estrellado.png`.

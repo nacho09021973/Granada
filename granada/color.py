@@ -202,3 +202,67 @@ def paleta_materiales() -> dict[str, str]:
             f = 1 - k / (NIVELES_SOMBRA - 1) * (1 - SOMBRA_MINIMA)
             fuera[f"{nombre}_{k}"] = _hex(r * f / 255, g * f / 255, b * f / 255)
     return fuera
+
+
+# --- Reparto «inauguracion» (2026-11-18) -----------------------------------
+#
+# Pedido por el usuario el 2026-11-18: «reluciente como el dia de la
+# inauguracion, colores apagados y artisticos», estetica por delante y lo
+# supuesto declarado; el rojo, como hipotesis de Jones. Fuentes y fuerza
+# (reports/Cupulines y policromia de Dos Hermanas.md):
+#
+# - Reparto: Jones y Goury, t. II, lam. XXXIX (cornisa de la Ventana de Dos
+#   Hermanas): frentes en oro, alveolos rojo y azul alternos, filete blanco.
+#   Es RESTITUCION y aplica su propia regla (Grammar of Ornament, cap. X,
+#   §13-14: rojo en lo hondo, azul en sombra, oro a la luz; el azul ocupa mas
+#   superficie). No hay analisis de pigmentos de esta cupula.
+# - Paleta: lapislazuli natural, cinabrio y pan de oro, medidos en la Sala de
+#   los Reyes (Raman, J. Raman Spectrosc. 45, 2014): analogia, no esta sala.
+# - Tonos apagados: eleccion estetica, no medida.
+# - Filete blanco: no se modela; en Cycles lo sugiere el desgaste de aristas
+#   de scripts/render_cycles.py (asoma el yeso).
+# - Cupulines, clave y cupulillas de cierre: ninguna fuente; supuesto.
+
+PALETA["lapislazuli"] = _hex(*colorsys.hsv_to_rgb(222 / 360, 0.42, 0.62))
+PALETA["cinabrio"] = _hex(*colorsys.hsv_to_rgb(8 / 360, 0.48, 0.70))
+"""Apagados y claros. La primera prueba (S 0,50/0,58, V 0,50/0,60) dio en
+Cycles un tapiz oscuro y saturado (render del 2026-11-18)."""
+
+CICLO_ALVEOLOS = ("lapislazuli", "cinabrio", "lapislazuli")
+"""Alternancia de celda a celda (lam. XXXIX) con dos azules por cada rojo
+(§14: el azul domina). La proporcion 2:1 es eleccion."""
+
+
+VARIANTES_INAUGURACION = {
+    "jones": (CICLO_ALVEOLOS, "oro"),
+    "suave": (("lapislazuli", "yeso", "cinabrio", "yeso", "lapislazuli", "yeso"), "oro"),
+    "yeso": (("lapislazuli", "yeso", "cinabrio", "yeso", "lapislazuli", "yeso"), "yeso"),
+}
+"""(ciclo de alveolos, color de paredes y tapas). jones: lam. XXXIX tal cual;
+suave: la mitad de los alveolos en yeso; yeso: ademas paredes en yeso, como
+el filete blanco de Jones y el fondo blanco de la Sala de los Reyes. Las dos
+ultimas son eleccion estetica para acercarse a «apagado y artistico»."""
+
+
+def reparto_inauguracion(variante: str = "jones") -> Callable[[str, str, int, int], str]:
+    ciclo, pared = VARIANTES_INAUGURACION[variante]
+
+    def pintar(tipo: str, etiqueta: str, fila: int, indice: int) -> str:
+        """Fondo en el ciclo, desfasado una celda por fila para que el color no
+        forme rayos; paredes y tapas en `pared`."""
+        if etiqueta == "fondo":
+            return ciclo[(indice + fila) % len(ciclo)]
+        return pared
+
+    return pintar
+
+
+inauguracion = reparto_inauguracion("jones")
+
+
+CUPULIN_INAUGURACION = {"pared": "yeso", "techo": "lapislazuli", "estrella": "oro", "marco": "yeso"}
+"""Supuesto: techo azul con la estrella dorada; pozo y marco en yeso."""
+CLAVE_INAUGURACION = "oro"
+"""Supuesto, como la cupulilla de la clave del modelo de anillos."""
+CIERRE_INAUGURACION = "cinabrio"
+"""Supuesto: las cupulillas de cierre son lo mas hondo de cada celda (§13)."""

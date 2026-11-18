@@ -667,6 +667,76 @@ def cupulin(c: Cupulin, profundidad: float, subdivision: int = 5, plantillas=Non
     return (V, F, C, S) if colorear is not None else (V, F)
 
 
+ESTRELLA_CUPULIN = 0.8
+"""Radio de las puntas de la estrella del techo del cupulin, respecto al del
+octogono de la boca. A ojo sobre la ortoimagen (2026-11-18): eleccion."""
+REHUNDIDO_ESTRELLA = 0.12
+"""Cuanto sube la estrella sobre el techo, en radios del octogono. Eleccion."""
+
+
+def _estrella_8(radio: float, n: int) -> list[tuple[float, float]]:
+    """Estrella de ocho puntas de dos cuadrados ({8/2}), puntas en 90 + 45 k
+    grados como los vertices de la boca, muestreada en los mismos n angulos
+    que _contorno_cupulin."""
+    k = np.arange(16)
+    a = np.radians(90 + 22.5 * k)
+    r = np.where(k % 2 == 0, radio, radio * math.cos(math.radians(45)) / math.cos(math.radians(22.5)))
+    rho = radios_desde(np.stack([r * np.cos(a), r * np.sin(a)], axis=1), np.zeros(2))
+    phi = np.linspace(0, 2 * math.pi, n, endpoint=False)
+    rr = np.interp(phi, np.linspace(0, 2 * math.pi, len(rho), endpoint=False), rho, period=2 * math.pi)
+    return list(zip((rr * np.cos(phi)).tolist(), (rr * np.sin(phi)).tolist()))
+
+
+def cupulin_estrellado(c: Cupulin, profundidad: float, cota=None, radio_base: float = RADIO_BASE, n: int = 96):
+    """Cupulin como se ve en la ortoimagen de AA-415_23 (2026-11-18): pozo de
+    paredes lisas sobre la boca en gota, techo plano y en el una estrella de
+    ocho puntas rehundida; marco de yeso alrededor de la boca.
+
+    Pavon Maldonado describe «cuatro arcos epigrafiados sosteniendo la estrella
+    protagonista» y, debajo, «dos registros de trompillas» (informe del
+    2026-11-18): aqui las paredes son lisas y no hay trompillas. El techo va a
+    la cota media de la boca mas `profundidad`, como arranque="medio" en
+    cupulin(). Geometria supuesta salvo la planta de la boca.
+
+    Devuelve (V, F, partes): partes nombra cada cara (pared, techo, estrella,
+    marco) para colorearlas despues."""
+    o, e1, e2, nn = c.marco(radio_base)
+
+    def superficie(x: float, y: float) -> float:
+        q = o + x * e1 + y * e2
+        z = cota_del_cono(q[0], q[1], radio_base) if cota is None else cota(q[0], q[1])
+        return (z - q[2]) / nn[2]
+
+    boca = _contorno_cupulin(c.radio, n)
+    techo = float(np.mean([superficie(x, y) for x, y in boca])) + profundidad
+    estrella = _estrella_8(ESTRELLA_CUPULIN * c.radio, n)
+    alto = techo + REHUNDIDO_ESTRELLA * c.radio
+    local: list[Punto3] = []
+    F = []
+    partes: list[str] = []
+
+    def anadir(V, Fs, parte, z=None):
+        b = len(local)
+        local.extend(V if z is None else [(x, y, zz + z(x, y)) for x, y, zz in V])
+        F.extend((p + b, q + b, r + b) for p, q, r in Fs)
+        partes.extend([parte] * len(Fs))
+
+    anadir(*_tubo_contorno(boca, superficie, techo), "pared")
+    anadir(*_corona_contorno(estrella, boca, techo), "techo")
+    anadir(*_tubo_contorno(estrella, lambda x, y: techo, alto), "estrella")
+    b = len(local)
+    local.append((0.0, 0.0, alto))
+    local.extend((x, y, alto) for x, y in estrella)
+    Fe = [(b, b + 1 + i, b + 1 + (i + 1) % n) for i in range(n)]
+    F.extend(Fe)
+    partes.extend(["estrella"] * len(Fe))
+    Vr, Fr = _corona_contorno(boca, _contorno_cupulin(c.radio * MARCO_CUPULIN, n), -0.03)
+    anadir(Vr, Fr, "marco", z=superficie)
+    L = np.asarray(local)
+    G = o + L[:, :1] * e1 + L[:, 1:2] * e2 + L[:, 2:3] * nn
+    return [tuple(v) for v in G.tolist()], F, partes
+
+
 def cupula(
     subdivision: int = 8,
     radio_base: float = RADIO_BASE,
