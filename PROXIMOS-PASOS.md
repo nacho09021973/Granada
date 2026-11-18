@@ -5,6 +5,29 @@ histórico. El registro de decisiones va en `docs/decisiones/`.
 
 ---
 
+## Para el 2026-11-19 (anotado a petición del usuario)
+
+Defecto actual (decisiones 0029 y 0030, rama `cierres-y-cupulines`, commit
+`d252cd6`): paleta «ferrer» en penumbra, oscuro por celdas de la red
+(`ferrer_red`, umbral 0,40) y cupulines con el eje a 30°.
+
+1. **Las tres vistas a 1400 px** con ese defecto (cúpula, visitante, sala),
+   como las `*_ferrer.png` de `renders/previas/`. En este equipo, solo CPU y
+   4 hilos (no hay NVIDIA; `.wslconfig` se queda en 4 por decisión del
+   usuario): unos 35-40 min [UNVERIFIED]. Lanzarlas cuando el usuario no esté
+   usando el equipo. Malla: `render_hilada_campo.py --hiladas todas --color
+   inauguracion --obj …`; render: `~/.local/opt/blender/blender -b -P
+   scripts/render_cycles.py -- --obj … --vistas cupula,visitante,sala --lado
+   1400`. Comparar con `scripts/comparar_con_ferrer.py`.
+2. **Las rendijas entre piezas**, la tercera diferencia frente a Ferrer_5; se
+   notan más sobre el fondo claro.
+
+Pendientes que quedan abiertos frente a Ferrer_5: el oscuro sale en trazos
+finos, no en manchas compactas (probar a pintar enteras las piezas del
+centro de cada celda).
+
+---
+
 ## Hecho el 2026-11-18 y siguiente
 
 - Decisiones del usuario: el color sigue el criterio estético, declarando lo
