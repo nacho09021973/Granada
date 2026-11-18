@@ -390,9 +390,25 @@ def hilada_de(f: Frente) -> Hilada:
     return Hilada(f.indice - 1, familia, float("nan"), f.cota, f.paso, n, f.largo / (n * paso_t))
 
 
+def admitido_suavizado(f: Frente, sigma: float = SIGMA_FRENTE, minimo: int = PIEZAS_MINIMAS) -> bool:
+    """El frente suavizado aun da sitio a `minimo` piezas.
+
+    frentes() mide el lazo sobre la curva cruda; las piezas siguen la
+    suavizada, que en lazos pequenos encoge mucho (el de la fila 24 en
+    r = 8,7 pasa de 1,93 a 0,02 catetos y sus piezas salian de un punto).
+    Un lazo que no pasa se deja al cierre (granada/cierres_campo.py).
+    Decidido el 2026-11-18."""
+    return hilada_de(frente_suavizado(f, sigma)).piezas >= minimo
+
+
 def montar(c: Campo, seleccion: list[Frente] | None = None, subdivision: int = 6,
-           filas_por_hilada: int = 1, colocacion: str = "suavizada", sigma: float = SIGMA_FRENTE):
-    """Grupos (nombre, V, F, etiquetas, sombras), uno por frente."""
+           filas_por_hilada: int = 1, colocacion: str = "suavizada", sigma: float = SIGMA_FRENTE,
+           descartar=None):
+    """Grupos (nombre, V, F, etiquetas, sombras), uno por frente.
+
+    En la colocacion suavizada se saltan los frentes que no pasan
+    admitido_suavizado. `descartar(vertices)` quita las piezas para las que
+    devuelve True (el marco de los cupulines, como en granada.cupula)."""
     if colocacion not in COLOCACIONES:
         raise ValueError(f"colocacion debe ser una de {COLOCACIONES}")
     gradiente = _gradiente(c)
@@ -402,6 +418,8 @@ def montar(c: Campo, seleccion: list[Frente] | None = None, subdivision: int = 6
     for k, f in enumerate(frentes(c, filas_por_hilada=filas_por_hilada) if seleccion is None else seleccion):
         if colocacion == "suavizada":
             f = frente_suavizado(f, sigma)
+            if hilada_de(f).piezas < PIEZAS_MINIMAS:
+                continue
         h = hilada_de(f)
         fam = FAMILIAS[h.familia]
         if colocacion == "suavizada":
@@ -432,8 +450,11 @@ def montar(c: Campo, seleccion: list[Frente] | None = None, subdivision: int = 6
                 Em = etiquetas(pz, Vm, Fm)
                 plantillas[clave] = (np.asarray(Vm) * (1, f.escala, f.escala), Fm, Em, oclusion(pz, Vm, Fm, Em))
             Vp, Fp, Ep, Sp = plantillas[clave]
+            puesta = poner(Vp, i * fam.paso_tangencial * h.estiramiento, h.estiramiento, fam.fondo * f.escala)
+            if descartar is not None and descartar(puesta):
+                continue
             base = len(V)
-            V.extend(poner(Vp, i * fam.paso_tangencial * h.estiramiento, h.estiramiento, fam.fondo * f.escala))
+            V.extend(puesta)
             F.extend((a + base, b + base, cc + base) for a, b, cc in Fp)
             E.extend(Ep)
             S.extend(Sp)

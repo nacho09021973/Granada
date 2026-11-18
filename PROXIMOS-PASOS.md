@@ -1,7 +1,27 @@
 # Próximos pasos
 
-Estado a 2026-11-17. Documento de trabajo: se actualiza, no se conserva como
+Estado a 2026-11-18. Documento de trabajo: se actualiza, no se conserva como
 histórico. El registro de decisiones va en `docs/decisiones/`.
+
+---
+
+## Hecho el 2026-11-18 y siguiente
+
+- Decisiones del usuario: el color sigue el criterio estético, declarando lo
+  supuesto; el rojo se pinta como hipótesis de Jones; permiso para buscar en
+  internet sin pedirlo cada vez. Enviar texto a terceros sigue pidiendo permiso.
+- Cierres, clave, lazos que colapsan y cupulines: decisión 0027 (propuesta).
+  Renders: `renders/previas/cupula_cycles_{visitante,cenital}_campo_cupulines.png`.
+- Investigación: `reports/Cupulines y policromía de Dos Hermanas.md`, con las
+  notas en `research_notes/`. El encargo a Gemini quedó preparado y no se envió
+  (`investigaciones/2026-11-18-policromia-mocarabes/`).
+- **Siguiente (orden del usuario): primero la forma de los cupulines, luego el
+  color.** Los cupulines se ven como pétalos alargados desde abajo. Hay que
+  acercarlos a lo que describe Pavón Maldonado: dos registros de trompillas,
+  arco mixtilíneo y cupulilla estrellada.
+- Pendiente para el color: corregir en `docs/policromia.md` la frase de
+  pigmentos (ver el informe), y comprobar la reconstrucción de 1537–1547 que
+  Rubio Domene cita de segunda mano `[UNVERIFIED]`.
 
 ---
 

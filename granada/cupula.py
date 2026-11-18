@@ -586,10 +586,23 @@ def _corona_contorno(dentro, fuera, z):
     return V, F
 
 
-def cupulin(c: Cupulin, profundidad: float, subdivision: int = 5, plantillas=None, radio_base: float = RADIO_BASE, colorear=None):
+def cupulin(c: Cupulin, profundidad: float, subdivision: int = 5, plantillas=None, radio_base: float = RADIO_BASE,
+            colorear=None, cota=None, arranque: str = "alto"):
     """Pocillo de `profundidad` con boca en gota (FORMA_CUPULIN) y, encima, una
     cupula pequena de piezas a escala `ESCALA_CUPULIN`, con la misma planta,
-    cerrada con su cupulilla. Marco de yeso alrededor de la boca."""
+    cerrada con su cupulilla. Marco de yeso alrededor de la boca.
+
+    `cota(x, y)` es la superficie sobre la que se abre la boca; por defecto el
+    cono medido. El modelo por campo (granada.hiladas_campo) pasa su H, que
+    junto a la red se separa del cono hasta un cateto.
+
+    `arranque`: "alto", la cupulita empieza `profundidad` por encima del punto
+    mas alto de la boca (vista a lo largo del eje se ve entera; decision del
+    2026-11-06); "medio", por encima de la cota media de la boca. Con eje
+    vertical sobre el campo, "alto" deja un pozo de hasta 7,5 catetos que
+    desde abajo se lee como un prisma oscuro (render del 2026-11-18); "medio"
+    lo reduce, y en vertical la cupulita se sigue viendo entera porque en
+    planta nada la tapa. Eleccion, no medida."""
     if plantillas is None:
         plantillas = {}
     e = ESCALA_CUPULIN
@@ -609,12 +622,19 @@ def cupulin(c: Cupulin, profundidad: float, subdivision: int = 5, plantillas=Non
     def superficie(x: float, y: float) -> float:
         """Cota local del cono bajo (x, y) del marco, medida a lo largo de n."""
         q = o + x * e1 + y * e2
-        return (cota_del_cono(q[0], q[1], radio_base) - q[2]) / n[2]
+        z = cota_del_cono(q[0], q[1], radio_base) if cota is None else cota(q[0], q[1])
+        return (z - q[2]) / n[2]
 
     boca = _contorno_cupulin(c.radio)
     # La cupulita arranca por encima del punto mas alto de la boca: asi, vista
     # a lo largo del eje, se ve entera.
-    fondo = max(superficie(x, y) for x, y in boca) + profundidad
+    alturas = [superficie(x, y) for x, y in boca]
+    if arranque == "alto":
+        fondo = max(alturas) + profundidad
+    elif arranque == "medio":
+        fondo = float(np.mean(alturas)) + profundidad
+    else:
+        raise ValueError(f"arranque desconocido: {arranque!r}")
     local: list[Punto3] = []
     F = []
     C: list[str] = []
