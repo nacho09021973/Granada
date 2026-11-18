@@ -28,11 +28,37 @@ Del Patronato de la Alhambra, literalmente:
 > que muestran los colores: azul, rojo, negro, verde. Junto con incorporaciones
 > metálicas de oro y plata.»
 
-Los análisis por microscopía de luz polarizada sobre fragmentos de yeserías de
-la Alhambra identifican **lazurita** (lapislázuli), **bermellón** (cinabrio) y
-**negro carbón**. El azul original era lapislázuli natural; el sintético
-corresponde a las restauraciones de finales del XIX. El rojo, de minio (óxido
-de plomo) o cinabrio.
+Es un anuncio sin firma ni referencias de una actividad del Museo de la
+Alhambra («La técnica de la yesería en la decoración nazarí»): orienta, no
+es análisis.
+
+**Corregido el 2026-11-18.** Esta sección decía antes que «los análisis por
+microscopía de luz polarizada» de yeserías de la Alhambra identifican
+lazurita, bermellón y negro carbón. Según la investigación del 2026-11-18
+(`reports/Cupulines y policromía de Dos Hermanas.md`, notas en
+`research_notes/`), esa frase reproduce a López Borges, Burgio y Clark y la
+resume mal [UNVERIFIED: el artículo no lo he leído yo, lo leyó la
+investigación]:
+
+- usaron Raman además de microscopía;
+- las muestras son cinco fragmentos sueltos del V&A, sin sala de origen;
+- el negro carbón solo aparece en el fragmento que los autores juzgan copia
+  del XIX.
+
+Lo medido en salas de la Alhambra, según el mismo informe:
+
+- **Sala de los Reyes** (J. Raman Spectrosc. 45, 2014):
+  - originales: lapislázuli natural, cinabrio y pan de oro;
+  - repintes: el minio, sobre el cinabrio; el ultramar sintético aparece solo
+    en una bóveda.
+- **Cardell-Fernández y Navarrete-Aguilera 2006** (Studies in Conservation
+  51), con muestras del Mexuar y del pabellón este del Patio de los Leones:
+  - paleta nazarí tardía: rojo, azul, verde (malaquita), negro y oro sobre
+    estaño;
+  - el azul de un mocárabe resultó ser un «lapislázuli artificial» del XIX.
+
+Las fuentes no se ponen de acuerdo en si el verde y el oro sobre estaño son
+nazaríes. De la cúpula de Dos Hermanas no hay ningún análisis publicado.
 
 **Lo que NO está establecido**: el reparto en esta cúpula concreta. Qué celda
 era azul, cuál roja, dónde había oro. No se ha localizado ningún estudio

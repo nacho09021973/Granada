@@ -55,7 +55,7 @@ def main() -> int:
                     help="estrellado: pozo liso con techo de estrella (ortoimagen, 2026-11-18); piezas: cupulita de piezas")
     ap.add_argument("--color", choices=("yeso", "inauguracion"), default="yeso",
                     help="inauguracion: reparto de granada/color.py (Jones lam. XXXIX, estetico; 2026-11-18)")
-    ap.add_argument("--variante", choices=("jones", "suave", "yeso"), default="jones",
+    ap.add_argument("--variante", choices=("jones", "suave", "yeso"), default="yeso",
                     help="variante del reparto inauguracion (granada.color.VARIANTES_INAUGURACION)")
     ap.add_argument("--informe-cierres", type=Path,
                     help="guarda huecos tapados y rendijas por fila (JSON) y termina")

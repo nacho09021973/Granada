@@ -244,7 +244,7 @@ el filete blanco de Jones y el fondo blanco de la Sala de los Reyes. Las dos
 ultimas son eleccion estetica para acercarse a «apagado y artistico»."""
 
 
-def reparto_inauguracion(variante: str = "jones") -> Callable[[str, str, int, int], str]:
+def reparto_inauguracion(variante: str = "yeso") -> Callable[[str, str, int, int], str]:
     ciclo, pared = VARIANTES_INAUGURACION[variante]
 
     def pintar(tipo: str, etiqueta: str, fila: int, indice: int) -> str:
@@ -257,7 +257,7 @@ def reparto_inauguracion(variante: str = "jones") -> Callable[[str, str, int, in
     return pintar
 
 
-inauguracion = reparto_inauguracion("jones")
+inauguracion = reparto_inauguracion("yeso")
 
 
 CUPULIN_INAUGURACION = {"pared": "yeso", "techo": "lapislazuli", "estrella": "oro", "marco": "yeso"}

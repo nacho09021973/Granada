@@ -15,14 +15,19 @@ histórico. El registro de decisiones va en `docs/decisiones/`.
 - Investigación: `reports/Cupulines y policromía de Dos Hermanas.md`, con las
   notas en `research_notes/`. El encargo a Gemini quedó preparado y no se envió
   (`investigaciones/2026-11-18-policromia-mocarabes/`).
-- **Siguiente (orden del usuario): primero la forma de los cupulines, luego el
-  color.** Los cupulines se ven como pétalos alargados desde abajo. Hay que
-  acercarlos a lo que describe Pavón Maldonado: dos registros de trompillas,
-  arco mixtilíneo y cupulilla estrellada.
-- Pendiente para el color: corregir en `docs/policromia.md` la frase de
-  pigmentos (ver el informe), y comprobar la reconstrucción de 1537–1547 que
-  Rubio Domene cita de segunda mano `[UNVERIFIED]`.
-
+- Cupulín estrellado (0027, añadido): pozo liso, techo plano y estrella de 8
+  puntas, como en la ortoimagen. Faltan las trompillas y el arco mixtilíneo
+  de Pavón. Desde la vista visitante las bocas siguen pareciendo alargadas.
+- Color (0028): variante C, «Jones sobre yeso», elegida por Claude a petición
+  del usuario («elige la opción más estética»). Render:
+  `renders/previas/cupula_cycles_{visitante,cenital}_campo_inauguracion.png`.
+  Corregida la frase de pigmentos de `docs/policromia.md`.
+- **Siguiente, a elegir:**
+  - rendijas (48 en planta);
+  - trompillas de los cupulines;
+  - la estrella de la red, que apenas se lee;
+  - comprobar la reconstrucción de 1537–1547 [UNVERIFIED];
+  - render 8k en el ordenador con GPU.
 ---
 
 ## Plan para el 2026-11-18 — cierres y color de la inauguración
