@@ -146,6 +146,9 @@ def argumentos():
     ap.add_argument("--sufijo", default="")
     ap.add_argument("--obj", type=Path, default=OBJ)
     ap.add_argument("--sin-limpieza", action="store_true", help="sin eliminador de ruido (diagnostico)")
+    ap.add_argument("--luz", choices=("sol", "penumbra"), default="sol",
+                    help="sol: haces rasantes por las ventanas; penumbra: sin sol, luz pareja rebotada del "
+                         "suelo (luz_sala) en todas las vistas, como la maqueta de Ferrer_5 (2026-11-18)")
     ap.add_argument("--dispositivo", choices=("cpu", "cuda", "optix"), default="cpu",
                     help="cpu, o GPU NVIDIA con cuda u optix (RTX)")
     ap.add_argument(
@@ -515,11 +518,16 @@ LUZ_SALA_W = 12000.0
 entra por las puertas y las ventanas altas, que no se modelan como huecos."""
 
 
-def luz_sala():
+PENUMBRA_SALA = 0.25
+"""Fraccion de LUZ_SALA_W con --luz penumbra. A 1 la luz del suelo entra
+recta en las celdas y las aplana (render del 2026-11-18). Eleccion."""
+
+
+def luz_sala(fraccion: float = 1.0):
     luz = bpy.data.lights.new("luz_sala", "AREA")
     luz.shape = "SQUARE"
     luz.size = 2 * MEDIO_LADO_SALA * 0.9
-    luz.energy = LUZ_SALA_W
+    luz.energy = LUZ_SALA_W * fraccion
     o = bpy.data.objects.new("luz_sala", luz)
     bpy.context.collection.objects.link(o)
     o.location = (0.0, 0.0, SUELO + 0.2)
@@ -621,7 +629,10 @@ def main() -> int:
         # Malla sin sala propia (modelo de anillos): muros que prolongan el tambor.
         sala(contorno, cota, material_yeso("yeso_sala", colores["yeso"], grano=0.3, variacion=0.1))
     ventanas(contorno, material_ventana(), propios["yeso"])
-    sol(contorno)
+    if args.luz == "sol":
+        sol(contorno)
+    else:
+        luz_sala(PENUMBRA_SALA)
     ajustes(args.muestras, args.lado)
     dispositivo(args.dispositivo)
     bpy.context.scene.cycles.use_denoising = not args.sin_limpieza
@@ -639,7 +650,7 @@ def main() -> int:
         bpy.context.scene.camera = camara(nombre, pos, obj, fov)
         if nombre in ORTOGONALES:
             luz_levantamiento(pos, fov)
-        elif nombre == "sala":
+        elif nombre == "sala" and args.luz == "sol":
             luz_sala()
         ruta = args.salida / f"cupula_cycles_{nombre}{args.sufijo}.png"
         bpy.context.scene.render.filepath = str(ruta)
