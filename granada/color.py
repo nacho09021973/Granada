@@ -363,10 +363,11 @@ def distancia_relativa_a_la_red(x, y):
     return d / tope[etiqueta]
 
 
-def ferrer_red(x, y, umbral: float = UMBRAL_RED):
+def ferrer_red(x, y, umbral: float = UMBRAL_RED, umbral_pared: float | None = None):
     """Reparto «ferrer_red» sobre la rejilla (x, y) del campo. Devuelve
     pintar(tipo, etiqueta, fila, indice, centro) con centro = (x, y) del
-    centroide de la pieza; paredes y tapas en crema, acentos como en
+    centroide de la pieza; paredes y tapas en crema (o en tostado si
+    `umbral_pared` y la pieza esta a >= umbral_pared), acentos como en
     CICLO_FERRER_CLARO en los fondos claros."""
     import numpy as np
     from scipy.ndimage import map_coordinates
@@ -375,9 +376,9 @@ def ferrer_red(x, y, umbral: float = UMBRAL_RED):
     paso = float(x[1] - x[0])
 
     def pintar(tipo: str, etiqueta: str, fila: int, indice: int, centro) -> str:
-        if etiqueta != "fondo":
-            return "crema"
         r = float(map_coordinates(R, [[(centro[1] - y[0]) / paso], [(centro[0] - x[0]) / paso]], order=1)[0])
+        if etiqueta != "fondo":
+            return "tostado" if umbral_pared is not None and r >= umbral_pared else "crema"
         if r >= umbral:
             return "tostado"
         return CICLO_FERRER_CLARO[(indice + fila) % len(CICLO_FERRER_CLARO)]

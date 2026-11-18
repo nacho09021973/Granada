@@ -62,3 +62,8 @@ de cada celda de la red.
 - Resultado: desaparecen los anillos; el oscuro queda por celdas y en cuñas
   entre cupulines. Las manchas salen como trazos finos, menos masa oscura que
   en la maqueta.
+- Más masa oscura (`--umbral-red`, `--umbral-pared-red`;
+  `renders/previas/comparativa_ferrer_red_masa.png`): con umbral 0,40 el
+  oscuro gana bastante; añadir paredes oscuras desde 0,70 apenas cambia la
+  vista desde abajo. Las manchas siguen saliendo como trazos, no como
+  masas.

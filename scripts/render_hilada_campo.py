@@ -59,6 +59,10 @@ def main() -> int:
                     help="estrellado: pozo liso con techo de estrella (ortoimagen, 2026-11-18); piezas: cupulita de piezas")
     ap.add_argument("--color", choices=("yeso", "inauguracion"), default="yeso",
                     help="inauguracion: reparto de granada/color.py (Jones lam. XXXIX, estetico; 2026-11-18)")
+    ap.add_argument("--umbral-red", type=float, default=None,
+                    help="ferrer_red: fondo oscuro desde esta distancia relativa a la red (granada.color.UMBRAL_RED)")
+    ap.add_argument("--umbral-pared-red", type=float, default=None,
+                    help="ferrer_red: paredes oscuras desde esta distancia relativa; sin el, paredes en crema")
     ap.add_argument("--variante", choices=("jones", "suave", "yeso", "ferrer", "ferrer_red"), default="ferrer",
                     help="variante del reparto inauguracion (granada.color.VARIANTES_INAUGURACION)")
     ap.add_argument("--informe-cierres", type=Path,
@@ -123,7 +127,8 @@ def main() -> int:
         from granada.color import reparto_inauguracion
         if a.variante == "ferrer_red":
             from granada.color import ferrer_red
-            pintar = ferrer_red(c.x, c.y)
+            from granada.color import UMBRAL_RED
+            pintar = ferrer_red(c.x, c.y, UMBRAL_RED if a.umbral_red is None else a.umbral_red, a.umbral_pared_red)
         else:
             pintar = reparto_inauguracion(a.variante)
     grupos = montar(c, sel, subdivision=a.subdivision, colocacion=a.colocacion, sigma=a.sigma,
