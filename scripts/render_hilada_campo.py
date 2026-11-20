@@ -74,6 +74,8 @@ def main() -> int:
                     help="variante del reparto inauguracion (granada.color.VARIANTES_INAUGURACION)")
     ap.add_argument("--informe-cierres", type=Path,
                     help="guarda huecos tapados y rendijas por fila (JSON) y termina")
+    ap.add_argument("--paso-rejilla-cierres", type=int, choices=(1, 2), default=2,
+                    help="submuestreo de cobertura: 2 por defecto; 1 para contrastar la rasterizacion")
     ap.add_argument("--png", type=Path, default=RAIZ / "renders" / "previas" / "hilada_campo.png")
     a = ap.parse_args()
 
@@ -121,7 +123,8 @@ def main() -> int:
         if a.colocacion != "suavizada":
             ap.error("los cierres se calculan sobre las bandas de la colocacion suavizada")
         from granada.cierres_campo import bandas, cierres as tapar
-        cierres, huecos = tapar(c, bandas(c, sel, a.filas_por_hilada, a.sigma))
+        cierres, huecos = tapar(c, bandas(c, sel, a.filas_por_hilada, a.sigma),
+                               paso=a.paso_rejilla_cierres)
         print(f"{huecos.n} huecos tapados con cupulilla")
     if a.informe_cierres:
         return escribir_informe_cierres(a, c, huecos)
@@ -268,24 +271,33 @@ def cupulines_en_campo(c, forma: str = "estrellado", color: bool = False, varian
 
 def escribir_informe_cierres(a, c, huecos) -> int:
     """Huecos tapados y rendijas por fila: medida, no arreglo (PROXIMOS-PASOS 2026-11-18)."""
-    import numpy
+    import numpy, scipy, skimage
     from granada import cierres_campo as cc
     from granada.hiladas_campo import PASO_VERTICAL
     fuentes = ["granada/campo.py", "granada/hiladas_campo.py", "granada/cierres_campo.py",
-               "scripts/render_hilada_campo.py", "datos/red_medinas.json", "datos/registro_red.json"]
+               "granada/cupula.py", "granada/piezas.py", "granada/caras.py",
+               "scripts/render_hilada_campo.py", "datos/red_medinas.json", "datos/registro_red.json",
+               "datos/caras_red.json", "datos/niveles_aproximados.json"]
     paso_fila = PASO_VERTICAL / a.filas_por_hilada
-    rendijas = cc.rendijas_por_fila(huecos, paso_fila)
+    # Mantener el area fisica de corte al refinar; cuatro nodos de la
+    # rejilla habitual equivalen a dieciseis de la rejilla fina.
+    minimo = cc.NUDOS_RENDIJA * (cc.PASO_REJILLA // a.paso_rejilla_cierres) ** 2
+    rendijas = cc.rendijas_por_fila(huecos, paso_fila, minimo)
     informe = {
         "procedencia": "Diagnostico de cobertura en planta; los cierres son eleccion de acabado, no dato",
-        "parametros": {"A": a.A, "forma": a.forma, "signo": a.signo, "filas_por_hilada": a.filas_por_hilada,
+        "parametros": {"A": a.A, "forma": a.forma, "signo": a.signo, "borde": a.borde,
+                       "paso_campo_catetos": c.paso, "submuestreo_cierres": a.paso_rejilla_cierres,
+                       "filas_por_hilada": a.filas_por_hilada,
                        "colocacion": a.colocacion, "sigma": a.sigma,
                        "rejilla_catetos": huecos.rejilla.paso, "radio_rendija": cc.RADIO_RENDIJA,
                        "area_minima": cc.AREA_MINIMA, "solape": cc.SOLAPE,
                        "altura_relativa": cc.ALTURA_RELATIVA, "margen_arranque": cc.MARGEN_ARRANQUE},
         "sha256": {p: hashlib.sha256((RAIZ / p).read_bytes()).hexdigest() for p in fuentes},
-        "entorno": {"python": platform.python_version(), "numpy": numpy.__version__},
+        "entorno": {"python": platform.python_version(), "numpy": numpy.__version__,
+                    "scipy": scipy.__version__, "scikit-image": skimage.__version__},
         "huecos": cc.resumen_huecos(huecos),
-        "rendijas": {"nudos_minimos": cc.NUDOS_RENDIJA, "componentes": sum(rendijas.values()), "por_fila": rendijas,
+        "rendijas": {"nudos_minimos": minimo, "area_minima_catetos2": minimo * huecos.rejilla.paso ** 2,
+                     "componentes": sum(rendijas.values()), "por_fila": rendijas,
                      "componentes_sin_filtrar": sum(cc.rendijas_por_fila(huecos, paso_fila, 1).values()),
                      "area_catetos2": float(huecos.rendijas.sum() * huecos.rejilla.paso ** 2)},
         "limites": ("Cobertura de la huella en planta de las bandas, no de los solidos: no ve las rendijas "

@@ -1,0 +1,35 @@
+{
+  "procedencia": {
+    "script": "scripts/diagnosticar_altura_clave.py",
+    "obj": "renders/previas/cupula_campo_vigente_1400.obj",
+    "sha256_obj": "23ee5e06e3fd0b1dbc74746e9f8951a4febc5b1ec70253c9d93e6c942b8ceb45",
+    "cateto_m": 0.22381466813208983
+  },
+  "objetivo_m": 4.67,
+  "tolerancia_exportacion_m": 1e-06,
+  "maximo_m": 5.481432503601597,
+  "maximo_sin_cupulilla_25_m": 4.670000033987422,
+  "grupos_sobre_objetivo": [
+    {
+      "grupo": "cupulilla_25",
+      "vertices": 4853,
+      "z_min_m": 4.394124731159798,
+      "z_max_m": 5.481432503601597,
+      "radio_min_m": 0.008824309565217391,
+      "radio_max_m": 0.5453831276073625,
+      "vertices_sobre_objetivo": 4511,
+      "radio_max_sobre_objetivo_m": 0.5263557087035559
+    }
+  ],
+  "clave": {
+    "grupo": "cupulilla_25",
+    "vertices": 4853,
+    "z_min_m": 4.394124731159798,
+    "z_max_m": 5.481432503601597,
+    "radio_min_m": 0.008824309565217391,
+    "radio_max_m": 0.5453831276073625,
+    "vertices_sobre_objetivo": 4511,
+    "radio_max_sobre_objetivo_m": 0.5263557087035559
+  },
+  "alcance": "Cotas de vértices del OBJ antes de modificadores; no mide visibilidad ni alturas históricas."
+}

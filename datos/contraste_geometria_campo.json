@@ -1,0 +1,758 @@
+{
+  "procedencia": {
+    "cupula_campo_vigente_1400.obj": "23ee5e06e3fd0b1dbc74746e9f8951a4febc5b1ec70253c9d93e6c942b8ceb45",
+    "AA-415_23_orto_techo.jpg": "2d467585c15e85e9a52ad950c50e2700ac5827e649b0c43f4afaf3debb489280",
+    "AA-415_23_seccion.jpg": "bab660219f6c0542cbbaece463802cb55defa88b3980daca43b83cc05faa1c7d",
+    "contrastar_geometria_campo.py": "12f801f82faf4f65d58ed53b5322747158feb990f7e51f4e497c15c42bf18d6e",
+    "auditar_geometria_obj.py": "98c69e6985b3b544f063346a04a70ae0d79d7ddf9d4b6108fb45e2e46a3bd0b4"
+  },
+  "altura_segun_umbral_m": {
+    "240": 4.700648606866755,
+    "245": 4.908061287403875,
+    "250": 4.910177743327723
+  },
+  "bandas": {
+    "frentes": [
+      {
+        "fila": 1,
+        "anillo": true,
+        "piezas_previas_al_recorte": 146,
+        "giro_p50_p95_max_grados": [
+          3.0975482784474964,
+          15.065559511649298,
+          15.624520445167231
+        ],
+        "triangulos_banda": 109920,
+        "invertidos": 0
+      },
+      {
+        "fila": 2,
+        "anillo": true,
+        "piezas_previas_al_recorte": 144,
+        "giro_p50_p95_max_grados": [
+          5.868056765783412,
+          16.656739264049058,
+          17.654680813349408
+        ],
+        "triangulos_banda": 109344,
+        "invertidos": 0
+      },
+      {
+        "fila": 3,
+        "anillo": true,
+        "piezas_previas_al_recorte": 146,
+        "giro_p50_p95_max_grados": [
+          9.123348661723231,
+          18.786501759980457,
+          20.041676899699723
+        ],
+        "triangulos_banda": 109664,
+        "invertidos": 0
+      },
+      {
+        "fila": 4,
+        "anillo": true,
+        "piezas_previas_al_recorte": 146,
+        "giro_p50_p95_max_grados": [
+          12.708158617918308,
+          21.316204075302657,
+          23.643479182813394
+        ],
+        "triangulos_banda": 110592,
+        "invertidos": 0
+      },
+      {
+        "fila": 5,
+        "anillo": true,
+        "piezas_previas_al_recorte": 274,
+        "giro_p50_p95_max_grados": [
+          8.181157509301656,
+          12.645689921815672,
+          14.585300877183546
+        ],
+        "triangulos_banda": 111552,
+        "invertidos": 0
+      },
+      {
+        "fila": 6,
+        "anillo": true,
+        "piezas_previas_al_recorte": 274,
+        "giro_p50_p95_max_grados": [
+          8.782725620821576,
+          13.387580152611575,
+          14.939543588040884
+        ],
+        "triangulos_banda": 112032,
+        "invertidos": 0
+      },
+      {
+        "fila": 7,
+        "anillo": true,
+        "piezas_previas_al_recorte": 148,
+        "giro_p50_p95_max_grados": [
+          16.455447675785944,
+          25.88764803149536,
+          26.591603470072574
+        ],
+        "triangulos_banda": 111744,
+        "invertidos": 0
+      },
+      {
+        "fila": 8,
+        "anillo": true,
+        "piezas_previas_al_recorte": 146,
+        "giro_p50_p95_max_grados": [
+          16.300099294344932,
+          27.28084656425083,
+          28.557186862358584
+        ],
+        "triangulos_banda": 110784,
+        "invertidos": 0
+      },
+      {
+        "fila": 9,
+        "anillo": true,
+        "piezas_previas_al_recorte": 146,
+        "giro_p50_p95_max_grados": [
+          15.854980860018681,
+          28.266726035038566,
+          30.266873732298368
+        ],
+        "triangulos_banda": 109408,
+        "invertidos": 0
+      },
+      {
+        "fila": 10,
+        "anillo": true,
+        "piezas_previas_al_recorte": 144,
+        "giro_p50_p95_max_grados": [
+          15.552526446238705,
+          29.615218996494857,
+          32.28877689388184
+        ],
+        "triangulos_banda": 107904,
+        "invertidos": 0
+      },
+      {
+        "fila": 11,
+        "anillo": true,
+        "piezas_previas_al_recorte": 262,
+        "giro_p50_p95_max_grados": [
+          8.268198813993553,
+          17.480871547035726,
+          19.110687175200905
+        ],
+        "triangulos_banda": 106592,
+        "invertidos": 0
+      },
+      {
+        "fila": 12,
+        "anillo": true,
+        "piezas_previas_al_recorte": 260,
+        "giro_p50_p95_max_grados": [
+          8.11751953957655,
+          20.33398783892567,
+          24.23472439969221
+        ],
+        "triangulos_banda": 106144,
+        "invertidos": 0
+      },
+      {
+        "fila": 13,
+        "anillo": true,
+        "piezas_previas_al_recorte": 142,
+        "giro_p50_p95_max_grados": [
+          15.514142885639567,
+          46.27716489069161,
+          54.698812076038756
+        ],
+        "triangulos_banda": 107040,
+        "invertidos": 0
+      },
+      {
+        "fila": 14,
+        "anillo": true,
+        "piezas_previas_al_recorte": 150,
+        "giro_p50_p95_max_grados": [
+          16.030085175185715,
+          75.82172217718758,
+          86.99882955337502
+        ],
+        "triangulos_banda": 113248,
+        "invertidos": 2223
+      },
+      {
+        "fila": 15,
+        "anillo": true,
+        "piezas_previas_al_recorte": 156,
+        "giro_p50_p95_max_grados": [
+          18.13489726667062,
+          80.73210957188857,
+          90.84578872350366
+        ],
+        "triangulos_banda": 118144,
+        "invertidos": 1526
+      },
+      {
+        "fila": 16,
+        "anillo": true,
+        "piezas_previas_al_recorte": 164,
+        "giro_p50_p95_max_grados": [
+          21.88270268578938,
+          56.5959088622259,
+          71.01253960083055
+        ],
+        "triangulos_banda": 123232,
+        "invertidos": 0
+      },
+      {
+        "fila": 17,
+        "anillo": true,
+        "piezas_previas_al_recorte": 294,
+        "giro_p50_p95_max_grados": [
+          13.53498856929499,
+          34.397630406718584,
+          58.62975924060461
+        ],
+        "triangulos_banda": 120032,
+        "invertidos": 1721
+      },
+      {
+        "fila": 17,
+        "anillo": false,
+        "piezas_previas_al_recorte": 14,
+        "giro_p50_p95_max_grados": [
+          24.741475889882807,
+          32.33822635845854,
+          33.02951989958553
+        ],
+        "triangulos_banda": 5664,
+        "invertidos": 0
+      },
+      {
+        "fila": 17,
+        "anillo": false,
+        "piezas_previas_al_recorte": 14,
+        "giro_p50_p95_max_grados": [
+          24.681700468387206,
+          32.72119184620559,
+          33.44816851813839
+        ],
+        "triangulos_banda": 5600,
+        "invertidos": 0
+      },
+      {
+        "fila": 18,
+        "anillo": true,
+        "piezas_previas_al_recorte": 232,
+        "giro_p50_p95_max_grados": [
+          8.111185272774147,
+          31.681626318200234,
+          42.027428432884754
+        ],
+        "triangulos_banda": 94496,
+        "invertidos": 51
+      },
+      {
+        "fila": 18,
+        "anillo": false,
+        "piezas_previas_al_recorte": 6,
+        "giro_p50_p95_max_grados": [
+          54.498670545407336,
+          93.39015440781046,
+          94.67666272499535
+        ],
+        "triangulos_banda": 2368,
+        "invertidos": 0
+      },
+      {
+        "fila": 18,
+        "anillo": false,
+        "piezas_previas_al_recorte": 6,
+        "giro_p50_p95_max_grados": [
+          55.976154162559,
+          87.94789937197467,
+          89.11187777422639
+        ],
+        "triangulos_banda": 2720,
+        "invertidos": 0
+      },
+      {
+        "fila": 18,
+        "anillo": false,
+        "piezas_previas_al_recorte": 6,
+        "giro_p50_p95_max_grados": [
+          55.503606901419104,
+          89.5443059999575,
+          90.40837944607779
+        ],
+        "triangulos_banda": 2400,
+        "invertidos": 0
+      },
+      {
+        "fila": 19,
+        "anillo": false,
+        "piezas_previas_al_recorte": 8,
+        "giro_p50_p95_max_grados": [
+          44.85067256621868,
+          49.60142498946239,
+          50.01203842275499
+        ],
+        "triangulos_banda": 6048,
+        "invertidos": 0
+      },
+      {
+        "fila": 19,
+        "anillo": true,
+        "piezas_previas_al_recorte": 96,
+        "giro_p50_p95_max_grados": [
+          4.053314264468232,
+          14.487730144189824,
+          16.45397267204945
+        ],
+        "triangulos_banda": 72832,
+        "invertidos": 0
+      },
+      {
+        "fila": 19,
+        "anillo": false,
+        "piezas_previas_al_recorte": 8,
+        "giro_p50_p95_max_grados": [
+          45.03791891979757,
+          49.11590783506409,
+          49.81450388125595
+        ],
+        "triangulos_banda": 6080,
+        "invertidos": 0
+      },
+      {
+        "fila": 19,
+        "anillo": false,
+        "piezas_previas_al_recorte": 8,
+        "giro_p50_p95_max_grados": [
+          44.9173168886951,
+          48.46190073805006,
+          48.618293876339116
+        ],
+        "triangulos_banda": 5440,
+        "invertidos": 0
+      },
+      {
+        "fila": 19,
+        "anillo": false,
+        "piezas_previas_al_recorte": 8,
+        "giro_p50_p95_max_grados": [
+          44.899725373740225,
+          48.71913093290606,
+          49.046841891094125
+        ],
+        "triangulos_banda": 6208,
+        "invertidos": 0
+      },
+      {
+        "fila": 19,
+        "anillo": false,
+        "piezas_previas_al_recorte": 8,
+        "giro_p50_p95_max_grados": [
+          44.954041569059335,
+          48.58325436481243,
+          48.83433050834575
+        ],
+        "triangulos_banda": 5632,
+        "invertidos": 0
+      },
+      {
+        "fila": 19,
+        "anillo": false,
+        "piezas_previas_al_recorte": 8,
+        "giro_p50_p95_max_grados": [
+          44.90074362791462,
+          48.732656782294036,
+          48.902563765797616
+        ],
+        "triangulos_banda": 5440,
+        "invertidos": 0
+      },
+      {
+        "fila": 19,
+        "anillo": false,
+        "piezas_previas_al_recorte": 6,
+        "giro_p50_p95_max_grados": [
+          60.03912232012834,
+          64.3696527836476,
+          64.97373809085745
+        ],
+        "triangulos_banda": 4800,
+        "invertidos": 0
+      },
+      {
+        "fila": 19,
+        "anillo": false,
+        "piezas_previas_al_recorte": 8,
+        "giro_p50_p95_max_grados": [
+          44.85479958734866,
+          49.47305090813311,
+          49.830382058801575
+        ],
+        "triangulos_banda": 5344,
+        "invertidos": 0
+      },
+      {
+        "fila": 20,
+        "anillo": true,
+        "piezas_previas_al_recorte": 94,
+        "giro_p50_p95_max_grados": [
+          7.639146077566417,
+          27.27316363947171,
+          33.04797487931636
+        ],
+        "triangulos_banda": 71456,
+        "invertidos": 0
+      },
+      {
+        "fila": 21,
+        "anillo": true,
+        "piezas_previas_al_recorte": 94,
+        "giro_p50_p95_max_grados": [
+          15.666800766883142,
+          51.14834593782631,
+          62.35786149511708
+        ],
+        "triangulos_banda": 71456,
+        "invertidos": 0
+      },
+      {
+        "fila": 22,
+        "anillo": true,
+        "piezas_previas_al_recorte": 92,
+        "giro_p50_p95_max_grados": [
+          14.044521492609174,
+          71.64614623613363,
+          83.56964498728436
+        ],
+        "triangulos_banda": 69472,
+        "invertidos": 0
+      },
+      {
+        "fila": 23,
+        "anillo": true,
+        "piezas_previas_al_recorte": 158,
+        "giro_p50_p95_max_grados": [
+          4.443675336272444,
+          24.768221006342596,
+          53.74845498355189
+        ],
+        "triangulos_banda": 64704,
+        "invertidos": 0
+      },
+      {
+        "fila": 24,
+        "anillo": true,
+        "piezas_previas_al_recorte": 152,
+        "giro_p50_p95_max_grados": [
+          4.646646418015987,
+          19.406705573358707,
+          24.197785174884395
+        ],
+        "triangulos_banda": 62144,
+        "invertidos": 0
+      },
+      {
+        "fila": 25,
+        "anillo": true,
+        "piezas_previas_al_recorte": 82,
+        "giro_p50_p95_max_grados": [
+          16.446949567959106,
+          56.58035826438039,
+          73.97308767547248
+        ],
+        "triangulos_banda": 61632,
+        "invertidos": 0
+      },
+      {
+        "fila": 26,
+        "anillo": true,
+        "piezas_previas_al_recorte": 74,
+        "giro_p50_p95_max_grados": [
+          7.655292043708188,
+          46.35602131808358,
+          55.749210588611206
+        ],
+        "triangulos_banda": 55552,
+        "invertidos": 0
+      },
+      {
+        "fila": 27,
+        "anillo": true,
+        "piezas_previas_al_recorte": 68,
+        "giro_p50_p95_max_grados": [
+          4.2292782401022215,
+          11.119689814238145,
+          12.822553414453612
+        ],
+        "triangulos_banda": 51904,
+        "invertidos": 0
+      },
+      {
+        "fila": 28,
+        "anillo": true,
+        "piezas_previas_al_recorte": 68,
+        "giro_p50_p95_max_grados": [
+          6.372152065191978,
+          15.224011112391594,
+          17.625735929553112
+        ],
+        "triangulos_banda": 50720,
+        "invertidos": 0
+      },
+      {
+        "fila": 29,
+        "anillo": true,
+        "piezas_previas_al_recorte": 122,
+        "giro_p50_p95_max_grados": [
+          5.341991109149419,
+          12.75001907234152,
+          13.950317883306552
+        ],
+        "triangulos_banda": 50112,
+        "invertidos": 0
+      },
+      {
+        "fila": 30,
+        "anillo": true,
+        "piezas_previas_al_recorte": 120,
+        "giro_p50_p95_max_grados": [
+          6.360228501424926,
+          14.223755483153376,
+          15.349974455387505
+        ],
+        "triangulos_banda": 49280,
+        "invertidos": 0
+      },
+      {
+        "fila": 31,
+        "anillo": true,
+        "piezas_previas_al_recorte": 64,
+        "giro_p50_p95_max_grados": [
+          14.231031801435734,
+          27.690279704085995,
+          29.647680799529084
+        ],
+        "triangulos_banda": 48480,
+        "invertidos": 0
+      },
+      {
+        "fila": 32,
+        "anillo": true,
+        "piezas_previas_al_recorte": 64,
+        "giro_p50_p95_max_grados": [
+          17.676925802712717,
+          29.97538761701206,
+          32.21078174555804
+        ],
+        "triangulos_banda": 47968,
+        "invertidos": 0
+      },
+      {
+        "fila": 33,
+        "anillo": true,
+        "piezas_previas_al_recorte": 64,
+        "giro_p50_p95_max_grados": [
+          20.75775996579002,
+          35.43323727255196,
+          38.00783926985653
+        ],
+        "triangulos_banda": 47584,
+        "invertidos": 0
+      },
+      {
+        "fila": 34,
+        "anillo": true,
+        "piezas_previas_al_recorte": 62,
+        "giro_p50_p95_max_grados": [
+          23.032119639037656,
+          49.4715076757801,
+          54.21978275235282
+        ],
+        "triangulos_banda": 46880,
+        "invertidos": 0
+      },
+      {
+        "fila": 35,
+        "anillo": true,
+        "piezas_previas_al_recorte": 112,
+        "giro_p50_p95_max_grados": [
+          13.992505699607786,
+          46.21595856558535,
+          56.46078347123151
+        ],
+        "triangulos_banda": 45952,
+        "invertidos": 0
+      },
+      {
+        "fila": 36,
+        "anillo": true,
+        "piezas_previas_al_recorte": 100,
+        "giro_p50_p95_max_grados": [
+          12.869945046453324,
+          68.13260135419466,
+          121.6775735035353
+        ],
+        "triangulos_banda": 40928,
+        "invertidos": 674
+      },
+      {
+        "fila": 37,
+        "anillo": true,
+        "piezas_previas_al_recorte": 42,
+        "giro_p50_p95_max_grados": [
+          18.869864134774993,
+          48.28610998445676,
+          50.29033175472299
+        ],
+        "triangulos_banda": 32288,
+        "invertidos": 0
+      },
+      {
+        "fila": 38,
+        "anillo": true,
+        "piezas_previas_al_recorte": 42,
+        "giro_p50_p95_max_grados": [
+          21.95854004934761,
+          54.187060485688036,
+          58.19087421937918
+        ],
+        "triangulos_banda": 31104,
+        "invertidos": 0
+      },
+      {
+        "fila": 39,
+        "anillo": true,
+        "piezas_previas_al_recorte": 38,
+        "giro_p50_p95_max_grados": [
+          23.814017405572017,
+          91.82622212841846,
+          127.85673627869684
+        ],
+        "triangulos_banda": 29248,
+        "invertidos": 13
+      },
+      {
+        "fila": 40,
+        "anillo": true,
+        "piezas_previas_al_recorte": 26,
+        "giro_p50_p95_max_grados": [
+          13.714504649007853,
+          18.79323867511701,
+          20.861698480177168
+        ],
+        "triangulos_banda": 20128,
+        "invertidos": 0
+      },
+      {
+        "fila": 41,
+        "anillo": true,
+        "piezas_previas_al_recorte": 46,
+        "giro_p50_p95_max_grados": [
+          7.839147493429097,
+          8.115292868517152,
+          8.261996473883793
+        ],
+        "triangulos_banda": 18560,
+        "invertidos": 0
+      },
+      {
+        "fila": 42,
+        "anillo": true,
+        "piezas_previas_al_recorte": 44,
+        "giro_p50_p95_max_grados": [
+          8.202410850779662,
+          8.510483041622464,
+          165.4436394051949
+        ],
+        "triangulos_banda": 17600,
+        "invertidos": 0
+      },
+      {
+        "fila": 43,
+        "anillo": true,
+        "piezas_previas_al_recorte": 22,
+        "giro_p50_p95_max_grados": [
+          16.43215336722856,
+          16.816697054658473,
+          19.530808273207096
+        ],
+        "triangulos_banda": 16736,
+        "invertidos": 0
+      },
+      {
+        "fila": 44,
+        "anillo": true,
+        "piezas_previas_al_recorte": 20,
+        "giro_p50_p95_max_grados": [
+          18.035849800801188,
+          18.312002938868567,
+          18.383131019254126
+        ],
+        "triangulos_banda": 15840,
+        "invertidos": 0
+      },
+      {
+        "fila": 45,
+        "anillo": true,
+        "piezas_previas_al_recorte": 20,
+        "giro_p50_p95_max_grados": [
+          17.99481601961009,
+          18.258798612552276,
+          18.317040893087725
+        ],
+        "triangulos_banda": 14880,
+        "invertidos": 0
+      }
+    ],
+    "invertidos": 6208,
+    "triangulos_banda": 3261056,
+    "peor_mediana_anillo_filas_13_24_y_30_37": [
+      23.032119639037656,
+      34
+    ]
+  },
+  "ensayo_interseccion_eje": {
+    "intervalo_catetos": [
+      -3,
+      7
+    ],
+    "paso_catetos": 0.02,
+    "histograma_cruces": {
+      "1": 1536
+    },
+    "n_vertices_bocas_con_un_cruce_por_vertice": 1536,
+    "max_residuo_m": 5.8223823293833426e-12
+  },
+  "paredes_con_techo_bajo_borde": 0,
+  "max_abs_borde_menos_H_antes_de_inclinar_m": 5.249910060156898e-07,
+  "borde_menos_campo_m": {
+    "n": 1536,
+    "min": -0.221625571237717,
+    "max": 1.103612314337383,
+    "mediana_abs": 0.5114534682785499,
+    "max_abs_por_cupulin": {
+      "cupulin_00": 1.0546975576543829,
+      "cupulin_01": 1.067572058055288,
+      "cupulin_02": 1.087068481470978,
+      "cupulin_03": 1.0781406447047372,
+      "cupulin_04": 1.103612314337383,
+      "cupulin_05": 1.0718807355379798,
+      "cupulin_06": 1.063387295467615,
+      "cupulin_07": 1.0439159686348607,
+      "cupulin_08": 1.0485869005161486,
+      "cupulin_09": 1.0237321816029934,
+      "cupulin_10": 1.0235270579510731,
+      "cupulin_11": 1.0153602162898272,
+      "cupulin_12": 0.9923498360146478,
+      "cupulin_13": 1.0591543546162772,
+      "cupulin_14": 1.0366215943777184,
+      "cupulin_15": 1.0589606746270275
+    }
+  }
+}

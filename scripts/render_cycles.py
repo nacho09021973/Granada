@@ -142,6 +142,8 @@ BISEL = 0.02
 """Ancho del bisel de las aristas vivas (> 40 grados)."""
 DESGASTE = 0.55
 """Cuanto pigmento se pierde en las aristas salientes (0 = nada)."""
+OBRA_NUEVA = False
+"""Ensayo de acabado sin desgaste ni alabeo; no añade detalle histórico."""
 
 
 def argumentos():
@@ -154,6 +156,8 @@ def argumentos():
     ap.add_argument("--sufijo", default="")
     ap.add_argument("--obj", type=Path, default=OBJ)
     ap.add_argument("--sin-limpieza", action="store_true", help="sin eliminador de ruido (diagnostico)")
+    ap.add_argument("--acabado", choices=("actual", "obra-nueva"), default="actual",
+                    help="obra-nueva: sin alabeo, desgaste ni suciedad artificial; microrelieve reducido (ensayo)")
     ap.add_argument("--luz", choices=("sol", "penumbra"), default="penumbra",
                     help="sol: haces rasantes por las ventanas; penumbra: sin sol, luz pareja rebotada del "
                          "suelo (luz_sala) en todas las vistas, como la maqueta de Ferrer_5 (2026-11-18)")
@@ -268,7 +272,8 @@ def material_yeso(nombre: str, color, rugosidad=0.85, grano=0.25, translucidez=0
     nt.links.new(ruido.outputs["Fac"], rampa.inputs["Value"])
     nt.links.new(rampa.outputs["Result"], mezcla.inputs["Factor"])
     base = [_srgb_a_lineal(c) for c in (debajo or color)]
-    nt.links.new(_desgaste(nt, mezcla.outputs["Result"], base, desgaste), bsdf.inputs["Base Color"])
+    color_final = mezcla.outputs["Result"] if OBRA_NUEVA else _desgaste(nt, mezcla.outputs["Result"], base, desgaste)
+    nt.links.new(color_final, bsdf.inputs["Base Color"])
     bsdf.inputs["Roughness"].default_value = rugosidad
     bsdf.inputs["Subsurface Weight"].default_value = translucidez
     bsdf.inputs["Subsurface Radius"].default_value = (0.08, 0.06, 0.04)
@@ -294,7 +299,7 @@ def material_yeso(nombre: str, color, rugosidad=0.85, grano=0.25, translucidez=0
             alto = suma.outputs["Value"]
     relieve = nt.nodes.new("ShaderNodeBump")
     relieve.inputs["Strength"].default_value = min(1.0, 2.4 * grano)
-    relieve.inputs["Distance"].default_value = 0.2
+    relieve.inputs["Distance"].default_value = 0.001 if OBRA_NUEVA else 0.2
     nt.links.new(alto, relieve.inputs["Height"])
     nt.links.new(relieve.outputs["Normal"], bsdf.inputs["Normal"])
     return m
@@ -373,6 +378,9 @@ def importar(obj: Path, colores):
 
 def gastar(objetos):
     """Alabeo leve con ruido en coordenadas del mundo y bisel de aristas vivas."""
+    if OBRA_NUEVA:
+        # No desplazar las piezas: el acabado no debe cambiar sus encuentros.
+        return
     ruido = bpy.data.textures.new("alabeo", "CLOUDS")
     ruido.noise_scale = ALABEO_ESCALA
     ruido.noise_depth = 2
@@ -628,7 +636,9 @@ def ajustes(muestras: int, lado: int):
 
 
 def main() -> int:
+    global OBRA_NUEVA
     args = argumentos()
+    OBRA_NUEVA = args.acabado == "obra-nueva"
     limpiar()
     colores = colores_del_mtl(args.obj.with_suffix(".mtl"))
     objetos, propios = importar(args.obj, colores)

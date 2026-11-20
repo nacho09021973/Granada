@@ -1,0 +1,132 @@
+{
+  "obj": "renders/previas/cupula_campo_vigente_1400.obj",
+  "sha256_obj": "23ee5e06e3fd0b1dbc74746e9f8951a4febc5b1ec70253c9d93e6c942b8ceb45",
+  "sha256_mtl": "b78a5fdc88d23e176723362bc800e217b2ccd108a3f6d60394ac18f4a1cc7c47",
+  "sha256_glb": "5987d11b2462d7fb8ab43d5863f72ffe91313e1685c0163cba7a51041a033959",
+  "blender": "4.5.15 LTS",
+  "cateto_m": 0.22381466813208983,
+  "suelo_m": -11.272,
+  "mallas": 179,
+  "triangulos": 1082253,
+  "bytes_gzip": 16721097,
+  "borde_clave": 266,
+  "cota_max_clave_m": 4.67,
+  "puntos_visibilidad": 541020,
+  "muestras_de_ventana": 16,
+  "geometria_presentacion": [
+    "clave",
+    "cupulin_00",
+    "frentes_locales",
+    "tambor",
+    "hiladas_del_pano_00"
+  ],
+  "sector_00": {
+    "piezas_por_hilada": [
+      16,
+      17
+    ],
+    "fondos_m": [
+      0.0,
+      0.134,
+      0.251
+    ],
+    "desplazamiento_vertical_seccion_m": -0.35548102808960225,
+    "apotema_m": 3.8657066822052,
+    "encuentros_glb": {
+      "juntas_laterales": 31,
+      "minimo_vertices_por_junta": 17,
+      "vertices_compartidos_entre_hiladas": 1370,
+      "vertices_compartidos_con_pared": 1370
+    },
+    "antes": {
+      "sala": {
+        "rayos_por_ventana": 759,
+        "cielo_por_ventana": [
+          51,
+          45
+        ],
+        "piezas_visibles": [
+          0,
+          0
+        ]
+      },
+      "frontal": {
+        "rayos_por_ventana": 759,
+        "cielo_por_ventana": [
+          172,
+          230
+        ],
+        "piezas_visibles": [
+          0,
+          0
+        ]
+      },
+      "lateral": {
+        "rayos_por_ventana": 759,
+        "cielo_por_ventana": [
+          241,
+          112
+        ],
+        "piezas_visibles": [
+          0,
+          0
+        ]
+      }
+    },
+    "despues": {
+      "sala": {
+        "rayos_por_ventana": 759,
+        "cielo_por_ventana": [
+          51,
+          45
+        ],
+        "piezas_visibles": [
+          16,
+          17
+        ]
+      },
+      "frontal": {
+        "rayos_por_ventana": 759,
+        "cielo_por_ventana": [
+          172,
+          230
+        ],
+        "piezas_visibles": [
+          16,
+          17
+        ]
+      },
+      "lateral": {
+        "rayos_por_ventana": 759,
+        "cielo_por_ventana": [
+          241,
+          111
+        ],
+        "piezas_visibles": [
+          16,
+          17
+        ]
+      }
+    }
+  },
+  "frentes_locales": 10,
+  "comprobacion_boca": {
+    "rayos_por_vista": 4225,
+    "antes_de_los_frentes": {
+      "sala": 883,
+      "oblicua": 928
+    },
+    "con_frentes": {
+      "sala": 883,
+      "oblicua": 928
+    },
+    "con_dos_hiladas": {
+      "sala": 883,
+      "oblicua": 928
+    }
+  },
+  "fuentes_piloto": {
+    "piloto_asiento.npz": "4cca351fdc1a4ec21c6d94dfb8227fac20f003111e390a3c18ac23f30dddae77",
+    "piezas_recortadas_00.npz": "737625664ba917cbcfd7517106ad9a470376e846593ef41c155aeb358b32a5be"
+  }
+}

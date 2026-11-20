@@ -687,7 +687,8 @@ def _estrella_8(radio: float, n: int) -> list[tuple[float, float]]:
     return list(zip((rr * np.cos(phi)).tolist(), (rr * np.sin(phi)).tolist()))
 
 
-def cupulin_estrellado(c: Cupulin, profundidad: float, cota=None, radio_base: float = RADIO_BASE, n: int = 96):
+def cupulin_estrellado(c: Cupulin, profundidad: float, cota=None, radio_base: float = RADIO_BASE, n: int = 96,
+                      asiento_intersectado: bool = False):
     """Cupulin como se ve en la ortoimagen de AA-415_23 (2026-11-18): pozo de
     paredes lisas sobre la boca en gota, techo plano y en el una estrella de
     ocho puntas rehundida; marco de yeso alrededor de la boca.
@@ -704,6 +705,20 @@ def cupulin_estrellado(c: Cupulin, profundidad: float, cota=None, radio_base: fl
 
     def superficie(x: float, y: float) -> float:
         q = o + x * e1 + y * e2
+        if asiento_intersectado:
+            from scipy.optimize import brentq
+
+            def residuo(t):
+                p = q + t * nn
+                h = cota_del_cono(p[0], p[1], radio_base) if cota is None else cota(p[0], p[1])
+                return p[2] - h
+
+            lo = -3.0
+            for hi in np.arange(-2.75, 7.25, 0.25):
+                if residuo(lo) * residuo(hi) <= 0:
+                    return brentq(residuo, lo, hi)
+                lo = hi
+            raise ValueError("Sin interseccion de la generatriz con el campo")
         z = cota_del_cono(q[0], q[1], radio_base) if cota is None else cota(q[0], q[1])
         return (z - q[2]) / nn[2]
 

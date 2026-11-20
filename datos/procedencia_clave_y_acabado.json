@@ -1,0 +1,21 @@
+{
+  "sha256": {
+    "scripts/render_cycles.py": "71c726473f09f95009b976a0a3f618108f978a90349e6d2a14aeed06f69bdddb",
+    "scripts/ensayar_clave_estrellada.py": "e8129b2942b4239ba69b03a7e66a1dae8d48eee4ce67c941545e4e28f58af9ed",
+    "scripts/laminas_clave_y_acabado.py": "85e4ae7b79fd7d16cf1b85f3275524fb37f6bafe7cf7bbb6547ef004a8795238",
+    "renders/previas/cupula_campo_vigente_1400.obj": "23ee5e06e3fd0b1dbc74746e9f8951a4febc5b1ec70253c9d93e6c942b8ceb45",
+    "renders/previas/cupula_campo_vigente_1400.mtl": "b78a5fdc88d23e176723362bc800e217b2ccd108a3f6d60394ac18f4a1cc7c47",
+    "docs/AA-415_23_seccion.jpg": "bab660219f6c0542cbbaece463802cb55defa88b3980daca43b83cc05faa1c7d",
+    "docs/AA-415_23_orto_techo.jpg": "2d467585c15e85e9a52ad950c50e2700ac5827e649b0c43f4afaf3debb489280"
+  },
+  "acabado": {
+    "lado": 560,
+    "muestras": 16,
+    "vista": "cupula",
+    "perfiles": [
+      "actual",
+      "obra-nueva"
+    ],
+    "dispositivo": "cpu"
+  }
+}

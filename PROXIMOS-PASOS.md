@@ -1,9 +1,82 @@
 # Próximos pasos
 
-Estado a 2026-11-18. Documento de trabajo: se actualiza, no se conserva como
+Estado a 2026-11-20. Documento de trabajo: se actualiza, no se conserva como
 histórico. El registro de decisiones va en `docs/decisiones/`.
 
 ---
+
+## Traslado al otro PC — 20 de noviembre de 2026
+
+La rama de trabajo es `cierres-y-cupulines`. Para descargarla por primera vez:
+
+```bash
+git clone --branch cierres-y-cupulines https://github.com/nacho09021973/Granada.git
+cd Granada
+python3 -m http.server 8765 --bind 127.0.0.1
+```
+
+Abrir `http://localhost:8765/web/visita.html#hiladas`. El modelo comprimido,
+la textura y las librerías del navegador están incluidos. Para una copia
+ya existente, cambiar a esa rama y ejecutar `git pull --ff-only` después
+de comprobar que el trabajo local está guardado.
+
+Para trabajar en geometría, instalar Python y Blender 4.5 LTS y preparar:
+
+```bash
+python3 -m venv .venv
+.venv/bin/python -m pip install -r requirements.txt
+```
+
+En Windows, usar el Python de `.venv/Scripts/`. El exportador se ejecuta
+desde la raíz con `blender -b -t 2 --python-exit-code 1 -P scripts/exportar_visita_web.py`.
+Se incluyen el OBJ auditado, su MTL y los dos NPZ que necesita. Las fuentes
+documentales excluidas por derechos deben recuperarse del archivo privado
+de referencia antes de contrastar nuevas medidas.
+
+Orden para esta tarde:
+
+1. Abrir la visita y comprobar sala, cupulín, hiladas, zoom y giro.
+2. Revisar la comparación 0036 y resolver el desfase vertical de 35,5 cm
+   con la sección antes de extender el paño.
+3. Registrar una vista oblicua del mismo tramo y ajustar fondos y apoyos.
+4. Completar los macizos tallados entre ventanas y corregir las rendijas
+   del borde superior que se ven al girar.
+5. Repetir la comparación desde la sala y dos vistas cercanas. Extender
+   a otros paños cuando los encuentros estén contrastados.
+6. Medir carga y fluidez en un móvil físico y decidir la carga por zonas.
+
+El resultado sigue siendo una reconstrucción aproximada con profundidades,
+motivos y policromía propuestos. La decisión 0036 documenta su alcance.
+
+---
+
+## Entrega final acordada el 20 de noviembre — visita web en 3D
+
+El objetivo es recorrer con zoom una reconstrucción de Dos Hermanas como en la
+inauguración y apreciar las piezas desde distintos ángulos. Las fotografías y
+las láminas de Cycles sirven para comparar el modelo con las fuentes.
+
+La [visita](web/visita.html) permite partir desde la sala, escoger un punto
+visible y rodearlo con el ratón o con gestos táctiles. La versión 0035
+incorpora un remate central, el asiento recortado del cupulín 00, diez frentes
+en su entorno y vanos con celosías en el tambor. La luz se atenúa según qué
+ventanas son visibles desde cada vértice. La malla de campo de 0032 sigue
+siendo la referencia de las hiladas. [Prueba y alcance](docs/decisiones/0035-detalle-de-la-visita.md).
+
+**Piloto del sector 00, 0036.** La visita incorpora dos hiladas contiguas
+de 16 y 17 piezas sobre las dos ventanas del paño. El botón **Hiladas**
+acerca el visitante a la junta con el vano. La comprobación de los cantos
+del archivo web y el contraste en tres perspectivas figuran en la
+[decisión 0036](docs/decisiones/0036-hiladas-sobre-las-ventanas.md).
+
+**Antes de repetir el paño.** Resolver la diferencia vertical de 35,5 cm
+entre el ápice de referencia en la sección y la ventana del modelo. Contrastar
+la profundidad de las dos hiladas con una vista oblicua registrada del mismo
+tramo. El resultado actual queda como piloto local.
+
+La versión actual carga toda la malla de una vez. Al incorporar el relieve
+y los motivos de superficie, medir la carga y la fluidez en un móvil físico
+y cargar por zona el detalle que necesite la cámara.
 
 ## Para el 2026-11-19 (anotado a petición del usuario)
 
@@ -21,6 +94,25 @@ Defecto actual (decisiones 0029 y 0030, rama `cierres-y-cupulines`, commit
    1400`. Comparar con `scripts/comparar_con_ferrer.py`.
 2. **Las rendijas entre piezas**, la tercera diferencia frente a Ferrer_5; se
    notan más sobre el fondo claro.
+   Diagnóstico 0031: con el modelo vigente, 69 componentes en planta a paso
+   0,06 y 42 a 0,03 catetos, con igual área mínima. El recuento no es estable;
+   los 48 del modelo anterior no describen el actual. No se añaden parches.
+   Siguiente: localizar juntas visibles en el render y contrastar los bordes
+   de la malla en 3D; la cobertura en planta no mide esas juntas.
+
+Revisión geométrica del OBJ a 1400 px: [decisión 0032](docs/decisiones/0032-revision-geometrica-del-obj.md). Prioridades: asiento y encuentros de un cupulín piloto, clave estrellada con altura contrastada y agrupación de las piezas de un sector.
+
+Reanudación 2026-11-20: el ensayo articulado del cupulín queda local según
+0032. Diagnóstico de la clave en [0033](docs/decisiones/0033-alcance-local-de-la-clave.md):
+solo `cupulilla_25` excede la cota de calibración de 4,67 m; sin ella, el
+máximo del resto es 4,670000034 m. Siguiente: ensayar el remate estrellado
+local, conservando el encuentro y comprobando cobertura, altura y lectura
+desde el visitante. **Ensayo ejecutado, 0034:** altura 4,67 m y cobertura
+muestreada conservadas; no se promueve porque la estrella queda escalonada
+y el encuentro sigue circular. Se añade `--acabado obra-nueva` como opción
+de comparación, sin cambiar el defecto. La siguiente malla de clave debe
+alinear sus aristas con los quiebros; el sector de hiladas y el relieve del
+tambor siguen pendientes. Véase [0034](docs/decisiones/0034-pilotos-de-clave-y-acabado.md).
 
 Pendientes que quedan abiertos frente a Ferrer_5: el oscuro sale en trazos
 finos, no en manchas compactas (probar a pintar enteras las piezas del

@@ -3,6 +3,30 @@
 Generador de cúpulas de mocárabes (muqarnas) con geometría algebraicamente
 exacta, parametrizado por el orden de simetría.
 
+### Visita de la Sala de las Dos Hermanas
+
+[Explorar la cúpula en 3D](web/visita.html). Para abrirla en local, ejecutar
+`python3 -m http.server 8765 --bind 127.0.0.1` en la raíz y entrar en
+`http://127.0.0.1:8765/web/visita.html`. Se puede tocar una pieza para
+acercarse, girar a su alrededor y volver a la sala. El botón **Cupulín**
+lleva al sector de prueba con las caras talladas. La clave, este cupulín y
+las ventanas del tambor incorporan geometría de presentación. Las alturas
+locales, los motivos de talla y la policromía son propuestas.
+El botón **Hiladas** encuadra las dos ventanas del mismo paño. Sobre ellas
+se pueden recorrer dos hiladas de 16 y 17 piezas y ver el intradós de los
+vanos al girar. El encaje en altura se documenta en la
+[decisión 0036](docs/decisiones/0036-hiladas-sobre-las-ventanas.md).
+
+El archivo de visita y su [procedencia](web/modelos/dos-hermanas.json)
+acompañan a la web. Con la malla y los dos archivos del piloto de asiento y
+recorte de 0032 presentes, regenerar el grano del yeso con
+`.venv/bin/python scripts/textura_yeso_visita.py` y la geometría con
+`~/.local/opt/blender/blender -b -t 2 --python-exit-code 1 -P scripts/exportar_visita_web.py`.
+El exportador contrasta el hash de origen y los recuentos de mallas y
+triángulos. `bash scripts/publicar_web.sh --preparar` deja un sitio estático
+en `build/`, listo para servir desde su propio directorio. Los criterios de
+la prueba y su reproducción figuran en la [decisión 0035](docs/decisiones/0035-detalle-de-la-visita.md).
+
 **Estado actual.** El núcleo aritmético exacto está sólido, la red de medinas
 propuesta para Dos Hermanas ya es un grafo conexo completo (323 nudos, 427
 aristas), sus **105 caras** están extraídas, medidas y clasificadas donde hay

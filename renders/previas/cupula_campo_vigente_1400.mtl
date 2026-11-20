@@ -1,0 +1,251 @@
+newmtl almagra_0
+Kd 0.4392 0.3765 0.3176
+
+newmtl almagra_1
+Kd 0.3922 0.3333 0.2824
+
+newmtl almagra_2
+Kd 0.3412 0.2941 0.2471
+
+newmtl almagra_3
+Kd 0.2941 0.2510 0.2118
+
+newmtl almagra_4
+Kd 0.2471 0.2118 0.1765
+
+newmtl almagra_5
+Kd 0.1961 0.1686 0.1412
+
+newmtl ocre_0
+Kd 0.3882 0.3608 0.2863
+
+newmtl ocre_1
+Kd 0.3451 0.3216 0.2549
+
+newmtl ocre_2
+Kd 0.3020 0.2824 0.2235
+
+newmtl ocre_3
+Kd 0.2588 0.2431 0.1922
+
+newmtl ocre_4
+Kd 0.2157 0.2039 0.1608
+
+newmtl ocre_5
+Kd 0.1765 0.1608 0.1294
+
+newmtl verde_0
+Kd 0.2471 0.3412 0.2824
+
+newmtl verde_1
+Kd 0.2196 0.3020 0.2510
+
+newmtl verde_2
+Kd 0.1922 0.2667 0.2196
+
+newmtl verde_3
+Kd 0.1647 0.2275 0.1882
+
+newmtl verde_4
+Kd 0.1373 0.1922 0.1569
+
+newmtl verde_5
+Kd 0.1098 0.1529 0.1255
+
+newmtl granate_0
+Kd 0.3647 0.2824 0.2667
+
+newmtl granate_1
+Kd 0.3255 0.2510 0.2392
+
+newmtl granate_2
+Kd 0.2863 0.2196 0.2078
+
+newmtl granate_3
+Kd 0.2431 0.1882 0.1804
+
+newmtl granate_4
+Kd 0.2039 0.1569 0.1490
+
+newmtl granate_5
+Kd 0.1647 0.1255 0.1216
+
+newmtl azul_0
+Kd 0.1843 0.2980 0.3137
+
+newmtl azul_1
+Kd 0.1647 0.2667 0.2784
+
+newmtl azul_2
+Kd 0.1451 0.2314 0.2431
+
+newmtl azul_3
+Kd 0.1216 0.2000 0.2118
+
+newmtl azul_4
+Kd 0.1020 0.1686 0.1765
+
+newmtl azul_5
+Kd 0.0824 0.1333 0.1412
+
+newmtl yeso_0
+Kd 0.7373 0.7216 0.6863
+
+newmtl yeso_1
+Kd 0.6549 0.6431 0.6118
+
+newmtl yeso_2
+Kd 0.5765 0.5647 0.5333
+
+newmtl yeso_3
+Kd 0.4941 0.4824 0.4588
+
+newmtl yeso_4
+Kd 0.4118 0.4039 0.3843
+
+newmtl yeso_5
+Kd 0.3333 0.3255 0.3098
+
+newmtl oro_0
+Kd 0.7804 0.6353 0.3529
+
+newmtl oro_1
+Kd 0.6941 0.5647 0.3137
+
+newmtl oro_2
+Kd 0.6078 0.4941 0.2745
+
+newmtl oro_3
+Kd 0.5216 0.4275 0.2353
+
+newmtl oro_4
+Kd 0.4353 0.3569 0.1961
+
+newmtl oro_5
+Kd 0.3529 0.2863 0.1569
+
+newmtl hueco_0
+Kd 0.0863 0.0745 0.0588
+
+newmtl hueco_1
+Kd 0.0784 0.0667 0.0510
+
+newmtl hueco_2
+Kd 0.0667 0.0588 0.0471
+
+newmtl hueco_3
+Kd 0.0588 0.0510 0.0392
+
+newmtl hueco_4
+Kd 0.0471 0.0431 0.0314
+
+newmtl hueco_5
+Kd 0.0392 0.0353 0.0275
+
+newmtl lapislazuli_0
+Kd 0.3608 0.4392 0.6196
+
+newmtl lapislazuli_1
+Kd 0.3216 0.3922 0.5529
+
+newmtl lapislazuli_2
+Kd 0.2824 0.3412 0.4824
+
+newmtl lapislazuli_3
+Kd 0.2431 0.2941 0.4157
+
+newmtl lapislazuli_4
+Kd 0.2039 0.2471 0.3451
+
+newmtl lapislazuli_5
+Kd 0.1608 0.1961 0.2784
+
+newmtl cinabrio_0
+Kd 0.6980 0.4078 0.3647
+
+newmtl cinabrio_1
+Kd 0.6196 0.3647 0.3255
+
+newmtl cinabrio_2
+Kd 0.5451 0.3176 0.2863
+
+newmtl cinabrio_3
+Kd 0.4667 0.2745 0.2431
+
+newmtl cinabrio_4
+Kd 0.3922 0.2275 0.2039
+
+newmtl cinabrio_5
+Kd 0.3137 0.1843 0.1647
+
+newmtl tostado_0
+Kd 0.2980 0.1843 0.1451
+
+newmtl tostado_1
+Kd 0.2667 0.1647 0.1294
+
+newmtl tostado_2
+Kd 0.2314 0.1451 0.1137
+
+newmtl tostado_3
+Kd 0.2000 0.1216 0.0980
+
+newmtl tostado_4
+Kd 0.1686 0.1020 0.0824
+
+newmtl tostado_5
+Kd 0.1333 0.0824 0.0667
+
+newmtl crema_0
+Kd 0.8588 0.7686 0.6863
+
+newmtl crema_1
+Kd 0.7647 0.6824 0.6118
+
+newmtl crema_2
+Kd 0.6706 0.6000 0.5333
+
+newmtl crema_3
+Kd 0.5765 0.5137 0.4588
+
+newmtl crema_4
+Kd 0.4824 0.4314 0.3843
+
+newmtl crema_5
+Kd 0.3882 0.3451 0.3098
+
+newmtl bermejo_0
+Kd 0.6196 0.3647 0.3137
+
+newmtl bermejo_1
+Kd 0.5529 0.3255 0.2784
+
+newmtl bermejo_2
+Kd 0.4824 0.2863 0.2431
+
+newmtl bermejo_3
+Kd 0.4157 0.2431 0.2118
+
+newmtl bermejo_4
+Kd 0.3451 0.2039 0.1765
+
+newmtl bermejo_5
+Kd 0.2784 0.1647 0.1412
+
+newmtl pizarra_0
+Kd 0.4392 0.4549 0.5490
+
+newmtl pizarra_1
+Kd 0.3922 0.4039 0.4902
+
+newmtl pizarra_2
+Kd 0.3412 0.3529 0.4275
+
+newmtl pizarra_3
+Kd 0.2941 0.3059 0.3686
+
+newmtl pizarra_4
+Kd 0.2471 0.2549 0.3059
+
+newmtl pizarra_5
+Kd 0.1961 0.2039 0.2471

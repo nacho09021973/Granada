@@ -95,6 +95,7 @@ canvas {
 }
 
 button, label, select { font: inherit; letter-spacing: 0; }
+.enlace-visita { grid-column: 1 / -1; color: var(--accent-dark); font-size: 14px; }
 
 button {
   border: 0;

@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
-# Publica el visor de zoom profundo en GitHub Pages (rama gh-pages).
+# Prepara la visita 3D para GitHub Pages (rama gh-pages).
 #
 # Uso:  scripts/publicar_web.sh            # construye y enseña que se subiria
+#       scripts/publicar_web.sh --preparar # deja una copia estática en build/, sin tocar git
 #       scripts/publicar_web.sh --subir    # ademas fuerza la rama gh-pages en origin
 #
 # La rama gh-pages no comparte historia con el resto: cada publicacion la
@@ -9,26 +10,36 @@
 # MB) no se acumulen en el historial. master y las ramas de trabajo no llevan
 # las teselas (web/zoom/ esta en .gitignore).
 #
-# Se publica solo el visor de zoom: las otras paginas de web/ leen ../datos y
-# ../renders, que no forman parte del sitio.
-#
-# Requisito: teselas en web/zoom/ (scripts/teselar_dzi.py).
+# La entrada es la visita 3D autocontenida. Si hay teselas locales, conserva
+# también la vista cenital en zoom.html.
 set -euo pipefail
 
 raiz="$(git rev-parse --show-toplevel)"
 cd "$raiz"
-[[ -f web/zoom/cupula_cenital.dzi ]] || { echo "faltan las teselas: scripts/teselar_dzi.py" >&2; exit 1; }
-
-sitio="$(mktemp -d)"
-indice="$(mktemp)"
-trap 'rm -rf "$sitio" "$indice"' EXIT
-
-mkdir -p "$sitio/vendor"
-cp web/zoom.html "$sitio/index.html"
-cp web/styles.css "$sitio/"
-cp web/vendor/openseadragon.min.js "$sitio/vendor/"
-cp -r web/zoom "$sitio/zoom"
+[[ -s web/modelos/dos-hermanas.glb.gz && -s web/modelos/dos-hermanas.json ]] || {
+    echo "Falta el modelo de la visita: scripts/exportar_visita_web.py" >&2; exit 1;
+}
+[[ -s web/modelos/yeso.png ]] || { echo "Falta web/modelos/yeso.png (scripts/textura_yeso_visita.py)" >&2; exit 1; }
+if [[ ${1:-} == --preparar ]]; then
+    mkdir -p build
+    sitio="$(mktemp -d "$raiz/build/visita-XXXXXX")"
+else
+    sitio="$(mktemp -d)"
+    indice="$(mktemp)"
+    trap 'rm -rf "$sitio" "$indice"' EXIT
+fi
+cp web/visita.html "$sitio/index.html"
+cp web/visita.js web/yeseria.js web/visita.css "$sitio/"
+cp -r web/vendor web/modelos "$sitio/"
+if [[ -f web/zoom/cupula_cenital.dzi ]]; then
+    cp web/zoom.html web/styles.css "$sitio/"
+    cp -r web/zoom "$sitio/zoom"
+fi
 touch "$sitio/.nojekyll"
+if [[ ${1:-} == --preparar ]]; then
+    echo "$sitio"
+    exit 0
+fi
 
 origen="$(git rev-parse --short HEAD)"
 echo "sitio: $(find "$sitio" -type f | wc -l) ficheros, $(du -sh "$sitio" | cut -f1); desde $origen"
@@ -38,7 +49,7 @@ rm -f "$indice"
 export GIT_INDEX_FILE="$indice"
 git --work-tree="$sitio" add -A
 arbol="$(git write-tree)"
-commit="$(git commit-tree "$arbol" -m "Visor de zoom de la cupula, desde $origen")"
+commit="$(git commit-tree "$arbol" -m "Visita 3D de la cúpula, desde $origen")"
 unset GIT_INDEX_FILE
 git update-ref refs/heads/gh-pages "$commit"
 echo "rama gh-pages -> $commit"

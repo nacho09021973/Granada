@@ -1,0 +1,24 @@
+{
+  "residuo_base_m": 2.7035080721628384e-13,
+  "piezas_repuestas": 36,
+  "ortogonal_piloto": {
+    "rayos": 32400,
+    "sin_impacto": 4700,
+    "cupulin_visible": 4605
+  },
+  "ortogonal_repone_enteras": {
+    "rayos": 32400,
+    "sin_impacto": 4473,
+    "cupulin_visible": 1952
+  },
+  "visitante_piloto": {
+    "rayos": 32400,
+    "sin_impacto": 47,
+    "cupulin_visible": 7291
+  },
+  "visitante_repone_enteras": {
+    "rayos": 32400,
+    "sin_impacto": 0,
+    "cupulin_visible": 1963
+  }
+}

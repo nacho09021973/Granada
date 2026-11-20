@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Dos Hermanas · Explorar la cúpula</title>
+  <link rel="stylesheet" href="visita.css">
+  <script type="importmap">{"imports":{"three":"./vendor/three.module.min.js"}}</script>
+</head>
+<body>
+  <main>
+    <canvas aria-label="Cúpula de Dos Hermanas en tres dimensiones"></canvas>
+    <header><h1>Sala de las Dos Hermanas</h1><p>Reconstrucción aproximada · policromía propuesta</p></header>
+    <div class="navegacion">
+      <p id="ayuda">Toca una pieza para acercarte. Arrastra para girar. Usa la rueda o pellizca para ampliar.</p>
+      <nav aria-label="Recorrer la cúpula">
+        <button id="inicio" disabled>Desde la sala</button>
+        <button id="cupulin" disabled>Cupulín</button>
+        <button id="hiladas" disabled>Hiladas</button>
+        <button id="alejar" aria-label="Alejar" disabled>−</button>
+        <button id="acercar" aria-label="Acercar" disabled>+</button>
+      </nav>
+    </div>
+    <output id="carga" role="status">Cargando la cúpula…</output>
+  </main>
+  <script type="module" src="visita.js"></script>
+</body>
+</html>

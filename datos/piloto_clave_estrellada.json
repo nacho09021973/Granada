@@ -1,0 +1,23 @@
+{
+  "sha256_obj": "23ee5e06e3fd0b1dbc74746e9f8951a4febc5b1ec70253c9d93e6c942b8ceb45",
+  "script": "scripts/ensayar_clave_estrellada.py",
+  "blender": "4.5.15 LTS",
+  "objetivo_m": 4.67,
+  "maximo_candidato_m": 4.67,
+  "vertices_borde_conservados": 266,
+  "cobertura_vertical": "idéntica por planta y caras conservadas",
+  "visitante": {
+    "actual": {
+      "rayos": 10000,
+      "sin_impacto": 38,
+      "impactos_clave": 2978
+    },
+    "candidato": {
+      "rayos": 10000,
+      "sin_impacto": 38,
+      "impactos_clave": 3295
+    }
+  },
+  "cumple_no_aumentar_rayos_perdidos": true,
+  "alcance": "Piloto supuesto; falta comparación con sección y validación visual. Sin promoción."
+}
