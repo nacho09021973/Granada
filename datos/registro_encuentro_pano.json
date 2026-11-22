@@ -1,0 +1,200 @@
+{
+  "procedencia": "Lecturas de 0036 y primer impacto vertical del OBJ auditado; no medición nueva",
+  "sha256": {
+    "renders/previas/cupula_campo_vigente_1400.obj": "23ee5e06e3fd0b1dbc74746e9f8951a4febc5b1ec70253c9d93e6c942b8ceb45",
+    "datos/alzado_sala.json": "d6edbe8b287c8d83e8e1c794f03dd2766310cc607446d7eb0efbeae88ef26787",
+    "scripts/hiladas_ventanas.py": "115b7beb4663d005a6645870132e31acfae07745fd2c48492b2e852ecc71f435",
+    "scripts/registrar_encuentro_pano.py": "6fc3419eaf8eefafb63e5af211e06e1a664b3878a0eeea93cb314db01e55d677"
+  },
+  "apotema_m": 3.8657066822052,
+  "fondo_m": 0.251,
+  "muestras": [
+    {
+      "eje_px": 1844,
+      "fila_px": 2004,
+      "xy_m": [
+        3.6147066822052003,
+        -1.4070935803490945
+      ],
+      "cresta_seccion_m": 0.28783799800206566,
+      "intrados_campo_m": null,
+      "margen_m": null
+    },
+    {
+      "eje_px": 1945,
+      "fila_px": 1994,
+      "xy_m": [
+        3.6147066822052003,
+        -1.2072110886258054
+      ],
+      "cresta_seccion_m": 0.30900255667868815,
+      "intrados_campo_m": null,
+      "margen_m": null
+    },
+    {
+      "eje_px": 2058,
+      "fila_px": 2005,
+      "xy_m": [
+        3.6147066822052003,
+        -0.9835801820443036
+      ],
+      "cresta_seccion_m": 0.28572154213440343,
+      "intrados_campo_m": 0.0018463134765625,
+      "margen_m": -0.28387522865784093
+    },
+    {
+      "eje_px": 2129,
+      "fila_px": 1982,
+      "xy_m": [
+        3.6147066822052003,
+        -0.843068727466546
+      ],
+      "cresta_seccion_m": 0.3344000270906351,
+      "intrados_campo_m": 1.0108957290649414,
+      "margen_m": 0.6764957019743063
+    },
+    {
+      "eje_px": 2216,
+      "fila_px": 2000,
+      "xy_m": [
+        3.6147066822052003,
+        -0.6708927197445049
+      ],
+      "cresta_seccion_m": 0.29630382147271467,
+      "intrados_campo_m": 0.9418582916259766,
+      "margen_m": 0.6455544701532618
+    },
+    {
+      "eje_px": 2284,
+      "fila_px": 1963,
+      "xy_m": [
+        3.6147066822052003,
+        -0.5363183688813004
+      ],
+      "cresta_seccion_m": 0.3746126885762178,
+      "intrados_campo_m": 1.0689547061920166,
+      "margen_m": 0.6943420176157988
+    },
+    {
+      "eje_px": 2381,
+      "fila_px": 2002,
+      "xy_m": [
+        3.6147066822052003,
+        -0.34435201544408217
+      ],
+      "cresta_seccion_m": 0.29207090973739014,
+      "intrados_campo_m": null,
+      "margen_m": null
+    },
+    {
+      "eje_px": 2473,
+      "fila_px": 1987,
+      "xy_m": [
+        3.6147066822052003,
+        -0.16228083486445252
+      ],
+      "cresta_seccion_m": 0.32381774775232386,
+      "intrados_campo_m": null,
+      "margen_m": null
+    },
+    {
+      "eje_px": 2563,
+      "fila_px": 1993,
+      "xy_m": [
+        3.6147066822052003,
+        0.01583227657214171
+      ],
+      "cresta_seccion_m": 0.3111190125463504,
+      "intrados_campo_m": null,
+      "margen_m": null
+    },
+    {
+      "eje_px": 2650,
+      "fila_px": 2005,
+      "xy_m": [
+        3.6147066822052003,
+        0.1880082842941828
+      ],
+      "cresta_seccion_m": 0.28572154213440343,
+      "intrados_campo_m": null,
+      "margen_m": null
+    },
+    {
+      "eje_px": 2735,
+      "fila_px": 1996,
+      "xy_m": [
+        3.6147066822052003,
+        0.35622622287318845
+      ],
+      "cresta_seccion_m": 0.3047696449433636,
+      "intrados_campo_m": null,
+      "margen_m": null
+    },
+    {
+      "eje_px": 2823,
+      "fila_px": 1962,
+      "xy_m": [
+        3.6147066822052003,
+        0.5303812651667473
+      ],
+      "cresta_seccion_m": 0.37672914444388006,
+      "intrados_campo_m": 0.9591009616851807,
+      "margen_m": 0.5823718172413006
+    },
+    {
+      "eje_px": 2920,
+      "fila_px": 1993,
+      "xy_m": [
+        3.6147066822052003,
+        0.7223476186039655
+      ],
+      "cresta_seccion_m": 0.3111190125463504,
+      "intrados_campo_m": 0.923602819442749,
+      "margen_m": 0.6124838068963987
+    },
+    {
+      "eje_px": 3016,
+      "fila_px": 2006,
+      "xy_m": [
+        3.6147066822052003,
+        0.912334937469666
+      ],
+      "cresta_seccion_m": 0.2836050862667412,
+      "intrados_campo_m": 1.2493011951446533,
+      "margen_m": 0.9656961088779121
+    },
+    {
+      "eje_px": 3115,
+      "fila_px": 1989,
+      "xy_m": [
+        3.6147066822052003,
+        1.1082593600499198
+      ],
+      "cresta_seccion_m": 0.3195848360169994,
+      "intrados_campo_m": null,
+      "margen_m": null
+    },
+    {
+      "eje_px": 3204,
+      "fila_px": 1968,
+      "xy_m": [
+        3.6147066822052003,
+        1.2843934369149963
+      ],
+      "cresta_seccion_m": 0.3640304092379066,
+      "intrados_campo_m": null,
+      "margen_m": null
+    },
+    {
+      "eje_px": 3284,
+      "fila_px": 1998,
+      "xy_m": [
+        3.6147066822052003,
+        1.4427162026364133
+      ],
+      "cresta_seccion_m": 0.30053673320803914,
+      "intrados_campo_m": null,
+      "margen_m": null
+    }
+  ]
+}

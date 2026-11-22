@@ -1,0 +1,115 @@
+{
+  "fuente_primaria": "docs/AA-415_23.pdf p.1; imagen de sección local",
+  "naturaleza": "Contraste de lecturas manuales existentes, no nueva medición",
+  "sha256": {
+    "scripts/hiladas_ventanas.py": "6cbbe8a9c60271023725b2400d96182d050c9e551c3f73bd94de8c3b3f3a3f9a",
+    "scripts/detalle_visita.py": "7b7850f2f816e7bf64bceac17c4956c7dbfd9a2426aca0e4d0308fa812a6f627",
+    "datos/alzado_sala.json": "d6edbe8b287c8d83e8e1c794f03dd2766310cc607446d7eb0efbeae88ef26787",
+    "web/modelos/dos-hermanas.json": "d49bbedf1fc5aa8d28161e5cbdbe732ee769a40d09533a12016a8e3fe1be8165",
+    "docs/AA-415_23_seccion.jpg": "bab660219f6c0542cbbaece463802cb55defa88b3980daca43b83cc05faa1c7d",
+    "scripts/diagnosticar_desfase_ventanas.py": "7039842a4c8ac390736b34684d69aaf872ce69bb2ea773323593561f357fcf0f"
+  },
+  "px_por_m": 472.488,
+  "origen_px": 2140,
+  "fila_apice_px": 2050,
+  "apice_seccion_m": 0.19048102808960227,
+  "apice_modelo_m": -0.165,
+  "desfase_m": -0.35548102808960225,
+  "encaje_activo": "seccion",
+  "desfase_encaje_activo_m": 0.0,
+  "desfase_por_altura_desde_alfeizar_m": -0.3555469599227916,
+  "altura_vano_seccion_m": 1.5365469599227917,
+  "altura_vano_modelo_m": 1.181,
+  "ordenes": {
+    "inferior": {
+      "crestas_px": [
+        2128,
+        2112,
+        2173,
+        2138,
+        2146,
+        2050,
+        2141,
+        2172,
+        2136,
+        2137,
+        2047,
+        2140,
+        2170,
+        2138,
+        2114,
+        2124
+      ],
+      "cotas_seccion_m": [
+        0.02539747041194697,
+        0.05926076429454293,
+        -0.06984304363285417,
+        0.004232911735324495,
+        -0.012698735205973486,
+        0.19048102808960227,
+        -0.0021164558676622473,
+        -0.06772658776519191,
+        0.00846582347064899,
+        0.006349367602986743,
+        0.196830395692589,
+        0.0,
+        -0.06349367602986743,
+        0.004232911735324495,
+        0.05502785255921844,
+        0.03386329388259596
+      ],
+      "crestas_sobre_z_cero": 10,
+      "rango_cotas_seccion_m": [
+        -0.06984304363285417,
+        0.196830395692589
+      ]
+    },
+    "superior": {
+      "crestas_px": [
+        2004,
+        1994,
+        2005,
+        1982,
+        2000,
+        1963,
+        2002,
+        1987,
+        1993,
+        2005,
+        1996,
+        1962,
+        1993,
+        2006,
+        1989,
+        1968,
+        1998
+      ],
+      "cotas_seccion_m": [
+        0.28783799800206566,
+        0.30900255667868815,
+        0.28572154213440343,
+        0.3344000270906351,
+        0.29630382147271467,
+        0.3746126885762178,
+        0.29207090973739014,
+        0.32381774775232386,
+        0.3111190125463504,
+        0.28572154213440343,
+        0.3047696449433636,
+        0.37672914444388006,
+        0.3111190125463504,
+        0.2836050862667412,
+        0.3195848360169994,
+        0.3640304092379066,
+        0.30053673320803914
+      ],
+      "crestas_sobre_z_cero": 17,
+      "rango_cotas_seccion_m": [
+        0.2836050862667412,
+        0.37672914444388006
+      ]
+    }
+  },
+  "conclusion": "El control 0036 hereda el ápice supuesto de 0035 y limita la segunda junta a -0.013 m. El modo seccion usa el origen común del alzado y elimina ese límite; el encaje activo se indica por separado.",
+  "pendiente": "Las profundidades y la abertura luminosa siguen propuestas; contrastar con una vista oblicua registrada antes de extender el piloto."
+}

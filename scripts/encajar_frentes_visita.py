@@ -104,3 +104,33 @@ def encajar(objeto, contornos):
     m.from_pydata(vertices, [], caras)
     m.polygons.foreach_set("material_index", tonos)
     m.update()
+
+
+def cerrar_corte_x(objeto, x, z=0.0):
+    """Devuelve el apoyo vertical del borde cortado hasta la cota de cornisa.
+
+    Solo aristas de contorno en el plano de corte. Sus coordenadas se
+    reutilizan exactamente; las caras no inventan un nuevo perfil de hilada.
+    """
+    from collections import Counter
+    from detalle_visita import Superficie
+
+    forma = Superficie()
+    vertices = np.array([tuple(objeto.matrix_world @ v.co) for v in objeto.data.vertices])
+    aristas = Counter(edge for f in objeto.data.polygons for edge in f.edge_keys)
+    cantidad = 0
+    for (a, b), veces in aristas.items():
+        p, q = vertices[[a, b]]
+        if veces != 1 or max(abs(p[0] - x), abs(q[0] - x)) > 1e-6:
+            continue
+        if np.linalg.norm(p - q) < 1e-8 or max(abs(p[2] - z), abs(q[2] - z)) < 1e-8:
+            continue
+        ids = forma.puntos([p, q, (q[0], q[1], z), (p[0], p[1], z)])
+        agregadas = 0
+        for indices in ((ids[0], ids[1], ids[2]), (ids[0], ids[2], ids[3])):
+            a, b, c = np.array([forma.v[i] for i in indices])
+            if np.linalg.norm(np.cross(b - a, c - a)) > 1e-12:
+                forma.cara(indices, "yeso")
+                agregadas += 1
+        cantidad += bool(agregadas)
+    return forma, cantidad

@@ -218,7 +218,10 @@ PROFUNDIDAD_CUPULIN = 5.0
 verticales por cos(atan PENDIENTE). Era 2 (como el modelo de anillos); con 2
 las ventanas de debajo iluminan el pozo y se lee como un petalo blanco, y en
 Ferrer_5 y la ortoimagen el interior se ve en penumbra (2026-11-18).
-Eleccion: la profundidad real no esta medida."""
+Eleccion: la profundidad real no esta medida.
+Valor del OBJ de control. La visita corregida en 0040 se obtiene después
+con reducir_saliente_cupulines.py y corregir_alturas_alzado.py; este valor
+se conserva para reproducir el control, no para calibrar una sombra."""
 
 
 EJE_CUPULIN_CAMPO = 30.0

@@ -3,17 +3,14 @@
 AA-415_23, p. 1. Lectura manual sobre el JPEG de la sección a su tamaño
 original. Cada entrada indica el extremo derecho de la pieza, la abscisa del
 eje del nicho y la fila de su cúspide. La división en piezas, los fondos y la
-talla son interpretación. La luz del vano y la cornisa de 0035 fijan el encaje.
+talla son interpretación. El encaje «seccion» conserva las cotas de la lectura
+y apoya el fondo en el borde interior de la cornisa. «0036» reproduce el
+encaje anterior, desplazado para conservar el ápice supuesto de 0035.
 """
 
 from math import cos, pi, sin, sqrt, tan
 
-import bpy
 import numpy as np
-
-from detalle_visita import Superficie, caras_con_huecos
-from talla_cupulin import tallar_ataurique
-from encajar_frentes_visita import encajar
 
 EJE_PX = 2555
 # En los extremos se prolonga la pieza hasta la bisectriz del octógono.
@@ -83,7 +80,9 @@ def arco_tramo(u, tramo):
     return (1 - punta) * sqrt(t * (2 - t)) + punta * t**4
 
 
-def perfil_pano(apotema, alzado):
+def perfil_pano(apotema, alzado, encaje="seccion"):
+    if encaje not in ("seccion", "0036"):
+        raise ValueError("Encaje desconocido")
     escala = alzado["px_por_m"]
     semi = apotema * tan(pi / 8)
     ordenes = [tramos(tabla, semi, escala) for tabla in (INFERIOR, SUPERIOR)]
@@ -107,7 +106,9 @@ def perfil_pano(apotema, alzado):
     estaciones = sorted(unicas.values())
 
     def cota(fila):
-        return APICE_MODELO + (FILA_APICE - fila) / escala
+        if encaje == "0036":
+            return APICE_MODELO + (FILA_APICE - fila) / escala
+        return (alzado["niveles"]["arranque_cupula"]["fila_px"] - fila) / escala
 
     def junta(u, fila):
         if fila == 2:
@@ -119,15 +120,18 @@ def perfil_pano(apotema, alzado):
         z = cota(base + h * (seg[3] - base))
         if fila == 1:
             # El segundo frente tiene que librar el arco mayor del primero.
-            z = min(-0.013, max(z, junta(u, 0) + 0.061))
+            z = max(z, junta(u, 0) + 0.061)
+            if encaje == "0036":
+                z = min(-0.013, z)
         return z
 
     return semi, ordenes, estaciones, junta
 
 
-def pared_piloto(forma, apotema, bajo, alzado):
+def pared_piloto(forma, apotema, bajo, alzado, encaje="seccion"):
     """Las jambas, la bóveda y el intradós comparten el mismo borde exterior."""
-    _, _, us, junta = perfil_pano(apotema, alzado)
+    from detalle_visita import caras_con_huecos
+    _, _, us, junta = perfil_pano(apotema, alzado, encaje)
     alf = alzado["niveles"]["pie_ventanas_tambor"]["z_m"]
     for a, b in zip(us, us[1:]):
         u = (a + b) / 2
@@ -172,6 +176,7 @@ def pared_piloto(forma, apotema, bajo, alzado):
 
 def celosia(forma, x, borde, cx):
     """Calados con ocho pétalos y un ojo central. Dibujo y espesor propuestos."""
+    from detalle_visita import caras_con_huecos
     paso = 0.168
     alto = borde[2:][::-1]
     a, b = borde[:2, 0]
@@ -261,15 +266,28 @@ def celosia(forma, x, borde, cx):
         forma.cara([reverso[i] for i in reversed(f)], "yeso")
 
 
-def construir_sector(apotema, paleta, alzado):
+def construir_sector(apotema, paleta, alzado, encaje="seccion"):
+    import bpy
+    from detalle_visita import Superficie
+    from talla_cupulin import tallar_ataurique
+    from encajar_frentes_visita import encajar
     escala = alzado["px_por_m"]
-    semi, ordenes, estaciones, junta = perfil_pano(apotema, alzado)
+    semi, ordenes, estaciones, junta = perfil_pano(apotema, alzado, encaje)
 
     def punto(d, u, z):
         x = apotema - d
         return (x, u * x / apotema, z)
 
-    xint = apotema - FONDO_M[-1]
+    cornisa = bpy.data.objects["sala_cornisa"]
+    fondos = FONDO_M
+    if encaje == "seccion":
+        # El apoyo termina en el borde interior real de la cornisa, no en
+        # una profundidad independiente que dejaría una chapa delante del paño.
+        coords = np.array([tuple(cornisa.matrix_world @ v.co) for v in cornisa.data.vertices])
+        sector = (coords[:, 0] > 0) & (abs(coords[:, 1]) <= coords[:, 0] * tan(pi / 8) + 1e-6)
+        xinterior = coords[sector, 0].min()
+        fondos = (0.0, FONDO_M[1], float(apotema - xinterior))
+    xint = apotema - fondos[-1]
     huella = np.array(
         [
             (apotema, -semi),
@@ -280,17 +298,28 @@ def construir_sector(apotema, paleta, alzado):
     )
     # El fondo y los extremos se apoyan en la cornisa existente, plana a z=0.
     # Cortar solo la chapa que antes cerraba este paño.
-    cornisa = bpy.data.objects["sala_cornisa"]
     grafo = bpy.context.evaluated_depsgraph_get()
-    for d in np.linspace(0.004, FONDO_M[-1] - 0.001, 7):
+    for d in np.linspace(0.004, fondos[-1] - 0.001, 7):
         for u in np.linspace(-semi + 0.008, semi - 0.008, 41):
             hit, p, _, _, obj, _ = bpy.context.scene.ray_cast(
                 grafo, punto(d, u, -2), (0, 0, 1), distance=4
             )
             # La moldura del vano se adelanta hasta 55 mm en el borde exterior.
-            if d > 0.055 and (not hit or obj != cornisa or abs(p.z) > 1e-5):
-                raise ValueError(f"La cornisa no está libre a fondo {d:.3f}, u={u:.3f}")
+            primero_recortable = encaje == "seccion" and hit and obj.name.startswith("hilada_frente_01_")
+            if d > 0.055 and not primero_recortable and (not hit or obj != cornisa or abs(p.z) > 1e-5):
+                raise ValueError(f"La cornisa no está libre a fondo {d:.3f}, u={u:.3f}: {obj.name if hit else 'sin impacto'}")
     encajar(cornisa, [huella])
+    apoyo = dict(aristas=0, objetos=[])
+    if encaje == "seccion":
+        from encajar_frentes_visita import cerrar_corte_x
+        for obj in list(bpy.context.scene.objects):
+            if obj.name.startswith(("hilada_frente_01_", "Frentes tallados junto al cupulín 00")):
+                encajar(obj, [huella])
+                cierre, cantidad = cerrar_corte_x(obj, xint)
+                if cantidad:
+                    cierre.objeto(f"Apoyo del paño 00 en {obj.name}", paleta)
+                    apoyo["aristas"] += cantidad
+                    apoyo["objetos"].append(obj.name)
 
     for fila, orden in enumerate(ordenes):
         for i, tramo in enumerate(orden, start=1):
@@ -304,7 +333,7 @@ def construir_sector(apotema, paleta, alzado):
             def superficie(u, t):
                 h = arco_tramo(u, tramo)
                 v = (u - a) / (c - a) - 1 if u <= c else (u - c) / (b - c)
-                d = (1 - t) * FONDO_M[fila] + t * FONDO_M[fila + 1]
+                d = (1 - t) * fondos[fila] + t * fondos[fila + 1]
                 dentro = sin(pi * t)
                 # Nervios en abanico. La altura central se disipa al llegar
                 # al canto. El bisel deja una junta de yeso de 2 mm.
@@ -364,15 +393,19 @@ def construir_sector(apotema, paleta, alzado):
 
     return dict(
         piezas_por_hilada=list(map(len, ordenes)),
-        fondos_m=FONDO_M,
-        desplazamiento_vertical_seccion_m=APICE_MODELO
-        - (alzado["niveles"]["arranque_cupula"]["fila_px"] - FILA_APICE) / escala,
+        fondos_m=fondos,
+        apoyo=apoyo,
+        encaje=encaje,
+        desplazamiento_vertical_seccion_m=(APICE_MODELO
+        - (alzado["niveles"]["arranque_cupula"]["fila_px"] - FILA_APICE) / escala)
+        if encaje == "0036" else 0.0,
         apotema_m=apotema,
     )
 
 
 def medir_sector(apotema, suelo):
     """Primer impacto dirigido a cada vano y a la cornisa desde tres cámaras."""
+    import bpy
     grafo = bpy.context.evaluated_depsgraph_get()
     resultado = {}
     for nombre, origen in (
@@ -445,8 +478,8 @@ def verificar_juntas_glb(escena, datos, inicio_bin, sector):
         x = round((apa - fondo) * 1e6)
         return {p for pieza in fila for p in pieza if abs(p[0] - x) <= 1 and p[1] != 0}
 
-    union = canto(filas[0], FONDO_M[1])
-    if not union or union != canto(filas[1], FONDO_M[1]):
+    union = canto(filas[0], sector["fondos_m"][1])
+    if not union or union != canto(filas[1], sector["fondos_m"][1]):
         raise ValueError("Los dos órdenes difieren en el encuentro")
     pared = canto(filas[0], 0)
     if not pared or pared - vertices("tambor"):
