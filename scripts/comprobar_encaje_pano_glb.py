@@ -19,7 +19,7 @@ from mathutils.geometry import intersect_ray_tri
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
-from hiladas_ventanas import INFERIOR, SUPERIOR, EJE_PX, FONDO_M
+from hiladas_ventanas import INFERIOR, SUPERIOR, EJE_PX, FONDO_M, perfil_pano
 
 
 def leer(path):
@@ -91,12 +91,16 @@ def examinar(path):
     ficha = json.loads(path.with_name("dos-hermanas.json").read_text())
     apa = ficha["sector_00"]["apotema_m"]
     alzado = json.loads((ROOT / "datos/alzado_sala.json").read_text())
+    # Cota esperada de cada cresta: la junta del encaje con que se generó el
+    # GLB (ficha del modelo). En «seccion» es la cota leída en la sección.
+    encaje = ficha["sector_00"].get("encaje", "seccion")
+    _, _, _, junta = perfil_pano(apa, alzado, encaje)
     errores = []
     for fila, tabla in enumerate((INFERIOR, SUPERIOR), 1):
         for k, (_, eje, y) in enumerate(tabla, 1):
             u = (eje - EJE_PX) / alzado["px_por_m"]
             x = apa - FONDO_M[fila - 1]
-            z = (alzado["niveles"]["arranque_cupula"]["fila_px"] - y) / alzado["px_por_m"]
+            z = junta(u, fila - 1)
             objetivo = np.array([x, u * x / apa, z])
             v, _ = mallas[f"adaraja_00_{fila}_{k:02d}"]
             cerca = v[np.argmin(np.linalg.norm(v[:, :2] - objetivo[:2], axis=1))]
@@ -123,7 +127,7 @@ def examinar(path):
             area_doble = np.linalg.norm(np.cross(t[:, 1] - t[:, 0], t[:, 2] - t[:, 0]), axis=1)
             apoyos.append(dict(nombre=nombre, triangulos=len(f),
                                 degenerados=int((area_doble <= 1e-12).sum())))
-    return dict(archivo=str(path.relative_to(ROOT)), sha256_glb=sha,
+    return dict(archivo=str(path.relative_to(ROOT)), sha256_glb=sha, encaje=encaje,
                 error_max_cotas_m=max(abs(e["error_z_m"]) for e in errores),
                 crestas=errores, cruces=cruces, apoyos=apoyos,
                 pares_transversales=sum(c["pares_transversales"] for c in cruces))
@@ -145,7 +149,7 @@ def main():
         metodo="Cotas exportadas y BVH con prueba de cruce transversal a 1 micra; excluye contactos coplanares y no prueba separación mínima",
         sha256_script=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
         sha256_fuentes={p: hashlib.sha256((ROOT / p).read_bytes()).hexdigest() for p in (
-            "scripts/hiladas_ventanas.py", "scripts/encajar_frentes_visita.py",
+            "scripts/hiladas_ventanas.py", "scripts/nicho_escalonado.py", "scripts/encajar_frentes_visita.py",
             "scripts/exportar_visita_web.py", "datos/alzado_sala.json")},
         variantes=[examinar(p.resolve()) for p in (args.antes, args.despues)],
     )

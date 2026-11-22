@@ -6,6 +6,11 @@ eje del nicho y la fila de su cúspide. La división en piezas, los fondos y la
 talla son interpretación. El encaje «seccion» conserva las cotas de la lectura
 y apoya el fondo en el borde interior de la cornisa. «0036» reproduce el
 encaje anterior, desplazado para conservar el ápice supuesto de 0035.
+«silueta» (0043) baja las dos órdenes DESCENSO_SILUETA_M para que, fuera de
+los marcos de los vanos, nada quede en el plano del muro por encima del
+final de muro que da la silueta lateral de la sección; sobre cada vano, la
+junta del primer orden es el contorno escalonado del marco
+(`scripts/nicho_escalonado.py`).
 """
 
 from math import cos, pi, sin, sqrt, tan
@@ -55,6 +60,11 @@ FONDO_M = (0.0, 0.134, 0.251)
 # Celosía tras el plano del muro. Decisión 0041: 0,20-0,34 m medidos en dos
 # fotografías (0,30 en el ajuste conjunto); antes 0,09, sin medida.
 PROFUNDIDAD_NICHO_M = 0.30
+# 0043: máximo de la junta del primer orden «seccion» fuera de los marcos
+# (0,0592 m) menos el final del muro en la silueta lateral de la sección
+# (-0,1538 m, media de dos lados y tres umbrales, datos/vuelo_seccion.json).
+DESCENSO_SILUETA_M = 0.213
+CENTROS_VANOS = (-0.59, 0.59)
 # El eje de los vanos de 0035 está a ±0,59 m y su ápice a -0,165 m.
 APICE_MODELO = -0.165
 FILA_APICE = 2050
@@ -84,14 +94,21 @@ def arco_tramo(u, tramo):
 
 
 def perfil_pano(apotema, alzado, encaje="seccion"):
-    if encaje not in ("seccion", "0036"):
+    if encaje not in ("seccion", "0036", "silueta"):
         raise ValueError("Encaje desconocido")
+    try:
+        from nicho_escalonado import SEMIANCHO_MARCO, nudos, tope_exterior
+    except ModuleNotFoundError:  # importado como paquete desde tests/
+        from scripts.nicho_escalonado import SEMIANCHO_MARCO, nudos, tope_exterior
     escala = alzado["px_por_m"]
     semi = apotema * tan(pi / 8)
     ordenes = [tramos(tabla, semi, escala) for tabla in (INFERIOR, SUPERIOR)]
     # Las dos filas comparten todos los vértices del encuentro aun cuando sus
     # juntas estén contrapeadas. Añadir estaciones a ambos lados de cada junta.
-    jambas = {cx + signo * 0.265 for cx in (-0.59, 0.59) for signo in (-1, 1)}
+    if encaje == "silueta":
+        jambas = {cx + sr for cx in CENTROS_VANOS for sr, _ in nudos(0.0)}
+    else:
+        jambas = {cx + signo * 0.265 for cx in CENTROS_VANOS for signo in (-1, 1)}
     anclas = set(jambas)
     estaciones = set()
     for orden in ordenes:
@@ -111,11 +128,16 @@ def perfil_pano(apotema, alzado, encaje="seccion"):
     def cota(fila):
         if encaje == "0036":
             return APICE_MODELO + (FILA_APICE - fila) / escala
-        return (alzado["niveles"]["arranque_cupula"]["fila_px"] - fila) / escala
+        z = (alzado["niveles"]["arranque_cupula"]["fila_px"] - fila) / escala
+        return z - DESCENSO_SILUETA_M if encaje == "silueta" else z
 
     def junta(u, fila):
         if fila == 2:
             return 0.0
+        if fila == 0 and encaje == "silueta":
+            for cx in CENTROS_VANOS:
+                if abs(u - cx) <= SEMIANCHO_MARCO + 1e-12:
+                    return tope_exterior(u - cx)
         orden = ordenes[fila]
         seg = next(s for s in orden if u <= s[2])
         h = arco_tramo(u, seg)
@@ -134,8 +156,10 @@ def perfil_pano(apotema, alzado, encaje="seccion"):
 def pared_piloto(forma, apotema, bajo, alzado, encaje="seccion"):
     """Las jambas, la bóveda y el intradós comparten el mismo borde exterior."""
     from detalle_visita import caras_con_huecos
-    _, _, us, junta = perfil_pano(apotema, alzado, encaje)
+    semi, _, us, junta = perfil_pano(apotema, alzado, encaje)
     alf = alzado["niveles"]["pie_ventanas_tambor"]["z_m"]
+    if encaje == "silueta":
+        return pared_escalonada(forma, apotema, bajo, alf, semi, us, junta)
     for a, b in zip(us, us[1:]):
         u = (a + b) / 2
         dentro = min(abs(u - 0.59), abs(u + 0.59)) < 0.265
@@ -175,6 +199,34 @@ def pared_piloto(forma, apotema, bajo, alzado, encaje="seccion"):
         forma.banda(previo, posterior, "yeso")
         for f in caras_con_huecos(contorno, []):
             forma.cara([posterior[i] for i in f], "cielo")
+
+
+def pared_escalonada(forma, apotema, bajo, alf, semi, us, junta):
+    """Paño 00 con boca escalonada (0043). El borde superior del muro es la
+    junta del primer orden; sobre cada vano baja por el marco hasta su pie y
+    el marco, con las muestras de las adarajas, cierra el hueco."""
+    from detalle_visita import caras_con_huecos
+    from nicho_escalonado import BANDA, SEMIANCHO_MARCO, construir_nicho
+
+    L = SEMIANCHO_MARCO
+
+    def xyz(s, z, vuelo=0):
+        return (apotema - vuelo, s, z)
+
+    lazo = [(-semi, bajo), (semi, bajo)]
+    for u in reversed(us):
+        if any(abs(u - cx) < L - 1e-9 for cx in CENTROS_VANOS):
+            continue
+        lazo.append((u, junta(u, 0)))
+        for cx in CENTROS_VANOS:
+            if abs(u - (cx + L)) < 1e-9:
+                lazo += [(cx + L, alf - BANDA), (cx - L, alf - BANDA)]
+    ids = forma.puntos(xyz(s, z) for s, z in lazo)
+    for cara in caras_con_huecos(lazo, []):
+        forma.cara([ids[i] for i in cara], "yeso")
+    for cx in CENTROS_VANOS:
+        muestras = [u - cx for u in us if abs(u - cx) <= L + 1e-12]
+        construir_nicho(forma, xyz, cx, alf, "celosia", muestras=muestras, x_plano=apotema)
 
 
 def celosia(forma, x, borde, cx):
@@ -283,7 +335,7 @@ def construir_sector(apotema, paleta, alzado, encaje="seccion"):
 
     cornisa = bpy.data.objects["sala_cornisa"]
     fondos = FONDO_M
-    if encaje == "seccion":
+    if encaje in ("seccion", "silueta"):
         # El apoyo termina en el borde interior real de la cornisa, no en
         # una profundidad independiente que dejaría una chapa delante del paño.
         coords = np.array([tuple(cornisa.matrix_world @ v.co) for v in cornisa.data.vertices])
@@ -308,12 +360,12 @@ def construir_sector(apotema, paleta, alzado, encaje="seccion"):
                 grafo, punto(d, u, -2), (0, 0, 1), distance=4
             )
             # La moldura del vano se adelanta hasta 55 mm en el borde exterior.
-            primero_recortable = encaje == "seccion" and hit and obj.name.startswith("hilada_frente_01_")
+            primero_recortable = encaje in ("seccion", "silueta") and hit and obj.name.startswith("hilada_frente_01_")
             if d > 0.055 and not primero_recortable and (not hit or obj != cornisa or abs(p.z) > 1e-5):
                 raise ValueError(f"La cornisa no está libre a fondo {d:.3f}, u={u:.3f}: {obj.name if hit else 'sin impacto'}")
     encajar(cornisa, [huella])
     apoyo = dict(aristas=0, objetos=[])
-    if encaje == "seccion":
+    if encaje in ("seccion", "silueta"):
         from encajar_frentes_visita import cerrar_corte_x
         for obj in list(bpy.context.scene.objects):
             if obj.name.startswith(("hilada_frente_01_", "Frentes tallados junto al cupulín 00")):
@@ -401,7 +453,7 @@ def construir_sector(apotema, paleta, alzado, encaje="seccion"):
         encaje=encaje,
         desplazamiento_vertical_seccion_m=(APICE_MODELO
         - (alzado["niveles"]["arranque_cupula"]["fila_px"] - FILA_APICE) / escala)
-        if encaje == "0036" else 0.0,
+        if encaje == "0036" else (-DESCENSO_SILUETA_M if encaje == "silueta" else 0.0),
         apotema_m=apotema,
     )
 

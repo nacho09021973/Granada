@@ -1,0 +1,285 @@
+{
+ "foto": "docs/Granada_trip82.jpg",
+ "clave": "trip82",
+ "metodo": "Lectura manual el 2026-11-22 sobre recortes con rejilla de 10 px ampliados x4 (renders/previas/0043/rej_trip82_B*_izq.jpg, _der.jpg) y x2 (rej_trip82_B*_remate.jpg). Coordenadas de píxel de la foto original. Incertidumbre de lectura estimada ±8 px. Cada escalón es el canto superior de la banda exterior del marco: x0-x1 extremos del tramo y y su cota. Las celosías y la cara C no se usan aquí: la C se ve demasiado oblicua para leer la mitad derecha del remate; la foto bruchez no tiene resolución para leerlo.",
+ "vanos": {
+  "B1": {
+   "cara": "B",
+   "marco_exterior_izq": [
+    [
+     2225,
+     1850
+    ],
+    [
+     2240,
+     2000
+    ],
+    [
+     2255,
+     2150
+    ]
+   ],
+   "marco_exterior_der": [
+    [
+     2700,
+     1850
+    ],
+    [
+     2708,
+     2000
+    ],
+    [
+     2715,
+     2150
+    ]
+   ],
+   "boca_izq": [
+    [
+     2265,
+     1950
+    ]
+   ],
+   "boca_der": [
+    [
+     2665,
+     1950
+    ]
+   ],
+   "escalones": [
+    {
+     "elemento": "esquina",
+     "lado": "izq",
+     "x0": 2222,
+     "x1": 2280,
+     "y": 1800
+    },
+    {
+     "elemento": "pinaculo",
+     "lado": "izq",
+     "x0": 2282,
+     "x1": 2320,
+     "y": 1735
+    },
+    {
+     "elemento": "entrante",
+     "lado": "izq",
+     "x0": 2322,
+     "x1": 2360,
+     "y": 1790
+    },
+    {
+     "elemento": "hombro",
+     "lado": "izq",
+     "x0": 2362,
+     "x1": 2422,
+     "y": 1712
+    },
+    {
+     "elemento": "merlon",
+     "lado": "centro",
+     "x0": 2425,
+     "x1": 2465,
+     "y": 1675
+    },
+    {
+     "elemento": "hombro",
+     "lado": "der",
+     "x0": 2465,
+     "x1": 2522,
+     "y": 1711
+    },
+    {
+     "elemento": "entrante",
+     "lado": "der",
+     "x0": 2525,
+     "x1": 2565,
+     "y": 1760
+    },
+    {
+     "elemento": "pinaculo",
+     "lado": "der",
+     "x0": 2570,
+     "x1": 2600,
+     "y": 1700
+    },
+    {
+     "elemento": "esquina",
+     "lado": "der",
+     "x0": 2605,
+     "x1": 2667,
+     "y": 1750
+    }
+   ],
+   "remate_merlon": [
+    2440,
+    1615
+   ]
+  },
+  "B2": {
+   "cara": "B",
+   "marco_exterior_izq": [
+    [
+     2758,
+     1800
+    ],
+    [
+     2770,
+     1900
+    ],
+    [
+     2785,
+     2000
+    ],
+    [
+     2800,
+     2100
+    ]
+   ],
+   "marco_exterior_der": [
+    [
+     3215,
+     1800
+    ],
+    [
+     3222,
+     1850
+    ],
+    [
+     3232,
+     1950
+    ],
+    [
+     3245,
+     2050
+    ]
+   ],
+   "boca_izq": [
+    [
+     2798,
+     1900
+    ]
+   ],
+   "boca_der": [
+    [
+     3190,
+     1900
+    ]
+   ],
+   "escalones": [
+    {
+     "elemento": "esquina",
+     "lado": "izq",
+     "x0": 2752,
+     "x1": 2805,
+     "y": 1732
+    },
+    {
+     "elemento": "pinaculo",
+     "lado": "izq",
+     "x0": 2805,
+     "x1": 2848,
+     "y": 1668
+    },
+    {
+     "elemento": "entrante",
+     "lado": "izq",
+     "x0": 2850,
+     "x1": 2888,
+     "y": 1717
+    },
+    {
+     "elemento": "hombro",
+     "lado": "izq",
+     "x0": 2888,
+     "x1": 2945,
+     "y": 1642
+    },
+    {
+     "elemento": "merlon",
+     "lado": "centro",
+     "x0": 2947,
+     "x1": 2987,
+     "y": 1602
+    },
+    {
+     "elemento": "hombro",
+     "lado": "der",
+     "x0": 2987,
+     "x1": 3052,
+     "y": 1632
+    },
+    {
+     "elemento": "entrante",
+     "lado": "der",
+     "x0": 3058,
+     "x1": 3100,
+     "y": 1690
+    },
+    {
+     "elemento": "pinaculo",
+     "lado": "der",
+     "x0": 3100,
+     "x1": 3135,
+     "y": 1626
+    },
+    {
+     "elemento": "esquina",
+     "lado": "der",
+     "x0": 3140,
+     "x1": 3210,
+     "y": 1675
+    }
+   ],
+   "remate_merlon": [
+    2960,
+    1550
+   ]
+  }
+ },
+ "contraste_seccion": {
+  "imagen": "docs/AA-415_23_seccion.jpg",
+  "metodo": "Lectura manual el 2026-11-22 sobre renders/previas/0043/rej_seccion_vano.jpg (rejilla de 25 px, x2): contorno superior visto de frente del vano del paño 00 con eje en la columna 2276 (u = -0,59 m; EJE_PX 2555). La ortofoto suaviza el escalonado en lóbulos; se leen sus puntos altos y bajos. ±5 px.",
+  "puntos": [
+   {
+    "elemento": "merlon",
+    "col": 2285,
+    "fila": 2052
+   },
+   {
+    "elemento": "hombro",
+    "col": 2230,
+    "fila": 2110
+   },
+   {
+    "elemento": "hombro",
+    "col": 2335,
+    "fila": 2110
+   },
+   {
+    "elemento": "entrante",
+    "col": 2160,
+    "fila": 2205
+   },
+   {
+    "elemento": "entrante",
+    "col": 2400,
+    "fila": 2205
+   },
+   {
+    "elemento": "pinaculo",
+    "col": 2140,
+    "fila": 2138
+   },
+   {
+    "elemento": "pinaculo",
+    "col": 2430,
+    "fila": 2140
+   },
+   {
+    "elemento": "esquina",
+    "col": 2500,
+    "fila": 2210
+   }
+  ]
+ }
+}

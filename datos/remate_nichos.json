@@ -1,0 +1,320 @@
+{
+ "lecturas": "datos/lecturas_remate_trip82.json",
+ "sha256_lecturas": "822d176d3deca41ea1919c52bd6798994e140812067194e77d8f185093d62a7a",
+ "camara": "datos/medida_nicho_fotos.json, principal, trip82",
+ "z_alfeizar_modelo_m": -1.346,
+ "eje_ajuste_0041_m": 0.5565,
+ "semiancho_marco_m": {
+  "media": 0.4642,
+  "min": 0.3557,
+  "max": 0.5669,
+  "n": 14
+ },
+ "semiancho_boca_m": {
+  "media": 0.4043,
+  "min": 0.3607,
+  "max": 0.4723,
+  "n": 4
+ },
+ "remate_merlon": {
+  "z_alfeizar": {
+   "media": 1.701,
+   "min": 1.6898,
+   "max": 1.7122,
+   "n": 2
+  },
+  "z_modelo": 0.355
+ },
+ "perfil": {
+  "merlon": {
+   "s_int": 0.0,
+   "s_ext": 0.0431,
+   "z": 1.5167,
+   "z_modelo": 0.1707,
+   "z_rango": [
+    1.5142,
+    1.5193
+   ],
+   "s_ext_rango": [
+    0.0423,
+    0.0439
+   ],
+   "z_seccion_frontal": 0.1862,
+   "diferencia_foto_menos_seccion_m": -0.0155
+  },
+  "hombro": {
+   "s_int": 0.0431,
+   "s_ext": 0.1738,
+   "z": 1.4031,
+   "z_modelo": 0.0571,
+   "z_rango": [
+    1.3779,
+    1.4186
+   ],
+   "s_ext_rango": [
+    0.1698,
+    0.1792
+   ],
+   "z_seccion_frontal": 0.0635,
+   "diferencia_foto_menos_seccion_m": -0.0064
+  },
+  "entrante": {
+   "s_int": 0.1738,
+   "s_ext": 0.2611,
+   "z": 1.1987,
+   "z_modelo": -0.1473,
+   "z_rango": [
+    1.1945,
+    1.2025
+   ],
+   "s_ext_rango": [
+    0.2581,
+    0.2636
+   ],
+   "z_seccion_frontal": -0.1376,
+   "diferencia_foto_menos_seccion_m": -0.0097
+  },
+  "pinaculo": {
+   "s_int": 0.2611,
+   "s_ext": 0.3472,
+   "z": 1.377,
+   "z_modelo": 0.031,
+   "z_rango": [
+    1.371,
+    1.3847
+   ],
+   "s_ext_rango": [
+    0.338,
+    0.3526
+   ],
+   "z_seccion_frontal": 0.0021,
+   "diferencia_foto_menos_seccion_m": 0.0289
+  },
+  "esquina": {
+   "s_int": 0.3472,
+   "s_ext": 0.4642,
+   "z": 1.198,
+   "z_modelo": -0.148,
+   "z_rango": [
+    1.192,
+    1.2034
+   ],
+   "s_ext_rango": [
+    0.467,
+    0.4911
+   ],
+   "z_seccion_frontal": -0.1482,
+   "diferencia_foto_menos_seccion_m": 0.0002
+  }
+ },
+ "seccion_frontal": {
+  "merlon": [
+   {
+    "s_m": 0.0186,
+    "z_modelo": 0.1862
+   }
+  ],
+  "hombro": [
+   {
+    "s_m": -0.0978,
+    "z_modelo": 0.0635
+   },
+   {
+    "s_m": 0.1244,
+    "z_modelo": 0.0635
+   }
+  ],
+  "entrante": [
+   {
+    "s_m": -0.246,
+    "z_modelo": -0.1376
+   },
+   {
+    "s_m": 0.2619,
+    "z_modelo": -0.1376
+   }
+  ],
+  "pinaculo": [
+   {
+    "s_m": -0.2883,
+    "z_modelo": 0.0042
+   },
+   {
+    "s_m": 0.3254,
+    "z_modelo": 0.0
+   }
+  ],
+  "esquina": [
+   {
+    "s_m": 0.4736,
+    "z_modelo": -0.1482
+   }
+  ]
+ },
+ "por_vano": {
+  "B1": {
+   "eje_s_m": 0.6602,
+   "eje_marco_s_m": 0.5854,
+   "semiancho_marco_m": {
+    "media": 0.4826,
+    "min": 0.3557,
+    "max": 0.5669,
+    "n": 6
+   },
+   "semiancho_boca_m": {
+    "media": 0.4165,
+    "min": 0.3607,
+    "max": 0.4723,
+    "n": 2
+   },
+   "remate_merlon_z_alfeizar": 1.7122,
+   "escalones": [
+    {
+     "elemento": "esquina",
+     "lado": "izq",
+     "s_int": 0.3483,
+     "s_ext": 0.475,
+     "z_alfeizar": 1.2011
+    },
+    {
+     "elemento": "pinaculo",
+     "lado": "izq",
+     "s_int": 0.2689,
+     "s_ext": 0.3526,
+     "z_alfeizar": 1.3847
+    },
+    {
+     "elemento": "entrante",
+     "lado": "izq",
+     "s_int": 0.1756,
+     "s_ext": 0.2581,
+     "z_alfeizar": 1.1945
+    },
+    {
+     "elemento": "hombro",
+     "lado": "izq",
+     "s_int": 0.0476,
+     "s_ext": 0.1792,
+     "z_alfeizar": 1.4186
+    },
+    {
+     "elemento": "merlon",
+     "lado": "centro",
+     "s_int": 0.0,
+     "s_ext": 0.0439,
+     "z_alfeizar": 1.5142
+    },
+    {
+     "elemento": "hombro",
+     "lado": "der",
+     "s_int": 0.0461,
+     "s_ext": 0.1698,
+     "z_alfeizar": 1.3779
+    },
+    {
+     "elemento": "entrante",
+     "lado": "der",
+     "s_int": 0.178,
+     "s_ext": 0.2636,
+     "z_alfeizar": 1.2025
+    },
+    {
+     "elemento": "pinaculo",
+     "lado": "der",
+     "s_int": 0.2733,
+     "s_ext": 0.338,
+     "z_alfeizar": 1.3734
+    },
+    {
+     "elemento": "esquina",
+     "lado": "der",
+     "s_int": 0.3489,
+     "s_ext": 0.4807,
+     "z_alfeizar": 1.1956
+    }
+   ]
+  },
+  "B2": {
+   "eje_s_m": -0.4678,
+   "eje_marco_s_m": -0.4922,
+   "semiancho_marco_m": {
+    "media": 0.4504,
+    "min": 0.3916,
+    "max": 0.4769,
+    "n": 8
+   },
+   "semiancho_boca_m": {
+    "media": 0.3921,
+    "min": 0.3822,
+    "max": 0.402,
+    "n": 2
+   },
+   "remate_merlon_z_alfeizar": 1.6898,
+   "escalones": [
+    {
+     "elemento": "esquina",
+     "lado": "izq",
+     "s_int": 0.3555,
+     "s_ext": 0.467,
+     "z_alfeizar": 1.192
+    },
+    {
+     "elemento": "pinaculo",
+     "lado": "izq",
+     "s_int": 0.2595,
+     "s_ext": 0.3506,
+     "z_alfeizar": 1.371
+    },
+    {
+     "elemento": "entrante",
+     "lado": "izq",
+     "s_int": 0.1805,
+     "s_ext": 0.2599,
+     "z_alfeizar": 1.2007
+    },
+    {
+     "elemento": "hombro",
+     "lado": "izq",
+     "s_int": 0.0519,
+     "s_ext": 0.1722,
+     "z_alfeizar": 1.4143
+    },
+    {
+     "elemento": "merlon",
+     "lado": "centro",
+     "s_int": 0.0,
+     "s_ext": 0.0423,
+     "z_alfeizar": 1.5193
+    },
+    {
+     "elemento": "hombro",
+     "lado": "der",
+     "s_int": 0.0378,
+     "s_ext": 0.1738,
+     "z_alfeizar": 1.4017
+    },
+    {
+     "elemento": "entrante",
+     "lado": "der",
+     "s_int": 0.1762,
+     "s_ext": 0.2627,
+     "z_alfeizar": 1.1969
+    },
+    {
+     "elemento": "pinaculo",
+     "lado": "der",
+     "s_int": 0.2749,
+     "s_ext": 0.3476,
+     "z_alfeizar": 1.3788
+    },
+    {
+     "elemento": "esquina",
+     "lado": "der",
+     "s_int": 0.3478,
+     "s_ext": 0.4911,
+     "z_alfeizar": 1.2034
+    }
+   ]
+  }
+ }
+}

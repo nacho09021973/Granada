@@ -247,8 +247,13 @@ def cupulin_piloto(obj, paleta, previas, escala):
     return asiento["centro"] * escala
 
 
-def tambor_con_vanos(obj, paleta, alzado, pano_piloto=None):
-    """Reemplaza los paños ciegos. La luz y la tracería son propuestas de escena."""
+def tambor_con_vanos(obj, paleta, alzado, pano_piloto=None, boca="arco"):
+    """Reemplaza los paños ciegos. La luz y la tracería son propuestas de escena.
+
+    boca="escalonada" (0043): marco y boca escalonados medidos
+    (`scripts/nicho_escalonado.py`), recortados bajo el canto superior del
+    muro, que aquí no lleva adarajas encima. "arco" conserva el vano de 0035.
+    """
     coords = np.array([tuple(obj.matrix_world @ v.co) for v in obj.data.vertices])
     apotema = coords[:, 0].max()
     bajo, alto = coords[:, 2].min(), coords[:, 2].max()
@@ -287,6 +292,17 @@ def tambor_con_vanos(obj, paleta, alzado, pano_piloto=None):
         centros = [-0.59, 0.59]
         if k == 0 and pano_piloto:
             pano_piloto(forma, apotema, bajo, alzado)
+            centros = []
+        elif boca == "escalonada":
+            from nicho_escalonado import construir_nicho, contorno as contorno_boca
+            # Sin adarajas encima, el remate no puede pasar del canto del muro.
+            tope = alto - 0.012
+            huecos = [contorno_boca(cx, 0.0, alf, tope) for cx in centros]
+            ids = forma.puntos(xyz(x, z) for x, z in rect + huecos[0] + huecos[1])
+            for cara in caras_con_huecos(rect, huecos):
+                forma.cara([ids[i] for i in cara], "yeso")
+            for cx in centros:
+                construir_nicho(forma, xyz, cx, alf, "nervios", tope=tope)
             centros = []
         else:
             huecos = [arco(cx, 0.095) for cx in centros]

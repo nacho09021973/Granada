@@ -2,16 +2,16 @@
   "obj": "renders/previas/cupula_campo_vigente_1400.obj",
   "sha256_obj": "23ee5e06e3fd0b1dbc74746e9f8951a4febc5b1ec70253c9d93e6c942b8ceb45",
   "sha256_mtl": "b78a5fdc88d23e176723362bc800e217b2ccd108a3f6d60394ac18f4a1cc7c47",
-  "sha256_glb": "5fa3b2b300d39632c1cc318ca1de857ca9adfbf2f7234efa250b6a769a8ce55c",
+  "sha256_glb": "13dc0cdc5940724f7d867ee8b492992b594466c1dd550d3167c88b618c8221d0",
   "blender": "4.5.15 LTS",
   "cateto_m": 0.22381466813208983,
   "suelo_m": -11.272,
   "mallas": 181,
-  "triangulos": 1086004,
-  "bytes_gzip": 16791829,
+  "triangulos": 1092992,
+  "bytes_gzip": 16850034,
   "borde_clave": 266,
   "cota_max_clave_m": 4.67,
-  "puntos_visibilidad": 543804,
+  "puntos_visibilidad": 546152,
   "muestras_de_ventana": 16,
   "geometria_presentacion": [
     "clave",
@@ -37,21 +37,21 @@
         "Frentes tallados junto al cupul\u00edn 00"
       ]
     },
-    "encaje": "seccion",
-    "desplazamiento_vertical_seccion_m": 0.0,
+    "encaje": "silueta",
+    "desplazamiento_vertical_seccion_m": -0.213,
     "apotema_m": 3.8657066822052,
     "encuentros_glb": {
       "juntas_laterales": 31,
       "minimo_vertices_por_junta": 17,
-      "vertices_compartidos_entre_hiladas": 1370,
-      "vertices_compartidos_con_pared": 1369
+      "vertices_compartidos_entre_hiladas": 1402,
+      "vertices_compartidos_con_pared": 1402
     },
     "antes": {
       "sala": {
         "rayos_por_ventana": 759,
         "cielo_por_ventana": [
-          38,
-          29
+          15,
+          13
         ],
         "piezas_visibles": [
           0,
@@ -61,8 +61,8 @@
       "frontal": {
         "rayos_por_ventana": 759,
         "cielo_por_ventana": [
-          138,
-          281
+          155,
+          266
         ],
         "piezas_visibles": [
           0,
@@ -72,8 +72,8 @@
       "lateral": {
         "rayos_por_ventana": 759,
         "cielo_por_ventana": [
-          191,
-          15
+          192,
+          39
         ],
         "piezas_visibles": [
           0,
@@ -85,8 +85,8 @@
       "sala": {
         "rayos_por_ventana": 759,
         "cielo_por_ventana": [
-          38,
-          29
+          15,
+          13
         ],
         "piezas_visibles": [
           16,
@@ -96,8 +96,8 @@
       "frontal": {
         "rayos_por_ventana": 759,
         "cielo_por_ventana": [
-          138,
-          281
+          155,
+          266
         ],
         "piezas_visibles": [
           16,
@@ -107,8 +107,8 @@
       "lateral": {
         "rayos_por_ventana": 759,
         "cielo_por_ventana": [
-          191,
-          15
+          192,
+          39
         ],
         "piezas_visibles": [
           16,
@@ -123,11 +123,12 @@
     "piezas_recortadas_00.npz": "737625664ba917cbcfd7517106ad9a470376e846593ef41c155aeb358b32a5be"
   },
   "sha256_generadores": {
-    "scripts/exportar_visita_web.py": "1b4e93e6862a3bad7a935167eb706fd4abf08e4162c46919ee5e206a88e244c5",
-    "scripts/hiladas_ventanas.py": "e269a9643844349344c3f3c08b27ac7c67180a10d00cefe1230009e45efd8f2e",
+    "scripts/exportar_visita_web.py": "1e8f3875986428b006f7ce5eeb4fd1358f457ea3e4a92aaf0ac10227f16ecf3a",
+    "scripts/hiladas_ventanas.py": "c960f16df5df54c3782980277e40a1342201ab915a7d6a17ce8feb01cf405d67",
     "scripts/encajar_frentes_visita.py": "5f0b23692c5d3c2fd022731290f79bfd0f53fed9a237319fa0c728cbb7d7a0fa",
-    "scripts/detalle_visita.py": "d007a23c0ee8d9b2367c52cb0f796a3fd6ed69895691719104f6019b200caab0",
+    "scripts/detalle_visita.py": "888a3252a8bc113d6deba7549f1ee99defae2b3206268a80295513e8a184fc3b",
     "scripts/talla_cupulin.py": "ad7eb78caf091660d785cd63e10dbb9892143504ecfd683e87b0b4f57f6775fe",
+    "scripts/nicho_escalonado.py": "066a1379456d7373aed46c65a91746c1ff12981d645c5cd562e9e7c23a6ee46d",
     "datos/alzado_sala.json": "d6edbe8b287c8d83e8e1c794f03dd2766310cc607446d7eb0efbeae88ef26787"
   },
   "ajuste_alzado": {
@@ -163,8 +164,8 @@
     }
   },
   "verificacion_alturas": {
-    "archivo": "datos/comprobacion_visita_0042.json",
-    "sha256": "00c695fe8a5e1cfe4ddbb09ca7b3df94e32ca0a2a453deb7c86ea47dee58002b",
+    "archivo": "datos/comprobacion_visita_0043.json",
+    "sha256": "7d04bfdb4f7556d62436f358f89fa6097467f9147672dadd0b2ec2bea6258203",
     "cobertura": {
       "64": {
         "rayos": 3096,
@@ -179,8 +180,8 @@
       "sala": {
         "rayos_por_ventana": 759,
         "cielo_por_ventana": [
-          38,
-          29
+          15,
+          13
         ],
         "piezas_visibles": [
           16,
@@ -190,8 +191,8 @@
       "frontal": {
         "rayos_por_ventana": 759,
         "cielo_por_ventana": [
-          138,
-          281
+          155,
+          266
         ],
         "piezas_visibles": [
           16,
@@ -201,8 +202,8 @@
       "lateral": {
         "rayos_por_ventana": 759,
         "cielo_por_ventana": [
-          191,
-          15
+          192,
+          39
         ],
         "piezas_visibles": [
           16,

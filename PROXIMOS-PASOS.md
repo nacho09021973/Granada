@@ -20,9 +20,24 @@ superponiendo el GLB. Supuestos, residuos y límites en
 visita. Controles y criterio de luz de los vanos en
 [0042](docs/decisiones/0042-nicho-de-los-vanos-a-30-cm.md).
 
-**Pendiente:** remate escalonado de mocárabes sobre cada nicho y marco
-exterior, que muestran las fotos. El vuelo de 32,05 cm de las hiladas sigue
-sin contrastar.
+**Boca escalonada y perfil del paño 00, 0043.**
+- **Remate:** medido en `trip82` y contrastado con la vista frontal de la
+  sección, con 0–3 cm de diferencia. Los dieciséis vanos tienen boca
+  escalonada, marco de 6 cm y celosía en arco.
+- **Paño 00:** baja 0,213 m para dejar el muro a −0,15 m, como la silueta
+  lateral de la sección.
+- **32,05 cm:** no se ven en la silueta.
+- **Visita:** GLB regenerado y en la visita. Detalle en
+  [0043](docs/decisiones/0043-boca-escalonada-y-vuelo-de-la-seccion.md).
+
+**Pendiente:**
+- **Remate:** la silueta lateral sugiere que la parte alta vuela hacia
+  dentro, cosa que la vista frontal no confirma. Hace falta una cámara mejor
+  calibrada en altura o una vista lateral.
+- **Campo:** en la sección arranca a +0,05/+0,09 m con 0,52–0,58 m de vuelo;
+  en el modelo, a unos 0,26 m con 0,36–0,45 m. Afecta a la cornisa y al campo.
+- **Paños 1–7:** el remate queda recortado bajo el canto del muro mientras
+  no tengan hiladas.
 
 ---
 

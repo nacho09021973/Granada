@@ -38,7 +38,7 @@ SALIDA = ROOT / "web/modelos"
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--salida", type=Path, default=SALIDA)
-    ap.add_argument("--encaje", choices=("0036", "seccion"), default="seccion")
+    ap.add_argument("--encaje", choices=("0036", "seccion", "silueta"), default="silueta")
     args = ap.parse_args(sys.argv[sys.argv.index("--") + 1:] if "--" in sys.argv else [])
     salida = args.salida
     auditoria = json.loads((ROOT / "datos/auditoria_geometria_obj.json").read_text())
@@ -75,7 +75,8 @@ def main():
     centro = cupulin_piloto(bpy.data.objects["cupulin_00"], paleta, OBJ.parent, escala)
     def pared(forma, apotema, bajo, alzado):
         return pared_piloto(forma, apotema, bajo, alzado, encaje=args.encaje)
-    apotema = tambor_con_vanos(bpy.data.objects["tambor"], paleta, sala, pared)
+    boca = "escalonada" if args.encaje == "silueta" else "arco"
+    apotema = tambor_con_vanos(bpy.data.objects["tambor"], paleta, sala, pared, boca=boca)
     bpy.context.view_layer.update()
     suelo = sala["niveles"]["suelo"]["z_m"]
     lectura = medir_boca(centro, suelo)
@@ -186,7 +187,8 @@ def main():
             p: hashlib.sha256((ROOT / p).read_bytes()).hexdigest()
             for p in ("scripts/exportar_visita_web.py", "scripts/hiladas_ventanas.py",
                       "scripts/encajar_frentes_visita.py", "scripts/detalle_visita.py",
-                      "scripts/talla_cupulin.py", "datos/alzado_sala.json")
+                      "scripts/talla_cupulin.py", "scripts/nicho_escalonado.py",
+                      "datos/alzado_sala.json")
         },
     )
     (salida / "dos-hermanas.json").write_text(json.dumps(ficha, indent=2) + "\n")
