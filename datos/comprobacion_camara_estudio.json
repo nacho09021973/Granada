@@ -1,0 +1,8 @@
+{
+  "metodo": "Proyecci\u00f3n perspectiva por productos escalares frente a world_to_camera_view",
+  "puntos": 4,
+  "error_max_fraccion_de_imagen": 1.4477893295339328e-07,
+  "sha256_script": "e82721f055948097c51355ae63ebaddcbaea3d953ddc228e33401e50f9935a47",
+  "sha256_visita_js": "808612ed02143bcb4a69783c3ef292d52ec75b713dbdcee424d08390ed6ca912",
+  "sha256_blend": "9895a5bb942e9452c228e835bc405f78f428067b92844db4a443ce877c134d18"
+}

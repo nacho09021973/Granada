@@ -1,0 +1,69 @@
+{
+  "procedencia_render": {
+    "naturaleza": "Estudio visual: iluminación y acabado propuestos, sin nueva medición histórica",
+    "sha256": {
+      "web/modelos/dos-hermanas.glb.gz": "ca2860ff75289088ee440627ae2c38c1c9d638563367d40037e9d8a6f6589b57",
+      "web/modelos/dos-hermanas.json": "d49bbedf1fc5aa8d28161e5cbdbe732ee769a40d09533a12016a8e3fe1be8165",
+      "scripts/render_estudio_yeseria.py": "89dba938fa6b33b88ee5339bb5c47f0dbe2a68cc487321d1e33db4e596b63456",
+      "scripts/render_cycles.py": "71c726473f09f95009b976a0a3f618108f978a90349e6d2a14aeed06f69bdddb",
+      "web/visita.js": "808612ed02143bcb4a69783c3ef292d52ec75b713dbdcee424d08390ed6ca912",
+      "renders/previas/foto_commons_detalle.jpg": "de46a8c9ad32f5b06a44b7f28f9c75761999cf868aa13c6be58e615f4f6e6d02"
+    },
+    "sha256_glb": "9830381458461aa24c66c148bca53fc4eba18ccf969c47de17c17eb1a428567c",
+    "blender": "4.5.15 LTS",
+    "parametros": {
+      "muestras": 192,
+      "ancho": 1800,
+      "exposicion": 0.5,
+      "ventanas": 4.0,
+      "principal": 20.0,
+      "luz": "rasante",
+      "microbisel": 0.0006,
+      "salida": "renders/previas/0039_cycles",
+      "dispositivo": "cuda",
+      "blend": true
+    },
+    "camara": {
+      "posicion": [
+        1.75,
+        0.47999998927116394,
+        -1.3799999952316284
+      ],
+      "objetivo": [
+        3.7057065963745117,
+        0.30000001192092896,
+        -0.25999999046325684
+      ],
+      "fov_vertical": 46,
+      "viewport_referencia": [
+        900,
+        740
+      ],
+      "recorte_referencia": [
+        160,
+        140,
+        580,
+        380
+      ]
+    },
+    "mallas": 181,
+    "triangulos": 1086004,
+    "geometria": "Sin modificaciones de vértices; microbisel solo de normales en el shader",
+    "imagen_sha256": "a1e6ca73622adcf54c8669ed2967fce020a6370951addb8c1268ee887e3c4a63"
+  },
+  "sha256_control": "27071a1fe3c8f7732c4587b9907375d7566004cc095ba49dfe0366ef2cfa4527",
+  "archivo_control": "renders/previas/0038_final/web_3d_hiladas.png",
+  "sha256_script": "34f2e7b18c55402ca590b6a893a220ab6bee42f1f2f0d8f15ab97bf9417481b6",
+  "recorte_px": [
+    320,
+    280,
+    1480,
+    1040
+  ],
+  "sha256_salidas": {
+    "comparacion.png": "005e51553ac49fcbcf1f10f2eaa2fe91be8cee085d9e87f989a1a336a7e7b00a",
+    "yeseria_web.png": "e1538e854ef73de21cbe488d2ab12042e9d846c389bd5420ba9f9270a597ed52",
+    "yeseria_cycles.png": "b8442cac09cee516758221ff95da6e4007077eae686b587d8730864e17341dbb"
+  },
+  "limite": "Comparación visual subjetiva; no certifica hiperrealismo ni fidelidad histórica"
+}
