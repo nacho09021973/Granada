@@ -1,0 +1,28 @@
+{
+  "metodo": "Correlación normalizada; semejanza isotrópica sin estirar el modelo",
+  "transformacion": "pixel_foto = escala * pixel_seccion + (tx,ty)",
+  "registro": {
+    "escala": 0.23026210001607975,
+    "tx_px": -51.0,
+    "ty_px": 61.0,
+    "correlacion": 0.989782452583313
+  },
+  "control_otro_recorte": {
+    "escala": 0.23026210001607975,
+    "tx_px": -51.0,
+    "ty_px": 61.0,
+    "correlacion": 0.9896256923675537
+  },
+  "px_por_m": 108.79607911239749,
+  "origen_modelo_px": [
+    537.3196655410837,
+    553.7608940344107
+  ],
+  "sha256": {
+    "docs/AA-415_23_seccion.jpg": "bab660219f6c0542cbbaece463802cb55defa88b3980daca43b83cc05faa1c7d",
+    "docs/Foto de Ferrer.png": "654eda3517eb22bae2ea81c2bced9e8180f288e69b18f3e2d38a75e3ec00140f",
+    "datos/alzado_sala.json": "d6edbe8b287c8d83e8e1c794f03dd2766310cc607446d7eb0efbeae88ef26787",
+    "scripts/registrar_foto_ferrer.py": "8ea0ed6c7144ec52634013056d57a8e6ee660b859cb36fd1910ae9ce3caa9f73"
+  },
+  "limite": "Registro de imágenes, no de cada pieza 3D; la captura no resuelve todas las profundidades"
+}

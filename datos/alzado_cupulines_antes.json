@@ -1,0 +1,132 @@
+{
+  "glb": "/home/adnac/Granada/web/modelos/dos-hermanas.glb.gz",
+  "sha256_glb_gzip": "ca2860ff75289088ee440627ae2c38c1c9d638563367d40037e9d8a6f6589b57",
+  "sha256_script": "87515b7691b7b17e136d668c9269ddfd3ccff386f96952756a7d3da50a30d059",
+  "registro": {
+    "metodo": "Correlación normalizada; semejanza isotrópica sin estirar el modelo",
+    "transformacion": "pixel_foto = escala * pixel_seccion + (tx,ty)",
+    "registro": {
+      "escala": 0.23026210001607975,
+      "tx_px": -51.0,
+      "ty_px": 61.0,
+      "correlacion": 0.989782452583313
+    },
+    "control_otro_recorte": {
+      "escala": 0.23026210001607975,
+      "tx_px": -51.0,
+      "ty_px": 61.0,
+      "correlacion": 0.9896256923675537
+    },
+    "px_por_m": 108.79607911239749,
+    "origen_modelo_px": [
+      537.3196655410837,
+      553.7608940344107
+    ],
+    "sha256": {
+      "docs/AA-415_23_seccion.jpg": "bab660219f6c0542cbbaece463802cb55defa88b3980daca43b83cc05faa1c7d",
+      "docs/Foto de Ferrer.png": "654eda3517eb22bae2ea81c2bced9e8180f288e69b18f3e2d38a75e3ec00140f",
+      "datos/alzado_sala.json": "d6edbe8b287c8d83e8e1c794f03dd2766310cc607446d7eb0efbeae88ef26787",
+      "scripts/registrar_foto_ferrer.py": "8ea0ed6c7144ec52634013056d57a8e6ee660b859cb36fd1910ae9ce3caa9f73"
+    },
+    "limite": "Registro de imágenes, no de cada pieza 3D; la captura no resuelve todas las profundidades"
+  },
+  "cupulines": [
+    {
+      "nombre": "cupulin_00",
+      "z_min_m": 0.2797079384326935,
+      "z_max_m": 1.2930865287780762,
+      "exceso_max_sobre_silueta_m": 1.3415648206679684
+    },
+    {
+      "nombre": "cupulin_01",
+      "z_min_m": 0.19304372755250299,
+      "z_max_m": 1.5875714152609532,
+      "exceso_max_sobre_silueta_m": 1.196346967635303
+    },
+    {
+      "nombre": "cupulin_02",
+      "z_min_m": 0.17892617589974336,
+      "z_max_m": 1.5717064854825935,
+      "exceso_max_sobre_silueta_m": -0.3043587283012359
+    },
+    {
+      "nombre": "cupulin_03",
+      "z_min_m": 0.19304574195194846,
+      "z_max_m": 1.589561801997803,
+      "exceso_max_sobre_silueta_m": -1.9101180169776413
+    },
+    {
+      "nombre": "cupulin_04",
+      "z_min_m": 0.17892661613273475,
+      "z_max_m": 1.5771527812442514,
+      "exceso_max_sobre_silueta_m": -2.037147676683501
+    },
+    {
+      "nombre": "cupulin_05",
+      "z_min_m": 0.1930432873195116,
+      "z_max_m": 1.6018701828214432,
+      "exceso_max_sobre_silueta_m": -0.2951596306618003
+    },
+    {
+      "nombre": "cupulin_06",
+      "z_min_m": 0.17892617589974336,
+      "z_max_m": 1.5729654984764068,
+      "exceso_max_sobre_silueta_m": 1.0530596227386535
+    },
+    {
+      "nombre": "cupulin_07",
+      "z_min_m": 0.19304507493226453,
+      "z_max_m": 1.5978655033622715,
+      "exceso_max_sobre_silueta_m": 1.6327891576726667
+    },
+    {
+      "nombre": "cupulin_08",
+      "z_min_m": 0.17892661613273475,
+      "z_max_m": 1.5751452120803435,
+      "exceso_max_sobre_silueta_m": 1.6177884719583826
+    },
+    {
+      "nombre": "cupulin_09",
+      "z_min_m": 0.19304350076581045,
+      "z_max_m": 1.5861822000248367,
+      "exceso_max_sobre_silueta_m": 1.1143542493196275
+    },
+    {
+      "nombre": "cupulin_10",
+      "z_min_m": 0.1789264026864359,
+      "z_max_m": 1.5686334991179365,
+      "exceso_max_sobre_silueta_m": -0.31001351239122665
+    },
+    {
+      "nombre": "cupulin_11",
+      "z_min_m": 0.19304418112588806,
+      "z_max_m": 1.580652126590877,
+      "exceso_max_sobre_silueta_m": -1.9533629606539171
+    },
+    {
+      "nombre": "cupulin_12",
+      "z_min_m": 0.17892661613273475,
+      "z_max_m": 1.5552807255539847,
+      "exceso_max_sobre_silueta_m": -1.9949748737663882
+    },
+    {
+      "nombre": "cupulin_13",
+      "z_min_m": 0.19304372755250299,
+      "z_max_m": 1.5836406949443358,
+      "exceso_max_sobre_silueta_m": -0.330526531962287
+    },
+    {
+      "nombre": "cupulin_14",
+      "z_min_m": 0.1789264026864359,
+      "z_max_m": 1.552902720338409,
+      "exceso_max_sobre_silueta_m": 1.0355039125870111
+    },
+    {
+      "nombre": "cupulin_15",
+      "z_min_m": 0.19304530171895706,
+      "z_max_m": 1.5805986582930132,
+      "exceso_max_sobre_silueta_m": 1.6045956638097885
+    }
+  ],
+  "limite": "La silueta limita el alzado proyectado, no determina la profundidad de un cupulín interior"
+}

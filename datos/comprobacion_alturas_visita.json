@@ -1,0 +1,110 @@
+{
+  "antes": {
+    "archivo": "build/0040_original/modelos/dos-hermanas.glb.gz",
+    "sha256_glb": "9830381458461aa24c66c148bca53fc4eba18ccf969c47de17c17eb1a428567c",
+    "boca": {
+      "sala": 982,
+      "oblicua": 979
+    },
+    "sector": {
+      "sala": {
+        "rayos_por_ventana": 759,
+        "cielo_por_ventana": [
+          80,
+          68
+        ],
+        "piezas_visibles": [
+          16,
+          17
+        ]
+      },
+      "frontal": {
+        "rayos_por_ventana": 759,
+        "cielo_por_ventana": [
+          191,
+          254
+        ],
+        "piezas_visibles": [
+          16,
+          17
+        ]
+      },
+      "lateral": {
+        "rayos_por_ventana": 759,
+        "cielo_por_ventana": [
+          263,
+          127
+        ],
+        "piezas_visibles": [
+          16,
+          17
+        ]
+      }
+    },
+    "cobertura": {
+      "64": {
+        "rayos": 3096,
+        "sin_cubierta": 148
+      },
+      "128": {
+        "rayos": 12644,
+        "sin_cubierta": 622
+      }
+    }
+  },
+  "despues": {
+    "archivo": "build/alzado-corregido/modelos/dos-hermanas.glb.gz",
+    "sha256_glb": "dd3de2e2f3f6b5b406e01e1f75f7b015ea1d363d06638c53854df9d82306b197",
+    "boca": {
+      "sala": 984,
+      "oblicua": 984
+    },
+    "sector": {
+      "sala": {
+        "rayos_por_ventana": 759,
+        "cielo_por_ventana": [
+          80,
+          68
+        ],
+        "piezas_visibles": [
+          16,
+          17
+        ]
+      },
+      "frontal": {
+        "rayos_por_ventana": 759,
+        "cielo_por_ventana": [
+          191,
+          254
+        ],
+        "piezas_visibles": [
+          16,
+          17
+        ]
+      },
+      "lateral": {
+        "rayos_por_ventana": 759,
+        "cielo_por_ventana": [
+          263,
+          127
+        ],
+        "piezas_visibles": [
+          16,
+          17
+        ]
+      }
+    },
+    "cobertura": {
+      "64": {
+        "rayos": 3096,
+        "sin_cubierta": 148
+      },
+      "128": {
+        "rayos": 12644,
+        "sin_cubierta": 622
+      }
+    }
+  },
+  "sha256_script": "867e994c437839ff644854dbbe7be5ed413fd238802fce787c9ddd101ebbd094",
+  "limite": "Muestreo fijo, no prueba de estanqueidad ni validaci\u00f3n hist\u00f3rica"
+}

@@ -1,7 +1,52 @@
 # Próximos pasos
 
-Estado a 2026-11-20. Documento de trabajo: se actualiza, no se conserva como
+Estado a 2026-11-21. Documento de trabajo: se actualiza, no se conserva como
 histórico. El registro de decisiones va en `docs/decisiones/`.
+
+---
+
+## Reanudación en el PC NVIDIA — 21 de noviembre de 2026
+
+**Corrección de salientes, 0040.** El usuario identifica `Foto de Ferrer.png`
+como control del alzado. Registrada contra la sección por dos recortes.
+Rebajados 64 casquetes y los techos de 16 pozos, con clave y bordes
+conservados. El GLB corregido está en la visita y la comparación a escala
+común en `web/alzado-cupulines.html`. Pasan 791 tests, cobertura a dos
+resoluciones, controles de ventanas/cupulín y navegación. Alcance y
+reproducción en [0040](docs/decisiones/0040-salientes-y-alzado-de-ferrer.md).
+El ajuste es propuesto: el alzado aún no coincide pieza por pieza y los
+asientos antiguos de quince pozos siguen limitando su rebaja. La iluminación
+por vértice conserva la del control anterior. Para regenerar la visita hay
+que aplicar la corrección 0040 al GLB de control que genera el exportador.
+
+**Revisión visual posterior, 0039.** Preparado un encuadre en Cycles con la
+misma cámara del paño y comparación deslizante en `web/estudio-yeseria.html`.
+Fuentes, parámetros y alcance en [0039](docs/decisiones/0039-estudio-de-luz-y-yeso.md).
+No se considera logrado el hiperrealismo ni se aplica el ensayo al conjunto.
+La prueba de talla adicional se descarta por demasiado esquemática. El GLB
+y el acabado de la visita principal se conservan para contrastar el ensayo.
+
+Rama vigente: `cierres-y-cupulines`. RTX 5060 reconocida por Blender con
+`LD_LIBRARY_PATH=/usr/lib/wsl/lib` y `--dispositivo cuda`. Completadas las
+tres vistas del OBJ auditado a 1400 px, 48 muestras, en
+`renders/previas/2026-11-21_gpu/`. No son renders del GLB detallado.
+Pasan 784 tests y la comprobación automatizada de la visita web.
+
+Desfase del paño reproducido por dos vías y corregido en el piloto: las 33
+crestas usan el origen de la sección. Se ajusta el fondo al borde interior
+de la cornisa y se recortan los encuentros que lo atravesaban. El control
+del GLB pasa de 150 a 0 pares de triángulos con cruce transversal entre el
+paño y las superficies vecinas examinadas. Las 33 piezas se alcanzan desde
+tres vistas y el cupulín conserva sus controles. Visita local actualizada.
+Diagnóstico en [0037](docs/decisiones/0037-reanudacion-en-nvidia-y-desfase-del-pano.md)
+y corrección, procedencia y límites en [0038](docs/decisiones/0038-encaje-del-pano-con-la-seccion.md).
+
+**Pendiente de contraste histórico:** la profundidad de 32,05 cm es un
+encaje propuesto, no una medida; registrar una vista oblicua del mismo tramo
+y distinguir cúspide exterior de abertura luminosa antes de repetir el paño.
+El usuario ha separado la mejora del aspecto de videojuego: se revisará
+después de este trabajo de encaje local. No extender todavía las hiladas a
+los otros paños.
 
 ---
 

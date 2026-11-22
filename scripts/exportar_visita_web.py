@@ -1,6 +1,7 @@
 """Exporta el OBJ de campo con Blender. Ejecutar con -b -P desde la raíz."""
 
 import gzip
+import argparse
 import hashlib
 import json
 import math
@@ -35,6 +36,11 @@ SALIDA = ROOT / "web/modelos"
 
 
 def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--salida", type=Path, default=SALIDA)
+    ap.add_argument("--encaje", choices=("0036", "seccion"), default="seccion")
+    args = ap.parse_args(sys.argv[sys.argv.index("--") + 1:] if "--" in sys.argv else [])
+    salida = args.salida
     auditoria = json.loads((ROOT / "datos/auditoria_geometria_obj.json").read_text())
     sha = hashlib.sha256(OBJ.read_bytes()).hexdigest()
     if sha != auditoria["sha256_obj"]:
@@ -67,7 +73,9 @@ def main():
     sala = json.loads((ROOT / "datos/alzado_sala.json").read_text())
     borde = clave(bpy.data.objects["cupulilla_25"], paleta)
     centro = cupulin_piloto(bpy.data.objects["cupulin_00"], paleta, OBJ.parent, escala)
-    apotema = tambor_con_vanos(bpy.data.objects["tambor"], paleta, sala, pared_piloto)
+    def pared(forma, apotema, bajo, alzado):
+        return pared_piloto(forma, apotema, bajo, alzado, encaje=args.encaje)
+    apotema = tambor_con_vanos(bpy.data.objects["tambor"], paleta, sala, pared)
     bpy.context.view_layer.update()
     suelo = sala["niveles"]["suelo"]["z_m"]
     lectura = medir_boca(centro, suelo)
@@ -80,7 +88,7 @@ def main():
     print("Incidencias sobre la boca antes y después", lectura, con_talla, flush=True)
     assert all(lectura[v] > 0 and con_talla[v] >= 0.95 * lectura[v] for v in lectura)
     antes_sector = medir_sector(apotema, suelo)
-    sector = construir_sector(apotema, paleta, sala)
+    sector = construir_sector(apotema, paleta, sala, encaje=args.encaje)
     bpy.context.view_layer.update()
     despues_sector = medir_sector(apotema, suelo)
     boca_final = medir_boca(centro, suelo)
@@ -102,7 +110,7 @@ def main():
     bpy.context.view_layer.update()
     print("Calculando visibilidad de los vanos…", flush=True)
     muestras = luz_de_vanos(objetos, apotema)
-    SALIDA.mkdir(parents=True, exist_ok=True)
+    salida.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory() as temporal:
         glb = Path(temporal) / "dos-hermanas.glb"
         bpy.ops.export_scene.gltf(
@@ -134,7 +142,7 @@ def main():
             f"Exportación incompleta: {triangulos}/{caras_obj} triángulos, "
             f"{len(escena['meshes'])}/{len(objetos)} mallas"
         )
-    destino = SALIDA / "dos-hermanas.glb.gz"
+    destino = salida / "dos-hermanas.glb.gz"
     with (
         destino.open("wb") as f,
         gzip.GzipFile(filename="", mode="wb", fileobj=f, mtime=0) as g,
@@ -174,8 +182,14 @@ def main():
             p: hashlib.sha256((OBJ.parent / p).read_bytes()).hexdigest()
             for p in ("piloto_asiento.npz", "piezas_recortadas_00.npz")
         },
+        sha256_generadores={
+            p: hashlib.sha256((ROOT / p).read_bytes()).hexdigest()
+            for p in ("scripts/exportar_visita_web.py", "scripts/hiladas_ventanas.py",
+                      "scripts/encajar_frentes_visita.py", "scripts/detalle_visita.py",
+                      "scripts/talla_cupulin.py", "datos/alzado_sala.json")
+        },
     )
-    (SALIDA / "dos-hermanas.json").write_text(json.dumps(ficha, indent=2) + "\n")
+    (salida / "dos-hermanas.json").write_text(json.dumps(ficha, indent=2) + "\n")
     print(ficha)
 
 

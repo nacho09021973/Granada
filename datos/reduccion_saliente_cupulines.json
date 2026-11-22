@@ -1,0 +1,188 @@
+{
+  "pasos_objetivo": 2.0,
+  "cupulines": [
+    {
+      "nombre": "cupulin_00",
+      "techo_anterior_sobre_boca_media_m": 0.6241138676911064,
+      "techo_nuevo_sobre_boca_media_m": 0.2773985478518487,
+      "limite_por_boca_m": 0.2773985478518487,
+      "reduccion_eje_m": 0.34671531983925774,
+      "vertices_fijos": 498,
+      "desplazamiento_max_m": 0.3467153198392578,
+      "exceso_silueta_antes_m": 1.3415648206679684,
+      "exceso_silueta_despues_m": 0.8402293513587209
+    },
+    {
+      "nombre": "cupulin_01",
+      "techo_anterior_sobre_boca_media_m": 0.6571507643373997,
+      "techo_nuevo_sobre_boca_media_m": 0.5657748073567493,
+      "limite_por_boca_m": 0.5657748073567493,
+      "reduccion_eje_m": 0.09137595698065037,
+      "vertices_fijos": 296,
+      "desplazamiento_max_m": 0.09137595698065037,
+      "exceso_silueta_antes_m": 1.196346967635303,
+      "exceso_silueta_despues_m": 1.0052076649247446
+    },
+    {
+      "nombre": "cupulin_02",
+      "techo_anterior_sobre_boca_media_m": 0.6571507521941844,
+      "techo_nuevo_sobre_boca_media_m": 0.5600023299561427,
+      "limite_por_boca_m": 0.5600023299561427,
+      "reduccion_eje_m": 0.09714842223804165,
+      "vertices_fijos": 296,
+      "desplazamiento_max_m": 0.0971484222380417,
+      "exceso_silueta_antes_m": -0.3043587283012359,
+      "exceso_silueta_despues_m": -0.3043587283012359
+    },
+    {
+      "nombre": "cupulin_03",
+      "techo_anterior_sobre_boca_media_m": 0.6571507538547361,
+      "techo_nuevo_sobre_boca_media_m": 0.568928508279039,
+      "limite_por_boca_m": 0.568928508279039,
+      "reduccion_eje_m": 0.08822224557569713,
+      "vertices_fijos": 296,
+      "desplazamiento_max_m": 0.08822224557569712,
+      "exceso_silueta_antes_m": -1.9101180169776413,
+      "exceso_silueta_despues_m": -1.9101180169776413
+    },
+    {
+      "nombre": "cupulin_04",
+      "techo_anterior_sobre_boca_media_m": 0.6571507648076348,
+      "techo_nuevo_sobre_boca_media_m": 0.5638908795433155,
+      "limite_por_boca_m": 0.5638908795433155,
+      "reduccion_eje_m": 0.09325988526431928,
+      "vertices_fijos": 294,
+      "desplazamiento_max_m": 0.0932598852643192,
+      "exceso_silueta_antes_m": -2.037147676683501,
+      "exceso_silueta_despues_m": -2.118636707227375
+    },
+    {
+      "nombre": "cupulin_05",
+      "techo_anterior_sobre_boca_media_m": 0.6571507952466364,
+      "techo_nuevo_sobre_boca_media_m": 0.5549854614916615,
+      "limite_por_boca_m": 0.5549854614916615,
+      "reduccion_eje_m": 0.10216533375497494,
+      "vertices_fijos": 296,
+      "desplazamiento_max_m": 0.1021653337549751,
+      "exceso_silueta_antes_m": -0.2951596306618003,
+      "exceso_silueta_despues_m": -0.3854039651533965
+    },
+    {
+      "nombre": "cupulin_06",
+      "techo_anterior_sobre_boca_media_m": 0.6571507767572266,
+      "techo_nuevo_sobre_boca_media_m": 0.5397009291878727,
+      "limite_por_boca_m": 0.5397009291878727,
+      "reduccion_eje_m": 0.11744984756935384,
+      "vertices_fijos": 296,
+      "desplazamiento_max_m": 0.11744984756935375,
+      "exceso_silueta_antes_m": 1.0530596227386535,
+      "exceso_silueta_despues_m": 0.854603302715981
+    },
+    {
+      "nombre": "cupulin_07",
+      "techo_anterior_sobre_boca_media_m": 0.6571507913738708,
+      "techo_nuevo_sobre_boca_media_m": 0.5368850386846471,
+      "limite_por_boca_m": 0.5368850386846471,
+      "reduccion_eje_m": 0.12026575268922368,
+      "vertices_fijos": 298,
+      "desplazamiento_max_m": 0.12026575268922364,
+      "exceso_silueta_antes_m": 1.6327891576726667,
+      "exceso_silueta_despues_m": 1.504513473244971
+    },
+    {
+      "nombre": "cupulin_08",
+      "techo_anterior_sobre_boca_media_m": 0.6571507891648171,
+      "techo_nuevo_sobre_boca_media_m": 0.5266863414145362,
+      "limite_por_boca_m": 0.5266863414145362,
+      "reduccion_eje_m": 0.13046444775028088,
+      "vertices_fijos": 294,
+      "desplazamiento_max_m": 0.13046444775028093,
+      "exceso_silueta_antes_m": 1.6177884719583826,
+      "exceso_silueta_despues_m": 1.4729608610443354
+    },
+    {
+      "nombre": "cupulin_09",
+      "techo_anterior_sobre_boca_media_m": 0.6571507652168291,
+      "techo_nuevo_sobre_boca_media_m": 0.5339658127889481,
+      "limite_por_boca_m": 0.5339658127889481,
+      "reduccion_eje_m": 0.12318495242788108,
+      "vertices_fijos": 298,
+      "desplazamiento_max_m": 0.12318495242788102,
+      "exceso_silueta_antes_m": 1.1143542493196275,
+      "exceso_silueta_despues_m": 0.9449996254361267
+    },
+    {
+      "nombre": "cupulin_10",
+      "techo_anterior_sobre_boca_media_m": 0.6571506981324684,
+      "techo_nuevo_sobre_boca_media_m": 0.5198155689851206,
+      "limite_por_boca_m": 0.5198155689851206,
+      "reduccion_eje_m": 0.1373351291473478,
+      "vertices_fijos": 298,
+      "desplazamiento_max_m": 0.13733512914734783,
+      "exceso_silueta_antes_m": -0.31001351239122665,
+      "exceso_silueta_despues_m": -0.34811774480267466
+    },
+    {
+      "nombre": "cupulin_11",
+      "techo_anterior_sobre_boca_media_m": 0.6571507481243756,
+      "techo_nuevo_sobre_boca_media_m": 0.5326209951070751,
+      "limite_por_boca_m": 0.5326209951070751,
+      "reduccion_eje_m": 0.12452975301730052,
+      "vertices_fijos": 298,
+      "desplazamiento_max_m": 0.12452975301730057,
+      "exceso_silueta_antes_m": -1.9533629606539171,
+      "exceso_silueta_despues_m": -1.9533629606539171
+    },
+    {
+      "nombre": "cupulin_12",
+      "techo_anterior_sobre_boca_media_m": 0.657150828190576,
+      "techo_nuevo_sobre_boca_media_m": 0.5220409585518634,
+      "limite_por_boca_m": 0.5220409585518634,
+      "reduccion_eje_m": 0.13510986963871263,
+      "vertices_fijos": 298,
+      "desplazamiento_max_m": 0.13510986963871255,
+      "exceso_silueta_antes_m": -1.9949748737663882,
+      "exceso_silueta_despues_m": -2.003930546850718
+    },
+    {
+      "nombre": "cupulin_13",
+      "techo_anterior_sobre_boca_media_m": 0.65715077411126,
+      "techo_nuevo_sobre_boca_media_m": 0.5612874008122573,
+      "limite_por_boca_m": 0.5612874008122573,
+      "reduccion_eje_m": 0.09586337329900274,
+      "vertices_fijos": 296,
+      "desplazamiento_max_m": 0.09586337329900291,
+      "exceso_silueta_antes_m": -0.330526531962287,
+      "exceso_silueta_despues_m": -0.4193423357569661
+    },
+    {
+      "nombre": "cupulin_14",
+      "techo_anterior_sobre_boca_media_m": 0.6571507795574265,
+      "techo_nuevo_sobre_boca_media_m": 0.5545148448808409,
+      "limite_por_boca_m": 0.5545148448808409,
+      "reduccion_eje_m": 0.1026359346765856,
+      "vertices_fijos": 296,
+      "desplazamiento_max_m": 0.1026359346765857,
+      "exceso_silueta_antes_m": 1.0355039125870111,
+      "exceso_silueta_despues_m": 0.9007954496649017
+    },
+    {
+      "nombre": "cupulin_15",
+      "techo_anterior_sobre_boca_media_m": 0.6571508406095681,
+      "techo_nuevo_sobre_boca_media_m": 0.566129737156802,
+      "limite_por_boca_m": 0.566129737156802,
+      "reduccion_eje_m": 0.09102110345276604,
+      "vertices_fijos": 296,
+      "desplazamiento_max_m": 0.09102110345276612,
+      "exceso_silueta_antes_m": 1.6045956638097885,
+      "exceso_silueta_despues_m": 1.5076493448100763
+    }
+  ],
+  "sha256": {
+    "build/0040_original/modelos/dos-hermanas.glb.gz": "ca2860ff75289088ee440627ae2c38c1c9d638563367d40037e9d8a6f6589b57",
+    "scripts/reducir_saliente_cupulines.py": "f5d2b8812dc93cfd46ca963fe510ddfd6f7a7af800116f4b40369a72065377cc",
+    "datos/registro_foto_ferrer.json": "e6267637eb0589989cf27e01a5951255b120b76c42196743d004aa53e01a2abf",
+    "renders/previas/piloto_asiento.npz": "4cca351fdc1a4ec21c6d94dfb8227fac20f003111e390a3c18ac23f30dddae77"
+  },
+  "limite": "Dos pasos es un candidato, no una medida obtenida de la fotografía; el perfil y el asiento acotan la corrección"
+}

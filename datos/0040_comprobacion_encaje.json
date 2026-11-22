@@ -1,0 +1,450 @@
+{
+  "metodo": "Cotas exportadas y BVH con prueba de cruce transversal a 1 micra; excluye contactos coplanares y no prueba separación mínima",
+  "sha256_script": "4f506dcefc3ade26b29865fb4e3fba9131cecfe878de65b97c02f04d67292878",
+  "sha256_fuentes": {
+    "scripts/hiladas_ventanas.py": "6cbbe8a9c60271023725b2400d96182d050c9e551c3f73bd94de8c3b3f3a3f9a",
+    "scripts/encajar_frentes_visita.py": "5f0b23692c5d3c2fd022731290f79bfd0f53fed9a237319fa0c728cbb7d7a0fa",
+    "scripts/exportar_visita_web.py": "1b4e93e6862a3bad7a935167eb706fd4abf08e4162c46919ee5e206a88e244c5",
+    "datos/alzado_sala.json": "d6edbe8b287c8d83e8e1c794f03dd2766310cc607446d7eb0efbeae88ef26787"
+  },
+  "variantes": [
+    {
+      "archivo": "build/0040_original/modelos/dos-hermanas.glb.gz",
+      "sha256_glb": "9830381458461aa24c66c148bca53fc4eba18ccf969c47de17c17eb1a428567c",
+      "error_max_cotas_m": 1.4303964235296007e-08,
+      "crestas": [
+        {
+          "fila": 1,
+          "pieza": 1,
+          "error_z_m": -1.9102354767430718e-10,
+          "error_xy_m": 2.2410401756545184e-08
+        },
+        {
+          "fila": 1,
+          "pieza": 2,
+          "error_z_m": -1.0666033264938868e-09,
+          "error_xy_m": 5.2103225511856976e-08
+        },
+        {
+          "fila": 1,
+          "pieza": 3,
+          "error_z_m": -2.7343142611213622e-09,
+          "error_xy_m": 4.1770986669575905e-08
+        },
+        {
+          "fila": 1,
+          "pieza": 4,
+          "error_z_m": 1.2338317173510305e-10,
+          "error_xy_m": 1.178751207753237e-09
+        },
+        {
+          "fila": 1,
+          "pieza": 5,
+          "error_z_m": 9.551177383715359e-11,
+          "error_xy_m": 2.7250548040314015e-08
+        },
+        {
+          "fila": 1,
+          "pieza": 6,
+          "error_z_m": -6.089289461552738e-09,
+          "error_xy_m": 1.7507684857420713e-08
+        },
+        {
+          "fila": 1,
+          "pieza": 7,
+          "error_z_m": -6.169158586755152e-11,
+          "error_xy_m": 1.2325922837952419e-08
+        },
+        {
+          "fila": 1,
+          "pieza": 8,
+          "error_z_m": -1.9741307477616488e-09,
+          "error_xy_m": 2.4357157818455377e-09
+        },
+        {
+          "fila": 1,
+          "pieza": 9,
+          "error_z_m": 2.467663434702061e-10,
+          "error_xy_m": 3.1880779682857963e-09
+        },
+        {
+          "fila": 1,
+          "pieza": 10,
+          "error_z_m": -4.7755886918576795e-11,
+          "error_xy_m": 7.764821730038562e-09
+        },
+        {
+          "fila": 1,
+          "pieza": 11,
+          "error_z_m": -3.80873890759581e-09,
+          "error_xy_m": 2.49152480868986e-08
+        },
+        {
+          "fila": 1,
+          "pieza": 12,
+          "error_z_m": 0.0,
+          "error_xy_m": 2.125385312190531e-08
+        },
+        {
+          "fila": 1,
+          "pieza": 13,
+          "error_z_m": -4.5376370716443404e-10,
+          "error_xy_m": 3.3564133250507666e-08
+        },
+        {
+          "fila": 1,
+          "pieza": 14,
+          "error_z_m": 1.2338317173510305e-10,
+          "error_xy_m": 3.45148043479071e-09
+        },
+        {
+          "fila": 1,
+          "pieza": 15,
+          "error_z_m": 1.1383199383097065e-09,
+          "error_xy_m": 1.5761760563393068e-08
+        },
+        {
+          "fila": 1,
+          "pieza": 16,
+          "error_z_m": 9.870653738808244e-10,
+          "error_xy_m": 8.269424034423878e-09
+        },
+        {
+          "fila": 2,
+          "pieza": 1,
+          "error_z_m": 1.3977991097924303e-08,
+          "error_xy_m": 7.144951975647579e-08
+        },
+        {
+          "fila": 2,
+          "pieza": 2,
+          "error_z_m": -8.2224961284183e-09,
+          "error_xy_m": 6.778220884972194e-08
+        },
+        {
+          "fila": 2,
+          "pieza": 3,
+          "error_z_m": -1.6833536231608548e-09,
+          "error_xy_m": 6.677766438063345e-08
+        },
+        {
+          "fila": 2,
+          "pieza": 4,
+          "error_z_m": 8.997060874094132e-10,
+          "error_xy_m": 6.326973834919615e-08
+        },
+        {
+          "fila": 2,
+          "pieza": 5,
+          "error_z_m": -1.2783597236332156e-08,
+          "error_xy_m": 6.706938176705878e-08
+        },
+        {
+          "fila": 2,
+          "pieza": 6,
+          "error_z_m": 4.4203168902967604e-10,
+          "error_xy_m": 6.29739397732417e-08
+        },
+        {
+          "fila": 2,
+          "pieza": 7,
+          "error_z_m": -1.4303964235296007e-08,
+          "error_xy_m": 6.304948511067233e-08
+        },
+        {
+          "fila": 2,
+          "pieza": 8,
+          "error_z_m": 1.1999949700580714e-08,
+          "error_xy_m": 6.297017848305935e-08
+        },
+        {
+          "fila": 2,
+          "pieza": 9,
+          "error_z_m": 7.438848592666858e-09,
+          "error_xy_m": 6.294383553834653e-08
+        },
+        {
+          "fila": 2,
+          "pieza": 10,
+          "error_z_m": -1.6833536231608548e-09,
+          "error_xy_m": 6.307992811550856e-08
+        },
+        {
+          "fila": 2,
+          "pieza": 11,
+          "error_z_m": -9.742863127382151e-09,
+          "error_xy_m": 6.449692186354174e-08
+        },
+        {
+          "fila": 2,
+          "pieza": 12,
+          "error_z_m": -1.3698945977580479e-08,
+          "error_xy_m": 6.341295871548475e-08
+        },
+        {
+          "fila": 2,
+          "pieza": 13,
+          "error_z_m": 7.438848592666858e-09,
+          "error_xy_m": 6.87895033841682e-08
+        },
+        {
+          "fila": 2,
+          "pieza": 14,
+          "error_z_m": 1.24576240434493e-08,
+          "error_xy_m": 6.589088484863657e-08
+        },
+        {
+          "fila": 2,
+          "pieza": 15,
+          "error_z_m": 1.0479582646105712e-08,
+          "error_xy_m": 8.493839621948413e-08
+        },
+        {
+          "fila": 2,
+          "pieza": 16,
+          "error_z_m": 1.1542275302200977e-08,
+          "error_xy_m": 7.062692033377683e-08
+        },
+        {
+          "fila": 2,
+          "pieza": 17,
+          "error_z_m": -1.1263230181857153e-08,
+          "error_xy_m": 6.856810903011274e-08
+        }
+      ],
+      "cruces": [],
+      "apoyos": [
+        {
+          "nombre": "Apoyo del paño 00 en hilada_frente_01_000_A",
+          "triangulos": 702,
+          "degenerados": 0
+        },
+        {
+          "nombre": "Apoyo del paño 00 en Frentes tallados junto al cupulín 00",
+          "triangulos": 270,
+          "degenerados": 0
+        }
+      ],
+      "pares_transversales": 0
+    },
+    {
+      "archivo": "web/modelos/dos-hermanas.glb.gz",
+      "sha256_glb": "dd3de2e2f3f6b5b406e01e1f75f7b015ea1d363d06638c53854df9d82306b197",
+      "error_max_cotas_m": 1.4303964235296007e-08,
+      "crestas": [
+        {
+          "fila": 1,
+          "pieza": 1,
+          "error_z_m": -1.9102354767430718e-10,
+          "error_xy_m": 2.2410401756545184e-08
+        },
+        {
+          "fila": 1,
+          "pieza": 2,
+          "error_z_m": -1.0666033264938868e-09,
+          "error_xy_m": 5.2103225511856976e-08
+        },
+        {
+          "fila": 1,
+          "pieza": 3,
+          "error_z_m": -2.7343142611213622e-09,
+          "error_xy_m": 4.1770986669575905e-08
+        },
+        {
+          "fila": 1,
+          "pieza": 4,
+          "error_z_m": 1.2338317173510305e-10,
+          "error_xy_m": 1.178751207753237e-09
+        },
+        {
+          "fila": 1,
+          "pieza": 5,
+          "error_z_m": 9.551177383715359e-11,
+          "error_xy_m": 2.7250548040314015e-08
+        },
+        {
+          "fila": 1,
+          "pieza": 6,
+          "error_z_m": -6.089289461552738e-09,
+          "error_xy_m": 1.7507684857420713e-08
+        },
+        {
+          "fila": 1,
+          "pieza": 7,
+          "error_z_m": -6.169158586755152e-11,
+          "error_xy_m": 1.2325922837952419e-08
+        },
+        {
+          "fila": 1,
+          "pieza": 8,
+          "error_z_m": -1.9741307477616488e-09,
+          "error_xy_m": 2.4357157818455377e-09
+        },
+        {
+          "fila": 1,
+          "pieza": 9,
+          "error_z_m": 2.467663434702061e-10,
+          "error_xy_m": 3.1880779682857963e-09
+        },
+        {
+          "fila": 1,
+          "pieza": 10,
+          "error_z_m": -4.7755886918576795e-11,
+          "error_xy_m": 7.764821730038562e-09
+        },
+        {
+          "fila": 1,
+          "pieza": 11,
+          "error_z_m": -3.80873890759581e-09,
+          "error_xy_m": 2.49152480868986e-08
+        },
+        {
+          "fila": 1,
+          "pieza": 12,
+          "error_z_m": 0.0,
+          "error_xy_m": 2.125385312190531e-08
+        },
+        {
+          "fila": 1,
+          "pieza": 13,
+          "error_z_m": -4.5376370716443404e-10,
+          "error_xy_m": 3.3564133250507666e-08
+        },
+        {
+          "fila": 1,
+          "pieza": 14,
+          "error_z_m": 1.2338317173510305e-10,
+          "error_xy_m": 3.45148043479071e-09
+        },
+        {
+          "fila": 1,
+          "pieza": 15,
+          "error_z_m": 1.1383199383097065e-09,
+          "error_xy_m": 1.5761760563393068e-08
+        },
+        {
+          "fila": 1,
+          "pieza": 16,
+          "error_z_m": 9.870653738808244e-10,
+          "error_xy_m": 8.269424034423878e-09
+        },
+        {
+          "fila": 2,
+          "pieza": 1,
+          "error_z_m": 1.3977991097924303e-08,
+          "error_xy_m": 7.144951975647579e-08
+        },
+        {
+          "fila": 2,
+          "pieza": 2,
+          "error_z_m": -8.2224961284183e-09,
+          "error_xy_m": 6.778220884972194e-08
+        },
+        {
+          "fila": 2,
+          "pieza": 3,
+          "error_z_m": -1.6833536231608548e-09,
+          "error_xy_m": 6.677766438063345e-08
+        },
+        {
+          "fila": 2,
+          "pieza": 4,
+          "error_z_m": 8.997060874094132e-10,
+          "error_xy_m": 6.326973834919615e-08
+        },
+        {
+          "fila": 2,
+          "pieza": 5,
+          "error_z_m": -1.2783597236332156e-08,
+          "error_xy_m": 6.706938176705878e-08
+        },
+        {
+          "fila": 2,
+          "pieza": 6,
+          "error_z_m": 4.4203168902967604e-10,
+          "error_xy_m": 6.29739397732417e-08
+        },
+        {
+          "fila": 2,
+          "pieza": 7,
+          "error_z_m": -1.4303964235296007e-08,
+          "error_xy_m": 6.304948511067233e-08
+        },
+        {
+          "fila": 2,
+          "pieza": 8,
+          "error_z_m": 1.1999949700580714e-08,
+          "error_xy_m": 6.297017848305935e-08
+        },
+        {
+          "fila": 2,
+          "pieza": 9,
+          "error_z_m": 7.438848592666858e-09,
+          "error_xy_m": 6.294383553834653e-08
+        },
+        {
+          "fila": 2,
+          "pieza": 10,
+          "error_z_m": -1.6833536231608548e-09,
+          "error_xy_m": 6.307992811550856e-08
+        },
+        {
+          "fila": 2,
+          "pieza": 11,
+          "error_z_m": -9.742863127382151e-09,
+          "error_xy_m": 6.449692186354174e-08
+        },
+        {
+          "fila": 2,
+          "pieza": 12,
+          "error_z_m": -1.3698945977580479e-08,
+          "error_xy_m": 6.341295871548475e-08
+        },
+        {
+          "fila": 2,
+          "pieza": 13,
+          "error_z_m": 7.438848592666858e-09,
+          "error_xy_m": 6.87895033841682e-08
+        },
+        {
+          "fila": 2,
+          "pieza": 14,
+          "error_z_m": 1.24576240434493e-08,
+          "error_xy_m": 6.589088484863657e-08
+        },
+        {
+          "fila": 2,
+          "pieza": 15,
+          "error_z_m": 1.0479582646105712e-08,
+          "error_xy_m": 8.493839621948413e-08
+        },
+        {
+          "fila": 2,
+          "pieza": 16,
+          "error_z_m": 1.1542275302200977e-08,
+          "error_xy_m": 7.062692033377683e-08
+        },
+        {
+          "fila": 2,
+          "pieza": 17,
+          "error_z_m": -1.1263230181857153e-08,
+          "error_xy_m": 6.856810903011274e-08
+        }
+      ],
+      "cruces": [],
+      "apoyos": [
+        {
+          "nombre": "Apoyo del paño 00 en hilada_frente_01_000_A",
+          "triangulos": 702,
+          "degenerados": 0
+        },
+        {
+          "nombre": "Apoyo del paño 00 en Frentes tallados junto al cupulín 00",
+          "triangulos": 270,
+          "degenerados": 0
+        }
+      ],
+      "pares_transversales": 0
+    }
+  ]
+}

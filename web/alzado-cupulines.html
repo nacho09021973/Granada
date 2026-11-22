@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Dos Hermanas · Corrección de salientes</title>
+  <style>
+    :root { color-scheme:light; font:16px/1.5 system-ui,sans-serif; color:#302c25; background:#f3f0e8; }
+    * { box-sizing:border-box; } body { margin:0; }
+    main { max-width:1184px; margin:auto; padding:24px 16px 44px; }
+    h1 { font:400 clamp(28px,4vw,42px)/1.2 Georgia,serif; margin:24px 0 10px; }
+    a { color:#655332; text-underline-offset:3px; }
+    p { max-width:850px; color:#625c51; }
+    .comparador { position:relative; aspect-ratio:1184/661; background:white; overflow:hidden; --corte:50%; }
+    .comparador img { width:100%; height:100%; display:block; }
+    .anterior { position:absolute; inset:0; clip-path:inset(0 calc(100% - var(--corte)) 0 0); }
+    .linea { position:absolute; inset:0 auto 0 var(--corte); width:2px; background:#79674a; pointer-events:none; }
+    .etiquetas { position:absolute; inset:10px 10px auto; display:flex; justify-content:space-between; gap:8px; pointer-events:none; }
+    .etiquetas span { padding:4px 8px; background:#f3f0e8ed; font-size:13px; }
+    input { width:100%; min-height:44px; accent-color:#75613f; margin:0; }
+    label { display:block; font-size:14px; margin-top:12px; }
+    .referencia { width:100%; max-width:900px; display:block; margin:12px auto; }
+    .nota { font-size:14px; } details { border-top:1px solid #d6cebd; padding-top:16px; margin-top:24px; }
+    summary { cursor:pointer; } @media(max-width:600px) { .etiquetas span { font-size:11px; } }
+  </style>
+</head>
+<body>
+  <main>
+    <a href="visita.html#hiladas">← Ver la visita corregida</a>
+    <h1>Salientes de la cúpula</h1>
+    <p>Comparación del alzado antes y después. Se han rebajado los casquetes de cierre y los techos de los pozos, conservando sus bocas. La clave central conserva su altura.</p>
+    <div class="comparador" id="comparador">
+      <img src="estudio_alzado/despues.png" alt="Alzado del modelo con los salientes rebajados">
+      <img class="anterior" src="estudio_alzado/antes.png" alt="Alzado anterior, con casquetes y pozos más elevados">
+      <div class="linea"></div>
+      <div class="etiquetas"><span>Anterior</span><span>Corregido</span></div>
+    </div>
+    <label for="corte">Desliza para comparar a la misma escala</label>
+    <input id="corte" type="range" min="0" max="100" value="50" aria-label="Porción visible del modelo anterior">
+    <p class="nota">Los pozos se muestran en azul para localizarlos. Es una comparación geométrica de media cúpula, con el origen y la escala vigentes; no una correspondencia pieza por pieza con la fotografía.</p>
+    <details open>
+      <summary>Referencia: Foto de Ferrer.png</summary>
+      <img class="referencia" src="../docs/Foto%20de%20Ferrer.png" alt="Alzado de la cúpula aportado por Ferrer, con líneas rojas de referencia">
+      <p class="nota">La imagen acota el perfil general. La corrección es una propuesta contrastada con ese alzado; la profundidad de cada hueco no queda medida por esta vista.</p>
+    </details>
+  </main>
+  <script>
+    document.querySelector("#corte").addEventListener("input", e => document.querySelector("#comparador").style.setProperty("--corte", `${e.target.value}%`));
+  </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+{
+  "video": "docs/Ferrer_6 maqueta Contreras (grabación 2026-08-29).mp4",
+  "sha256_video": "b38283db854c12b381db8ec574946f9952f51fe6de08dfb518ccde800eaeee3c",
+  "sha256_script": "426928da425dc636133c3722848d33c3a93c6050cb6108e41d319f7de687f930",
+  "fotogramas": [
+    {
+      "tiempo_s": 0,
+      "archivo": "renders/previas/0040_ferrer/ferrer_00s.png",
+      "sha256": "cc56104b39782a4bc9e5705fc8bbfad4ef6f9c369c068aa5d2036475c9bfece5"
+    },
+    {
+      "tiempo_s": 2,
+      "archivo": "renders/previas/0040_ferrer/ferrer_02s.png",
+      "sha256": "016668b082339b804b4f74e24c00ed052ce971a363967d018dae36f470ad2dc0"
+    },
+    {
+      "tiempo_s": 4,
+      "archivo": "renders/previas/0040_ferrer/ferrer_04s.png",
+      "sha256": "4506e9b07da8308d70a1871ba84cacea127f316105500d1e56d7c016ac786c3a"
+    },
+    {
+      "tiempo_s": 6,
+      "archivo": "renders/previas/0040_ferrer/ferrer_06s.png",
+      "sha256": "57183892c2d39bbd6b13dd15f507cc8e37268af330ac7cec423e197eb05bee72"
+    },
+    {
+      "tiempo_s": 8,
+      "archivo": "renders/previas/0040_ferrer/ferrer_08s.png",
+      "sha256": "43fb658e45c92e1171ed956b525054e93d9f08fb751d62923e399c8d01d64b97"
+    },
+    {
+      "tiempo_s": 10,
+      "archivo": "renders/previas/0040_ferrer/ferrer_10s.png",
+      "sha256": "fe2debd42f62485a0fb10a9d6914a7a993b09aabddc1275584cf3efa60e64297"
+    },
+    {
+      "tiempo_s": 12,
+      "archivo": "renders/previas/0040_ferrer/ferrer_12s.png",
+      "sha256": "9e052591eee045148e38ddf70a3db5ac2ab0463184e40bdfd2f6b83b40a9f7bd"
+    },
+    {
+      "tiempo_s": 14,
+      "archivo": "renders/previas/0040_ferrer/ferrer_14s.png",
+      "sha256": "384e34497e8d00029352308439a55ea68998c08490e21bc6708f1c0a215cc1f1"
+    }
+  ],
+  "naturaleza": "Inspección visual de una grabación de maqueta; sin escala métrica"
+}

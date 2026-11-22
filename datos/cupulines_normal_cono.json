@@ -1,0 +1,228 @@
+{
+  "parametros": {
+    "A": 3,
+    "forma": "raiz",
+    "borde": "octogonal",
+    "eje_grados": 52.0,
+    "pasos_objetivo": 1.5,
+    "holgura_min_m": 0.025
+  },
+  "cupulines": [
+    {
+      "nombre": "cupulin_00",
+      "profundidad_eje_m": 0.18723413211569045,
+      "z_max_m": 1.0688959456432754,
+      "exceso_silueta_m": 0.7849963562274018,
+      "punto_exceso_max_m": [
+        3.30439720744861,
+        0.4688402651565157,
+        0.8471391658724631
+      ],
+      "limite_en_punto_m": 0.06214280964506123,
+      "holgura_techo_sobre_boca_m": 0.10546532482245853
+    },
+    {
+      "nombre": "cupulin_01",
+      "profundidad_eje_m": 0.18723413211569045,
+      "z_max_m": 1.081379044345669,
+      "exceso_silueta_m": 0.13078031640842036,
+      "punto_exceso_max_m": [
+        2.9533549486338933,
+        1.5866531481250796,
+        0.7995626349259957
+      ],
+      "limite_en_punto_m": 0.6687823185175753,
+      "holgura_techo_sobre_boca_m": 0.04734327458246501
+    },
+    {
+      "nombre": "cupulin_02",
+      "profundidad_eje_m": 0.18723413211569045,
+      "z_max_m": 1.073917982145951,
+      "exceso_silueta_m": -0.934047035819517,
+      "punto_exceso_max_m": [
+        1.985630067905822,
+        2.591194497512629,
+        0.9020567618921385
+      ],
+      "limite_en_punto_m": 1.8361037977116554,
+      "holgura_techo_sobre_boca_m": 0.10117724480113359
+    },
+    {
+      "nombre": "cupulin_03",
+      "profundidad_eje_m": 0.18723413211569045,
+      "z_max_m": 1.0818901184859033,
+      "exceso_silueta_m": -2.483712718406392,
+      "punto_exceso_max_m": [
+        0.8514861938206069,
+        3.1027338225339394,
+        0.9333304054578757
+      ],
+      "limite_en_punto_m": 3.417043123864268,
+      "holgura_techo_sobre_boca_m": 0.048998459713645484
+    },
+    {
+      "nombre": "cupulin_04",
+      "profundidad_eje_m": 0.18723413211569045,
+      "z_max_m": 1.075558478940385,
+      "exceso_silueta_m": -2.6076939037914935,
+      "punto_exceso_max_m": [
+        -0.6376526807199334,
+        3.0982770528345744,
+        1.0299454051173247
+      ],
+      "limite_en_punto_m": 3.637639308908818,
+      "holgura_techo_sobre_boca_m": 0.10263297452288674
+    },
+    {
+      "nombre": "cupulin_05",
+      "profundidad_eje_m": 0.18723413211569045,
+      "z_max_m": 1.0858798995785446,
+      "exceso_silueta_m": -0.9248625446267134,
+      "punto_exceso_max_m": [
+        -1.7218683105761434,
+        2.626285631118668,
+        1.0858798995785446
+      ],
+      "limite_en_punto_m": 2.010742444205258,
+      "holgura_techo_sobre_boca_m": 0.04949771711373905
+    },
+    {
+      "nombre": "cupulin_06",
+      "profundidad_eje_m": 0.18723413211569045,
+      "z_max_m": 1.0747186197801781,
+      "exceso_silueta_m": 0.03902147363558339,
+      "punto_exceso_max_m": [
+        -2.872478106435183,
+        1.679228511795684,
+        0.8272933923856236
+      ],
+      "limite_en_punto_m": 0.7882719187500402,
+      "holgura_techo_sobre_boca_m": 0.09558751393188766
+    },
+    {
+      "nombre": "cupulin_07",
+      "profundidad_eje_m": 0.18723413211569045,
+      "z_max_m": 1.0837297881885322,
+      "exceso_silueta_m": 0.7932612363982244,
+      "punto_exceso_max_m": [
+        -3.3474476911140987,
+        0.5371996763310164,
+        0.8186380152025272
+      ],
+      "limite_en_punto_m": 0.025376778804302804,
+      "holgura_techo_sobre_boca_m": 0.057878785629502855
+    },
+    {
+      "nombre": "cupulin_08",
+      "profundidad_eje_m": 0.18723413211569045,
+      "z_max_m": 1.0753300911928008,
+      "exceso_silueta_m": 0.7848615394024931,
+      "punto_exceso_max_m": [
+        -3.3457508417367228,
+        -0.47669149794028237,
+        0.8102383182067959
+      ],
+      "limite_en_punto_m": 0.025376778804302804,
+      "holgura_techo_sobre_boca_m": 0.09226037752061149
+    },
+    {
+      "nombre": "cupulin_09",
+      "profundidad_eje_m": 0.18723413211569045,
+      "z_max_m": 1.0800322593519258,
+      "exceso_silueta_m": 0.1268273738446214,
+      "punto_exceso_max_m": [
+        -3.0044758653142813,
+        -1.5813623357232622,
+        0.7312691383908694
+      ],
+      "limite_en_punto_m": 0.604441764546248,
+      "holgura_techo_sobre_boca_m": 0.06012044751373942
+    },
+    {
+      "nombre": "cupulin_10",
+      "profundidad_eje_m": 0.18723413211569045,
+      "z_max_m": 1.073594183978038,
+      "exceso_silueta_m": -0.9187652448068406,
+      "punto_exceso_max_m": [
+        -1.7585909590903215,
+        -2.582836766630796,
+        1.073594183978038
+      ],
+      "limite_en_punto_m": 1.9923594287848787,
+      "holgura_techo_sobre_boca_m": 0.08792290838789829
+    },
+    {
+      "nombre": "cupulin_11",
+      "profundidad_eje_m": 0.18723413211569045,
+      "z_max_m": 1.0780792813635576,
+      "exceso_silueta_m": -2.5595600275452606,
+      "punto_exceso_max_m": [
+        -0.6374863927090954,
+        -3.064834018848861,
+        1.0780792813635576
+      ],
+      "limite_en_punto_m": 3.637639308908818,
+      "holgura_techo_sobre_boca_m": 0.06257326156627985
+    },
+    {
+      "nombre": "cupulin_12",
+      "profundidad_eje_m": 0.18723413211569045,
+      "z_max_m": 1.069165880758229,
+      "exceso_silueta_m": -2.568473428150589,
+      "punto_exceso_max_m": [
+        0.5817725873011703,
+        -3.0642844858507625,
+        1.069165880758229
+      ],
+      "limite_en_punto_m": 3.637639308908818,
+      "holgura_techo_sobre_boca_m": 0.09341446409282025
+    },
+    {
+      "nombre": "cupulin_13",
+      "profundidad_eje_m": 0.18723413211569045,
+      "z_max_m": 1.080092700171387,
+      "exceso_silueta_m": -0.9490327594542503,
+      "punto_exceso_max_m": [
+        1.7178069504983788,
+        -2.620091027530508,
+        1.080092700171387
+      ],
+      "limite_en_punto_m": 2.029125459625637,
+      "holgura_techo_sobre_boca_m": 0.05223544533021039
+    },
+    {
+      "nombre": "cupulin_14",
+      "profundidad_eje_m": 0.18723413211569045,
+      "z_max_m": 1.0683720928850633,
+      "exceso_silueta_m": 0.06528162587494835,
+      "punto_exceso_max_m": [
+        2.9399467554152183,
+        -1.7352875038725857,
+        0.7524469598129029
+      ],
+      "limite_en_punto_m": 0.6871653339379545,
+      "holgura_techo_sobre_boca_m": 0.1000201936752527
+    },
+    {
+      "nombre": "cupulin_15",
+      "profundidad_eje_m": 0.18723413211569045,
+      "z_max_m": 1.079141306360018,
+      "exceso_silueta_m": 0.7952417169441444,
+      "punto_exceso_max_m": [
+        3.308550218168922,
+        -0.5291089903229573,
+        0.8573845265892056
+      ],
+      "limite_en_punto_m": 0.06214280964506123,
+      "holgura_techo_sobre_boca_m": 0.04876412926463388
+    }
+  ],
+  "sha256": {
+    "scripts/cupulines_asiento_y_altura.py": "964be466d904506c9e317f1b0223bf89bd935665d03a210ee9026073042d3a5d",
+    "granada/campo.py": "86068f596b195707cca39e0e06a4e4ab1254b3991c8cab2a09161a70075a4ffc",
+    "granada/cupula.py": "dbaa7329ed98eec447aa0fb474f3160b34351d94ff50f967afed755895028ab7",
+    "datos/registro_foto_ferrer.json": "e6267637eb0589989cf27e01a5951255b120b76c42196743d004aa53e01a2abf",
+    "web/modelos/dos-hermanas.glb.gz": "ca2860ff75289088ee440627ae2c38c1c9d638563367d40037e9d8a6f6589b57"
+  },
+  "limite": "La silueta es una cota del alzado, no una medida individual de profundidad"
+}
