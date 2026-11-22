@@ -1278,6 +1278,23 @@ hizo falta bajar los 2,9 GB. Sus 358 miembros son TIFF sin comprimir de
 lo que ya hay. Lo que falta es un escaneo de alta resolución de esa hoja,
 pedido a una biblioteca que tenga la obra.
 
+### Láminas XIX y XX: no dan una vista oblicua del paño (2026-11-22)
+
+Buscadas para contrastar la profundidad del paño sobre las ventanas (0038).
+Comprobado en las páginas del PDF, contando desde 1:
+
+- **Lámina XIX**, *View in the Hall of the Two Sisters* (texto en p. 151,
+  grabado en p. 154): vista a través del arco hacia la alcoba. No se ve la
+  cúpula ni el tambor.
+- **Lámina XX**, *Detail of the upper story* (texto en p. 157, grabado en
+  p. 161): alzado frontal de un lado del octógono, con un único vano de
+  celosía rectangular. Su texto lo describe como luz de un «upper corridor,
+  leading to the apartments appropriated to the women»: es el ajimez del
+  piso alto, no el par de ventanas con celosía circular del tambor.
+
+Ninguna sirve para registrar una vista oblicua del paño. El tomo II
+(entrada 18) no trae plantas, secciones ni vistas de la cúpula.
+
 ---
 
 ## 18. Jones y Goury, tomo II — el `_jp2.zip` aportado el 2026-08-27
@@ -1405,3 +1422,44 @@ con el octógono del tambor y sus 16 ventanas.
 
 Es una foto con perspectiva y sin escala: sirve para contrastar el aspecto del
 modelo, no para medir.
+
+## 20. Seis fotografías del tambor, Wikimedia Commons (registradas el 2026-11-22)
+
+Buscadas para contrastar el paño sobre las ventanas (decisiones 0036 y 0038)
+con vistas oblicuas de la obra construida. Aportadas por el usuario a `docs/`
+desde las páginas de Commons. Antes se descartaron, como vistas oblicuas del
+paño, las láminas XIX y XX de Jones y Goury (entrada 17) y el vídeo de la
+maqueta de Contreras (entrada 12): su resolución y la forma de sus vanos no
+sirven para medir la obra.
+
+- **Registro:** `scripts/registrar_fotos_tambor.py` comprueba el SHA-1 de
+  cada fichero contra el publicado por Commons y escribe
+  `datos/fotos_tambor_commons.json` con autor, licencia, página y SHA-256.
+- **VERIFICADO el 2026-11-22** contra la API de Commons: los seis ficheros
+  son idénticos byte a byte a los originales.
+- **Licencias:** CC BY 2.0, CC BY-SA 2.0, CC BY-SA 3.0 y CC BY-SA 3.0 es.
+  Redistribuibles con atribución (y misma licencia en las BY-SA); por eso se
+  versionan.
+
+| fichero | autor | licencia | px |
+|---|---|---|---|
+| `Granada_trip82.jpg` | Tibor Kovacs | CC BY 2.0 | 5053 × 3369 |
+| `Hall_of_the_Two_Sisters_-_Alhambra_(3).jpg` | José Luiz | CC BY-SA 3.0 | 1360 × 2048 |
+| `Hall_of_the_Two_Sisters_-_Alhambra_(2).jpg` | José Luiz | CC BY-SA 3.0 | 1360 × 2048 |
+| `Alhambra_of_Granada_(8139873808).jpg` | Olivier Bruchez | CC BY-SA 2.0 | 3648 × 2736 |
+| `AlhambraD_22_(6851003210).jpg` | michael clarke stuff | CC BY-SA 2.0 | 3648 × 2736 |
+| `Alhambra_Aug._2010_15.jpg` | ElenaGissi | CC BY-SA 3.0 es | 2112 × 2816 |
+
+### Qué se lee en ellas (inspección visual, 2026-11-22)
+
+- Cada vano está **dentro de un nicho**: celosía al fondo y jambas laterales
+  iluminadas. En `Granada_trip82.jpg`, en la cara más oblicua, la jamba
+  visible ocupa en la imagen una anchura comparable a la del vano. En el
+  modelo, la celosía está a 9 cm del plano del muro
+  (`scripts/hiladas_ventanas.py`). La diferencia no está medida todavía.
+- El nicho remata en un **perfil escalonado de mocárabes** sobre el arco.
+- Entre los dos vanos de cada cara hay una **columnilla** y paneles de
+  ataurique, y una banda epigráfica corre bajo los alféizares.
+
+Son fotografías con perspectiva y sin escala propia. Cualquier medida exige
+resolver la cámara con puntos de geometría conocida y declarar su incertidumbre.

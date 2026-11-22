@@ -1,0 +1,96 @@
+{
+  "consulta_commons": "2026-11-22, API imageinfo (sha1, size, extmetadata)",
+  "script": "scripts/registrar_fotos_tambor.py",
+  "fotos": [
+    {
+      "archivo": "docs/Granada_trip82.jpg",
+      "commons": "File:Granada trip82.jpg",
+      "autor": "Tibor Kovacs",
+      "licencia": "CC BY 2.0",
+      "sha1": "ce7d7ccc2bab09260c94843f45cc96073c9d3c22",
+      "uso": "cinco caras del tambor con oblicuidad creciente; candidata para medir",
+      "pagina": "https://commons.wikimedia.org/wiki/File:Granada_trip82.jpg",
+      "sha256": "3792445572d40ba938d217ec233eb49e401813295cf7f9d3e8a74dced800fa1c",
+      "bytes": 10280374,
+      "px": [
+        5053,
+        3369
+      ]
+    },
+    {
+      "archivo": "docs/Hall_of_the_Two_Sisters_-_Alhambra_(3).jpg",
+      "commons": "File:Hall of the Two Sisters - Alhambra (3).JPG",
+      "autor": "José Luiz",
+      "licencia": "CC BY-SA 3.0",
+      "sha1": "676a037786091084b192b21dbbc2cfdc311e326a",
+      "uso": "par de vanos casi de frente, desde abajo; control de forma",
+      "pagina": "https://commons.wikimedia.org/wiki/File:Hall_of_the_Two_Sisters_-_Alhambra_(3).JPG",
+      "sha256": "fb4efc372f35a97c3e489bd628ad54e7d22521cea3217c8e33b45998d8529241",
+      "bytes": 1882932,
+      "px": [
+        1360,
+        2048
+      ]
+    },
+    {
+      "archivo": "docs/Hall_of_the_Two_Sisters_-_Alhambra_(2).jpg",
+      "commons": "File:Hall of the Two Sisters - Alhambra (2).JPG",
+      "autor": "José Luiz",
+      "licencia": "CC BY-SA 3.0",
+      "sha1": "0e41e55c22b70e5b63fe25553de8f59ae11e7ecd",
+      "uso": "una cara de frente y las vecinas en oblicuo",
+      "pagina": "https://commons.wikimedia.org/wiki/File:Hall_of_the_Two_Sisters_-_Alhambra_(2).JPG",
+      "sha256": "8ab78a6c9341f157a68f5675a59c5f48e222464e516cbbea34f25188eacbf372",
+      "bytes": 1958714,
+      "px": [
+        1360,
+        2048
+      ]
+    },
+    {
+      "archivo": "docs/Alhambra_of_Granada_(8139873808).jpg",
+      "commons": "File:Alhambra of Granada (8139873808).jpg",
+      "autor": "Olivier Bruchez",
+      "licencia": "CC BY-SA 2.0",
+      "sha1": "8b84bf82f29e785d22b2c8204d835e0deca73076",
+      "uso": "tambor completo en oblicuo desde la sala",
+      "pagina": "https://commons.wikimedia.org/wiki/File:Alhambra_of_Granada_(8139873808).jpg",
+      "sha256": "5e4a1876a56efe787c586f2fa043fab392b1284dc9935626088cfb06bc64de57",
+      "bytes": 2909607,
+      "px": [
+        3648,
+        2736
+      ]
+    },
+    {
+      "archivo": "docs/AlhambraD_22_(6851003210).jpg",
+      "commons": "File:AlhambraD 22 (6851003210).jpg",
+      "autor": "michael clarke stuff (Flickr)",
+      "licencia": "CC BY-SA 2.0",
+      "sha1": "9209350d42883f0bb348d39dbdf6c29cef681b04",
+      "uso": "caras del tambor en oblicuo desde una esquina",
+      "pagina": "https://commons.wikimedia.org/wiki/File:AlhambraD_22_(6851003210).jpg",
+      "sha256": "0d3b55bcc195cd6ed6cc411bbf4927a8b85f431c760dc65ed7ae723ca539eb62",
+      "bytes": 4368018,
+      "px": [
+        3648,
+        2736
+      ]
+    },
+    {
+      "archivo": "docs/Alhambra_Aug._2010_15.jpg",
+      "commons": "File:Alhambra Aug. 2010 15.JPG",
+      "autor": "ElenaGissi",
+      "licencia": "CC BY-SA 3.0 es",
+      "sha1": "2d7d17ca0ed0be83981e2ebab478dd4e684979fc",
+      "uso": "tambor y trompas desde el eje de un muro",
+      "pagina": "https://commons.wikimedia.org/wiki/File:Alhambra_Aug._2010_15.JPG",
+      "sha256": "89b41c4be7a72662cb96d73834555aabfa7da5cd4ac99d29863ede80ecb6bea9",
+      "bytes": 3504211,
+      "px": [
+        2112,
+        2816
+      ]
+    }
+  ]
+}
