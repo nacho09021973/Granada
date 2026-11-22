@@ -11,6 +11,8 @@ import numpy as np
 from mathutils import Matrix, Vector
 from mathutils.geometry import delaunay_2d_cdt
 
+from hiladas_ventanas import PROFUNDIDAD_NICHO_M
+
 
 class Superficie:
     def __init__(self):
@@ -304,8 +306,9 @@ def tambor_con_vanos(obj, paleta, alzado, pano_piloto=None):
                 (0.030, 0.046, "crema"),
                 (0.014, 0.055, "yeso"),
                 (0, 0.052, "yeso"),
-                (-0.008, -0.09, "crema"),
-                (-0.008, -0.12, "yeso"),
+                # Nicho hasta la celosía (0041); antes -0,09 y -0,12.
+                (-0.008, -(PROFUNDIDAD_NICHO_M - 0.03), "crema"),
+                (-0.008, -PROFUNDIDAD_NICHO_M, "yeso"),
             ]:
                 siguiente = forma.puntos(xyz(x, z, vuelo) for x, z in arco(cx, ancho))
                 if previo is not None:
@@ -332,7 +335,7 @@ def tambor_con_vanos(obj, paleta, alzado, pano_piloto=None):
                     for x, z in cruces:
                         tramo.append(
                             forma.puntos(
-                                xyz(x + dx, z - sentido * dx, -0.085 + prof)
+                                xyz(x + dx, z - sentido * dx, -(PROFUNDIDAD_NICHO_M - 0.035) + prof)
                                 for dx, prof in [
                                     (-0.005, 0),
                                     (0, 0.008),
@@ -342,7 +345,7 @@ def tambor_con_vanos(obj, paleta, alzado, pano_piloto=None):
                             )
                         )
                     forma.banda(*tramo, "crema")
-            panel = forma.puntos(xyz(x, z, -0.19) for x, z in arco(cx))
+            panel = forma.puntos(xyz(x, z, -(PROFUNDIDAD_NICHO_M + 0.07)) for x, z in arco(cx))
             forma.cara(panel, "cielo")
         # Perfil continuo del friso y la imposta. Los fondos quedan retranqueados.
         for z in (alf - 0.14, bajo + 0.13):

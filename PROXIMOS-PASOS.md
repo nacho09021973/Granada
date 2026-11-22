@@ -15,8 +15,14 @@ ajuste conjunto), frente a 0,09 m en el modelo. Las cámaras se comprueban
 superponiendo el GLB. Supuestos, residuos y límites en
 [0041](docs/decisiones/0041-nicho-de-los-vanos-en-fotos.md).
 
-**Pendiente de decidir:** ahondar el nicho del modelo y añadir su remate
-escalonado. El vuelo de 32,05 cm de las hiladas sigue sin contrastar.
+**Nicho a 30 cm, 0042.** Los dieciséis vanos tienen ahora la celosía a
+0,30 m del plano del muro; GLB regenerado con la corrección 0040 y en la
+visita. Controles y criterio de luz de los vanos en
+[0042](docs/decisiones/0042-nicho-de-los-vanos-a-30-cm.md).
+
+**Pendiente:** remate escalonado de mocárabes sobre cada nicho y marco
+exterior, que muestran las fotos. El vuelo de 32,05 cm de las hiladas sigue
+sin contrastar.
 
 ---
 

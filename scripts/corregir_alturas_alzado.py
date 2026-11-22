@@ -67,7 +67,12 @@ def main():
     ap.add_argument("--entrada", type=Path, default=ROOT / "build/0040_original/modelos/dos-hermanas.glb.gz")
     ap.add_argument("--salida", type=Path, default=ROOT / "build/alzado-corregido/modelos")
     ap.add_argument("--factor-casquetes", type=float, default=.45)
+    # Rutas de registro: por defecto las de 0040, para no alterar su reproducción.
+    ap.add_argument("--informe", type=Path, default=ROOT / "datos/correccion_alturas_alzado.json")
+    ap.add_argument("--verificacion", type=Path, default=ROOT / "datos/comprobacion_alturas_visita.json")
+    ap.add_argument("--sin-laminas", action="store_true", help="no reescribe las láminas de 0040")
     a = ap.parse_args()
+    a.informe, a.verificacion = (q if q.is_absolute() else ROOT / q for q in (a.informe, a.verificacion))
     assert 0 <= a.factor_casquetes <= 1
     mallas = leer(a.entrada)
     pozos = np.load(ROOT / "renders/previas/0040_alzado/cupulines_reducidos.npz")
@@ -135,7 +140,7 @@ def main():
     ficha["bytes_gzip"] = archivo.stat().st_size
     ficha["ajuste_alzado"] = dict(factor_casquetes=a.factor_casquetes, pozos="reduccion_saliente_cupulines.json",
                                  sha256_script=hashlib.sha256(Path(__file__).read_bytes()).hexdigest())
-    verificacion = ROOT / "datos/comprobacion_alturas_visita.json"
+    verificacion = a.verificacion
     if verificacion.exists():
         control = json.loads(verificacion.read_text())
         if control["despues"]["sha256_glb"] == ficha["sha256_glb"]:
@@ -144,7 +149,7 @@ def main():
                 metodo="GLB importado; mismas cámaras y destinos antes/después",
                 antes=control["antes"]["boca"], despues=control["despues"]["boca"])
             ficha["verificacion_alturas"] = dict(
-                archivo="datos/comprobacion_alturas_visita.json",
+                archivo=str(verificacion.relative_to(ROOT)),
                 sha256=hashlib.sha256(verificacion.read_bytes()).hexdigest(),
                 cobertura=control["despues"]["cobertura"], sector=control["despues"]["sector"])
     ficha["iluminacion_vertices"] = "Conservada del control 0038; no recalculada tras el ajuste geométrico"
@@ -160,19 +165,20 @@ def main():
         errores.append(error)
     registro = json.loads((ROOT / "datos/registro_foto_ferrer.json").read_text())
     foto = Image.open(ROOT / "docs/Foto de Ferrer.png").convert("RGB")
-    imagen = pintar(releido, registro, foto.size)
-    imagen.save(ROOT / "renders/previas/0040_alzado/modelo_corregido.png")
-    revision = ROOT / "web/estudio_alzado"
-    revision.mkdir(parents=True, exist_ok=True)
-    imagen.save(revision / "despues.png")
-    Image.open(ROOT / "renders/previas/0040_alzado/modelo_antes.png").save(revision / "antes.png")
+    if not a.sin_laminas:
+        imagen = pintar(releido, registro, foto.size)
+        imagen.save(ROOT / "renders/previas/0040_alzado/modelo_corregido.png")
+        revision = ROOT / "web/estudio_alzado"
+        revision.mkdir(parents=True, exist_ok=True)
+        imagen.save(revision / "despues.png")
+        Image.open(ROOT / "renders/previas/0040_alzado/modelo_antes.png").save(revision / "antes.png")
     informe = dict(casquetes=controles, pozos_corregidos=16, error_relectura_max_m=max(errores),
                    sha256_entrada=hashlib.sha256(a.entrada.read_bytes()).hexdigest(),
                    sha256_salida=hashlib.sha256(archivo.read_bytes()).hexdigest(),
                    fuente_foto=registro, topologia="Inalterada; mismos triángulos y coordenadas XY de los casquetes",
                    controles_previos=ficha.get("comprobacion_boca"),
                    limite="Los controles de visibilidad previos no se revalidan por copiar la ficha; comprobar el candidato")
-    (ROOT / "datos/correccion_alturas_alzado.json").write_text(json.dumps(informe, indent=2, ensure_ascii=False) + "\n")
+    a.informe.write_text(json.dumps(informe, indent=2, ensure_ascii=False) + "\n")
     print(dict(casquetes=len(controles), pozos=16, error=max(errores), salida=str(archivo)))
 
 

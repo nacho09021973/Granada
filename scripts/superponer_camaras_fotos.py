@@ -15,10 +15,12 @@ Salida: `renders/previas/0041_<clave>/superposicion.jpg` (foto | modelo |
 fundido) y `modelo.png`. Solo se ajusta la distorsión si el ajuste la tiene;
 la superposición la ignora (k1 = 0 en el ajuste principal).
 
-Uso: ~/.local/opt/blender/blender -b --python-exit-code 1 -P scripts/superponer_camaras_fotos.py
+Uso: ~/.local/opt/blender/blender -b --python-exit-code 1 -P scripts/superponer_camaras_fotos.py [-- --glb RUTA --sufijo _0042]
 """
 
+import argparse
 import gzip
+import sys
 import json
 import tempfile
 from pathlib import Path
@@ -34,11 +36,11 @@ ESCALA = 0.5
 RECORTE_CERCANO = 3.0
 
 
-def cargar_modelo():
+def cargar_modelo(origen=GLB):
     bpy.ops.wm.read_factory_settings(use_empty=True)
     with tempfile.TemporaryDirectory() as temporal:
         glb = Path(temporal) / "entrada.glb"
-        glb.write_bytes(gzip.decompress(GLB.read_bytes()))
+        glb.write_bytes(gzip.decompress(origen.read_bytes()))
         bpy.ops.import_scene.gltf(filepath=str(glb))
 
 
@@ -61,9 +63,14 @@ def guardar(px, ruta):
 
 
 def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--glb", type=Path, default=GLB)
+    ap.add_argument("--sufijo", default="", help="se añade a los nombres de las láminas")
+    args = ap.parse_args(sys.argv[sys.argv.index("--") + 1 :] if "--" in sys.argv else [])
+    origen = args.glb if args.glb.is_absolute() else ROOT / args.glb
     medida = json.loads(MEDIDA.read_text())
     z_alfeizar = json.loads((ROOT / "datos/alzado_sala.json").read_text())["niveles"]["pie_ventanas_tambor"]["z_m"]
-    cargar_modelo()
+    cargar_modelo(origen)
     escena = bpy.context.scene
     escena.render.engine = "BLENDER_WORKBENCH"
     escena.display.shading.light = "STUDIO"
@@ -99,17 +106,17 @@ def main():
         escena.render.resolution_percentage = 100
         salida = ROOT / f"renders/previas/0041_{clave}"
         salida.mkdir(parents=True, exist_ok=True)
-        escena.render.filepath = str(salida / "modelo.png")
+        escena.render.filepath = str(salida / f"modelo{args.sufijo}.png")
         bpy.ops.render.render(write_still=True)
-        modelo = leer_png(salida / "modelo.png")
+        modelo = leer_png(salida / f"modelo{args.sufijo}.png")
         h, w, _ = modelo.shape
         img = bpy.data.images.load(str(foto))
         img.scale(w, h)
         fot = np.array(img.pixels[:], dtype=np.float32).reshape(h, w, img.channels)[::-1, :, :3]
         bpy.data.images.remove(img)
         fundido = 0.5 * fot + 0.5 * modelo
-        guardar(np.concatenate([fot, modelo, fundido], 1), salida / "superposicion.jpg")
-        print(clave, "->", salida / "superposicion.jpg", flush=True)
+        guardar(np.concatenate([fot, modelo, fundido], 1), salida / f"superposicion{args.sufijo}.jpg")
+        print(clave, "->", salida / f"superposicion{args.sufijo}.jpg", flush=True)
 
 
 if __name__ == "__main__":

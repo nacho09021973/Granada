@@ -2,13 +2,13 @@
   "obj": "renders/previas/cupula_campo_vigente_1400.obj",
   "sha256_obj": "23ee5e06e3fd0b1dbc74746e9f8951a4febc5b1ec70253c9d93e6c942b8ceb45",
   "sha256_mtl": "b78a5fdc88d23e176723362bc800e217b2ccd108a3f6d60394ac18f4a1cc7c47",
-  "sha256_glb": "dd3de2e2f3f6b5b406e01e1f75f7b015ea1d363d06638c53854df9d82306b197",
+  "sha256_glb": "5fa3b2b300d39632c1cc318ca1de857ca9adfbf2f7234efa250b6a769a8ce55c",
   "blender": "4.5.15 LTS",
   "cateto_m": 0.22381466813208983,
   "suelo_m": -11.272,
   "mallas": 181,
   "triangulos": 1086004,
-  "bytes_gzip": 16792598,
+  "bytes_gzip": 16791829,
   "borde_clave": 266,
   "cota_max_clave_m": 4.67,
   "puntos_visibilidad": 543804,
@@ -50,8 +50,8 @@
       "sala": {
         "rayos_por_ventana": 759,
         "cielo_por_ventana": [
-          80,
-          68
+          38,
+          29
         ],
         "piezas_visibles": [
           0,
@@ -61,8 +61,8 @@
       "frontal": {
         "rayos_por_ventana": 759,
         "cielo_por_ventana": [
-          191,
-          254
+          138,
+          281
         ],
         "piezas_visibles": [
           0,
@@ -72,8 +72,8 @@
       "lateral": {
         "rayos_por_ventana": 759,
         "cielo_por_ventana": [
-          263,
-          127
+          191,
+          15
         ],
         "piezas_visibles": [
           0,
@@ -85,8 +85,8 @@
       "sala": {
         "rayos_por_ventana": 759,
         "cielo_por_ventana": [
-          80,
-          68
+          38,
+          29
         ],
         "piezas_visibles": [
           16,
@@ -96,8 +96,8 @@
       "frontal": {
         "rayos_por_ventana": 759,
         "cielo_por_ventana": [
-          191,
-          254
+          138,
+          281
         ],
         "piezas_visibles": [
           16,
@@ -107,8 +107,8 @@
       "lateral": {
         "rayos_por_ventana": 759,
         "cielo_por_ventana": [
-          263,
-          127
+          191,
+          15
         ],
         "piezas_visibles": [
           16,
@@ -124,16 +124,16 @@
   },
   "sha256_generadores": {
     "scripts/exportar_visita_web.py": "1b4e93e6862a3bad7a935167eb706fd4abf08e4162c46919ee5e206a88e244c5",
-    "scripts/hiladas_ventanas.py": "6cbbe8a9c60271023725b2400d96182d050c9e551c3f73bd94de8c3b3f3a3f9a",
+    "scripts/hiladas_ventanas.py": "e269a9643844349344c3f3c08b27ac7c67180a10d00cefe1230009e45efd8f2e",
     "scripts/encajar_frentes_visita.py": "5f0b23692c5d3c2fd022731290f79bfd0f53fed9a237319fa0c728cbb7d7a0fa",
-    "scripts/detalle_visita.py": "7b7850f2f816e7bf64bceac17c4956c7dbfd9a2426aca0e4d0308fa812a6f627",
+    "scripts/detalle_visita.py": "d007a23c0ee8d9b2367c52cb0f796a3fd6ed69895691719104f6019b200caab0",
     "scripts/talla_cupulin.py": "ad7eb78caf091660d785cd63e10dbb9892143504ecfd683e87b0b4f57f6775fe",
     "datos/alzado_sala.json": "d6edbe8b287c8d83e8e1c794f03dd2766310cc607446d7eb0efbeae88ef26787"
   },
   "ajuste_alzado": {
     "factor_casquetes": 0.45,
     "pozos": "reduccion_saliente_cupulines.json",
-    "sha256_script": "79ecbcb6c8d4a0d0d613df73f3292a022cd1508e384e958a8aa2afeb416a1a2e"
+    "sha256_script": "09e239c1b32fda246a0c6f9701c90c09d1120d49825228c73d2ac1dd873d61e9"
   },
   "controles_antes_del_ajuste": {
     "rayos_por_vista": 4225,
@@ -154,8 +154,8 @@
     "rayos_por_vista": 4225,
     "metodo": "GLB importado; mismas c\u00e1maras y destinos antes/despu\u00e9s",
     "antes": {
-      "sala": 982,
-      "oblicua": 979
+      "sala": 984,
+      "oblicua": 984
     },
     "despues": {
       "sala": 984,
@@ -163,8 +163,8 @@
     }
   },
   "verificacion_alturas": {
-    "archivo": "datos/comprobacion_alturas_visita.json",
-    "sha256": "e739aec49ae32af6ca040d2e0575dca8c37fc7307c558ae54e574710d328045e",
+    "archivo": "datos/comprobacion_visita_0042.json",
+    "sha256": "00c695fe8a5e1cfe4ddbb09ca7b3df94e32ca0a2a453deb7c86ea47dee58002b",
     "cobertura": {
       "64": {
         "rayos": 3096,
@@ -179,8 +179,8 @@
       "sala": {
         "rayos_por_ventana": 759,
         "cielo_por_ventana": [
-          80,
-          68
+          38,
+          29
         ],
         "piezas_visibles": [
           16,
@@ -190,8 +190,8 @@
       "frontal": {
         "rayos_por_ventana": 759,
         "cielo_por_ventana": [
-          191,
-          254
+          138,
+          281
         ],
         "piezas_visibles": [
           16,
@@ -201,8 +201,8 @@
       "lateral": {
         "rayos_por_ventana": 759,
         "cielo_por_ventana": [
-          263,
-          127
+          191,
+          15
         ],
         "piezas_visibles": [
           16,

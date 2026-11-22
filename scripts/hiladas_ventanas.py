@@ -52,6 +52,9 @@ SUPERIOR = [
     (None, 3284, 1998),
 ]
 FONDO_M = (0.0, 0.134, 0.251)
+# Celosía tras el plano del muro. Decisión 0041: 0,20-0,34 m medidos en dos
+# fotografías (0,30 en el ajuste conjunto); antes 0,09, sin medida.
+PROFUNDIDAD_NICHO_M = 0.30
 # El eje de los vanos de 0035 está a ±0,59 m y su ápice a -0,165 m.
 APICE_MODELO = -0.165
 FILA_APICE = 2050
@@ -159,16 +162,16 @@ def pared_piloto(forma, apotema, bajo, alzado, encaje="seccion"):
             (0.008, 0.986, "crema"),
             (0.017, 0.990, "yeso"),
             (0.028, 1, "yeso"),
-            (0.09, 0.964, "crema"),
+            (PROFUNDIDAD_NICHO_M, 0.964, "crema"),
         ):
             contorno = (boca - [cx, alf + 0.51]) * factor + [cx, alf + 0.51]
             sig = forma.puntos((apotema + fondo, y, z) for y, z in contorno)
             if previo is not None:
                 forma.banda(previo, sig, tono)
             previo = sig
-        celosia(forma, apotema + 0.09, contorno, cx)
+        celosia(forma, apotema + PROFUNDIDAD_NICHO_M, contorno, cx)
         # El fondo luminoso llega hasta el perímetro incluso en la vista oblicua.
-        posterior = forma.puntos((apotema + 0.17, y, z) for y, z in contorno)
+        posterior = forma.puntos((apotema + PROFUNDIDAD_NICHO_M + 0.08, y, z) for y, z in contorno)
         forma.banda(previo, posterior, "yeso")
         for f in caras_con_huecos(contorno, []):
             forma.cara([posterior[i] for i in f], "cielo")

@@ -52,18 +52,27 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--antes", type=Path, required=True)
     ap.add_argument("--despues", type=Path, required=True)
+    ap.add_argument("--informe", type=Path, default=ROOT / "datos/comprobacion_alturas_visita.json")
+    # Para cambios que alteran los vanos a propósito (0042, nicho más hondo): la
+    # luz de cada vano solo tiene que seguir siendo visible, no conservarse.
+    ap.add_argument("--vanos-cambiados", action="store_true")
     a = ap.parse_args(sys.argv[sys.argv.index("--") + 1:] if "--" in sys.argv else [])
     antes, despues = examinar(a.antes), examinar(a.despues)
-    resultado = dict(antes=antes, despues=despues,
+    criterio = "cada vano visible (> 0 rayos)" if a.vanos_cambiados else "cada vano >= 95 % del anterior"
+    resultado = dict(antes=antes, despues=despues, criterio_vanos=criterio,
                      sha256_script=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
                      limite="Muestreo fijo, no prueba de estanqueidad ni validación histórica")
-    (ROOT / "datos/comprobacion_alturas_visita.json").write_text(json.dumps(resultado, indent=2) + "\n")
+    a.informe.write_text(json.dumps(resultado, indent=2) + "\n")
     print(json.dumps(resultado), flush=True)
     for vista in antes["boca"]:
         assert despues["boca"][vista] >= .95 * antes["boca"][vista]
     for vista in antes["sector"]:
         assert min(despues["sector"][vista]["piezas_visibles"]) >= 2
-        assert all(b >= .95 * a for a, b in zip(antes["sector"][vista]["cielo_por_ventana"], despues["sector"][vista]["cielo_por_ventana"]))
+        pares = zip(antes["sector"][vista]["cielo_por_ventana"], despues["sector"][vista]["cielo_por_ventana"])
+        if a.vanos_cambiados:
+            assert all(b > 0 for _, b in pares)
+        else:
+            assert all(b >= .95 * x for x, b in pares)
     for n in antes["cobertura"]:
         assert despues["cobertura"][n]["sin_cubierta"] <= antes["cobertura"][n]["sin_cubierta"]
 
