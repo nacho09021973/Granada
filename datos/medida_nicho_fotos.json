@@ -1,0 +1,1891 @@
+{
+  "fotos": [
+    "trip82",
+    "bruchez"
+  ],
+  "distorsion": false,
+  "sha256_script": "e29e8e572f3abd2a8a2c52d78f3f4866dcbadc0525ec19ac68d4591fe2e35422",
+  "sha256_bordes": {
+    "trip82": "cfa904c33993dc1ff85726d586d3bb0ffc6dd82b849c049dedc2158c7ba4b9dc",
+    "bruchez": "16be60abf43d346e0e490c46c20b48197f6be55bdca1eb14d5e008d4210e0b93"
+  },
+  "apotema_m": 3.8657066822052,
+  "modelo_vigente_m": {
+    "a": 0.59,
+    "h": 0.265,
+    "d_celosia": 0.09
+  },
+  "principal": {
+    "caras": {
+      "trip82": [
+        "A",
+        "B",
+        "C"
+      ],
+      "bruchez": [
+        "A",
+        "B",
+        "C"
+      ]
+    },
+    "rms_px": 7.699389021809003,
+    "n_puntos": 1504,
+    "nicho_m": {
+      "a": 0.5565,
+      "h": 0.2899,
+      "d": 0.3015,
+      "hn": 0.3205
+    },
+    "sigma_nicho_m": {
+      "a": 0.001,
+      "h": 0.0014,
+      "d": 0.0075,
+      "hn": 0.0024
+    },
+    "camaras": {
+      "trip82": {
+        "focal_px": 5900.3,
+        "posicion_m": [
+          -4.369,
+          -1.208,
+          -7.9
+        ],
+        "rotacion": [
+          [
+            0.18935642,
+            -0.98185057,
+            0.01065818
+          ],
+          [
+            0.73150387,
+            0.13381786,
+            -0.66857674
+          ],
+          [
+            0.65501621,
+            0.13439579,
+            0.74356677
+          ]
+        ],
+        "imagen_px": [
+          5053,
+          3369
+        ],
+        "altura_sobre_suelo_m": 2.026,
+        "k1": 0.0,
+        "bordes": {
+          "A1.inferior": {
+            "media_px": 0.85,
+            "desv_px": 9.41,
+            "tipo": "alfeizar"
+          },
+          "A1.izquierdo": {
+            "media_px": 11.57,
+            "desv_px": 3.67,
+            "tipo": "jamba"
+          },
+          "A2.inferior": {
+            "media_px": 2.25,
+            "desv_px": 7.86,
+            "tipo": "alfeizar"
+          },
+          "A2.izquierdo": {
+            "media_px": -11.17,
+            "desv_px": 3.74,
+            "tipo": "jamba"
+          },
+          "A2.derecho": {
+            "media_px": 8.26,
+            "desv_px": 4.61,
+            "tipo": "celosia"
+          },
+          "B1.inferior": {
+            "media_px": -7.78,
+            "desv_px": 5.04,
+            "tipo": "alfeizar"
+          },
+          "B1.izquierdo": {
+            "media_px": -9.18,
+            "desv_px": 2.64,
+            "tipo": "celosia"
+          },
+          "B1.derecho": {
+            "media_px": -0.8,
+            "desv_px": 3.32,
+            "tipo": "jamba"
+          },
+          "B2.inferior": {
+            "media_px": -0.61,
+            "desv_px": 5.2,
+            "tipo": "alfeizar"
+          },
+          "B2.izquierdo": {
+            "media_px": -2.95,
+            "desv_px": 3.17,
+            "tipo": "celosia"
+          },
+          "B2.derecho": {
+            "media_px": -7.37,
+            "desv_px": 2.52,
+            "tipo": "celosia"
+          },
+          "C1.inferior": {
+            "media_px": 9.82,
+            "desv_px": 4.69,
+            "tipo": "alfeizar"
+          },
+          "C1.izquierdo": {
+            "media_px": 2.89,
+            "desv_px": 4.08,
+            "tipo": "celosia"
+          },
+          "C1.derecho": {
+            "media_px": 2.4,
+            "desv_px": 2.74,
+            "tipo": "jamba"
+          },
+          "C2.inferior": {
+            "media_px": -5.32,
+            "desv_px": 6.29,
+            "tipo": "alfeizar"
+          },
+          "C2.izquierdo": {
+            "media_px": 8.27,
+            "desv_px": 2.0,
+            "tipo": "celosia"
+          },
+          "C2.derecho": {
+            "media_px": -3.27,
+            "desv_px": 2.33,
+            "tipo": "jamba"
+          }
+        }
+      },
+      "bruchez": {
+        "focal_px": 4475.2,
+        "posicion_m": [
+          -5.017,
+          -1.941,
+          -8.558
+        ],
+        "rotacion": [
+          [
+            0.25056155,
+            -0.96795352,
+            -0.0168788
+          ],
+          [
+            0.72976983,
+            0.20030487,
+            -0.65369255
+          ],
+          [
+            0.63612491,
+            0.15147258,
+            0.75657198
+          ]
+        ],
+        "imagen_px": [
+          3648,
+          2736
+        ],
+        "altura_sobre_suelo_m": 1.368,
+        "k1": 0.0,
+        "bordes": {
+          "A1.inferior": {
+            "media_px": 0.85,
+            "desv_px": 9.15,
+            "tipo": "alfeizar"
+          },
+          "A1.izquierdo": {
+            "media_px": -0.86,
+            "desv_px": 2.31,
+            "tipo": "jamba"
+          },
+          "A1.derecho": {
+            "media_px": -3.54,
+            "desv_px": 1.61,
+            "tipo": "celosia"
+          },
+          "A2.inferior": {
+            "media_px": -1.01,
+            "desv_px": 8.52,
+            "tipo": "alfeizar"
+          },
+          "A2.izquierdo": {
+            "media_px": -4.13,
+            "desv_px": 2.65,
+            "tipo": "jamba"
+          },
+          "A2.derecho": {
+            "media_px": 8.1,
+            "desv_px": 2.02,
+            "tipo": "celosia"
+          },
+          "B1.izquierdo": {
+            "media_px": -4.14,
+            "desv_px": 1.54,
+            "tipo": "celosia"
+          },
+          "B2.inferior": {
+            "media_px": 0.78,
+            "desv_px": 12.02,
+            "tipo": "alfeizar"
+          },
+          "B2.izquierdo": {
+            "media_px": 5.24,
+            "desv_px": 1.94,
+            "tipo": "celosia"
+          },
+          "B2.derecho": {
+            "media_px": 3.34,
+            "desv_px": 4.13,
+            "tipo": "jamba"
+          },
+          "C1.inferior": {
+            "media_px": 0.61,
+            "desv_px": 7.85,
+            "tipo": "alfeizar"
+          },
+          "C1.izquierdo": {
+            "media_px": -3.01,
+            "desv_px": 6.87,
+            "tipo": "celosia"
+          },
+          "C2.inferior": {
+            "media_px": -1.66,
+            "desv_px": 8.05,
+            "tipo": "alfeizar"
+          },
+          "C2.izquierdo": {
+            "media_px": -2.58,
+            "desv_px": 4.76,
+            "tipo": "celosia"
+          }
+        }
+      }
+    }
+  },
+  "variantes": {
+    "solo_trip82": {
+      "caras": {
+        "trip82": [
+          "A",
+          "B",
+          "C"
+        ]
+      },
+      "rms_px": 7.557237537584703,
+      "n_puntos": 842,
+      "nicho_m": {
+        "a": 0.5488,
+        "h": 0.3079,
+        "d": 0.3081,
+        "hn": 0.3018
+      },
+      "sigma_nicho_m": {
+        "a": 0.0008,
+        "h": 0.0022,
+        "d": 0.0078,
+        "hn": 0.0023
+      },
+      "camaras": {
+        "trip82": {
+          "focal_px": 5805.1,
+          "posicion_m": [
+            -4.149,
+            -1.362,
+            -7.745
+          ],
+          "rotacion": [
+            [
+              0.19996331,
+              -0.9795159,
+              0.02373342
+            ],
+            [
+              0.73345652,
+              0.13358284,
+              -0.66648118
+            ],
+            [
+              0.64965853,
+              0.15067922,
+              0.74514399
+            ]
+          ],
+          "imagen_px": [
+            5053,
+            3369
+          ],
+          "altura_sobre_suelo_m": 2.181,
+          "k1": 0.0,
+          "bordes": {
+            "A1.inferior": {
+              "media_px": 0.77,
+              "desv_px": 9.41,
+              "tipo": "alfeizar"
+            },
+            "A1.izquierdo": {
+              "media_px": 6.56,
+              "desv_px": 4.12,
+              "tipo": "jamba"
+            },
+            "A2.inferior": {
+              "media_px": 2.3,
+              "desv_px": 7.86,
+              "tipo": "alfeizar"
+            },
+            "A2.izquierdo": {
+              "media_px": -10.57,
+              "desv_px": 4.25,
+              "tipo": "jamba"
+            },
+            "A2.derecho": {
+              "media_px": 4.28,
+              "desv_px": 4.91,
+              "tipo": "celosia"
+            },
+            "B1.inferior": {
+              "media_px": -8.07,
+              "desv_px": 5.07,
+              "tipo": "alfeizar"
+            },
+            "B1.izquierdo": {
+              "media_px": -7.59,
+              "desv_px": 3.16,
+              "tipo": "celosia"
+            },
+            "B1.derecho": {
+              "media_px": 5.23,
+              "desv_px": 3.79,
+              "tipo": "jamba"
+            },
+            "B2.inferior": {
+              "media_px": -0.07,
+              "desv_px": 5.19,
+              "tipo": "alfeizar"
+            },
+            "B2.izquierdo": {
+              "media_px": 5.5,
+              "desv_px": 3.65,
+              "tipo": "celosia"
+            },
+            "B2.derecho": {
+              "media_px": -5.1,
+              "desv_px": 2.96,
+              "tipo": "jamba"
+            },
+            "C1.inferior": {
+              "media_px": 10.92,
+              "desv_px": 4.66,
+              "tipo": "alfeizar"
+            },
+            "C1.izquierdo": {
+              "media_px": -4.56,
+              "desv_px": 4.05,
+              "tipo": "celosia"
+            },
+            "C1.derecho": {
+              "media_px": 0.05,
+              "desv_px": 2.98,
+              "tipo": "jamba"
+            },
+            "C2.inferior": {
+              "media_px": -6.71,
+              "desv_px": 6.37,
+              "tipo": "alfeizar"
+            },
+            "C2.izquierdo": {
+              "media_px": 6.09,
+              "desv_px": 2.12,
+              "tipo": "celosia"
+            },
+            "C2.derecho": {
+              "media_px": -1.75,
+              "desv_px": 2.46,
+              "tipo": "jamba"
+            }
+          }
+        }
+      }
+    },
+    "solo_bruchez": {
+      "caras": {
+        "bruchez": [
+          "A",
+          "B",
+          "C"
+        ]
+      },
+      "rms_px": 6.594570962636523,
+      "n_puntos": 662,
+      "nicho_m": {
+        "a": 0.5544,
+        "h": 0.2872,
+        "d": 0.2039,
+        "hn": 0.3017
+      },
+      "sigma_nicho_m": {
+        "a": 0.0026,
+        "h": 0.0035,
+        "d": 0.0196,
+        "hn": 0.0056
+      },
+      "camaras": {
+        "bruchez": {
+          "focal_px": 4789.5,
+          "posicion_m": [
+            -5.422,
+            -2.192,
+            -9.048
+          ],
+          "rotacion": [
+            [
+              0.2600737,
+              -0.96554699,
+              -0.00898199
+            ],
+            [
+              0.72669135,
+              0.20184544,
+              -0.65664153
+            ],
+            [
+              0.63583123,
+              0.16424806,
+              0.75414934
+            ]
+          ],
+          "imagen_px": [
+            3648,
+            2736
+          ],
+          "altura_sobre_suelo_m": 0.878,
+          "k1": 0.0,
+          "bordes": {
+            "A1.inferior": {
+              "media_px": 0.84,
+              "desv_px": 9.15,
+              "tipo": "alfeizar"
+            },
+            "A1.izquierdo": {
+              "media_px": 1.88,
+              "desv_px": 2.27,
+              "tipo": "jamba"
+            },
+            "A1.derecho": {
+              "media_px": -1.51,
+              "desv_px": 1.55,
+              "tipo": "celosia"
+            },
+            "A2.inferior": {
+              "media_px": -1.01,
+              "desv_px": 8.52,
+              "tipo": "alfeizar"
+            },
+            "A2.izquierdo": {
+              "media_px": -3.1,
+              "desv_px": 2.64,
+              "tipo": "jamba"
+            },
+            "A2.derecho": {
+              "media_px": 3.05,
+              "desv_px": 2.02,
+              "tipo": "celosia"
+            },
+            "B1.izquierdo": {
+              "media_px": -0.95,
+              "desv_px": 1.49,
+              "tipo": "celosia"
+            },
+            "B2.inferior": {
+              "media_px": -0.82,
+              "desv_px": 12.04,
+              "tipo": "alfeizar"
+            },
+            "B2.izquierdo": {
+              "media_px": 1.07,
+              "desv_px": 2.11,
+              "tipo": "celosia"
+            },
+            "B2.derecho": {
+              "media_px": -0.8,
+              "desv_px": 4.28,
+              "tipo": "jamba"
+            },
+            "C1.inferior": {
+              "media_px": 3.59,
+              "desv_px": 7.64,
+              "tipo": "alfeizar"
+            },
+            "C1.izquierdo": {
+              "media_px": 0.49,
+              "desv_px": 6.95,
+              "tipo": "celosia"
+            },
+            "C2.inferior": {
+              "media_px": -2.8,
+              "desv_px": 7.77,
+              "tipo": "alfeizar"
+            },
+            "C2.izquierdo": {
+              "media_px": 0.2,
+              "desv_px": 4.83,
+              "tipo": "celosia"
+            }
+          }
+        }
+      }
+    },
+    "trip82_sin_A": {
+      "caras": {
+        "trip82": [
+          "B",
+          "C"
+        ],
+        "bruchez": [
+          "A",
+          "B",
+          "C"
+        ]
+      },
+      "rms_px": 5.850763530271793,
+      "n_puntos": 1280,
+      "nicho_m": {
+        "a": 0.5648,
+        "h": 0.2867,
+        "d": 0.3375,
+        "hn": 0.3575
+      },
+      "sigma_nicho_m": {
+        "a": 0.0021,
+        "h": 0.0013,
+        "d": 0.0162,
+        "hn": 0.0084
+      },
+      "camaras": {
+        "trip82": {
+          "focal_px": 6285.6,
+          "posicion_m": [
+            -5.516,
+            -1.284,
+            -7.662
+          ],
+          "rotacion": [
+            [
+              0.20089001,
+              -0.97932357,
+              -0.02384436
+            ],
+            [
+              0.66921147,
+              0.15497061,
+              -0.72673249
+            ],
+            [
+              0.71540144,
+              0.13003638,
+              0.68650661
+            ]
+          ],
+          "imagen_px": [
+            5053,
+            3369
+          ],
+          "altura_sobre_suelo_m": 2.264,
+          "k1": 0.0,
+          "bordes": {
+            "B1.inferior": {
+              "media_px": 1.68,
+              "desv_px": 4.89,
+              "tipo": "alfeizar"
+            },
+            "B1.izquierdo": {
+              "media_px": 1.86,
+              "desv_px": 1.44,
+              "tipo": "celosia"
+            },
+            "B1.derecho": {
+              "media_px": 1.92,
+              "desv_px": 2.39,
+              "tipo": "celosia"
+            },
+            "B2.inferior": {
+              "media_px": -3.38,
+              "desv_px": 5.53,
+              "tipo": "alfeizar"
+            },
+            "B2.izquierdo": {
+              "media_px": -1.54,
+              "desv_px": 2.4,
+              "tipo": "celosia"
+            },
+            "B2.derecho": {
+              "media_px": -4.1,
+              "desv_px": 1.95,
+              "tipo": "celosia"
+            },
+            "C1.inferior": {
+              "media_px": 3.62,
+              "desv_px": 4.89,
+              "tipo": "alfeizar"
+            },
+            "C1.izquierdo": {
+              "media_px": -1.02,
+              "desv_px": 4.06,
+              "tipo": "celosia"
+            },
+            "C1.derecho": {
+              "media_px": 3.25,
+              "desv_px": 2.97,
+              "tipo": "jamba"
+            },
+            "C2.inferior": {
+              "media_px": -1.77,
+              "desv_px": 6.1,
+              "tipo": "alfeizar"
+            },
+            "C2.izquierdo": {
+              "media_px": 2.94,
+              "desv_px": 2.3,
+              "tipo": "celosia"
+            },
+            "C2.derecho": {
+              "media_px": -2.49,
+              "desv_px": 2.82,
+              "tipo": "jamba"
+            }
+          }
+        },
+        "bruchez": {
+          "focal_px": 4583.1,
+          "posicion_m": [
+            -5.387,
+            -1.912,
+            -8.782
+          ],
+          "rotacion": [
+            [
+              0.24491917,
+              -0.96924994,
+              -0.02385705
+            ],
+            [
+              0.72449694,
+              0.19931375,
+              -0.65983196
+            ],
+            [
+              0.64429712,
+              0.14432114,
+              0.75103437
+            ]
+          ],
+          "imagen_px": [
+            3648,
+            2736
+          ],
+          "altura_sobre_suelo_m": 1.144,
+          "k1": 0.0,
+          "bordes": {
+            "A1.inferior": {
+              "media_px": 1.19,
+              "desv_px": 9.14,
+              "tipo": "alfeizar"
+            },
+            "A1.izquierdo": {
+              "media_px": -0.69,
+              "desv_px": 2.22,
+              "tipo": "celosia"
+            },
+            "A1.derecho": {
+              "media_px": -3.46,
+              "desv_px": 1.46,
+              "tipo": "celosia"
+            },
+            "A2.inferior": {
+              "media_px": -1.56,
+              "desv_px": 8.52,
+              "tipo": "alfeizar"
+            },
+            "A2.izquierdo": {
+              "media_px": -1.54,
+              "desv_px": 2.62,
+              "tipo": "jamba"
+            },
+            "A2.derecho": {
+              "media_px": 7.21,
+              "desv_px": 2.05,
+              "tipo": "celosia"
+            },
+            "B1.izquierdo": {
+              "media_px": -4.47,
+              "desv_px": 1.62,
+              "tipo": "celosia"
+            },
+            "B2.inferior": {
+              "media_px": 1.14,
+              "desv_px": 12.02,
+              "tipo": "alfeizar"
+            },
+            "B2.izquierdo": {
+              "media_px": 1.98,
+              "desv_px": 1.82,
+              "tipo": "celosia"
+            },
+            "B2.derecho": {
+              "media_px": 2.4,
+              "desv_px": 4.08,
+              "tipo": "celosia"
+            },
+            "C1.inferior": {
+              "media_px": -0.45,
+              "desv_px": 7.96,
+              "tipo": "alfeizar"
+            },
+            "C1.izquierdo": {
+              "media_px": -1.61,
+              "desv_px": 6.87,
+              "tipo": "celosia"
+            },
+            "C2.inferior": {
+              "media_px": -0.76,
+              "desv_px": 8.19,
+              "tipo": "alfeizar"
+            },
+            "C2.izquierdo": {
+              "media_px": -1.56,
+              "desv_px": 4.76,
+              "tipo": "celosia"
+            }
+          }
+        }
+      }
+    },
+    "trip82_sin_B": {
+      "caras": {
+        "trip82": [
+          "A",
+          "C"
+        ],
+        "bruchez": [
+          "A",
+          "B",
+          "C"
+        ]
+      },
+      "rms_px": 7.18746298978028,
+      "n_puntos": 1214,
+      "nicho_m": {
+        "a": 0.5553,
+        "h": 0.2858,
+        "d": 0.271,
+        "hn": 0.3195
+      },
+      "sigma_nicho_m": {
+        "a": 0.0018,
+        "h": 0.002,
+        "d": 0.0146,
+        "hn": 0.0083
+      },
+      "camaras": {
+        "trip82": {
+          "focal_px": 6042.7,
+          "posicion_m": [
+            -4.785,
+            -1.521,
+            -7.781
+          ],
+          "rotacion": [
+            [
+              0.20633849,
+              -0.97824922,
+              0.02128147
+            ],
+            [
+              0.70436923,
+              0.13340297,
+              -0.69718551
+            ],
+            [
+              0.67918217,
+              0.15884621,
+              0.71657481
+            ]
+          ],
+          "imagen_px": [
+            5053,
+            3369
+          ],
+          "altura_sobre_suelo_m": 2.145,
+          "k1": 0.0,
+          "bordes": {
+            "A1.inferior": {
+              "media_px": 4.23,
+              "desv_px": 9.64,
+              "tipo": "alfeizar"
+            },
+            "A1.izquierdo": {
+              "media_px": 9.36,
+              "desv_px": 3.39,
+              "tipo": "jamba"
+            },
+            "A2.inferior": {
+              "media_px": -5.53,
+              "desv_px": 7.76,
+              "tipo": "alfeizar"
+            },
+            "A2.izquierdo": {
+              "media_px": -11.75,
+              "desv_px": 3.6,
+              "tipo": "jamba"
+            },
+            "A2.derecho": {
+              "media_px": 1.74,
+              "desv_px": 4.58,
+              "tipo": "celosia"
+            },
+            "C1.inferior": {
+              "media_px": 5.82,
+              "desv_px": 4.77,
+              "tipo": "alfeizar"
+            },
+            "C1.izquierdo": {
+              "media_px": -2.88,
+              "desv_px": 4.09,
+              "tipo": "celosia"
+            },
+            "C1.derecho": {
+              "media_px": -1.35,
+              "desv_px": 3.62,
+              "tipo": "jamba"
+            },
+            "C2.inferior": {
+              "media_px": -4.19,
+              "desv_px": 6.17,
+              "tipo": "alfeizar"
+            },
+            "C2.izquierdo": {
+              "media_px": 4.86,
+              "desv_px": 2.69,
+              "tipo": "celosia"
+            },
+            "C2.derecho": {
+              "media_px": -1.06,
+              "desv_px": 3.13,
+              "tipo": "jamba"
+            }
+          }
+        },
+        "bruchez": {
+          "focal_px": 4514.5,
+          "posicion_m": [
+            -5.055,
+            -1.984,
+            -8.61
+          ],
+          "rotacion": [
+            [
+              0.25291751,
+              -0.96736862,
+              -0.0151887
+            ],
+            [
+              0.7291768,
+              0.20091362,
+              -0.65416734
+            ],
+            [
+              0.63587257,
+              0.15437513,
+              0.75619732
+            ]
+          ],
+          "imagen_px": [
+            3648,
+            2736
+          ],
+          "altura_sobre_suelo_m": 1.316,
+          "k1": 0.0,
+          "bordes": {
+            "A1.inferior": {
+              "media_px": 0.94,
+              "desv_px": 9.15,
+              "tipo": "alfeizar"
+            },
+            "A1.izquierdo": {
+              "media_px": 0.3,
+              "desv_px": 2.31,
+              "tipo": "jamba"
+            },
+            "A1.derecho": {
+              "media_px": -3.41,
+              "desv_px": 1.61,
+              "tipo": "celosia"
+            },
+            "A2.inferior": {
+              "media_px": -1.1,
+              "desv_px": 8.52,
+              "tipo": "alfeizar"
+            },
+            "A2.izquierdo": {
+              "media_px": -2.97,
+              "desv_px": 2.65,
+              "tipo": "jamba"
+            },
+            "A2.derecho": {
+              "media_px": 6.78,
+              "desv_px": 2.02,
+              "tipo": "celosia"
+            },
+            "B1.izquierdo": {
+              "media_px": -4.39,
+              "desv_px": 1.53,
+              "tipo": "celosia"
+            },
+            "B2.inferior": {
+              "media_px": 0.3,
+              "desv_px": 12.03,
+              "tipo": "alfeizar"
+            },
+            "B2.izquierdo": {
+              "media_px": 3.66,
+              "desv_px": 1.97,
+              "tipo": "celosia"
+            },
+            "B2.derecho": {
+              "media_px": 1.38,
+              "desv_px": 4.16,
+              "tipo": "celosia"
+            },
+            "C1.inferior": {
+              "media_px": 1.29,
+              "desv_px": 7.81,
+              "tipo": "alfeizar"
+            },
+            "C1.izquierdo": {
+              "media_px": -1.46,
+              "desv_px": 6.88,
+              "tipo": "celosia"
+            },
+            "C2.inferior": {
+              "media_px": -1.79,
+              "desv_px": 7.99,
+              "tipo": "alfeizar"
+            },
+            "C2.izquierdo": {
+              "media_px": -1.39,
+              "desv_px": 4.76,
+              "tipo": "celosia"
+            }
+          }
+        }
+      }
+    },
+    "trip82_sin_C": {
+      "caras": {
+        "trip82": [
+          "A",
+          "B"
+        ],
+        "bruchez": [
+          "A",
+          "B",
+          "C"
+        ]
+      },
+      "rms_px": 5.8426704760060435,
+      "n_puntos": 1176,
+      "nicho_m": {
+        "a": 0.5697,
+        "h": 0.2872,
+        "d": 0.3072,
+        "hn": 0.4366
+      },
+      "sigma_nicho_m": {
+        "a": NaN,
+        "h": NaN,
+        "d": NaN,
+        "hn": NaN
+      },
+      "camaras": {
+        "trip82": {
+          "focal_px": 6498.5,
+          "posicion_m": [
+            -5.585,
+            -0.269,
+            -8.749
+          ],
+          "rotacion": [
+            [
+              0.13379414,
+              -0.98937679,
+              -0.05685676
+            ],
+            [
+              0.7218821,
+              0.13660635,
+              -0.6783988
+            ],
+            [
+              0.67895902,
+              0.0497219,
+              0.73249053
+            ]
+          ],
+          "imagen_px": [
+            5053,
+            3369
+          ],
+          "altura_sobre_suelo_m": 1.177,
+          "k1": 0.0,
+          "bordes": {
+            "A1.inferior": {
+              "media_px": -0.79,
+              "desv_px": 9.41,
+              "tipo": "alfeizar"
+            },
+            "A1.izquierdo": {
+              "media_px": 0.1,
+              "desv_px": 2.86,
+              "tipo": "celosia"
+            },
+            "A2.inferior": {
+              "media_px": 1.45,
+              "desv_px": 7.87,
+              "tipo": "alfeizar"
+            },
+            "A2.izquierdo": {
+              "media_px": -0.31,
+              "desv_px": 1.58,
+              "tipo": "celosia"
+            },
+            "A2.derecho": {
+              "media_px": 0.01,
+              "desv_px": 3.94,
+              "tipo": "celosia"
+            },
+            "B1.inferior": {
+              "media_px": -1.48,
+              "desv_px": 4.94,
+              "tipo": "alfeizar"
+            },
+            "B1.izquierdo": {
+              "media_px": -0.2,
+              "desv_px": 1.1,
+              "tipo": "celosia"
+            },
+            "B1.derecho": {
+              "media_px": 1.24,
+              "desv_px": 1.77,
+              "tipo": "celosia"
+            },
+            "B2.inferior": {
+              "media_px": 0.64,
+              "desv_px": 5.29,
+              "tipo": "alfeizar"
+            },
+            "B2.izquierdo": {
+              "media_px": -2.42,
+              "desv_px": 1.7,
+              "tipo": "celosia"
+            },
+            "B2.derecho": {
+              "media_px": 1.25,
+              "desv_px": 1.17,
+              "tipo": "celosia"
+            }
+          }
+        },
+        "bruchez": {
+          "focal_px": 4630.8,
+          "posicion_m": [
+            -5.426,
+            -1.769,
+            -8.929
+          ],
+          "rotacion": [
+            [
+              0.23948588,
+              -0.97034598,
+              -0.03279027
+            ],
+            [
+              0.7286948,
+              0.20195838,
+              -0.65438269
+            ],
+            [
+              0.64159988,
+              0.13282131,
+              0.75545225
+            ]
+          ],
+          "imagen_px": [
+            3648,
+            2736
+          ],
+          "altura_sobre_suelo_m": 0.997,
+          "k1": 0.0,
+          "bordes": {
+            "A1.inferior": {
+              "media_px": 0.83,
+              "desv_px": 9.15,
+              "tipo": "alfeizar"
+            },
+            "A1.izquierdo": {
+              "media_px": 0.14,
+              "desv_px": 2.18,
+              "tipo": "celosia"
+            },
+            "A1.derecho": {
+              "media_px": -3.96,
+              "desv_px": 1.39,
+              "tipo": "celosia"
+            },
+            "A2.inferior": {
+              "media_px": -1.21,
+              "desv_px": 8.52,
+              "tipo": "alfeizar"
+            },
+            "A2.izquierdo": {
+              "media_px": 3.81,
+              "desv_px": 2.61,
+              "tipo": "celosia"
+            },
+            "A2.derecho": {
+              "media_px": 1.85,
+              "desv_px": 2.09,
+              "tipo": "celosia"
+            },
+            "B1.izquierdo": {
+              "media_px": -0.44,
+              "desv_px": 1.7,
+              "tipo": "celosia"
+            },
+            "B2.inferior": {
+              "media_px": 0.58,
+              "desv_px": 12.05,
+              "tipo": "alfeizar"
+            },
+            "B2.izquierdo": {
+              "media_px": -0.53,
+              "desv_px": 1.64,
+              "tipo": "celosia"
+            },
+            "B2.derecho": {
+              "media_px": -1.6,
+              "desv_px": 3.96,
+              "tipo": "celosia"
+            },
+            "C1.inferior": {
+              "media_px": 0.4,
+              "desv_px": 7.91,
+              "tipo": "alfeizar"
+            },
+            "C1.izquierdo": {
+              "media_px": 2.83,
+              "desv_px": 6.83,
+              "tipo": "celosia"
+            },
+            "C2.inferior": {
+              "media_px": -0.92,
+              "desv_px": 8.11,
+              "tipo": "alfeizar"
+            },
+            "C2.izquierdo": {
+              "media_px": -1.52,
+              "desv_px": 4.74,
+              "tipo": "celosia"
+            }
+          }
+        }
+      }
+    },
+    "bruchez_sin_A": {
+      "caras": {
+        "trip82": [
+          "A",
+          "B",
+          "C"
+        ],
+        "bruchez": [
+          "B",
+          "C"
+        ]
+      },
+      "rms_px": 7.599962783868853,
+      "n_puntos": 1213,
+      "nicho_m": {
+        "a": 0.5525,
+        "h": 0.293,
+        "d": 0.3146,
+        "hn": 0.315
+      },
+      "sigma_nicho_m": {
+        "a": 0.0011,
+        "h": 0.0015,
+        "d": 0.0082,
+        "hn": 0.0027
+      },
+      "camaras": {
+        "trip82": {
+          "focal_px": 5734.6,
+          "posicion_m": [
+            -4.128,
+            -1.21,
+            -7.693
+          ],
+          "rotacion": [
+            [
+              0.1917997,
+              -0.98133273,
+              0.01410514
+            ],
+            [
+              0.73384151,
+              0.13385523,
+              -0.66600256
+            ],
+            [
+              0.65168206,
+              0.13809002,
+              0.74581609
+            ]
+          ],
+          "imagen_px": [
+            5053,
+            3369
+          ],
+          "altura_sobre_suelo_m": 2.233,
+          "k1": 0.0,
+          "bordes": {
+            "A1.inferior": {
+              "media_px": 0.74,
+              "desv_px": 9.41,
+              "tipo": "alfeizar"
+            },
+            "A1.izquierdo": {
+              "media_px": 8.53,
+              "desv_px": 3.95,
+              "tipo": "jamba"
+            },
+            "A2.inferior": {
+              "media_px": 2.27,
+              "desv_px": 7.86,
+              "tipo": "alfeizar"
+            },
+            "A2.izquierdo": {
+              "media_px": -11.04,
+              "desv_px": 4.01,
+              "tipo": "jamba"
+            },
+            "A2.derecho": {
+              "media_px": 9.36,
+              "desv_px": 4.76,
+              "tipo": "celosia"
+            },
+            "B1.inferior": {
+              "media_px": -7.66,
+              "desv_px": 5.05,
+              "tipo": "alfeizar"
+            },
+            "B1.izquierdo": {
+              "media_px": -11.14,
+              "desv_px": 2.79,
+              "tipo": "celosia"
+            },
+            "B1.derecho": {
+              "media_px": 1.4,
+              "desv_px": 3.43,
+              "tipo": "jamba"
+            },
+            "B2.inferior": {
+              "media_px": -0.18,
+              "desv_px": 5.19,
+              "tipo": "alfeizar"
+            },
+            "B2.izquierdo": {
+              "media_px": 1.1,
+              "desv_px": 3.25,
+              "tipo": "celosia"
+            },
+            "B2.derecho": {
+              "media_px": -5.54,
+              "desv_px": 2.55,
+              "tipo": "celosia"
+            },
+            "C1.inferior": {
+              "media_px": 9.56,
+              "desv_px": 4.69,
+              "tipo": "alfeizar"
+            },
+            "C1.izquierdo": {
+              "media_px": -0.28,
+              "desv_px": 4.1,
+              "tipo": "celosia"
+            },
+            "C1.derecho": {
+              "media_px": 2.7,
+              "desv_px": 2.64,
+              "tipo": "jamba"
+            },
+            "C2.inferior": {
+              "media_px": -5.55,
+              "desv_px": 6.29,
+              "tipo": "alfeizar"
+            },
+            "C2.izquierdo": {
+              "media_px": 7.0,
+              "desv_px": 1.92,
+              "tipo": "celosia"
+            },
+            "C2.derecho": {
+              "media_px": -3.15,
+              "desv_px": 2.23,
+              "tipo": "jamba"
+            }
+          }
+        },
+        "bruchez": {
+          "focal_px": 4388.3,
+          "posicion_m": [
+            -4.87,
+            -0.316,
+            -8.853
+          ],
+          "rotacion": [
+            [
+              0.18707293,
+              -0.97545657,
+              -0.11613871
+            ],
+            [
+              0.76010323,
+              0.2186281,
+              -0.61191897
+            ],
+            [
+              0.62229157,
+              0.02619607,
+              0.78234709
+            ]
+          ],
+          "imagen_px": [
+            3648,
+            2736
+          ],
+          "altura_sobre_suelo_m": 1.073,
+          "k1": 0.0,
+          "bordes": {
+            "B1.izquierdo": {
+              "media_px": -1.27,
+              "desv_px": 2.55,
+              "tipo": "celosia"
+            },
+            "B2.inferior": {
+              "media_px": -0.4,
+              "desv_px": 12.32,
+              "tipo": "alfeizar"
+            },
+            "B2.izquierdo": {
+              "media_px": 2.19,
+              "desv_px": 0.63,
+              "tipo": "celosia"
+            },
+            "B2.derecho": {
+              "media_px": -0.95,
+              "desv_px": 3.19,
+              "tipo": "celosia"
+            },
+            "C1.inferior": {
+              "media_px": 1.58,
+              "desv_px": 7.82,
+              "tipo": "alfeizar"
+            },
+            "C1.izquierdo": {
+              "media_px": -0.93,
+              "desv_px": 6.74,
+              "tipo": "celosia"
+            },
+            "C2.inferior": {
+              "media_px": -1.31,
+              "desv_px": 8.0,
+              "tipo": "alfeizar"
+            },
+            "C2.izquierdo": {
+              "media_px": 0.6,
+              "desv_px": 5.26,
+              "tipo": "celosia"
+            }
+          }
+        }
+      }
+    },
+    "bruchez_sin_B": {
+      "caras": {
+        "trip82": [
+          "A",
+          "B",
+          "C"
+        ],
+        "bruchez": [
+          "A",
+          "C"
+        ]
+      },
+      "rms_px": 7.520137736717351,
+      "n_puntos": 1327,
+      "nicho_m": {
+        "a": 0.5533,
+        "h": 0.2922,
+        "d": 0.3056,
+        "hn": 0.3134
+      },
+      "sigma_nicho_m": {
+        "a": 0.001,
+        "h": 0.0016,
+        "d": 0.0078,
+        "hn": 0.0026
+      },
+      "camaras": {
+        "trip82": {
+          "focal_px": 5795.2,
+          "posicion_m": [
+            -4.201,
+            -1.206,
+            -7.77
+          ],
+          "rotacion": [
+            [
+              0.1908511,
+              -0.98153589,
+              0.01277356
+            ],
+            [
+              0.73366075,
+              0.13398443,
+              -0.66617571
+            ],
+            [
+              0.6521639,
+              0.13651183,
+              0.74568543
+            ]
+          ],
+          "imagen_px": [
+            5053,
+            3369
+          ],
+          "altura_sobre_suelo_m": 2.156,
+          "k1": 0.0,
+          "bordes": {
+            "A1.inferior": {
+              "media_px": 0.68,
+              "desv_px": 9.41,
+              "tipo": "alfeizar"
+            },
+            "A1.izquierdo": {
+              "media_px": 8.95,
+              "desv_px": 3.86,
+              "tipo": "jamba"
+            },
+            "A2.inferior": {
+              "media_px": 2.39,
+              "desv_px": 7.87,
+              "tipo": "alfeizar"
+            },
+            "A2.izquierdo": {
+              "media_px": -11.57,
+              "desv_px": 3.91,
+              "tipo": "jamba"
+            },
+            "A2.derecho": {
+              "media_px": 9.14,
+              "desv_px": 4.71,
+              "tipo": "celosia"
+            },
+            "B1.inferior": {
+              "media_px": -7.68,
+              "desv_px": 5.05,
+              "tipo": "alfeizar"
+            },
+            "B1.izquierdo": {
+              "media_px": -9.98,
+              "desv_px": 2.74,
+              "tipo": "celosia"
+            },
+            "B1.derecho": {
+              "media_px": 1.93,
+              "desv_px": 3.39,
+              "tipo": "jamba"
+            },
+            "B2.inferior": {
+              "media_px": -0.4,
+              "desv_px": 5.19,
+              "tipo": "alfeizar"
+            },
+            "B2.izquierdo": {
+              "media_px": -0.06,
+              "desv_px": 3.21,
+              "tipo": "celosia"
+            },
+            "B2.derecho": {
+              "media_px": -6.61,
+              "desv_px": 2.53,
+              "tipo": "celosia"
+            },
+            "C1.inferior": {
+              "media_px": 9.82,
+              "desv_px": 4.68,
+              "tipo": "alfeizar"
+            },
+            "C1.izquierdo": {
+              "media_px": 0.75,
+              "desv_px": 4.09,
+              "tipo": "celosia"
+            },
+            "C1.derecho": {
+              "media_px": 2.34,
+              "desv_px": 2.67,
+              "tipo": "jamba"
+            },
+            "C2.inferior": {
+              "media_px": -5.63,
+              "desv_px": 6.3,
+              "tipo": "alfeizar"
+            },
+            "C2.izquierdo": {
+              "media_px": 7.22,
+              "desv_px": 1.94,
+              "tipo": "celosia"
+            },
+            "C2.derecho": {
+              "media_px": -3.22,
+              "desv_px": 2.25,
+              "tipo": "jamba"
+            }
+          }
+        },
+        "bruchez": {
+          "focal_px": 4194.8,
+          "posicion_m": [
+            -4.439,
+            -2.069,
+            -7.984
+          ],
+          "rotacion": [
+            [
+              0.26149818,
+              -0.96520342,
+              0.00102859
+            ],
+            [
+              0.73210623,
+              0.19765152,
+              -0.65188522
+            ],
+            [
+              0.62899855,
+              0.17121984,
+              0.75831695
+            ]
+          ],
+          "imagen_px": [
+            3648,
+            2736
+          ],
+          "altura_sobre_suelo_m": 1.942,
+          "k1": 0.0,
+          "bordes": {
+            "A1.inferior": {
+              "media_px": 0.76,
+              "desv_px": 9.16,
+              "tipo": "alfeizar"
+            },
+            "A1.izquierdo": {
+              "media_px": 1.19,
+              "desv_px": 2.63,
+              "tipo": "jamba"
+            },
+            "A1.derecho": {
+              "media_px": -5.99,
+              "desv_px": 2.02,
+              "tipo": "celosia"
+            },
+            "A2.inferior": {
+              "media_px": -0.75,
+              "desv_px": 8.53,
+              "tipo": "alfeizar"
+            },
+            "A2.izquierdo": {
+              "media_px": -1.19,
+              "desv_px": 2.78,
+              "tipo": "jamba"
+            },
+            "A2.derecho": {
+              "media_px": 7.71,
+              "desv_px": 2.03,
+              "tipo": "celosia"
+            },
+            "C1.inferior": {
+              "media_px": 0.87,
+              "desv_px": 7.87,
+              "tipo": "alfeizar"
+            },
+            "C1.izquierdo": {
+              "media_px": -0.63,
+              "desv_px": 6.9,
+              "tipo": "celosia"
+            },
+            "C2.inferior": {
+              "media_px": -1.13,
+              "desv_px": 8.06,
+              "tipo": "alfeizar"
+            },
+            "C2.izquierdo": {
+              "media_px": -0.43,
+              "desv_px": 4.76,
+              "tipo": "celosia"
+            }
+          }
+        }
+      }
+    },
+    "bruchez_sin_C": {
+      "caras": {
+        "trip82": [
+          "A",
+          "B",
+          "C"
+        ],
+        "bruchez": [
+          "A",
+          "B"
+        ]
+      },
+      "rms_px": 7.578264186866686,
+      "n_puntos": 1310,
+      "nicho_m": {
+        "a": 0.5529,
+        "h": 0.2935,
+        "d": 0.3059,
+        "hn": 0.3131
+      },
+      "sigma_nicho_m": {
+        "a": 0.0011,
+        "h": 0.0016,
+        "d": 0.008,
+        "hn": 0.0025
+      },
+      "camaras": {
+        "trip82": {
+          "focal_px": 5789.8,
+          "posicion_m": [
+            -4.191,
+            -1.217,
+            -7.759
+          ],
+          "rotacion": [
+            [
+              0.19155757,
+              -0.98138696,
+              0.01361378
+            ],
+            [
+              0.73353446,
+              0.13393583,
+              -0.66632454
+            ],
+            [
+              0.65209884,
+              0.13762569,
+              0.74553757
+            ]
+          ],
+          "imagen_px": [
+            5053,
+            3369
+          ],
+          "altura_sobre_suelo_m": 2.167,
+          "k1": 0.0,
+          "bordes": {
+            "A1.inferior": {
+              "media_px": 0.74,
+              "desv_px": 9.41,
+              "tipo": "alfeizar"
+            },
+            "A1.izquierdo": {
+              "media_px": 8.91,
+              "desv_px": 3.88,
+              "tipo": "jamba"
+            },
+            "A2.inferior": {
+              "media_px": 2.37,
+              "desv_px": 7.86,
+              "tipo": "alfeizar"
+            },
+            "A2.izquierdo": {
+              "media_px": -11.24,
+              "desv_px": 3.94,
+              "tipo": "jamba"
+            },
+            "A2.derecho": {
+              "media_px": 8.65,
+              "desv_px": 4.72,
+              "tipo": "celosia"
+            },
+            "B1.inferior": {
+              "media_px": -7.76,
+              "desv_px": 5.05,
+              "tipo": "alfeizar"
+            },
+            "B1.izquierdo": {
+              "media_px": -9.75,
+              "desv_px": 2.77,
+              "tipo": "celosia"
+            },
+            "B1.derecho": {
+              "media_px": 1.91,
+              "desv_px": 3.42,
+              "tipo": "jamba"
+            },
+            "B2.inferior": {
+              "media_px": -0.41,
+              "desv_px": 5.19,
+              "tipo": "alfeizar"
+            },
+            "B2.izquierdo": {
+              "media_px": 0.62,
+              "desv_px": 3.25,
+              "tipo": "celosia"
+            },
+            "B2.derecho": {
+              "media_px": -7.31,
+              "desv_px": 2.55,
+              "tipo": "celosia"
+            },
+            "C1.inferior": {
+              "media_px": 9.87,
+              "desv_px": 4.68,
+              "tipo": "alfeizar"
+            },
+            "C1.izquierdo": {
+              "media_px": 0.63,
+              "desv_px": 4.09,
+              "tipo": "celosia"
+            },
+            "C1.derecho": {
+              "media_px": 2.05,
+              "desv_px": 2.68,
+              "tipo": "jamba"
+            },
+            "C2.inferior": {
+              "media_px": -5.62,
+              "desv_px": 6.3,
+              "tipo": "alfeizar"
+            },
+            "C2.izquierdo": {
+              "media_px": 7.5,
+              "desv_px": 1.95,
+              "tipo": "celosia"
+            },
+            "C2.derecho": {
+              "media_px": -3.25,
+              "desv_px": 2.26,
+              "tipo": "jamba"
+            }
+          }
+        },
+        "bruchez": {
+          "focal_px": 4248.5,
+          "posicion_m": [
+            -4.443,
+            -1.698,
+            -8.181
+          ],
+          "rotacion": [
+            [
+              0.24747379,
+              -0.96860705,
+              -0.02360321
+            ],
+            [
+              0.74057329,
+              0.20480815,
+              -0.64000376
+            ],
+            [
+              0.62474628,
+              0.14090425,
+              0.76800916
+            ]
+          ],
+          "imagen_px": [
+            3648,
+            2736
+          ],
+          "altura_sobre_suelo_m": 1.745,
+          "k1": 0.0,
+          "bordes": {
+            "A1.inferior": {
+              "media_px": 0.62,
+              "desv_px": 9.17,
+              "tipo": "alfeizar"
+            },
+            "A1.izquierdo": {
+              "media_px": 1.93,
+              "desv_px": 2.42,
+              "tipo": "jamba"
+            },
+            "A1.derecho": {
+              "media_px": -3.35,
+              "desv_px": 1.72,
+              "tipo": "celosia"
+            },
+            "A2.inferior": {
+              "media_px": -0.43,
+              "desv_px": 8.53,
+              "tipo": "alfeizar"
+            },
+            "A2.izquierdo": {
+              "media_px": -3.85,
+              "desv_px": 2.67,
+              "tipo": "jamba"
+            },
+            "A2.derecho": {
+              "media_px": 7.88,
+              "desv_px": 2.02,
+              "tipo": "celosia"
+            },
+            "B1.izquierdo": {
+              "media_px": -7.29,
+              "desv_px": 1.59,
+              "tipo": "celosia"
+            },
+            "B2.inferior": {
+              "media_px": -0.22,
+              "desv_px": 12.06,
+              "tipo": "alfeizar"
+            },
+            "B2.izquierdo": {
+              "media_px": 2.57,
+              "desv_px": 1.75,
+              "tipo": "celosia"
+            },
+            "B2.derecho": {
+              "media_px": -0.85,
+              "desv_px": 3.97,
+              "tipo": "jamba"
+            }
+          }
+        }
+      }
+    }
+  },
+  "intervalo_d_variantes_m": [
+    0.2039,
+    0.3375
+  ]
+}

@@ -1,7 +1,22 @@
 # Próximos pasos
 
-Estado a 2026-11-21. Documento de trabajo: se actualiza, no se conserva como
+Estado a 2026-11-22. Documento de trabajo: se actualiza, no se conserva como
 histórico. El registro de decisiones va en `docs/decisiones/`.
+
+---
+
+## Nicho de los vanos medido en fotos — 22 de noviembre de 2026
+
+Registradas seis fotografías del tambor de Wikimedia Commons (entrada 20 de
+`docs/fuentes.md`); descartadas las láminas XIX y XX de Jones y el vídeo de
+Contreras como vista oblicua. Con dos fotos, ajuste conjunto de cámaras y
+nicho: la celosía está a **0,20–0,34 m** del plano del muro (0,30 m en el
+ajuste conjunto), frente a 0,09 m en el modelo. Las cámaras se comprueban
+superponiendo el GLB. Supuestos, residuos y límites en
+[0041](docs/decisiones/0041-nicho-de-los-vanos-en-fotos.md).
+
+**Pendiente de decidir:** ahondar el nicho del modelo y añadir su remate
+escalonado. El vuelo de 32,05 cm de las hiladas sigue sin contrastar.
 
 ---
 

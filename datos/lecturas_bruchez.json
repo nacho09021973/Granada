@@ -1,0 +1,71 @@
+{
+  "clave": "bruchez",
+  "foto": "docs/Alhambra_of_Granada_(8139873808).jpg",
+  "sha1": "8b84bf82f29e785d22b2c8204d835e0deca73076",
+  "metodo": "Identificación a ojo, 2026-11-22, de los vanos visibles sobre la vista general con regla de píxeles. Se da un punto aproximado dentro de cada celosía (px de la imagen original), la cara y el vano. Caras A, B, C de izquierda a derecha, consecutivas en el octógono; B es la más frontal. Vano 1 a la izquierda en la imagen. La cara a la izquierda de A queda cortada por el encuadre y no se usa. Las coordenadas solo sirven para etiquetar las manchas que detecta scripts/detectar_celosias.py. La pendiente aproximada del alféizar por cara (dy/dx en la imagen) se leyó a ojo sobre la vista general y solo orienta la búsqueda del borde inferior. Umbrales elegidos tras muestrear celosía (rojo medio 139-191, desviación local 35-62) y muro (rojo 100-140, desviación 8-10).",
+  "umbrales": {
+    "umbral_textura": 22,
+    "umbral_rojo": 125
+  },
+  "vanos": {
+    "A1": {
+      "cara": "A",
+      "vano": 1,
+      "dentro": [
+        610,
+        1590
+      ]
+    },
+    "A2": {
+      "cara": "A",
+      "vano": 2,
+      "dentro": [
+        990,
+        1730
+      ]
+    },
+    "B1": {
+      "cara": "B",
+      "vano": 1,
+      "dentro": [
+        1730,
+        1790
+      ]
+    },
+    "B2": {
+      "cara": "B",
+      "vano": 2,
+      "dentro": [
+        2110,
+        1710
+      ]
+    },
+    "C1": {
+      "cara": "C",
+      "vano": 1,
+      "dentro": [
+        2730,
+        1360
+      ]
+    },
+    "C2": {
+      "cara": "C",
+      "vano": 2,
+      "dentro": [
+        3000,
+        1070
+      ]
+    }
+  },
+  "pendiente_alfeizar": {
+    "A": 0.27,
+    "B": -0.12,
+    "C": -0.7
+  },
+  "excluir": {
+    "B1.inferior": "La máscara no recoge la parte baja oscura de la celosía; el ajuste sigue una diagonal (lámina bordes.jpg, 2026-11-22).",
+    "B1.derecho": "Diagonal falsa por la misma causa (RMS 3,8 px).",
+    "C1.derecho": "Inclinación distinta de las verticales de la cara (dx/dy ~0,5 frente a ~0,25): sigue el tramo curvo del arco.",
+    "C2.derecho": "Igual que C1.derecho."
+  }
+}
