@@ -36,6 +36,18 @@ visita. Controles y criterio de luz de los vanos en
   calibrada en altura o una vista lateral.
 - **Campo:** en la sección arranca a +0,05/+0,09 m con 0,52–0,58 m de vuelo;
   en el modelo, a unos 0,26 m con 0,36–0,45 m. Afecta a la cornisa y al campo.
+  **Ampliado (22-11, sin decisión todavía):** la silueta lateral completa
+  (`datos/vuelo_seccion_cupula.json` frente a
+  `datos/vuelo_modelo_silueta_cupula_0043.json`) da el campo del modelo
+  0,5–1,2 m más alto a igual vuelo en toda la cúpula, o 0,4–0,6 m más cerca del
+  muro a igual cota; coherente con el exceso de clave de 0032. Opciones
+  planteadas: A) corrección vertical por radio de todo el campo, tras comprobar
+  la planta contra la ortofoto del techo (recomendada); B) solo el arranque;
+  C) documentar como 0044 y parar. Lámina regenerable con
+  `scripts/medir_vuelo_seccion.py --hasta 5.6 --vuelo-max 4.0 --modelo
+  datos/vuelo_modelo_silueta_cupula_0043.json --salida datos/vuelo_seccion_cupula.json
+  --previa renders/previas/0044/vuelo_seccion_cupula.png` (silueta del modelo:
+  `scripts/silueta_glb_seccion.py -- --hasta 5.6 --sufijo _cupula_0043`).
 - **Paños 1–7:** el remate queda recortado bajo el canto del muro mientras
   no tengan hiladas.
 

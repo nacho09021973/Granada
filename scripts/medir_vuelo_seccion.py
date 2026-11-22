@@ -31,6 +31,7 @@ Con `--modelo datos/vuelo_modelo_<v>.json` (de `scripts/perfil_vuelo_glb.py`)
 superpone en la lámina el perfil equivalente del GLB, en gris.
 
 Uso: .venv/bin/python scripts/medir_vuelo_seccion.py [--modelo datos/vuelo_modelo_0042.json]
+     [--hasta 3.0 --vuelo-max 3.0 --salida datos/... --previa renders/previas/...]
 """
 
 import argparse
@@ -58,14 +59,21 @@ VENTANA = 0.6
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--modelo", type=Path, action="append", default=[])
+    ap.add_argument("--hasta", type=float, default=VENTANA, help="cota superior del perfil sobre el arranque (m)")
+    ap.add_argument("--vuelo-max", type=float, default=1.0, help="límite del eje de vuelo en la lámina (m)")
+    ap.add_argument("--salida", type=Path, default=SALIDA)
+    ap.add_argument("--previa", type=Path, default=PREVIA)
     args = ap.parse_args()
+    salida = args.salida if args.salida.is_absolute() else ROOT / args.salida
+    previa = args.previa if args.previa.is_absolute() else ROOT / args.previa
+    hasta, vmax = args.hasta, args.vuelo_max
     alzado = json.loads((ROOT / "datos/alzado_sala.json").read_text())
     escala = alzado["px_por_m"]
     f0 = alzado["niveles"]["arranque_cupula"]["fila_px"]
     fa = alzado["niveles"]["pie_ventanas_tambor"]["fila_px"]
     Image.MAX_IMAGE_PIXELS = None
     gris = np.asarray(Image.open(IMAGEN).convert("L"), dtype=np.int16)
-    filas = np.arange(int(f0 - VENTANA * escala), int(f0 + VENTANA * escala) + 1)
+    filas = np.arange(int(f0 - hasta * escala), int(f0 + VENTANA * escala) + 1)
     muro = np.arange(int(f0 + 0.25 * escala), fa)
     res = dict(
         imagen=str(IMAGEN.relative_to(ROOT)),
@@ -107,17 +115,18 @@ def main():
     W, H, m = 900, 900, 60
     img = Image.new("RGB", (W, H), "white")
     dib = ImageDraw.Draw(img)
-    sx = (W - 2 * m) / 1.2  # vuelo de -0,2 a 1,0 m
-    sz = (H - 2 * m) / (2 * VENTANA)
-    px = lambda v, z: (m + (v + 0.2) * sx, H / 2 - z * sz)
-    for v in np.arange(-0.2, 1.01, 0.1):
-        dib.line([px(v, -VENTANA), px(v, VENTANA)], fill=(225, 225, 225))
-        dib.text(px(v, -VENTANA - 0.03), f"{v:.1f}", fill="black")
-    for z in np.arange(-VENTANA, VENTANA + 0.01, 0.1):
-        dib.line([px(-0.2, z), px(1.0, z)], fill=(225, 225, 225))
-        dib.text((5, px(0, z)[1] - 5), f"{z:+.1f}", fill="black")
-    dib.line([px(0, -VENTANA), px(0, VENTANA)], fill="black")
-    dib.line([px(-0.2, 0), px(1.0, 0)], fill="black")
+    sx = (W - 2 * m) / (vmax + 0.2)
+    sz = (H - 2 * m) / (VENTANA + hasta)
+    px = lambda v, z: (m + (v + 0.2) * sx, m + (hasta - z) * sz)
+    paso = 0.1 if max(vmax, hasta) <= 1.2 else 0.25
+    for v in np.arange(-0.2, vmax + 0.01, paso):
+        dib.line([px(v, -VENTANA), px(v, hasta)], fill=(225, 225, 225))
+        dib.text(px(v, -VENTANA - 0.03), f"{v:.2f}", fill="black")
+    for z in np.arange(-VENTANA, hasta + 0.01, paso):
+        dib.line([px(-0.2, z), px(vmax, z)], fill=(225, 225, 225))
+        dib.text((5, px(0, z)[1] - 5), f"{z:+.2f}", fill="black")
+    dib.line([px(0, -VENTANA), px(0, hasta)], fill="black")
+    dib.line([px(-0.2, 0), px(vmax, 0)], fill="black")
     dib.line([px(FONDO_MODELO, -0.05), px(FONDO_MODELO, 0.05)], fill=(0, 140, 0), width=3)
     colores = {"izquierdo": (200, 0, 0), "derecho": (0, 0, 200)}
     zs = (f0 - filas) / escala
@@ -131,10 +140,10 @@ def main():
             pts = [px(v, z) for z, v in perfil if v is not None]
             dib.line(pts, fill=gris_m, width=2)
     dib.text((m, 10), "vuelo hacia dentro (m) frente a cota sobre el arranque (m); rojo izq., azul der.; verde: fondo 0,3205; gris/cian/naranja: GLB", fill="black")
-    PREVIA.parent.mkdir(parents=True, exist_ok=True)
-    img.save(PREVIA)
-    SALIDA.write_text(json.dumps(res, indent=1, ensure_ascii=False) + "\n")
-    print(SALIDA, PREVIA)
+    previa.parent.mkdir(parents=True, exist_ok=True)
+    img.save(previa)
+    salida.write_text(json.dumps(res, indent=1, ensure_ascii=False) + "\n")
+    print(salida, previa)
 
 
 if __name__ == "__main__":

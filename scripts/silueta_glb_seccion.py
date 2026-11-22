@@ -42,7 +42,7 @@ from mathutils import Matrix
 ROOT = Path(__file__).resolve().parents[1]
 APOTEMA = 3.8657066822052  # web/modelos/dos-hermanas.json
 UMBRALES = (240, 245, 250)  # scripts/medir_estratificacion.py
-X0, X1, Z0, Z1 = 0.5, 4.5, -1.6, 1.0
+X0_BASE, X1, Z0, Z1_BASE = 0.5, 4.5, -1.6, 1.0
 VENTANA = 0.6
 RECORTE = 0.003
 
@@ -63,6 +63,7 @@ def main():
     ap.add_argument("--glb", type=Path, default=Path("web/modelos/dos-hermanas.glb.gz"))
     ap.add_argument("--salida", type=Path, default=Path("datos/vuelo_modelo_silueta.json"))
     ap.add_argument("--sufijo", default="")
+    ap.add_argument("--hasta", type=float, default=VENTANA, help="cota superior del perfil sobre el arranque (m)")
     ap.add_argument("--solo-pano", action="store_true", help="descarta lo que queda fuera del sector del paño 00 (|ángulo| > 22,5°)")
     a = ap.parse_args(sys.argv[sys.argv.index("--") + 1 :] if "--" in sys.argv else [])
     origen = a.glb if a.glb.is_absolute() else ROOT / a.glb
@@ -106,6 +107,8 @@ def main():
     escena.world.color = (1, 1, 1)
     datos = bpy.data.cameras.new("corte")
     datos.type = "ORTHO"
+    Z1 = max(Z1_BASE, a.hasta + 0.1)
+    X0 = min(X0_BASE, APOTEMA - a.hasta - 0.6)
     ancho, alto = round((X1 - X0) * escala), round((Z1 - Z0) * escala)
     datos.ortho_scale = (X1 - X0)
     datos.sensor_fit = "HORIZONTAL"
@@ -133,7 +136,7 @@ def main():
     columna_x = lambda x: (x - X0) * escala
     xmuro = columna_x(APOTEMA)
     f0 = fila_z(0.0)
-    filas = np.arange(fila_z(VENTANA), fila_z(-VENTANA) + 1)
+    filas = np.arange(fila_z(a.hasta), fila_z(-VENTANA) + 1)
     res = dict(
         glb=str(origen.relative_to(ROOT)) if origen.is_relative_to(ROOT) else str(origen),
         sha256_glb_descomprimido=hashlib.sha256(bruto).hexdigest(),
